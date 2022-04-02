@@ -1,0 +1,17 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '15.0'
+
+target 'Trittstufe' do
+  use_frameworks!
+  pod 'CocoaMQTT'
+
+  target 'TrittstufeTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'TrittstufeUITests' do
+    # Pods for testing
+  end
+
+end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A4F4E59DF2C9A001B6076CA /* Pods_TrittstufeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */; };
+		8387DC4BB5212A6E7158F7DF /* Pods_Trittstufe_TrittstufeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091062914BEE10808895AC2 /* Pods_Trittstufe_TrittstufeUITests.framework */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
 		85D6771D27F87614004500D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D6771B27F87614004500D9 /* Main.storyboard */; };
@@ -22,6 +24,7 @@
 		85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775527F877CD004500D9 /* HomePresenter.swift */; };
 		85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775927F87840004500D9 /* HomeViewController.swift */; };
 		85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D6775A27F87840004500D9 /* HomeViewController.xib */; };
+		959A07A7831CF689BAA5C497 /* Pods_Trittstufe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0091062914BEE10808895AC2 /* Pods_Trittstufe_TrittstufeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trittstufe_TrittstufeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trittstufe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FE963B7E3D2F294F75DDC25 /* Pods-TrittstufeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.debug.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		62E1BD9DA078029E8172C317 /* Pods-TrittstufeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.release.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.release.xcconfig"; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +68,11 @@
 		85D6775527F877CD004500D9 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		85D6775927F87840004500D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		85D6775A27F87840004500D9 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		97EBD7A9A2F15F7213BB2CEF /* Pods-Trittstufe-TrittstufeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe-TrittstufeUITests.release.xcconfig"; path = "Target Support Files/Pods-Trittstufe-TrittstufeUITests/Pods-Trittstufe-TrittstufeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrittstufeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A766F4AA522C43733F6D6C56 /* Pods-Trittstufe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe.debug.xcconfig"; path = "Target Support Files/Pods-Trittstufe/Pods-Trittstufe.debug.xcconfig"; sourceTree = "<group>"; };
+		B11A6AF867BE3C64EDD0E366 /* Pods-Trittstufe-TrittstufeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe-TrittstufeUITests.debug.xcconfig"; path = "Target Support Files/Pods-Trittstufe-TrittstufeUITests/Pods-Trittstufe-TrittstufeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D4A3DA7A280F8DB2B985F4A5 /* Pods-Trittstufe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe.release.xcconfig"; path = "Target Support Files/Pods-Trittstufe/Pods-Trittstufe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				959A07A7831CF689BAA5C497 /* Pods_Trittstufe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A4F4E59DF2C9A001B6076CA /* Pods_TrittstufeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +96,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8387DC4BB5212A6E7158F7DF /* Pods_Trittstufe_TrittstufeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06F3F9B4623D2F94D2A09F97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A766F4AA522C43733F6D6C56 /* Pods-Trittstufe.debug.xcconfig */,
+				D4A3DA7A280F8DB2B985F4A5 /* Pods-Trittstufe.release.xcconfig */,
+				B11A6AF867BE3C64EDD0E366 /* Pods-Trittstufe-TrittstufeUITests.debug.xcconfig */,
+				97EBD7A9A2F15F7213BB2CEF /* Pods-Trittstufe-TrittstufeUITests.release.xcconfig */,
+				3FE963B7E3D2F294F75DDC25 /* Pods-TrittstufeTests.debug.xcconfig */,
+				62E1BD9DA078029E8172C317 /* Pods-TrittstufeTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7E1043C670FBB8EEAB0671C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */,
+				0091062914BEE10808895AC2 /* Pods_Trittstufe_TrittstufeUITests.framework */,
+				9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		85D6770927F87614004500D9 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +134,8 @@
 				85D6772E27F87616004500D9 /* TrittstufeTests */,
 				85D6773827F87616004500D9 /* TrittstufeUITests */,
 				85D6771327F87614004500D9 /* Products */,
+				06F3F9B4623D2F94D2A09F97 /* Pods */,
+				7E1043C670FBB8EEAB0671C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,9 +249,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85D6773F27F87616004500D9 /* Build configuration list for PBXNativeTarget "Trittstufe" */;
 			buildPhases = (
+				90A09C6EDA8A20D69394AB2F /* [CP] Check Pods Manifest.lock */,
 				85D6770E27F87614004500D9 /* Sources */,
 				85D6770F27F87614004500D9 /* Frameworks */,
 				85D6771027F87614004500D9 /* Resources */,
+				E3A8EDCE26527079172EEA30 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,6 +268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85D6774227F87616004500D9 /* Build configuration list for PBXNativeTarget "TrittstufeTests" */;
 			buildPhases = (
+				E1AF05A519BA0848256D2C61 /* [CP] Check Pods Manifest.lock */,
 				85D6772727F87616004500D9 /* Sources */,
 				85D6772827F87616004500D9 /* Frameworks */,
 				85D6772927F87616004500D9 /* Resources */,
@@ -243,9 +287,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85D6774527F87616004500D9 /* Build configuration list for PBXNativeTarget "TrittstufeUITests" */;
 			buildPhases = (
+				D67978EA1D600587ADB5707F /* [CP] Check Pods Manifest.lock */,
 				85D6773127F87616004500D9 /* Sources */,
 				85D6773227F87616004500D9 /* Frameworks */,
 				85D6773327F87616004500D9 /* Resources */,
+				2EA8FFCE1F1DBACB7C219D28 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,6 +373,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2EA8FFCE1F1DBACB7C219D28 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trittstufe-TrittstufeUITests/Pods-Trittstufe-TrittstufeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trittstufe-TrittstufeUITests/Pods-Trittstufe-TrittstufeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trittstufe-TrittstufeUITests/Pods-Trittstufe-TrittstufeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90A09C6EDA8A20D69394AB2F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Trittstufe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D67978EA1D600587ADB5707F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Trittstufe-TrittstufeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1AF05A519BA0848256D2C61 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrittstufeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3A8EDCE26527079172EEA30 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trittstufe/Pods-Trittstufe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trittstufe/Pods-Trittstufe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trittstufe/Pods-Trittstufe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		85D6770E27F87614004500D9 /* Sources */ = {
@@ -514,6 +663,7 @@
 		};
 		85D6774027F87616004500D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A766F4AA522C43733F6D6C56 /* Pods-Trittstufe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -541,6 +691,7 @@
 		};
 		85D6774127F87616004500D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4A3DA7A280F8DB2B985F4A5 /* Pods-Trittstufe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -568,6 +719,7 @@
 		};
 		85D6774327F87616004500D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FE963B7E3D2F294F75DDC25 /* Pods-TrittstufeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -587,6 +739,7 @@
 		};
 		85D6774427F87616004500D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62E1BD9DA078029E8172C317 /* Pods-TrittstufeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -606,6 +759,7 @@
 		};
 		85D6774627F87616004500D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B11A6AF867BE3C64EDD0E366 /* Pods-Trittstufe-TrittstufeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -623,6 +777,7 @@
 		};
 		85D6774727F87616004500D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97EBD7A9A2F15F7213BB2CEF /* Pods-Trittstufe-TrittstufeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
