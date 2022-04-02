@@ -18,8 +18,10 @@ class AppCoordinator: Coordinator {
     
     private let window: UIWindow
     
+    private let mqttClientService = MQTTClientService()
+
     private lazy var homeCoordinator: HomeCoordinator = {
-        let coordinator = HomeCoordinator()
+        let coordinator = HomeCoordinator(mqttClientService: mqttClientService)
         return coordinator
     }()
 

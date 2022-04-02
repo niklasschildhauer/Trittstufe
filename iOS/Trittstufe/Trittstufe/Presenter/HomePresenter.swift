@@ -15,7 +15,17 @@ protocol HomeView: AnyObject {
 class HomePresenter {
     weak var view: HomeView?
     
+    private let mqttClientService: MQTTClientService
+    
+    init(mqttClientService: MQTTClientService) {
+        self.mqttClientService = mqttClientService
+    }
+    
     func viewDidLoad() {
         
+    }
+    
+    func sendTestMessage() {
+        mqttClientService.sendTestMessage()
     }
 }

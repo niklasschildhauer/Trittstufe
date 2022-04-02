@@ -14,14 +14,16 @@ class HomeCoordinator: Coordinator {
     }
 
     private let navigationController = UINavigationController()
+    private let mqttClientService: MQTTClientService
     
-    init() {
+    init(mqttClientService: MQTTClientService) {
+        self.mqttClientService = mqttClientService
         navigationController.viewControllers = [createHomeViewController()]
     }
     
     private func createHomeViewController() -> UIViewController {
         let homeViewController = HomeViewController()
-        let homePresenter = HomePresenter()
+        let homePresenter = HomePresenter(mqttClientService: mqttClientService)
 
         homeViewController.presenter = homePresenter
         

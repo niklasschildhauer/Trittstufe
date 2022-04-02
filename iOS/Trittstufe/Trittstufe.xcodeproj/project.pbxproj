@@ -24,6 +24,7 @@
 		85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775527F877CD004500D9 /* HomePresenter.swift */; };
 		85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775927F87840004500D9 /* HomeViewController.swift */; };
 		85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D6775A27F87840004500D9 /* HomeViewController.xib */; };
+		85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775D27F87E34004500D9 /* MQTTClientService.swift */; };
 		959A07A7831CF689BAA5C497 /* Pods_Trittstufe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		85D6775527F877CD004500D9 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		85D6775927F87840004500D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		85D6775A27F87840004500D9 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		85D6775D27F87E34004500D9 /* MQTTClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTClientService.swift; sourceTree = "<group>"; };
 		97EBD7A9A2F15F7213BB2CEF /* Pods-Trittstufe-TrittstufeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe-TrittstufeUITests.release.xcconfig"; path = "Target Support Files/Pods-Trittstufe-TrittstufeUITests/Pods-Trittstufe-TrittstufeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrittstufeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A766F4AA522C43733F6D6C56 /* Pods-Trittstufe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe.debug.xcconfig"; path = "Target Support Files/Pods-Trittstufe/Pods-Trittstufe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,7 +115,6 @@
 				3FE963B7E3D2F294F75DDC25 /* Pods-TrittstufeTests.debug.xcconfig */,
 				62E1BD9DA078029E8172C317 /* Pods-TrittstufeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -217,6 +218,7 @@
 		85D6774B27F8763F004500D9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				85D6775D27F87E34004500D9 /* MQTTClientService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -487,6 +489,7 @@
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
 				85D6772027F87614004500D9 /* Trittstufe.xcdatamodeld in Sources */,
+				85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */,
 				85D6775227F87758004500D9 /* HomeCoordinator.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
 				85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */,
