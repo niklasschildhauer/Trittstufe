@@ -18,7 +18,7 @@ class HomeCoordinator: Coordinator {
     
     init(mqttClientService: MQTTClientService) {
         self.mqttClientService = mqttClientService
-        navigationController.viewControllers = [createHomeViewController()]
+        navigationController.setViewControllers([createHomeViewController()], animated: false)
     }
     
     private func createHomeViewController() -> UIViewController {

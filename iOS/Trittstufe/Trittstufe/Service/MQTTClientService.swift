@@ -9,7 +9,7 @@ import Foundation
 import CocoaMQTT
 
 class MQTTClientService {
-    private static let hostID = "192.168.0.65"
+    private static let hostID = "192.168.0.66"
     private static let port: UInt16 = 1883
     
     private var mqttClient: CocoaMQTT!

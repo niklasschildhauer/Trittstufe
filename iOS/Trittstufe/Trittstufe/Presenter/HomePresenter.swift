@@ -12,8 +12,13 @@ protocol HomeView: AnyObject {
     var presenter: HomePresenter! { get set }
 }
 
-class HomePresenter {
+protocol HomePresenterDelegate: AnyObject {
+    
+}
+
+class HomePresenter: Presenter {
     weak var view: HomeView?
+    weak var delegate: HomePresenterDelegate?
     
     private let mqttClientService: MQTTClientService
     

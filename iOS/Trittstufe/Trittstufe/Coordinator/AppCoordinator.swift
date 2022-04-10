@@ -24,11 +24,26 @@ class AppCoordinator: Coordinator {
         let coordinator = HomeCoordinator(mqttClientService: mqttClientService)
         return coordinator
     }()
+    
+    private lazy var setupCoordinator: SetupCoordinator = {
+        let coordinator = SetupCoordinator()
+        coordinator.delegate = self
+        
+        return coordinator
+    }()
 
     init(window: UIWindow) {
         self.window = window
         defer {
-            rootViewController = homeCoordinator.rootViewController
+            rootViewController = setupCoordinator.rootViewController
+        }
+    }
+}
+
+extension AppCoordinator: SetupCoordinatorDelegate {
+    func didCompleteSetup(in coordinator: SetupCoordinator) {
+        DispatchQueue.scheduleOnMainThread {
+            self.rootViewController = self.homeCoordinator.rootViewController
         }
     }
 }
