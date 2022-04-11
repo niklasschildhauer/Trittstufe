@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfigurationViewController" customModule="Trittstufe" customModuleProvider="target">
             <connections>
+                <outlet property="ipAdressTextField" destination="NoO-fJ-1Rm" id="QwB-wJ-r5D"/>
+                <outlet property="portTextField" destination="R6Q-j7-XqA" id="wnI-hE-RVe"/>
+                <outlet property="publicKeyTextField" destination="kVC-ep-vpy" id="v4S-WW-hAR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,19 +22,44 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPk-ET-P9j">
-                    <rect key="frame" x="173.5" y="432.5" width="67" height="31"/>
+                    <rect key="frame" x="172" y="432.5" width="70" height="31"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                    <buttonConfiguration key="configuration" style="gray" title="Submit"/>
                     <connections>
-                        <action selector="didTapTestButton:" destination="-1" eventType="touchUpInside" id="e6o-rJ-BJa"/>
+                        <action selector="didTapSubmitButton:" destination="-1" eventType="touchUpInside" id="5pB-ap-4Ru"/>
                     </connections>
                 </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="YqC-ga-oNf">
+                    <rect key="frame" x="157.5" y="154" width="99" height="144"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IP-Adresse" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NoO-fJ-1Rm">
+                            <rect key="frame" x="0.0" y="0.0" width="99" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Port" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R6Q-j7-XqA">
+                            <rect key="frame" x="0.0" y="55" width="99" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Public Key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kVC-ep-vpy">
+                            <rect key="frame" x="0.0" y="110" width="99" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="99" id="2Gl-2W-GY2"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="IPk-ET-P9j" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="AfK-VH-eOO"/>
+                <constraint firstItem="YqC-ga-oNf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q32-sN-CwI"/>
                 <constraint firstItem="IPk-ET-P9j" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SeM-r0-dyQ"/>
+                <constraint firstItem="IPk-ET-P9j" firstAttribute="top" secondItem="YqC-ga-oNf" secondAttribute="bottom" constant="134.5" id="uz1-vf-4OE"/>
             </constraints>
             <point key="canvasLocation" x="139" y="105"/>
         </view>

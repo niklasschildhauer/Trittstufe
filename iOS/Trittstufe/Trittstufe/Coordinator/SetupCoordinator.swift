@@ -44,7 +44,7 @@ class SetupCoordinator: Coordinator {
         
     private func pushConfigurationViewController() {
         let viewController = ConfigurationViewController()
-        let presenter = ConfigurationPresenter()
+        let presenter = ConfigurationPresenter(configurationService: configurationService)
         
         viewController.presenter = presenter
         presenter.delegate = self

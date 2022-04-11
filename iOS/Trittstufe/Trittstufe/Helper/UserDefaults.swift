@@ -16,6 +16,12 @@ struct UserDefaultConfig {
     
     @UserDefault(key: "configuration_ip_adress_key", defaultValue: nil)
     private static var configurationIpAdressValue: String?
+    
+    @UserDefault(key: "configuration_port_key", defaultValue: nil)
+    private static var configurationPortValue: String?
+    
+    @UserDefault(key: "configuration_public_key_key", defaultValue: nil)
+    private static var configurationPublicKeyValue: String?
 }
 
 extension UserDefaultConfig {
@@ -28,12 +34,30 @@ extension UserDefaultConfig {
         }
     }
     
+    static var configurationPort: String? {
+        get {
+            configurationPortValue
+        }
+        set {
+            configurationPortValue = newValue
+        }
+    }
+    
     static var configurationIpAdress: String? {
         get {
-            "123"
+            configurationIpAdressValue
         }
         set {
             configurationIpAdressValue = newValue
+        }
+    }
+    
+    static var configurationPublicKey: String? {
+        get {
+            configurationPublicKeyValue
+        }
+        set {
+            configurationPublicKeyValue = newValue
         }
     }
 
