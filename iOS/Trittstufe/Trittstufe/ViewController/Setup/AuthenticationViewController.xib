@@ -10,6 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthenticationViewController" customModule="Trittstufe" customModuleProvider="target">
             <connections>
+                <outlet property="accountNameTextField" destination="idh-gP-a8f" id="com-Mx-0C8"/>
+                <outlet property="errorMessageLabel" destination="hzt-hR-d0Z" id="GV2-m2-UuQ"/>
+                <outlet property="passwordTextField" destination="R3z-b5-YqC" id="uiQ-l4-AhF"/>
+                <outlet property="rememberMeSwitch" destination="S08-j2-rje" id="yEV-SC-yV2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,11 +30,41 @@
                         <action selector="didTapLogin:" destination="-1" eventType="touchUpInside" id="DwH-GE-P6U"/>
                     </connections>
                 </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="KgE-bh-dlZ">
+                    <rect key="frame" x="162" y="293" width="90.5" height="91"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="idh-gP-a8f">
+                            <rect key="frame" x="0.0" y="0.0" width="90.5" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" textContentType="username"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R3z-b5-YqC">
+                            <rect key="frame" x="0.0" y="57" width="90.5" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" textContentType="password"/>
+                        </textField>
+                    </subviews>
+                </stackView>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S08-j2-rje">
+                    <rect key="frame" x="182.5" y="511" width="51" height="31"/>
+                </switch>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzt-hR-d0Z">
+                    <rect key="frame" x="186.5" y="482" width="41.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemPinkColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Jwe-cJ-sNp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LUv-hl-pUq"/>
+                <constraint firstItem="KgE-bh-dlZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NK1-cN-5VI"/>
+                <constraint firstItem="Jwe-cJ-sNp" firstAttribute="top" secondItem="KgE-bh-dlZ" secondAttribute="bottom" constant="48.5" id="PlA-Nb-1N5"/>
+                <constraint firstItem="hzt-hR-d0Z" firstAttribute="top" secondItem="Jwe-cJ-sNp" secondAttribute="bottom" constant="18.5" id="UOK-vd-xYG"/>
+                <constraint firstItem="S08-j2-rje" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VdZ-xa-FNR"/>
+                <constraint firstItem="S08-j2-rje" firstAttribute="top" secondItem="Jwe-cJ-sNp" secondAttribute="bottom" constant="47.5" id="cG6-Jf-ffP"/>
+                <constraint firstItem="hzt-hR-d0Z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dsN-DS-iIj"/>
                 <constraint firstItem="Jwe-cJ-sNp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="vhQ-Gw-jrF"/>
             </constraints>
             <point key="canvasLocation" x="139" y="101"/>
@@ -39,6 +73,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

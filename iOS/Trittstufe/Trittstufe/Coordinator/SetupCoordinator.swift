@@ -21,29 +21,27 @@ class SetupCoordinator: Coordinator {
 
     private let navigationController = UINavigationController()
     private let userService: UserService
+    private let configurationService: ConfigurationService
     
-    init(userService: UserService) {
+    init(userService: UserService, configurationService: ConfigurationService) {
         self.userService = userService
+        self.configurationService = configurationService
         
         pushCalculateSetupStageViewController()
     }
     
     private func pushCalculateSetupStageViewController() {
         let viewController = CalculateSetupStageViewController()
-        let presenter = CalculateSetupStagePresenter()
+        let presenter = CalculateSetupStagePresenter(userService: userService, configurationService: configurationService)
         
         viewController.presenter = presenter
         presenter.delegate = self
-        
-        presenter.state = testBool
-        
+                
         DispatchQueue.scheduleOnMainThread {
             self.navigationController.setViewControllers([viewController], animated: false)
         }
     }
-    
-    private var testBool = false
-    
+        
     private func pushConfigurationViewController() {
         let viewController = ConfigurationViewController()
         let presenter = ConfigurationPresenter()
@@ -71,12 +69,15 @@ class SetupCoordinator: Coordinator {
 
 extension SetupCoordinator: SetupPresenterDelegate {
     func didCalculate(next stage: SetupStage, in presenter: CalculateSetupStagePresenter) {
-
         switch stage {
         case .configurationMissing:
-            pushConfigurationViewController()
+            DispatchQueue.performUIOperation {
+                self.pushConfigurationViewController()
+            }
         case .authenticationRequired:
-            pushAuthenticationViewController()
+            DispatchQueue.performUIOperation {
+                self.pushAuthenticationViewController()
+            }
         case .setupCompleted:
             delegate?.didCompleteSetup(in: self)
         }
@@ -85,13 +86,16 @@ extension SetupCoordinator: SetupPresenterDelegate {
 
 extension SetupCoordinator: ConfigurationPresenterDelegate {
     func didCompletecConfiguration(in presenter: ConfigurationPresenter) {
-        testBool = true
-        pushCalculateSetupStageViewController()
+        DispatchQueue.performUIOperation {
+            self.pushCalculateSetupStageViewController()
+        }
     }
 }
 
 extension SetupCoordinator: AuthenticationPresenterDelegate {
     func didCompletecAuthentication(in presenter: AuthenticationPresenter) {
-        pushCalculateSetupStageViewController()
-    }    
+        DispatchQueue.performUIOperation {
+            self.pushCalculateSetupStageViewController()
+        }
+    }
 }

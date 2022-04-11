@@ -19,6 +19,7 @@ class AppCoordinator: Coordinator {
     private let window: UIWindow
     
     private let mqttClientService = MQTTClientService()
+    private let configurationService = ConfigurationService()
     private let userService: UserService = {
         let keychainService = KeychainService()
         return UserService(keychainService: keychainService)
@@ -30,7 +31,7 @@ class AppCoordinator: Coordinator {
     }()
     
     private lazy var setupCoordinator: SetupCoordinator = {
-        let coordinator = SetupCoordinator(userService: userService)
+        let coordinator = SetupCoordinator(userService: userService, configurationService: configurationService)
         coordinator.delegate = self
         
         return coordinator

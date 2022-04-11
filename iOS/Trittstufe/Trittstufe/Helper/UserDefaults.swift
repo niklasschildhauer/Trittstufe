@@ -13,6 +13,9 @@ struct UserDefaultConfig {
     
     @UserDefault(key: "remember_me_key", defaultValue: false)
     private static var rememberMeValue: Bool
+    
+    @UserDefault(key: "configuration_ip_adress_key", defaultValue: nil)
+    private static var configurationIpAdressValue: String?
 }
 
 extension UserDefaultConfig {
@@ -22,6 +25,15 @@ extension UserDefaultConfig {
         }
         set {
             accountNameValue = newValue
+        }
+    }
+    
+    static var configurationIpAdress: String? {
+        get {
+            "123"
+        }
+        set {
+            configurationIpAdressValue = newValue
         }
     }
 

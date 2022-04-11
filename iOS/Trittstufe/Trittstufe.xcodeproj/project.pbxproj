@@ -25,6 +25,7 @@
 		854E9C04280370A90005546B /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C03280370A90005546B /* UserDefaults.swift */; };
 		854E9C0628040D6F0005546B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C0528040D6F0005546B /* KeychainService.swift */; };
 		854E9C08280418AE0005546B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C07280418AE0005546B /* UserService.swift */; };
+		854E9C0A2804B3DD0005546B /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C092804B3DD0005546B /* ConfigurationService.swift */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
 		85D6771D27F87614004500D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D6771B27F87614004500D9 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		854E9C03280370A90005546B /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		854E9C0528040D6F0005546B /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		854E9C07280418AE0005546B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		854E9C092804B3DD0005546B /* ConfigurationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				85D6775D27F87E34004500D9 /* MQTTClientService.swift */,
 				854E9C0528040D6F0005546B /* KeychainService.swift */,
 				854E9C07280418AE0005546B /* UserService.swift */,
+				854E9C092804B3DD0005546B /* ConfigurationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */,
 				854E9BF22802F2200005546B /* ConfigurationPresenter.swift in Sources */,
 				85D6775427F877A3004500D9 /* Coordinator+Protocol.swift in Sources */,
+				854E9C0A2804B3DD0005546B /* ConfigurationService.swift in Sources */,
 				854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */,
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,

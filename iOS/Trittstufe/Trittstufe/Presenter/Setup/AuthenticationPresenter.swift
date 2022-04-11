@@ -14,9 +14,10 @@ protocol AuthenticationView: AnyObject {
     
     func setLoginFieldsHiddenStatus(isHidden: Bool)
     func showError(message: String)
+    func hideError()
     
-    var passwordValue: String { get set }
-    var accountNameValue: String { get set }
+    var passwordValue: String? { get set }
+    var accountNameValue: String? { get set }
     var rememberMeValue: Bool { get set }
 }
 
@@ -59,6 +60,10 @@ class AuthenticationPresenter {
                 self?.userService.loginWithRememberMe { [weak self] result in
                     self?.handleAuthentication(result: result)
                 }
+            } else {
+                DispatchQueue.performUIOperation {
+                    self?.view?.setLoginFieldsHiddenStatus(isHidden: false)
+                }
             }
         }
     }
@@ -77,6 +82,7 @@ class AuthenticationPresenter {
                 case .serverError:
                     self.view?.showError(message: "There was an internal server error. Sorry!")
                 }
+                self.view?.setLoginFieldsHiddenStatus(isHidden: false)
             }
         }
     }

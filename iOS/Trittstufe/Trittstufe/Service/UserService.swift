@@ -16,6 +16,7 @@ class UserService {
     }
     
     private var userIdentificationValue: String?
+    var userLoggedIn = false
     var accountName: String? {
         get {
             UserDefaultConfig.accountName
@@ -52,10 +53,13 @@ class UserService {
         self.rememberMe = rememberMe
         
         
-        // success
+        // success case
+        self.accountName = accountName
         if rememberMe {
             try? keychainService.save(password: password, account: accountName)
         }
+        
+        userLoggedIn = true
         completion(.success("UserIDString"))
     }
     

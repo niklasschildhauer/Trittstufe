@@ -9,6 +9,11 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
     
+    @IBOutlet weak var accountNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var rememberMeSwitch: UISwitch!
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    
     var presenter: AuthenticationPresenter! {
         didSet {
             presenter.view = self
@@ -28,37 +33,45 @@ class AuthenticationViewController: UIViewController {
 
 extension AuthenticationViewController: AuthenticationView {
     func setLoginFieldsHiddenStatus(isHidden: Bool) {
-         
+        accountNameTextField.isHidden = isHidden
+        passwordTextField.isHidden = isHidden
+        rememberMeSwitch.isHidden = isHidden
     }
     
     func showError(message: String) {
-         
+        errorMessageLabel.text = message
+        errorMessageLabel.isHidden = false
     }
     
-    var passwordValue: String {
+    func hideError() {
+        errorMessageLabel.isHidden = true
+        errorMessageLabel.text = ""
+    }
+    
+    var passwordValue: String? {
         get {
-            ""
+            passwordTextField.text
         }
         set {
-             
+            passwordTextField.text = newValue
         }
     }
     
-    var accountNameValue: String {
+    var accountNameValue: String? {
         get {
-            ""
+            accountNameTextField.text
         }
         set {
-             
+            accountNameTextField.text = newValue
         }
     }
     
     var rememberMeValue: Bool {
         get {
-            true
+            rememberMeSwitch.isOn
         }
         set {
-             
+            rememberMeSwitch.isOn = newValue
         }
     }
 }
