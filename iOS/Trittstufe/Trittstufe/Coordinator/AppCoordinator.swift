@@ -12,7 +12,14 @@ class AppCoordinator: Coordinator {
     var rootViewController: UIViewController! = UIViewController() {
         didSet {
             window.rootViewController = rootViewController
-            window.makeKeyAndVisible()
+
+            let options: UIView.AnimationOptions = .transitionCrossDissolve
+            let duration: TimeInterval = 0.5
+
+            // Creates a transition animation.
+            UIView.transition(with: window, duration: duration, options: options, animations: {}, completion: { completed in
+                self.window.makeKeyAndVisible()
+            })
         }
     }
     
