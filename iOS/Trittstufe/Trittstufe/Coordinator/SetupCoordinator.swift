@@ -20,8 +20,11 @@ class SetupCoordinator: Coordinator {
     weak var delegate: SetupCoordinatorDelegate?
 
     private let navigationController = UINavigationController()
+    private let userService: UserService
     
-    init() {
+    init(userService: UserService) {
+        self.userService = userService
+        
         pushCalculateSetupStageViewController()
     }
     
@@ -55,7 +58,7 @@ class SetupCoordinator: Coordinator {
     
     private func pushAuthenticationViewController() {
         let viewController = AuthenticationViewController()
-        let presenter = AuthenticationPresenter()
+        let presenter = AuthenticationPresenter(userService: userService)
         
         viewController.presenter = presenter
         presenter.delegate = self

@@ -22,6 +22,9 @@
 		854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BFD2803621D0005546B /* AuthenticationViewController.swift */; };
 		854E9C002803621D0005546B /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854E9BFE2803621D0005546B /* AuthenticationViewController.xib */; };
 		854E9C02280367EF0005546B /* Presenter+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C01280367EF0005546B /* Presenter+Protocol.swift */; };
+		854E9C04280370A90005546B /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C03280370A90005546B /* UserDefaults.swift */; };
+		854E9C0628040D6F0005546B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C0528040D6F0005546B /* KeychainService.swift */; };
+		854E9C08280418AE0005546B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C07280418AE0005546B /* UserService.swift */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
 		85D6771D27F87614004500D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D6771B27F87614004500D9 /* Main.storyboard */; };
@@ -76,6 +79,9 @@
 		854E9BFD2803621D0005546B /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		854E9BFE2803621D0005546B /* AuthenticationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
 		854E9C01280367EF0005546B /* Presenter+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Presenter+Protocol.swift"; sourceTree = "<group>"; };
+		854E9C03280370A90005546B /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		854E9C0528040D6F0005546B /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		854E9C07280418AE0005546B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -272,6 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				85D6775D27F87E34004500D9 /* MQTTClientService.swift */,
+				854E9C0528040D6F0005546B /* KeychainService.swift */,
+				854E9C07280418AE0005546B /* UserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 		85D6774D27F8764C004500D9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				854E9C03280370A90005546B /* UserDefaults.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -548,16 +557,19 @@
 				854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */,
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,
+				854E9C08280418AE0005546B /* UserService.swift in Sources */,
 				854E9BE72802EDFE0005546B /* CalculateSetupStageViewController.swift in Sources */,
 				854E9BE42802EDED0005546B /* CalculateSetupStagePresenter.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
 				85D6772027F87614004500D9 /* Trittstufe.xcdatamodeld in Sources */,
 				854E9BF6280359640005546B /* DispatchQueue+Extension.swift in Sources */,
+				854E9C0628040D6F0005546B /* KeychainService.swift in Sources */,
 				85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */,
 				854E9C02280367EF0005546B /* Presenter+Protocol.swift in Sources */,
 				85D6775227F87758004500D9 /* HomeCoordinator.swift in Sources */,
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
+				854E9C04280370A90005546B /* UserDefaults.swift in Sources */,
 				854E9BEF2802F20F0005546B /* ConfigurationViewController.swift in Sources */,
 				85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */,
 				854E9BEA2802EECB0005546B /* SetupStage.swift in Sources */,

@@ -22,11 +22,43 @@ class AuthenticationViewController: UIViewController {
     }
     
     @IBAction func didTapLogin(_ sender: Any) {
-        presenter.didTapTestLogin()
+        presenter.didTapLogin()
     }
 }
 
 extension AuthenticationViewController: AuthenticationView {
+    func setLoginFieldsHiddenStatus(isHidden: Bool) {
+         
+    }
     
-
+    func showError(message: String) {
+         
+    }
+    
+    var passwordValue: String {
+        get {
+            ""
+        }
+        set {
+             
+        }
+    }
+    
+    var accountNameValue: String {
+        get {
+            ""
+        }
+        set {
+             
+        }
+    }
+    
+    var rememberMeValue: Bool {
+        get {
+            true
+        }
+        set {
+             
+        }
+    }
 }

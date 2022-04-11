@@ -11,6 +11,13 @@ import LocalAuthentication
 
 protocol AuthenticationView: AnyObject {
     var presenter: AuthenticationPresenter! { get set }
+    
+    func setLoginFieldsHiddenStatus(isHidden: Bool)
+    func showError(message: String)
+    
+    var passwordValue: String { get set }
+    var accountNameValue: String { get set }
+    var rememberMeValue: Bool { get set }
 }
 
 protocol AuthenticationPresenterDelegate: AnyObject {
@@ -21,34 +28,76 @@ class AuthenticationPresenter {
     weak var view: AuthenticationView?
     weak var delegate: AuthenticationPresenterDelegate?
     
+    private let userService: UserService
+        
+    init(userService: UserService) {
+        self.userService = userService
+    }
+    
     func viewDidLoad() {
-        startAuthentication()
+        if userService.rememberMe {
+            view?.setLoginFieldsHiddenStatus(isHidden: true)
+            startRememberMeAuthentication()
+        } else {
+            view?.setLoginFieldsHiddenStatus(isHidden: false)
+        }
+    }
+        
+    func didTapLogin() {
+        guard let password = view?.passwordValue,
+              let accountName = view?.accountNameValue,
+              let rememberMe = view?.rememberMeValue else { return }
+            
+        userService.login(accountName: accountName, password: password, rememberMe: rememberMe) { [weak self] result in
+            self?.handleAuthentication(result: result)
+        }
     }
     
-    func didTapTestLogin() {
-
+    private func startRememberMeAuthentication() {
+        self.checkDeviceOwnerAuthenticationWithBiometrics { [weak self] isDeviceOwner in
+            if isDeviceOwner {
+                self?.userService.loginWithRememberMe { [weak self] result in
+                    self?.handleAuthentication(result: result)
+                }
+            }
+        }
     }
     
-    private func startAuthentication() {
+    private func handleAuthentication(result: Result<String, UserService.AuthenticationError>) {
+        switch result {
+        case .success(_):
+            delegate?.didCompletecAuthentication(in: self)
+        case .failure(let error):
+            DispatchQueue.performUIOperation {
+                switch error {
+                case .invalidLoginCredentials:
+                    self.view?.showError(message: "The login credentials were invalid.")
+                case .noNetwork:
+                    self.view?.showError(message: "No network. Please check your internet connection")
+                case .serverError:
+                    self.view?.showError(message: "There was an internal server error. Sorry!")
+                }
+            }
+        }
+    }
+    
+    private func checkDeviceOwnerAuthenticationWithBiometrics(completion: @escaping (Bool) -> Void) {
         let context = LAContext()
         var error: NSError?
 
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Identify yourself"
 
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, authenticationError in
-                guard let self = self else { return }
-
-                DispatchQueue.performUIOperation {
-                    if success {
-                        self.delegate?.didCompletecAuthentication(in: self)
-                    } else {
-                        print(authenticationError!.localizedDescription)
-                    }
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                if success {
+                    completion(true)
+                } else {
+                    completion(false)
                 }
+                
             }
         } else {
-            print("No biometry")
+            completion(false)
         }
     }
 }
