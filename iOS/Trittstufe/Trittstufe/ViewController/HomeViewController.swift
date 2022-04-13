@@ -21,6 +21,10 @@ class HomeViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    @IBAction func didTapLogout(_ sender: Any) {
+        presenter.logout()
+    }
+    
     @IBAction func didTapSendTestMessage(_ sender: Any) {
         presenter.sendTestMessage()
     }

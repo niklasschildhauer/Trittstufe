@@ -23,6 +23,8 @@ protocol AuthenticationView: AnyObject {
 
 protocol AuthenticationPresenterDelegate: AnyObject {
     func didCompletecAuthentication(in presenter: AuthenticationPresenter)
+    func didTapEditConfiguration(in presenter: AuthenticationPresenter)
+
 }
 
 class AuthenticationPresenter {
@@ -42,6 +44,10 @@ class AuthenticationPresenter {
         } else {
             view?.setLoginFieldsHiddenStatus(isHidden: false)
         }
+    }
+    
+    func didTapEditConfiguration() {
+        delegate?.didTapEditConfiguration(in: self)
     }
         
     func didTapLogin() {
@@ -68,7 +74,7 @@ class AuthenticationPresenter {
         }
     }
     
-    private func handleAuthentication(result: Result<String, UserService.AuthenticationError>) {
+    private func handleAuthentication(result: Result<String, AuthenticationError>) {
         switch result {
         case .success(_):
             delegate?.didCompletecAuthentication(in: self)

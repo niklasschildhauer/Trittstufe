@@ -25,11 +25,21 @@
                         <action selector="didTapSendTestMessage:" destination="-1" eventType="touchUpInside" id="sr7-AB-hQW"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOT-hq-4YD">
+                    <rect key="frame" x="172" y="482.5" width="70" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                    <connections>
+                        <action selector="didTapLogout:" destination="-1" eventType="touchUpInside" id="Pu6-1K-eZ2"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
+                <constraint firstItem="qOT-hq-4YD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q9F-cB-FKo"/>
                 <constraint firstItem="7Bp-ER-X1a" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TiM-6q-cvx"/>
                 <constraint firstItem="7Bp-ER-X1a" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TqX-us-vdr"/>
+                <constraint firstItem="qOT-hq-4YD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="50" id="xOM-x4-Glx"/>
             </constraints>
             <point key="canvasLocation" x="132" y="131"/>
         </view>

@@ -23,6 +23,10 @@ class ConfigurationViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func didTapShowQRCodeSacnnerButton(_ sender: Any) {
+        presenter.didTapShowQRScannerButton()
+    }
+    
     @IBAction func didTapSubmitButton(_ sender: Any) {
         presenter.didTapSubmitButton()
     }
@@ -64,6 +68,4 @@ extension ConfigurationViewController: ConfigurationView {
     func hideError() {
         ///Todo
     }
-    
-    
 }

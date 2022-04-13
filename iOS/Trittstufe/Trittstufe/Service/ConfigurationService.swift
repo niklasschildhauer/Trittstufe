@@ -24,7 +24,7 @@ class ConfigurationService {
             UserDefaultConfig.configurationIpAdress = newValue
         }
     }
-    var port: String? {
+    var port: UInt16? {
         get {
             UserDefaultConfig.configurationPort
         }

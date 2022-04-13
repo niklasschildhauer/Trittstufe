@@ -26,6 +26,10 @@ class AuthenticationViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    @IBAction func didTapEditConfigurationButton(_ sender: Any) {
+        presenter.didTapEditConfiguration()
+    }
+    
     @IBAction func didTapLogin(_ sender: Any) {
         presenter.didTapLogin()
     }

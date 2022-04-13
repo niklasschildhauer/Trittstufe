@@ -24,7 +24,6 @@
 		854E9C02280367EF0005546B /* Presenter+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C01280367EF0005546B /* Presenter+Protocol.swift */; };
 		854E9C04280370A90005546B /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C03280370A90005546B /* UserDefaults.swift */; };
 		854E9C0628040D6F0005546B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C0528040D6F0005546B /* KeychainService.swift */; };
-		854E9C08280418AE0005546B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C07280418AE0005546B /* UserService.swift */; };
 		854E9C0A2804B3DD0005546B /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C092804B3DD0005546B /* ConfigurationService.swift */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
@@ -42,6 +41,9 @@
 		85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775927F87840004500D9 /* HomeViewController.swift */; };
 		85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D6775A27F87840004500D9 /* HomeViewController.xib */; };
 		85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775D27F87E34004500D9 /* MQTTClientService.swift */; };
+		85F459C22806B0DD003C1C71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C42806B0DD003C1C71 /* Localizable.strings */; };
+		85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C62806B122003C1C71 /* QRCodeScannerViewController.xib */; };
+		85F459C92806B122003C1C71 /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F459C72806B122003C1C71 /* QRCodeScannerViewController.swift */; };
 		959A07A7831CF689BAA5C497 /* Pods_Trittstufe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,15 +84,12 @@
 		854E9C01280367EF0005546B /* Presenter+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Presenter+Protocol.swift"; sourceTree = "<group>"; };
 		854E9C03280370A90005546B /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		854E9C0528040D6F0005546B /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
-		854E9C07280418AE0005546B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		854E9C092804B3DD0005546B /* ConfigurationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		85D6771C27F87614004500D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85D6771F27F87614004500D9 /* Trittstufe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trittstufe.xcdatamodel; sourceTree = "<group>"; };
 		85D6772127F87615004500D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		85D6772427F87615004500D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85D6772627F87615004500D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85D6772B27F87616004500D9 /* TrittstufeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrittstufeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6772F27F87616004500D9 /* TrittstufeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrittstufeTests.swift; sourceTree = "<group>"; };
@@ -104,6 +103,12 @@
 		85D6775927F87840004500D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		85D6775A27F87840004500D9 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		85D6775D27F87E34004500D9 /* MQTTClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTClientService.swift; sourceTree = "<group>"; };
+		85F459C02806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		85F459C12806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		85F459C32806B0DD003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		85F459C52806B0F4003C1C71 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		85F459C62806B122003C1C71 /* QRCodeScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeScannerViewController.xib; sourceTree = "<group>"; };
+		85F459C72806B122003C1C71 /* QRCodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerViewController.swift; sourceTree = "<group>"; };
 		97EBD7A9A2F15F7213BB2CEF /* Pods-Trittstufe-TrittstufeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe-TrittstufeUITests.release.xcconfig"; path = "Target Support Files/Pods-Trittstufe-TrittstufeUITests/Pods-Trittstufe-TrittstufeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrittstufeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A766F4AA522C43733F6D6C56 /* Pods-Trittstufe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trittstufe.debug.xcconfig"; path = "Target Support Files/Pods-Trittstufe/Pods-Trittstufe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,6 +229,7 @@
 				85D6772327F87615004500D9 /* LaunchScreen.storyboard */,
 				85D6772627F87615004500D9 /* Info.plist */,
 				85D6771E27F87614004500D9 /* Trittstufe.xcdatamodeld */,
+				85F459C42806B0DD003C1C71 /* Localizable.strings */,
 			);
 			path = Trittstufe;
 			sourceTree = "<group>";
@@ -260,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				854E9BEB2802F1E60005546B /* Setup */,
+				85F459C72806B122003C1C71 /* QRCodeScannerViewController.swift */,
+				85F459C62806B122003C1C71 /* QRCodeScannerViewController.xib */,
 				85D6775927F87840004500D9 /* HomeViewController.swift */,
 				85D6775A27F87840004500D9 /* HomeViewController.xib */,
 			);
@@ -281,7 +289,6 @@
 			children = (
 				85D6775D27F87E34004500D9 /* MQTTClientService.swift */,
 				854E9C0528040D6F0005546B /* KeychainService.swift */,
-				854E9C07280418AE0005546B /* UserService.swift */,
 				854E9C092804B3DD0005546B /* ConfigurationService.swift */,
 			);
 			path = Service;
@@ -401,7 +408,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				de,
 			);
 			mainGroup = 85D6770927F87614004500D9;
 			productRefGroup = 85D6771327F87614004500D9 /* Products */;
@@ -420,11 +427,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */,
 				85D6772527F87615004500D9 /* LaunchScreen.storyboard in Resources */,
 				854E9BF02802F20F0005546B /* ConfigurationViewController.xib in Resources */,
 				854E9BE82802EDFE0005546B /* CalculateSetupStageViewController.xib in Resources */,
 				85D6772227F87615004500D9 /* Assets.xcassets in Resources */,
 				85D6771D27F87614004500D9 /* Main.storyboard in Resources */,
+				85F459C22806B0DD003C1C71 /* Localizable.strings in Resources */,
 				854E9C002803621D0005546B /* AuthenticationViewController.xib in Resources */,
 				85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */,
 			);
@@ -561,7 +570,6 @@
 				854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */,
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,
-				854E9C08280418AE0005546B /* UserService.swift in Sources */,
 				854E9BE72802EDFE0005546B /* CalculateSetupStageViewController.swift in Sources */,
 				854E9BE42802EDED0005546B /* CalculateSetupStagePresenter.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
@@ -571,6 +579,7 @@
 				85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */,
 				854E9C02280367EF0005546B /* Presenter+Protocol.swift in Sources */,
 				85D6775227F87758004500D9 /* HomeCoordinator.swift in Sources */,
+				85F459C92806B122003C1C71 /* QRCodeScannerViewController.swift in Sources */,
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
 				854E9C04280370A90005546B /* UserDefaults.swift in Sources */,
@@ -616,7 +625,7 @@
 		85D6771B27F87614004500D9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				85D6771C27F87614004500D9 /* Base */,
+				85F459C12806B082003C1C71 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -624,9 +633,18 @@
 		85D6772327F87615004500D9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				85D6772427F87615004500D9 /* Base */,
+				85F459C02806B082003C1C71 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		85F459C42806B0DD003C1C71 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85F459C32806B0DD003C1C71 /* en */,
+				85F459C52806B0F4003C1C71 /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -636,6 +654,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -697,6 +716,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

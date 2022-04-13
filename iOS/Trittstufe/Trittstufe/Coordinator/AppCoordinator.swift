@@ -25,11 +25,14 @@ class AppCoordinator: Coordinator {
     
     private let window: UIWindow
     
-    private let mqttClientService = MQTTClientService()
     private let configurationService = ConfigurationService()
-    private let userService: UserService = {
+    private lazy var mqttClientService: MQTTClientService = {
         let keychainService = KeychainService()
-        return UserService(keychainService: keychainService)
+        let client = MQTTClientService(keychainService: keychainService, configurationService: configurationService)
+        
+        client.auhtenticationDelegate = self
+        
+        return client
     }()
 
     private lazy var homeCoordinator: HomeCoordinator = {
@@ -38,7 +41,7 @@ class AppCoordinator: Coordinator {
     }()
     
     private lazy var setupCoordinator: SetupCoordinator = {
-        let coordinator = SetupCoordinator(userService: userService, configurationService: configurationService)
+        let coordinator = SetupCoordinator(userService: mqttClientService, configurationService: configurationService)
         coordinator.delegate = self
         
         return coordinator
@@ -48,6 +51,7 @@ class AppCoordinator: Coordinator {
         self.window = window
         defer {
             rootViewController = setupCoordinator.rootViewController
+            self.setupCoordinator.startSetup()
         }
     }
 }
@@ -56,6 +60,21 @@ extension AppCoordinator: SetupCoordinatorDelegate {
     func didCompleteSetup(in coordinator: SetupCoordinator) {
         DispatchQueue.scheduleOnMainThread {
             self.rootViewController = self.homeCoordinator.rootViewController
+        }
+    }
+}
+
+extension AppCoordinator: MQTTClientServiceAuthenticationDelegate {
+    func didLoginUser(in service: MQTTClientService) {
+        DispatchQueue.scheduleOnMainThread {
+            self.rootViewController = self.homeCoordinator.rootViewController
+        }
+    }
+    
+    func didLogoutUser(in service: MQTTClientService) {
+        DispatchQueue.scheduleOnMainThread {
+            self.rootViewController = self.setupCoordinator.rootViewController
+            self.setupCoordinator.startSetup()
         }
     }
 }

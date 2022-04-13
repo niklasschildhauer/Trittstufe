@@ -8,38 +8,159 @@
 import Foundation
 import CocoaMQTT
 
-class MQTTClientService {
-    private static let hostID = "192.168.0.66"
-    private static let port: UInt16 = 1883
-    
-    private var mqttClient: CocoaMQTT!
-    
-    init() {
-        setupMQTTClient()
-    }
-    
-    private func setupMQTTClient() {
-        let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
-        mqttClient = CocoaMQTT(clientID: clientID, host: MQTTClientService.hostID, port: MQTTClientService.port)
-//        mqttClient.username = "test"
-//        mqttClient.password = "public"
-        mqttClient.willMessage = CocoaMQTTMessage(topic: "/will", string: "dieout")
-        mqttClient.keepAlive = 60
-        mqttClient.delegate = self
-        mqttClient.connect()
-    }
-    
-    func sendTestMessage() {
-        let publishProperties = MqttPublishProperties()
-        publishProperties.contentType = "JSON"
+protocol MQTTClientServiceAuthenticationDelegate: AnyObject {
+    func didLoginUser(in service: MQTTClientService)
+    func didLogoutUser(in service: MQTTClientService)
+}
 
-        mqttClient.publish("engine_control", withString: "Das ist ein Test", qos: .qos1)
+protocol MQTTClientServiceMessageDelegate: AnyObject {
+    func didReceive(message: String, in service: MQTTClientService)
+}
+
+enum AuthenticationError: Error {
+    case invalidLoginCredentials
+    case noNetwork
+    case serverError
+}
+
+protocol MessageService {
+    func send(message: String)
+}
+
+protocol UserService {
+    var auhtenticationDelegate: MQTTClientServiceAuthenticationDelegate? { get set }
+    
+    var userLoggedIn: Bool { get }
+    var accountName: String? { get }
+    var rememberMe: Bool { get }
+    
+    func loginWithRememberMe(completion: (Result<String, AuthenticationError>) -> Void)
+    func login(accountName: String, password: String, rememberMe: Bool, completion: (Result<String, AuthenticationError>) -> Void)
+}
+
+class MQTTClientService {
+    var userLoggedIn = false {
+        didSet {
+            if !userLoggedIn {
+                userIdentification = nil
+                try? keychainService.deletePassword(account: accountName ?? "")
+                accountName = nil
+                mqttClient = nil
+                rememberMe = false
+                userIdentification = nil
+            }
+        }
+    }
+    var accountName: String? {
+        get {
+            UserDefaultConfig.accountName
+        }
+        set {
+            UserDefaultConfig.accountName = newValue
+        }
+    }
+    var rememberMe: Bool {
+        get {
+            UserDefaultConfig.rememberMe
+        }
+        set {
+            UserDefaultConfig.rememberMe = newValue
+        }
+    }
+    
+    weak var auhtenticationDelegate: MQTTClientServiceAuthenticationDelegate?
+    weak var messageDelegate: MQTTClientServiceMessageDelegate?
+    
+    private var loginCompletion: ((Result<String, AuthenticationError>) -> Void)?
+
+    private var mqttClient: CocoaMQTT?
+    private let configurationService: ConfigurationService
+    private let keychainService: KeychainService
+
+    private var userIdentification: String?
+    
+    init(keychainService: KeychainService, configurationService: ConfigurationService) {
+        self.keychainService = keychainService
+        self.configurationService = configurationService
     }
 }
 
-extension MQTTClientService: CocoaMQTTDelegate {
+/// Mark: User Service
+extension MQTTClientService: UserService {
+    
+    func loginWithRememberMe(completion: (Result<String, AuthenticationError>) -> Void) {
+        guard let accountName = accountName, let password = try? keychainService.readPassword(account: accountName) else {
+            completion(.failure(.invalidLoginCredentials))
+            return
+        }
+        loginClientAtBroker(for: accountName, password: password, completion: completion)
+    }
+        
+    func login(accountName: String, password: String, rememberMe: Bool, completion: (Result<String, AuthenticationError>) -> Void) {
+        self.rememberMe = rememberMe
+        loginClientAtBroker(for: accountName, password: password, completion: completion)
+    }
+
+    private func loginClientAtBroker(for account: String, password: String, completion: (Result<String, AuthenticationError>) -> Void) {
+        guard let ipAdress = configurationService.ipAdress,
+              let port = configurationService.port else {
+                  //Todo what to do if this case occurs
+                  fatalError()
+              }
+              
+        let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
+        let client = CocoaMQTT(clientID: clientID, host: ipAdress, port: port)
+        client.username = account
+        client.password = password
+        client.willMessage = CocoaMQTTMessage(topic: "/will", string: "dieout")
+        client.keepAlive = 60
+        client.delegate = self
+        let success = client.connect()
+        
+        if success {
+            userIdentification = "Das ist eine ClientID"
+            userLoggedIn = true
+            mqttClient = client
+            completion(.success(userIdentification!))
+        } else {
+            userLoggedIn = false
+            completion(.failure(.serverError))
+        }
+    }
+    
+    func logout() {
+        userLoggedIn = false
+        auhtenticationDelegate?.didLogoutUser(in: self)
+    }
+}
+
+/// Mark: Message Service
+extension MQTTClientService: MessageService, CocoaMQTTDelegate {
+    
+    func send(message: String) {
+        guard let client = mqttClient else { return }
+        let publishProperties = MqttPublishProperties()
+        publishProperties.contentType = "JSON"
+
+        client.publish("engine_control", withString: "Das ist ein Test", qos: .qos1)
+    }
+    
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
-        print("didConnectAck")
+//        if let completion = self.loginCompletion {
+//            completion(.success("Das ist die User Id"))
+//            loginCompletion = nil
+//        } else {
+//            auhtenticationDelegate?.didLoginUser(in: self)
+//        }
+    }
+    
+    func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
+//        if let completion = self.loginCompletion {
+//            completion(.failure(AuthenticationError.serverError))
+//            loginCompletion = nil
+//        } else {
+//            auhtenticationDelegate?.didLogoutUser(in: self)
+//        }
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
@@ -53,7 +174,8 @@ extension MQTTClientService: CocoaMQTTDelegate {
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
-        print("didReceiveMessage")
+        guard let message = message.string else { return }
+        messageDelegate?.didReceive(message: message, in: self)
 
     }
     
@@ -76,9 +198,5 @@ extension MQTTClientService: CocoaMQTTDelegate {
         print("mqttDidReceivePong")
 
     }
-    
-    func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
-        print("mqttDidDisconnect")
 
-    }
 }

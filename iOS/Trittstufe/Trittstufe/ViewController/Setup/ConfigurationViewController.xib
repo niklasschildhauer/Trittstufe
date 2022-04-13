@@ -52,13 +52,23 @@
                         <constraint firstAttribute="width" constant="99" id="2Gl-2W-GY2"/>
                     </constraints>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNP-ve-mJs">
+                    <rect key="frame" x="166.5" y="522" width="81.5" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="show QR"/>
+                    <connections>
+                        <action selector="didTapShowQRCodeSacnnerButton:" destination="-1" eventType="touchUpInside" id="ciM-Gc-K70"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="IPk-ET-P9j" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="AfK-VH-eOO"/>
+                <constraint firstItem="bNP-ve-mJs" firstAttribute="top" secondItem="IPk-ET-P9j" secondAttribute="bottom" constant="58.5" id="OaA-mz-aSB"/>
                 <constraint firstItem="YqC-ga-oNf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q32-sN-CwI"/>
                 <constraint firstItem="IPk-ET-P9j" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SeM-r0-dyQ"/>
+                <constraint firstItem="bNP-ve-mJs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cac-xM-ufc"/>
                 <constraint firstItem="IPk-ET-P9j" firstAttribute="top" secondItem="YqC-ga-oNf" secondAttribute="bottom" constant="134.5" id="uz1-vf-4OE"/>
             </constraints>
             <point key="canvasLocation" x="139" y="105"/>

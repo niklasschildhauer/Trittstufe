@@ -26,7 +26,9 @@ class SetupCoordinator: Coordinator {
     init(userService: UserService, configurationService: ConfigurationService) {
         self.userService = userService
         self.configurationService = configurationService
-        
+    }
+    
+    func startSetup() {
         pushCalculateSetupStageViewController()
     }
     
@@ -85,6 +87,15 @@ extension SetupCoordinator: SetupPresenterDelegate {
 }
 
 extension SetupCoordinator: ConfigurationPresenterDelegate {
+    func didTapShowQRCodeScanner(in presenter: ConfigurationPresenter) {
+        let viewController  = QRCodeScannerViewController()
+        viewController.delegate = presenter
+        
+        DispatchQueue.performUIOperation {
+            self.rootViewController.present(viewController, animated: true, completion: nil)
+        }
+    }
+    
     func didCompletecConfiguration(in presenter: ConfigurationPresenter) {
         DispatchQueue.performUIOperation {
             self.pushCalculateSetupStageViewController()
@@ -93,9 +104,16 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
 }
 
 extension SetupCoordinator: AuthenticationPresenterDelegate {
+    func didTapEditConfiguration(in presenter: AuthenticationPresenter) {
+        DispatchQueue.performUIOperation {
+            self.pushConfigurationViewController()
+        }
+    }
+    
     func didCompletecAuthentication(in presenter: AuthenticationPresenter) {
         DispatchQueue.performUIOperation {
             self.pushCalculateSetupStageViewController()
         }
     }
 }
+

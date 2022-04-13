@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Trittstufe
+
+  Created by Niklas Schildhauer on 13.04.22.
+  
+*/
+
+"QRCodeScannerViewController_Error_Title" = "Scanning is not available";
+"QRCodeScannerViewController_Error_Message" = "Your device does not support scanning a code from an item.";

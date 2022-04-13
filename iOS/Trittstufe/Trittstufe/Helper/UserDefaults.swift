@@ -8,19 +8,19 @@
 import Foundation
 
 struct UserDefaultConfig {
-    @UserDefault(key: "account_name_key", defaultValue: nil)
+    @NilableUserDefault(key: "account_name_key")
     private static var accountNameValue: String?
     
     @UserDefault(key: "remember_me_key", defaultValue: false)
     private static var rememberMeValue: Bool
     
-    @UserDefault(key: "configuration_ip_adress_key", defaultValue: nil)
+    @NilableUserDefault(key: "configuration_ip_adress_key")
     private static var configurationIpAdressValue: String?
     
-    @UserDefault(key: "configuration_port_key", defaultValue: nil)
-    private static var configurationPortValue: String?
+    @NilableUserDefault(key: "configuration_port_key")
+    private static var configurationPortValue: UInt16?
     
-    @UserDefault(key: "configuration_public_key_key", defaultValue: nil)
+    @NilableUserDefault(key: "configuration_public_key_key")
     private static var configurationPublicKeyValue: String?
 }
 
@@ -34,7 +34,7 @@ extension UserDefaultConfig {
         }
     }
     
-    static var configurationPort: String? {
+    static var configurationPort: UInt16? {
         get {
             configurationPortValue
         }
@@ -82,6 +82,24 @@ struct UserDefault<Value> {
             return container.object(forKey: key) as? Value ?? defaultValue
         }
         set {
+            container.set(newValue, forKey: key)
+        }
+    }
+}
+
+@propertyWrapper
+struct NilableUserDefault<Value> {
+    let key: String
+    var container: UserDefaults = .standard
+
+    var wrappedValue: Value? {
+        get {
+            return container.object(forKey: key) as? Value ?? nil
+        }
+        set {
+            if newValue == nil {
+                UserDefaults.standard.removeObject(forKey: key)
+            }
             container.set(newValue, forKey: key)
         }
     }

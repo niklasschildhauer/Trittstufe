@@ -31,6 +31,10 @@ class HomePresenter: Presenter {
     }
     
     func sendTestMessage() {
-        mqttClientService.sendTestMessage()
+        mqttClientService.send(message: "Test")
+    }
+    
+    func logout() {
+        mqttClientService.logout()
     }
 }

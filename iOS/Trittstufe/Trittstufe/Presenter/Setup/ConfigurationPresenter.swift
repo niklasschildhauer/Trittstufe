@@ -20,6 +20,7 @@ protocol ConfigurationView: AnyObject {
 
 protocol ConfigurationPresenterDelegate: AnyObject {
     func didCompletecConfiguration(in presenter: ConfigurationPresenter)
+    func didTapShowQRCodeScanner(in presenter: ConfigurationPresenter)
 }
 
 class ConfigurationPresenter: Presenter {
@@ -36,9 +37,12 @@ class ConfigurationPresenter: Presenter {
         
     }
     
+    func didTapShowQRScannerButton() {
+        delegate?.didTapShowQRCodeScanner(in: self)
+    }
+    
     func didTapSubmitButton() {
-        guard let portValue = view?.portValue,
-              portValue != "",
+        guard let portValue = UInt16(view?.portValue ?? ""),
               let ipAdress = view?.ipAdressValue,
               ipAdress != "",
               let publicKey = view?.publicKeyValue,
@@ -54,3 +58,10 @@ class ConfigurationPresenter: Presenter {
         delegate?.didCompletecConfiguration(in: self)
     }
 }
+
+extension ConfigurationPresenter: QRCodeScannerDelegate {
+    func didScan(code: String, in viewController: QRCodeScannerViewController) {
+        print(code)
+    }
+}
+

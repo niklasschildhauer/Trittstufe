@@ -23,7 +23,6 @@ public extension DispatchQueue {
         } else {
             DispatchQueue.main.async {
                 workItem()
-            
             }
         }
     }

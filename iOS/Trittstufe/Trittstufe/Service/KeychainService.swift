@@ -111,7 +111,7 @@ class KeychainService {
         return String(decoding: password, as: UTF8.self)
     }
     
-    static func deletePassword(account: String) throws {
+    func deletePassword(account: String) throws {
         let query: [String: AnyObject] = [
             // kSecAttrService,  kSecAttrAccount, and kSecClass
             // uniquely identify the item to delete in Keychain
