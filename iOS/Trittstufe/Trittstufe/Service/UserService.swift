@@ -67,10 +67,35 @@ class LocalUserService: UserService {
     }
     
     private func login(accountName: String, password: String, completion: (Result<String, AuthenticationError>) -> Void) {
-        userIdentification = "Das ist eine Client ID"
+        guard areCredentialsValid(accountName: accountName, password: password) else {
+            completion(.failure(.invalidLoginCredentials))
+            return
+        }
+        
+        userIdentification = userIdentification(for: accountName)
         self.accountName = accountName
         try? keychainService.save(password: password, account: accountName)
-        completion(.success("Das ist die CLient ID"))
+        
+        completion(.success(userIdentification!))
+    }
+    
+    // Todo implement valid backend service
+    private func areCredentialsValid(accountName: String, password: String) -> Bool {
+        let knownUsers = ["Niklas":"Sonnenblume"]
+        
+        let index = knownUsers.index(forKey: accountName)
+        if let index = index {
+            if knownUsers[index].value == password {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    // Todo implement valid backend service
+    private func userIdentification(for accountName: String) -> String {
+        return "1234756789"
     }
     
     
