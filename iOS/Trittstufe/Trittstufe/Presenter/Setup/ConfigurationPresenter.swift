@@ -25,7 +25,7 @@ protocol ConfigurationPresenterDelegate: AnyObject {
 
 class ConfigurationPresenter: Presenter {
     weak var view: ConfigurationView?
-    weak var delegate: ConfigurationPresenterDelegate?
+    var delegate: ConfigurationPresenterDelegate?
     
     private let configurationService: ConfigurationService
     

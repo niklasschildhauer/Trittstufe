@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A4F4E59DF2C9A001B6076CA /* Pods_TrittstufeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */; };
 		8387DC4BB5212A6E7158F7DF /* Pods_Trittstufe_TrittstufeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091062914BEE10808895AC2 /* Pods_Trittstufe_TrittstufeUITests.framework */; };
+		85242A6B2806DCE6004FC32C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6A2806DCE6004FC32C /* UserService.swift */; };
 		854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE12802E9C70005546B /* SetupCoordinator.swift */; };
 		854E9BE42802EDED0005546B /* CalculateSetupStagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE32802EDED0005546B /* CalculateSetupStagePresenter.swift */; };
 		854E9BE72802EDFE0005546B /* CalculateSetupStageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE52802EDFE0005546B /* CalculateSetupStageViewController.swift */; };
@@ -69,6 +70,7 @@
 		37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trittstufe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE963B7E3D2F294F75DDC25 /* Pods-TrittstufeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.debug.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		62E1BD9DA078029E8172C317 /* Pods-TrittstufeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.release.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.release.xcconfig"; sourceTree = "<group>"; };
+		85242A6A2806DCE6004FC32C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		854E9BE12802E9C70005546B /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
 		854E9BE32802EDED0005546B /* CalculateSetupStagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateSetupStagePresenter.swift; sourceTree = "<group>"; };
 		854E9BE52802EDFE0005546B /* CalculateSetupStageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateSetupStageViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				85D6775D27F87E34004500D9 /* MQTTClientService.swift */,
 				854E9C0528040D6F0005546B /* KeychainService.swift */,
 				854E9C092804B3DD0005546B /* ConfigurationService.swift */,
+				85242A6A2806DCE6004FC32C /* UserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
 				854E9C04280370A90005546B /* UserDefaults.swift in Sources */,
+				85242A6B2806DCE6004FC32C /* UserService.swift in Sources */,
 				854E9BEF2802F20F0005546B /* ConfigurationViewController.swift in Sources */,
 				85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */,
 				854E9BEA2802EECB0005546B /* SetupStage.swift in Sources */,

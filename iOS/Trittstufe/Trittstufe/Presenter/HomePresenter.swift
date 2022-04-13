@@ -13,17 +13,17 @@ protocol HomeView: AnyObject {
 }
 
 protocol HomePresenterDelegate: AnyObject {
-    
+    func didTapLogout(in presenter: HomePresenter)
 }
 
 class HomePresenter: Presenter {
     weak var view: HomeView?
-    weak var delegate: HomePresenterDelegate?
+    var delegate: HomePresenterDelegate?
     
-    private let mqttClientService: MQTTClientService
+    private let stepEngineControlService: StepEngineControlService
     
-    init(mqttClientService: MQTTClientService) {
-        self.mqttClientService = mqttClientService
+    init(stepEngineControlService: StepEngineControlService) {
+        self.stepEngineControlService = stepEngineControlService
     }
     
     func viewDidLoad() {
@@ -31,10 +31,10 @@ class HomePresenter: Presenter {
     }
     
     func sendTestMessage() {
-        mqttClientService.send(message: "Test")
+        stepEngineControlService.extendStep()
     }
     
     func logout() {
-        mqttClientService.logout()
+        delegate?.didTapLogout(in: self)
     }
 }

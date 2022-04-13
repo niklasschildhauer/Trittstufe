@@ -26,32 +26,32 @@ class AppCoordinator: Coordinator {
     private let window: UIWindow
     
     private let configurationService = ConfigurationService()
-    private lazy var mqttClientService: MQTTClientService = {
-        let keychainService = KeychainService()
-        let client = MQTTClientService(keychainService: keychainService, configurationService: configurationService)
-        
-        client.auhtenticationDelegate = self
-        
-        return client
-    }()
+    private var userService: UserService?
 
-    private lazy var homeCoordinator: HomeCoordinator = {
-        let coordinator = HomeCoordinator(mqttClientService: mqttClientService)
-        return coordinator
-    }()
+    private var homeCoordinator: HomeCoordinator {
+        let mqttClient = MQTTClientService(configurationService: configurationService)
     
-    private lazy var setupCoordinator: SetupCoordinator = {
-        let coordinator = SetupCoordinator(userService: mqttClientService, configurationService: configurationService)
+        let coordinator = HomeCoordinator(stepEngineControlService: mqttClient)
         coordinator.delegate = self
         
         return coordinator
-    }()
+    }
+    
+    private var setupCoordinator: SetupCoordinator {
+        let keychainService = KeychainService()
+        let userService = LocalUserService(keychainService: keychainService)
+        let coordinator = SetupCoordinator(userService: userService, configurationService: configurationService)
+        coordinator.delegate = self
+        
+        self.userService = userService
+        
+        return coordinator
+    }
 
     init(window: UIWindow) {
         self.window = window
         defer {
             rootViewController = setupCoordinator.rootViewController
-            self.setupCoordinator.startSetup()
         }
     }
 }
@@ -64,17 +64,11 @@ extension AppCoordinator: SetupCoordinatorDelegate {
     }
 }
 
-extension AppCoordinator: MQTTClientServiceAuthenticationDelegate {
-    func didLoginUser(in service: MQTTClientService) {
-        DispatchQueue.scheduleOnMainThread {
-            self.rootViewController = self.homeCoordinator.rootViewController
-        }
-    }
-    
-    func didLogoutUser(in service: MQTTClientService) {
+extension AppCoordinator: HomeCoordinatorDelegate {
+    func didLogout(in coordinator: HomeCoordinator) {
+        userService?.logout()
         DispatchQueue.scheduleOnMainThread {
             self.rootViewController = self.setupCoordinator.rootViewController
-            self.setupCoordinator.startSetup()
         }
     }
 }

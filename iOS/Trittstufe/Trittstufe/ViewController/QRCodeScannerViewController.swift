@@ -15,7 +15,7 @@ class QRCodeScannerViewController: UIViewController {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    weak var delegate: QRCodeScannerDelegate?
+    var delegate: QRCodeScannerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

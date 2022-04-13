@@ -17,7 +17,7 @@ class SetupCoordinator: Coordinator {
         navigationController
     }
     
-    weak var delegate: SetupCoordinatorDelegate?
+    var delegate: SetupCoordinatorDelegate?
 
     private let navigationController = UINavigationController()
     private let userService: UserService
@@ -26,12 +26,10 @@ class SetupCoordinator: Coordinator {
     init(userService: UserService, configurationService: ConfigurationService) {
         self.userService = userService
         self.configurationService = configurationService
-    }
-    
-    func startSetup() {
+        
         pushCalculateSetupStageViewController()
     }
-    
+
     private func pushCalculateSetupStageViewController() {
         let viewController = CalculateSetupStageViewController()
         let presenter = CalculateSetupStagePresenter(userService: userService, configurationService: configurationService)

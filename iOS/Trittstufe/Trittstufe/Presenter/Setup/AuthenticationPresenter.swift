@@ -29,7 +29,7 @@ protocol AuthenticationPresenterDelegate: AnyObject {
 
 class AuthenticationPresenter {
     weak var view: AuthenticationView?
-    weak var delegate: AuthenticationPresenterDelegate?
+    var delegate: AuthenticationPresenterDelegate?
     
     private let userService: UserService
         

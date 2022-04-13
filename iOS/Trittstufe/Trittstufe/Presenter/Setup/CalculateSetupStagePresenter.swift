@@ -17,7 +17,7 @@ protocol SetupPresenterDelegate: AnyObject {
 
 class CalculateSetupStagePresenter: Presenter {
     weak var view: SetupView?
-    weak var delegate: SetupPresenterDelegate?
+    var delegate: SetupPresenterDelegate?
     
     private let userService: UserService
     private let configurationService: ConfigurationService
