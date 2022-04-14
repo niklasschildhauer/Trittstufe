@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol SetupCoordinatorDelegate: AnyObject {
-    func didCompleteSetup(in coordinator: SetupCoordinator)
+    func didCompleteSetup(with clientConfiguration: ClientConfiguration, in coordinator: SetupCoordinator)
 }
 
 class SetupCoordinator: Coordinator {
@@ -20,19 +20,17 @@ class SetupCoordinator: Coordinator {
     var delegate: SetupCoordinatorDelegate?
 
     private let navigationController = UINavigationController()
-    private let userService: UserService
-    private let configurationService: ConfigurationService
+    private let AuthenticationService: AuthenticationService
     
-    init(userService: UserService, configurationService: ConfigurationService) {
-        self.userService = userService
-        self.configurationService = configurationService
+    init(AuthenticationService: AuthenticationService) {
+        self.AuthenticationService = AuthenticationService
         
         pushCalculateSetupStageViewController()
     }
 
     private func pushCalculateSetupStageViewController() {
         let viewController = CalculateSetupStageViewController()
-        let presenter = CalculateSetupStagePresenter(userService: userService, configurationService: configurationService)
+        let presenter = CalculateSetupStagePresenter(AuthenticationService: AuthenticationService)
         
         viewController.presenter = presenter
         presenter.delegate = self
@@ -44,7 +42,7 @@ class SetupCoordinator: Coordinator {
         
     private func pushConfigurationViewController() {
         let viewController = ConfigurationViewController()
-        let presenter = ConfigurationPresenter(configurationService: configurationService)
+        let presenter = ConfigurationPresenter()
         
         viewController.presenter = presenter
         presenter.delegate = self
@@ -56,7 +54,7 @@ class SetupCoordinator: Coordinator {
     
     private func pushAuthenticationViewController() {
         let viewController = AuthenticationViewController()
-        let presenter = AuthenticationPresenter(userService: userService)
+        let presenter = AuthenticationPresenter(AuthenticationService: AuthenticationService)
         
         viewController.presenter = presenter
         presenter.delegate = self
@@ -78,8 +76,8 @@ extension SetupCoordinator: SetupPresenterDelegate {
             DispatchQueue.performUIOperation {
                 self.pushAuthenticationViewController()
             }
-        case .setupCompleted:
-            delegate?.didCompleteSetup(in: self)
+        case .setupCompleted(let clientConfiguration):
+            delegate?.didCompleteSetup(with: clientConfiguration, in: self)
         }
     }
 }
@@ -102,15 +100,15 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
 }
 
 extension SetupCoordinator: AuthenticationPresenterDelegate {
-    func didTapEditConfiguration(in presenter: AuthenticationPresenter) {
+    func didCompleteAuthentication(with clientConfiguration: ClientConfiguration, in presenter: AuthenticationPresenter) {
         DispatchQueue.performUIOperation {
-            self.pushConfigurationViewController()
+            self.pushCalculateSetupStageViewController()
         }
     }
     
-    func didCompletecAuthentication(in presenter: AuthenticationPresenter) {
+    func didTapEditConfiguration(in presenter: AuthenticationPresenter) {
         DispatchQueue.performUIOperation {
-            self.pushCalculateSetupStageViewController()
+            self.pushConfigurationViewController()
         }
     }
 }

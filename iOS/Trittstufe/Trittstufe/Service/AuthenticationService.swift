@@ -1,5 +1,5 @@
 //
-//  UserService.swift
+//  AuthenticationService.swift
 //  Trittstufe
 //
 //  Created by Niklas Schildhauer on 13.04.22.
@@ -10,24 +10,22 @@ import Foundation
 enum AuthenticationError: Error {
     case invalidLoginCredentials
     case noNetwork
+    case internalError
     case serverError
 }
 
-protocol UserService {
-    var userLoggedIn: Bool { get }
+protocol AuthenticationService {
+    var clientConfiguration: ClientConfiguration? { get }
     var accountName: String? { get }
     var rememberMe: Bool { get }
     
-    func loginWithRememberMe(completion: (Result<String, AuthenticationError>) -> Void)
-    func login(accountName: String, password: String, rememberMe: Bool, completion: (Result<String, AuthenticationError>) -> Void)
+    func loginWithRememberMe(completion: (Result<ClientConfiguration, AuthenticationError>) -> Void)
+    func login(accountName: String, password: String, rememberMe: Bool, completion: (Result<ClientConfiguration, AuthenticationError>) -> Void)
     func logout()
 }
 
-class LocalUserService: UserService {
-    var userLoggedIn: Bool {
-        let value = accountName != nil && userIdentification != nil
-        return value
-    }
+class LocalAuthenticationService: AuthenticationService {
+    var clientConfiguration: ClientConfiguration? = nil
     var accountName: String? {
         get {
             UserDefaultConfig.accountName
@@ -44,7 +42,6 @@ class LocalUserService: UserService {
             UserDefaultConfig.rememberMe = newValue
         }
     }
-    private var userIdentification: String?
     private let keychainService: KeychainService
     
     
@@ -52,7 +49,7 @@ class LocalUserService: UserService {
         self.keychainService = keychainService
     }
     
-    func loginWithRememberMe(completion: (Result<String, AuthenticationError>) -> Void) {
+    func loginWithRememberMe(completion: (Result<ClientConfiguration, AuthenticationError>) -> Void) {
         guard let accountName = accountName, let password = try? keychainService.readPassword(account: accountName) else {
             completion(.failure(.invalidLoginCredentials))
             return
@@ -60,37 +57,45 @@ class LocalUserService: UserService {
         login(accountName: accountName, password: password, completion: completion)
     }
     
-    func login(accountName: String, password: String, rememberMe: Bool, completion: (Result<String, AuthenticationError>) -> Void) {
+    func login(accountName: String, password: String, rememberMe: Bool, completion: (Result<ClientConfiguration, AuthenticationError>) -> Void) {
         self.rememberMe = rememberMe
         
         login(accountName: accountName, password: password, completion: completion)
     }
     
-    private func login(accountName: String, password: String, completion: (Result<String, AuthenticationError>) -> Void) {
-        guard areCredentialsValid(accountName: accountName, password: password) else {
+    private func login(accountName: String, password: String, completion: (Result<ClientConfiguration, AuthenticationError>) -> Void) {
+        guard let userIdentification = validateCredentials(accountName: accountName, password: password) else {
             completion(.failure(.invalidLoginCredentials))
             return
         }
         
-        userIdentification = userIdentification(for: accountName)
+        guard let hostIdentification = ClientConfiguration.HostIdentification.loadFromUserDefaults() else {
+            completion(.failure(.internalError))
+            return
+        }
+
         self.accountName = accountName
         try? keychainService.save(password: password, account: accountName)
         
-        completion(.success(userIdentification!))
+        let clientCredentials = ClientConfiguration.ClientCredentials(userIdentification: userIdentification, accountName: accountName, password: password)
+        
+        clientConfiguration = ClientConfiguration(clientCredentials: clientCredentials, hostIdentification: hostIdentification)
+        
+        completion(.success(clientConfiguration!))
     }
     
     // Todo implement valid backend service
-    private func areCredentialsValid(accountName: String, password: String) -> Bool {
+    private func validateCredentials(accountName: String, password: String) -> String? {
         let knownUsers = ["Niklas":"Sonnenblume"]
         
         let index = knownUsers.index(forKey: accountName)
         if let index = index {
             if knownUsers[index].value == password {
-                return true
+                return userIdentification(for: accountName)
             }
         }
         
-        return false
+        return nil
     }
     
     // Todo implement valid backend service
@@ -100,11 +105,10 @@ class LocalUserService: UserService {
     
     
     func logout() {
-        userIdentification = nil
+        clientConfiguration = nil
         try? keychainService.deletePassword(account: accountName ?? "")
         accountName = nil
         rememberMe = false
-        userIdentification = nil
     }
     
 }

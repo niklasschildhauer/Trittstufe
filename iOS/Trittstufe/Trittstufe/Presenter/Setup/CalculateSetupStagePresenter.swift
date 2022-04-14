@@ -19,12 +19,10 @@ class CalculateSetupStagePresenter: Presenter {
     weak var view: SetupView?
     var delegate: SetupPresenterDelegate?
     
-    private let userService: UserService
-    private let configurationService: ConfigurationService
+    private let AuthenticationService: AuthenticationService
     
-    init(userService: UserService, configurationService: ConfigurationService) {
-        self.userService = userService
-        self.configurationService = configurationService
+    init(AuthenticationService: AuthenticationService) {
+        self.AuthenticationService = AuthenticationService
     }
     
     func viewWillAppear() {
@@ -32,16 +30,16 @@ class CalculateSetupStagePresenter: Presenter {
     }
     
     func calculateNextStage() {
-        guard configurationService.isConfigured else {
+        guard ClientConfiguration.HostIdentification.loadFromUserDefaults() != nil else {
             delegate?.didCalculate(next: .configurationMissing, in: self)
             return
         }
         
-        guard userService.userLoggedIn else {
+        guard let clientConfiguration = AuthenticationService.clientConfiguration else {
             delegate?.didCalculate(next: .authenticationRequired, in: self)
             return
         }
         
-        delegate?.didCalculate(next: .setupCompleted, in: self)
+        delegate?.didCalculate(next: .setupCompleted(clientConfiguration: clientConfiguration), in: self)
     }
 }

@@ -22,7 +22,7 @@ protocol AuthenticationView: AnyObject {
 }
 
 protocol AuthenticationPresenterDelegate: AnyObject {
-    func didCompletecAuthentication(in presenter: AuthenticationPresenter)
+    func didCompleteAuthentication(with clientConfiguration: ClientConfiguration, in presenter: AuthenticationPresenter)
     func didTapEditConfiguration(in presenter: AuthenticationPresenter)
 
 }
@@ -31,14 +31,14 @@ class AuthenticationPresenter {
     weak var view: AuthenticationView?
     var delegate: AuthenticationPresenterDelegate?
     
-    private let userService: UserService
+    private let AuthenticationService: AuthenticationService
         
-    init(userService: UserService) {
-        self.userService = userService
+    init(AuthenticationService: AuthenticationService) {
+        self.AuthenticationService = AuthenticationService
     }
     
     func viewDidLoad() {
-        if userService.rememberMe {
+        if AuthenticationService.rememberMe {
             view?.setLoginFieldsHiddenStatus(isHidden: true)
             startRememberMeAuthentication()
         } else {
@@ -55,7 +55,7 @@ class AuthenticationPresenter {
               let accountName = view?.accountNameValue,
               let rememberMe = view?.rememberMeValue else { return }
             
-        userService.login(accountName: accountName, password: password, rememberMe: rememberMe) { [weak self] result in
+        AuthenticationService.login(accountName: accountName, password: password, rememberMe: rememberMe) { [weak self] result in
             self?.handleAuthentication(result: result)
         }
     }
@@ -63,7 +63,7 @@ class AuthenticationPresenter {
     private func startRememberMeAuthentication() {
         self.checkDeviceOwnerAuthenticationWithBiometrics { [weak self] isDeviceOwner in
             if isDeviceOwner {
-                self?.userService.loginWithRememberMe { [weak self] result in
+                self?.AuthenticationService.loginWithRememberMe { [weak self] result in
                     self?.handleAuthentication(result: result)
                 }
             } else {
@@ -74,10 +74,10 @@ class AuthenticationPresenter {
         }
     }
     
-    private func handleAuthentication(result: Result<String, AuthenticationError>) {
+    private func handleAuthentication(result: Result<ClientConfiguration, AuthenticationError>) {
         switch result {
-        case .success(_):
-            delegate?.didCompletecAuthentication(in: self)
+        case .success(let clientConfiguration):
+            delegate?.didCompleteAuthentication(with: clientConfiguration, in: self)
         case .failure(let error):
             DispatchQueue.performUIOperation {
                 switch error {
@@ -87,6 +87,8 @@ class AuthenticationPresenter {
                     self.view?.showError(message: "No network. Please check your internet connection")
                 case .serverError:
                     self.view?.showError(message: "There was an internal server error. Sorry!")
+                case .internalError:
+                    self.view?.showError(message: "There was an internal error. Sorry!")
                 }
                 self.view?.setLoginFieldsHiddenStatus(isHidden: false)
             }

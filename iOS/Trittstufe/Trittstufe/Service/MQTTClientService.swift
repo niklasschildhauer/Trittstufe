@@ -30,23 +30,20 @@ class MQTTClientService {
     var statusDelegate: StepEngineControlServiceDelegate?
     
     private var mqttClient: CocoaMQTT?
-    private let configurationService: ConfigurationService
+    private let clientConfiguration: ClientConfiguration
 
-    init(configurationService: ConfigurationService) {
-        self.configurationService = configurationService
+    init(clientConfiguration: ClientConfiguration) {
+        self.clientConfiguration = clientConfiguration
     }
 
     private func loginClientAtBroker(for account: String, password: String, completion: (Result<String, AuthenticationError>) -> Void) {
-        guard let ipAdress = configurationService.ipAdress,
-              let port = configurationService.port else {
-                  //Todo what to do if this case occurs
-                  fatalError()
-              }
-              
+    
         let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
-        let client = CocoaMQTT(clientID: clientID, host: ipAdress, port: port)
-        client.username = account
-        client.password = password
+        let client = CocoaMQTT(clientID: clientID,
+                               host: clientConfiguration.hostIdentification.ipAdress,
+                               port: clientConfiguration.hostIdentification.portNumber)
+        client.username = clientConfiguration.clientCredentials.accountName
+        client.password = clientConfiguration.clientCredentials.password
         client.willMessage = CocoaMQTTMessage(topic: "/will", string: "dieout")
         client.keepAlive = 60
         client.delegate = self

@@ -25,11 +25,17 @@ class AppCoordinator: Coordinator {
     
     private let window: UIWindow
     
-    private let configurationService = ConfigurationService()
-    private var userService: UserService?
+    private var AuthenticationService: AuthenticationService?
+    
+    init(window: UIWindow) {
+        self.window = window
+        defer {
+            rootViewController = createSetupCoordinator().rootViewController
+        }
+    }
 
-    private var homeCoordinator: HomeCoordinator {
-        let mqttClient = MQTTClientService(configurationService: configurationService)
+    private func createHomeCoordinator(with clientConfiguration: ClientConfiguration) -> HomeCoordinator {
+        let mqttClient = MQTTClientService(clientConfiguration: clientConfiguration)
     
         let coordinator = HomeCoordinator(stepEngineControlService: mqttClient)
         coordinator.delegate = self
@@ -37,38 +43,31 @@ class AppCoordinator: Coordinator {
         return coordinator
     }
     
-    private var setupCoordinator: SetupCoordinator {
+    private func createSetupCoordinator() -> SetupCoordinator {
         let keychainService = KeychainService()
-        let userService = LocalUserService(keychainService: keychainService)
-        let coordinator = SetupCoordinator(userService: userService, configurationService: configurationService)
+        let AuthenticationService = LocalAuthenticationService(keychainService: keychainService)
+        let coordinator = SetupCoordinator(AuthenticationService: AuthenticationService)
         coordinator.delegate = self
         
-        self.userService = userService
+        self.AuthenticationService = AuthenticationService
         
         return coordinator
-    }
-
-    init(window: UIWindow) {
-        self.window = window
-        defer {
-            rootViewController = setupCoordinator.rootViewController
-        }
     }
 }
 
 extension AppCoordinator: SetupCoordinatorDelegate {
-    func didCompleteSetup(in coordinator: SetupCoordinator) {
+    func didCompleteSetup(with clientConfiguration: ClientConfiguration, in coordinator: SetupCoordinator) {
         DispatchQueue.scheduleOnMainThread {
-            self.rootViewController = self.homeCoordinator.rootViewController
+            self.rootViewController = self.createHomeCoordinator(with: clientConfiguration).rootViewController
         }
     }
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {
     func didLogout(in coordinator: HomeCoordinator) {
-        userService?.logout()
+        AuthenticationService?.logout()
         DispatchQueue.scheduleOnMainThread {
-            self.rootViewController = self.setupCoordinator.rootViewController
+            self.rootViewController = self.createSetupCoordinator().rootViewController
         }
     }
 }

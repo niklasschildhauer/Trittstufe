@@ -26,13 +26,7 @@ protocol ConfigurationPresenterDelegate: AnyObject {
 class ConfigurationPresenter: Presenter {
     weak var view: ConfigurationView?
     var delegate: ConfigurationPresenterDelegate?
-    
-    private let configurationService: ConfigurationService
-    
-    init(configurationService: ConfigurationService) {
-        self.configurationService = configurationService
-    }
-    
+        
     func viewDidLoad() {
         
     }
@@ -51,9 +45,9 @@ class ConfigurationPresenter: Presenter {
             return
         }
         
-        configurationService.port = portValue
-        configurationService.ipAdress = ipAdress
-        configurationService.publicKey = publicKey
+        UserDefaultConfig.configurationPublicKey = publicKey
+        UserDefaultConfig.configurationPort = portValue
+        UserDefaultConfig.configurationIpAdress = ipAdress
 
         delegate?.didCompletecConfiguration(in: self)
     }
