@@ -56,7 +56,7 @@ class SetupCoordinator: Coordinator {
     
     private func pushAuthenticationViewController() {
         let viewController = AuthenticationViewController()
-        let presenter = AuthenticationPresenter(AuthenticationService: authenticationService)
+        let presenter = AuthenticationPresenter(authenticationService: authenticationService)
         
         viewController.presenter = presenter
         presenter.delegate = self
@@ -86,15 +86,17 @@ extension SetupCoordinator: SetupPresenterDelegate {
             DispatchQueue.performUIOperation {
                 self.pushConfigurationViewController()
             }
+        case .locationPermissionRequired:
+            DispatchQueue.performUIOperation {
+                self.pushRequestLocationPermissionViewController()
+            }
         case .authenticationRequired:
             DispatchQueue.performUIOperation {
                 self.pushAuthenticationViewController()
             }
         case .setupCompleted(let clientConfiguration):
-            delegate?.didCompleteSetup(with: clientConfiguration, in: self)
-        case .locationPermissionRequired:
             DispatchQueue.performUIOperation {
-                self.pushRequestLocationPermissionViewController()
+                self.delegate?.didCompleteSetup(with: clientConfiguration, in: self)
             }
         }
     }

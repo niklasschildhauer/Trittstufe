@@ -30,9 +30,9 @@ class AppCoordinator: Coordinator {
     
     init(window: UIWindow) {
         self.window = window
-        defer {
-            rootViewController = createSetupCoordinator().rootViewController
-        }
+       
+        rootViewController = createSetupCoordinator().rootViewController
+        window.rootViewController = rootViewController
     }
 
     private func createHomeCoordinator(with clientConfiguration: ClientConfiguration) -> HomeCoordinator {

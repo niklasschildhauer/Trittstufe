@@ -31,14 +31,14 @@ class AuthenticationPresenter {
     weak var view: AuthenticationView?
     var delegate: AuthenticationPresenterDelegate?
     
-    private let AuthenticationService: AuthenticationService
+    private let authenticationService: AuthenticationService
         
-    init(AuthenticationService: AuthenticationService) {
-        self.AuthenticationService = AuthenticationService
+    init(authenticationService: AuthenticationService) {
+        self.authenticationService = authenticationService
     }
     
     func viewDidLoad() {
-        if AuthenticationService.rememberMe {
+        if authenticationService.rememberMe {
             view?.setLoginFieldsHiddenStatus(isHidden: true)
             startRememberMeAuthentication()
         } else {
@@ -55,20 +55,22 @@ class AuthenticationPresenter {
               let accountName = view?.accountNameValue,
               let rememberMe = view?.rememberMeValue else { return }
             
-        AuthenticationService.login(accountName: accountName, password: password, rememberMe: rememberMe) { [weak self] result in
+        authenticationService.login(accountName: accountName, password: password, rememberMe: rememberMe) { [weak self] result in
             self?.handleAuthentication(result: result)
         }
     }
     
     private func startRememberMeAuthentication() {
         self.checkDeviceOwnerAuthenticationWithBiometrics { [weak self] isDeviceOwner in
+            guard let self = self else { return }
             if isDeviceOwner {
-                self?.AuthenticationService.loginWithRememberMe { [weak self] result in
-                    self?.handleAuthentication(result: result)
+                self.authenticationService.loginWithRememberMe { [weak self] result in
+                    guard let self = self else { return }
+                    self.handleAuthentication(result: result)
                 }
             } else {
                 DispatchQueue.performUIOperation {
-                    self?.view?.setLoginFieldsHiddenStatus(isHidden: false)
+                    self.view?.setLoginFieldsHiddenStatus(isHidden: false)
                 }
             }
         }
