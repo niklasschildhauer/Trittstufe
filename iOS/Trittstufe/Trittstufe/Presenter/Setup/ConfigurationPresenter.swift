@@ -28,7 +28,9 @@ class ConfigurationPresenter: Presenter {
     var delegate: ConfigurationPresenterDelegate?
         
     func viewDidLoad() {
-        
+        let jsonData = dummyData.data(using: .utf8)!
+        let dummyDataEncoded: DummyBackendData = try! JSONDecoder().decode(DummyBackendData.self, from: jsonData)
+        print(dummyDataEncoded)
     }
     
     func didTapShowQRScannerButton() {
@@ -45,9 +47,29 @@ class ConfigurationPresenter: Presenter {
             return
         }
         
-        UserDefaultConfig.configurationPublicKey = publicKey
-        UserDefaultConfig.configurationPort = portValue
-        UserDefaultConfig.configurationIpAdress = ipAdress
+        let configuration = DummyBackendData(
+            cars: [
+                .init(model: "Rolling Chasis",
+                      vin: "123123",
+                      ipAdress: ipAdress,
+                      port: portValue,
+                      publicKey: publicKey,
+                      authorizedUsers: [
+                        .init(userIdentification: "testtest", dueDate: "forever")
+                      ])
+            ],
+            users: [
+                .init(accountName: "test",
+                      password: "test",
+                      userIdentification: "testtest")
+                ]
+            )
+        
+        saveDummyBackendData(dummyBackendData: configuration)
+    }
+    
+    private func saveDummyBackendData(dummyBackendData: DummyBackendData) {
+        UserDefaultConfig.dummyBackendData = dummyBackendData
 
         delegate?.didCompletecConfiguration(in: self)
     }
@@ -55,7 +77,11 @@ class ConfigurationPresenter: Presenter {
 
 extension ConfigurationPresenter: QRCodeScannerDelegate {
     func didScan(code: String, in viewController: QRCodeScannerViewController) {
-        print(code)
+        guard let dummyBackendDataJSON = code.data(using: .utf8),
+              let dummyBackendData = try? JSONDecoder().decode(DummyBackendData.self, from: dummyBackendDataJSON)
+        else { return }
+        
+        saveDummyBackendData(dummyBackendData: dummyBackendData)
     }
 }
 

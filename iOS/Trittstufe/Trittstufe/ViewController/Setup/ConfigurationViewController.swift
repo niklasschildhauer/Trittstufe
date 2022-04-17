@@ -21,6 +21,8 @@ class ConfigurationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter.viewDidLoad()
     }
     
     @IBAction func didTapShowQRCodeSacnnerButton(_ sender: Any) {

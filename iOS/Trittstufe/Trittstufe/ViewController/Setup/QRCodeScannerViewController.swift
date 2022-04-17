@@ -107,7 +107,7 @@ extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func found(code: String) {
-        print(code)
+        delegate?.didScan(code: code, in: self)
     }
 }
 

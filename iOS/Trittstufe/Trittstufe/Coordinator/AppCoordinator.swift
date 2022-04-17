@@ -25,7 +25,8 @@ class AppCoordinator: Coordinator {
     
     private let window: UIWindow
     
-    private var AuthenticationService: AuthenticationService?
+    private var authenticationService: AuthenticationService?
+    private let locationService = LocationService()
     
     init(window: UIWindow) {
         self.window = window
@@ -45,11 +46,12 @@ class AppCoordinator: Coordinator {
     
     private func createSetupCoordinator() -> SetupCoordinator {
         let keychainService = KeychainService()
-        let AuthenticationService = LocalAuthenticationService(keychainService: keychainService)
-        let coordinator = SetupCoordinator(AuthenticationService: AuthenticationService)
+        let networkService = LocalNetworkService()
+        let authenticationService = LocalAuthenticationService(keychainService: keychainService, networkService: networkService)
+        let coordinator = SetupCoordinator(authenticationService: authenticationService, locationService: locationService)
         coordinator.delegate = self
         
-        self.AuthenticationService = AuthenticationService
+        self.authenticationService = authenticationService
         
         return coordinator
     }
@@ -65,7 +67,7 @@ extension AppCoordinator: SetupCoordinatorDelegate {
 
 extension AppCoordinator: HomeCoordinatorDelegate {
     func didLogout(in coordinator: HomeCoordinator) {
-        AuthenticationService?.logout()
+        authenticationService?.logout()
         DispatchQueue.scheduleOnMainThread {
             self.rootViewController = self.createSetupCoordinator().rootViewController
         }

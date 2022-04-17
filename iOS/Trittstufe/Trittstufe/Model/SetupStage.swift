@@ -10,5 +10,6 @@ import Foundation
 enum SetupStage {
     case configurationMissing
     case authenticationRequired
+    case locationPermissionRequired
     case setupCompleted(clientConfiguration: ClientConfiguration)
 }

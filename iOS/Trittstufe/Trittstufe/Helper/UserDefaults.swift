@@ -14,14 +14,8 @@ struct UserDefaultConfig {
     @UserDefault(key: "remember_me_key", defaultValue: false)
     private static var rememberMeValue: Bool
     
-    @NilableUserDefault(key: "configuration_ip_adress_key")
-    private static var configurationIpAdressValue: String?
-    
-    @NilableUserDefault(key: "configuration_port_key")
-    private static var configurationPortValue: UInt16?
-    
-    @NilableUserDefault(key: "configuration_public_key_key")
-    private static var configurationPublicKeyValue: String?
+    @NilableUserDefault(key: "dummy_backend_data_key")
+    private static var dummyBackendDataValue: String?
 }
 
 extension UserDefaultConfig {
@@ -34,33 +28,20 @@ extension UserDefaultConfig {
         }
     }
     
-    static var configurationPort: UInt16? {
+    static var dummyBackendData: DummyBackendData? {
         get {
-            configurationPortValue
+            guard let dummyBackendDataJSON = dummyBackendDataValue?.data(using: .utf8),
+                  let dummyBackendData = try? JSONDecoder().decode(DummyBackendData.self, from: dummyBackendDataJSON)
+            else { return nil }
+            
+            return dummyBackendData
         }
         set {
-            configurationPortValue = newValue
+            guard let dummyBackendDataJSON = try? JSONEncoder().encode(newValue) else { return }
+            dummyBackendDataValue = String(decoding: dummyBackendDataJSON, as: UTF8.self)
         }
     }
-    
-    static var configurationIpAdress: String? {
-        get {
-            configurationIpAdressValue
-        }
-        set {
-            configurationIpAdressValue = newValue
-        }
-    }
-    
-    static var configurationPublicKey: String? {
-        get {
-            configurationPublicKeyValue
-        }
-        set {
-            configurationPublicKeyValue = newValue
-        }
-    }
-
+  
     static var rememberMe: Bool {
         get {
             rememberMeValue

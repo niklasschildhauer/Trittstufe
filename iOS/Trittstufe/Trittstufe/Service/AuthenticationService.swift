@@ -43,9 +43,10 @@ class LocalAuthenticationService: AuthenticationService {
         }
     }
     private let keychainService: KeychainService
+    private let networkService: NetworkService
     
-    
-    init(keychainService: KeychainService) {
+    init(keychainService: KeychainService, networkService: NetworkService) {
+        self.networkService = networkService
         self.keychainService = keychainService
     }
     
@@ -64,46 +65,20 @@ class LocalAuthenticationService: AuthenticationService {
     }
     
     private func login(accountName: String, password: String, completion: (Result<ClientConfiguration, AuthenticationError>) -> Void) {
-        guard let userIdentification = validateCredentials(accountName: accountName, password: password) else {
-            completion(.failure(.invalidLoginCredentials))
-            return
-        }
-        
-        guard let hostIdentification = ClientConfiguration.HostIdentification.loadFromUserDefaults() else {
-            completion(.failure(.internalError))
-            return
-        }
-
-        self.accountName = accountName
-        try? keychainService.save(password: password, account: accountName)
-        
-        let clientCredentials = ClientConfiguration.ClientCredentials(userIdentification: userIdentification, accountName: accountName, password: password)
-        
-        clientConfiguration = ClientConfiguration(clientCredentials: clientCredentials, hostIdentification: hostIdentification)
-        
-        completion(.success(clientConfiguration!))
-    }
-    
-    // Todo implement valid backend service
-    private func validateCredentials(accountName: String, password: String) -> String? {
-        let knownUsers = ["Niklas":"Sonnenblume"]
-        
-        let index = knownUsers.index(forKey: accountName)
-        if let index = index {
-            if knownUsers[index].value == password {
-                return userIdentification(for: accountName)
+        networkService.loadClientConfiguration(for: accountName, password: password) { result in
+            switch result {
+            case .success(let clientConfiguration):
+                self.accountName = accountName
+                try? self.keychainService.save(password: password, account: accountName)
+                self.clientConfiguration = clientConfiguration
+                
+                completion(.success(clientConfiguration))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
+    }
         
-        return nil
-    }
-    
-    // Todo implement valid backend service
-    private func userIdentification(for accountName: String) -> String {
-        return "1234756789"
-    }
-    
-    
     func logout() {
         clientConfiguration = nil
         try? keychainService.deletePassword(account: accountName ?? "")

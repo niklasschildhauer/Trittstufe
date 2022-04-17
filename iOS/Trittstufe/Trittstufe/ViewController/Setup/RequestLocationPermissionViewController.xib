@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestLocationPermissionViewController" customModule="Trittstufe" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmButton" destination="C0H-UK-QgZ" id="dF8-kq-H6Q"/>
+                <outlet property="descriptionLabel" destination="K31-Jb-gud" id="jSs-Lk-soa"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sodass die App funktioniert, brauchen wir deine Friegabe des Standorts!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K31-Jb-gud">
+                    <rect key="frame" x="57" y="427.5" width="300" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="5Yq-mh-aHV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0H-UK-QgZ">
+                    <rect key="frame" x="186" y="544" width="42.5" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="gray" title="Ok"/>
+                    <connections>
+                        <action selector="didTapConfirmButton:" destination="-1" eventType="touchUpInside" id="7b8-lZ-EzN"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="C0H-UK-QgZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="500" id="0qy-W8-bVY"/>
+                <constraint firstItem="K31-Jb-gud" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2VS-pV-uxR"/>
+                <constraint firstItem="C0H-UK-QgZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Eg-g0-n5X"/>
+                <constraint firstItem="K31-Jb-gud" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="y6x-qo-dLT"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="82"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

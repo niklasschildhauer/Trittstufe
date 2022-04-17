@@ -40,10 +40,10 @@ class MQTTClientService {
     
         let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
         let client = CocoaMQTT(clientID: clientID,
-                               host: clientConfiguration.hostIdentification.ipAdress,
-                               port: clientConfiguration.hostIdentification.portNumber)
-        client.username = clientConfiguration.clientCredentials.accountName
-        client.password = clientConfiguration.clientCredentials.password
+                               host: clientConfiguration.carIdentification.ipAdress,
+                               port: clientConfiguration.carIdentification.portNumber)
+//        client.username = clientConfiguration.clientCredentials.accountName
+//        client.password = clientConfiguration.clientCredentials.password
         client.willMessage = CocoaMQTTMessage(topic: "/will", string: "dieout")
         client.keepAlive = 60
         client.delegate = self
