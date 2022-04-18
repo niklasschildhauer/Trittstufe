@@ -39,10 +39,35 @@ class HomeCoordinator: Coordinator {
         
         return homeViewController
     }
+    
+    private func createRequestLocationPermissionViewController() -> UIViewController {
+        let viewController = RequestLocationPermissionViewController()
+        let presenter = RequestLocationPermissionPresenter(locationService: locationService)
+        
+        viewController.presenter = presenter
+        presenter.delegate = self
+        
+        return viewController
+    }
 }
 
 extension HomeCoordinator: HomePresenterDelegate {
+    func didChangePermissionStatus(in presenter: HomePresenter) {
+        DispatchQueue.performUIOperation {
+            self.rootViewController.present(self.createRequestLocationPermissionViewController(), animated: true, completion: nil)
+        }
+    }
+    
     func didTapLogout(in presenter: HomePresenter) {
         delegate?.didLogout(in: self)
+    }
+}
+
+extension HomeCoordinator: RequestLocationPermissionPresenterDelegate {
+    func didGrantedPermission(in presenter: RequestLocationPermissionPresenter) {
+        DispatchQueue.performUIOperation {
+            self.navigationController.setViewControllers([self.createHomeViewController()], animated: false)
+            self.rootViewController.dismiss(animated: true)
+        }
     }
 }

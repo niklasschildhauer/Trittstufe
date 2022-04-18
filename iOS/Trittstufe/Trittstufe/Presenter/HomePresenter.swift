@@ -15,6 +15,7 @@ protocol HomeView: AnyObject {
 
 protocol HomePresenterDelegate: AnyObject {
     func didTapLogout(in presenter: HomePresenter)
+    func didChangePermissionStatus(in presenter: HomePresenter)
 }
 
 class HomePresenter: Presenter {
@@ -27,13 +28,26 @@ class HomePresenter: Presenter {
     init(stepEngineControlService: StepEngineControlService, locationService: LocationService) {
         self.stepEngineControlService = stepEngineControlService
         self.locationService = locationService
+        
     }
-    
+
     func viewDidLoad() {
         locationService.statusDelegate = self
         locationService.delegate = self
         
+        if locationService.permissionStatus() == .granted {
+            startLocationService()
+        } else {
+            delegate?.didChangePermissionStatus(in: self)
+        }
+    }
+    
+    private func startLocationService() {
         locationService.startMonitoring()
+    }
+    
+    private func stopLocationService() {
+        locationService.stopMonitoring()
     }
     
     func sendTestMessage() {
@@ -49,10 +63,11 @@ extension HomePresenter: LocationServiceStatusDelegate {
     func didChangeStatus(in service: LocationService) {
         switch service.permissionStatus() {
         case .granted:
-            break
+            startLocationService()
         case .denied, .notDetermined:
+            stopLocationService()
             DispatchQueue.performUIOperation {
-                self.logout()
+                self.delegate?.didChangePermissionStatus(in: self)
             }
         }
     }

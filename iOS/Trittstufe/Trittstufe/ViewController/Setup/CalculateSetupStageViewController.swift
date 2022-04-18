@@ -17,14 +17,9 @@ class CalculateSetupStageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter.viewDidAppear()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter.viewWillAppear()
-    }
-    
-
 }
 
 extension CalculateSetupStageViewController: SetupView {

@@ -104,6 +104,11 @@ extension LocationService: CLLocationManagerDelegate {
         delegate?.didFail(with:"Location manager failed: \(error.localizedDescription)", in: self)
     }
     
+    struct ProximityCount {
+        let id: UUID
+        var proximityCount: [CLProximity:Int]
+    }
+    
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         locatedBeaconsHistory.append(beacons)
         
@@ -111,10 +116,22 @@ extension LocationService: CLLocationManagerDelegate {
         
         let history = locatedBeaconsHistory
         
-        history.reduce([]) { partialResult, beacons in
-            if partialResult.
-        }
+        let proximityCount = history.reduce( [CLProximity.far:0, CLProximity.immediate:0, CLProximity.near:0, CLProximity.unknown:0] , { partialResult, beacons in
+            var partialResult = partialResult
+            if let beacon = beacons.first,
+               beacon.uuid == clientConfiguration?.carIdentification.beaconId {
+                if var currentValue = partialResult[beacon.proximity] {
+                    currentValue += 1
+                    partialResult.updateValue(currentValue, forKey: beacon.proximity)
+                }
+            }
+            return partialResult
+        })
         
+        let averageProximity = proximityCount.max { first, second in
+            first.value > second.value
+        }
+    
         delegate?.didRangeBeacons(beacons: beacons, in: region)
     }
 }

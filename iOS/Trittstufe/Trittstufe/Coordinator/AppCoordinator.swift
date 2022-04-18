@@ -46,7 +46,7 @@ class AppCoordinator: Coordinator {
         let keychainService = KeychainService()
         let networkService = LocalNetworkService()
         let authenticationService = LocalAuthenticationService(keychainService: keychainService, networkService: networkService)
-        let coordinator = SetupCoordinator(authenticationService: authenticationService, locationService: locationService)
+        let coordinator = SetupCoordinator(authenticationService: authenticationService)
         coordinator.delegate = self
         
         self.authenticationService = authenticationService

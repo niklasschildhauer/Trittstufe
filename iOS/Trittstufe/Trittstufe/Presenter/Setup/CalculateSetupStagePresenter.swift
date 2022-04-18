@@ -20,25 +20,22 @@ class CalculateSetupStagePresenter: Presenter {
     var delegate: SetupPresenterDelegate?
     
     private let authenticationService: AuthenticationService
-    private let locationService: LocationService
     
-    init(authenticationService: AuthenticationService, locationService: LocationService) {
+    init(authenticationService: AuthenticationService) {
         self.authenticationService = authenticationService
-        self.locationService = locationService
     }
     
     func viewWillAppear() {
         calculateNextStage()
     }
     
+    func viewDidAppear() {
+        calculateNextStage()
+    }
+    
     func calculateNextStage() {
         guard DummyBackendData.loadFromUserDefaults() != nil else {
             delegate?.didCalculate(next: .configurationMissing, in: self)
-            return
-        }
-        
-        guard locationService.permissionStatus() == .granted else {
-            delegate?.didCalculate(next: .locationPermissionRequired, in: self)
             return
         }
         

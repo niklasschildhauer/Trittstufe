@@ -21,61 +21,42 @@ class SetupCoordinator: Coordinator {
 
     private let navigationController = UINavigationController()
     private let authenticationService: AuthenticationService
-    private let locationService: LocationService
     
-    init(authenticationService: AuthenticationService, locationService: LocationService) {
-        self.locationService = locationService
+    init(authenticationService: AuthenticationService) {
         self.authenticationService = authenticationService
         
-        pushCalculateSetupStageViewController()
+        let calculationViewController = createCalculateSetupStageViewController()
+        navigationController.setViewControllers([calculationViewController], animated: false)
     }
-
-    private func pushCalculateSetupStageViewController() {
+    
+    private func createCalculateSetupStageViewController() -> UIViewController {
         let viewController = CalculateSetupStageViewController()
-        let presenter = CalculateSetupStagePresenter(authenticationService: authenticationService, locationService: locationService)
+        let presenter = CalculateSetupStagePresenter(authenticationService: authenticationService)
         
         viewController.presenter = presenter
         presenter.delegate = self
                 
-        DispatchQueue.scheduleOnMainThread {
-            self.navigationController.setViewControllers([viewController], animated: false)
-        }
+        return viewController
     }
         
-    private func pushConfigurationViewController() {
+    private func createConfigurationViewController() -> UIViewController {
         let viewController = ConfigurationViewController()
         let presenter = ConfigurationPresenter()
         
         viewController.presenter = presenter
         presenter.delegate = self
         
-        DispatchQueue.scheduleOnMainThread {
-            self.navigationController.setViewControllers([viewController], animated: false)
-        }
+        return viewController
     }
     
-    private func pushAuthenticationViewController() {
+    private func createAuthenticationViewController() -> UIViewController {
         let viewController = AuthenticationViewController()
         let presenter = AuthenticationPresenter(authenticationService: authenticationService)
         
         viewController.presenter = presenter
         presenter.delegate = self
         
-        DispatchQueue.scheduleOnMainThread {
-            self.navigationController.setViewControllers([viewController], animated: false)
-        }
-    }
-    
-    private func pushRequestLocationPermissionViewController() {
-        let viewController = RequestLocationPermissionViewController()
-        let presenter = RequestLocationPermissionPresenter(locationService: locationService)
-        
-        viewController.presenter = presenter
-        presenter.delegate = self
-        
-        DispatchQueue.scheduleOnMainThread {
-            self.navigationController.setViewControllers([viewController], animated: false)
-        }
+        return viewController
     }
 }
 
@@ -84,15 +65,11 @@ extension SetupCoordinator: SetupPresenterDelegate {
         switch stage {
         case .configurationMissing:
             DispatchQueue.performUIOperation {
-                self.pushConfigurationViewController()
-            }
-        case .locationPermissionRequired:
-            DispatchQueue.performUIOperation {
-                self.pushRequestLocationPermissionViewController()
+                self.rootViewController.present(self.createConfigurationViewController(), animated: true)
             }
         case .authenticationRequired:
             DispatchQueue.performUIOperation {
-                self.pushAuthenticationViewController()
+                self.navigationController.setViewControllers([self.createAuthenticationViewController()], animated: false)
             }
         case .setupCompleted(let clientConfiguration):
             DispatchQueue.performUIOperation {
@@ -114,7 +91,8 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
     
     func didCompletecConfiguration(in presenter: ConfigurationPresenter) {
         DispatchQueue.performUIOperation {
-            self.pushCalculateSetupStageViewController()
+            self.navigationController.setViewControllers([self.createCalculateSetupStageViewController()], animated: false)
+            self.rootViewController.dismiss(animated: true)
         }
     }
 }
@@ -122,21 +100,13 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
 extension SetupCoordinator: AuthenticationPresenterDelegate {
     func didCompleteAuthentication(with clientConfiguration: ClientConfiguration, in presenter: AuthenticationPresenter) {
         DispatchQueue.performUIOperation {
-            self.pushCalculateSetupStageViewController()
+            self.navigationController.setViewControllers([self.createCalculateSetupStageViewController()], animated: false)
         }
     }
     
     func didTapEditConfiguration(in presenter: AuthenticationPresenter) {
         DispatchQueue.performUIOperation {
-            self.pushConfigurationViewController()
-        }
-    }
-}
-
-extension SetupCoordinator: RequestLocationPermissionPresenterDelegate {
-    func didGrantedPermission(in presenter: RequestLocationPermissionPresenter) {
-        DispatchQueue.performUIOperation {
-            self.pushCalculateSetupStageViewController()
+            self.rootViewController.present(self.createConfigurationViewController(), animated: true)
         }
     }
 }
