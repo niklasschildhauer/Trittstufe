@@ -32,6 +32,8 @@
 		85826B93280BF6D5005BEEF6 /* RequestLocationPermissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85826B91280BF6D5005BEEF6 /* RequestLocationPermissionViewController.xib */; };
 		85826B95280BF7FD005BEEF6 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B94280BF7FD005BEEF6 /* LocationService.swift */; };
 		85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */; };
+		85826B99280D5082005BEEF6 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B98280D5081005BEEF6 /* Car.swift */; };
+		85826B9B280D508A005BEEF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B9A280D508A005BEEF6 /* User.swift */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
 		85D6771D27F87614004500D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D6771B27F87614004500D9 /* Main.storyboard */; };
@@ -99,6 +101,8 @@
 		85826B91280BF6D5005BEEF6 /* RequestLocationPermissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestLocationPermissionViewController.xib; sourceTree = "<group>"; };
 		85826B94280BF7FD005BEEF6 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationPermissionPresenter.swift; sourceTree = "<group>"; };
+		85826B98280D5081005BEEF6 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		85826B9A280D508A005BEEF6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 				854E9BE92802EECB0005546B /* SetupStage.swift */,
 				85242A6C28084BE9004FC32C /* ClientConfiguration.swift */,
 				85826B8C2809D787005BEEF6 /* DummyBackendData.swift */,
+				85826B98280D5081005BEEF6 /* Car.swift */,
+				85826B9A280D508A005BEEF6 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -587,7 +593,9 @@
 			files = (
 				85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */,
 				854E9BF22802F2200005546B /* ConfigurationPresenter.swift in Sources */,
+				85826B99280D5082005BEEF6 /* Car.swift in Sources */,
 				85D6775427F877A3004500D9 /* Coordinator+Protocol.swift in Sources */,
+				85826B9B280D508A005BEEF6 /* User.swift in Sources */,
 				854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */,
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,

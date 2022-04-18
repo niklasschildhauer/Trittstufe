@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 protocol HomeView: AnyObject {
     var presenter: HomePresenter! { get set }
@@ -21,13 +22,18 @@ class HomePresenter: Presenter {
     var delegate: HomePresenterDelegate?
     
     private let stepEngineControlService: StepEngineControlService
+    private let locationService: LocationService
     
-    init(stepEngineControlService: StepEngineControlService) {
+    init(stepEngineControlService: StepEngineControlService, locationService: LocationService) {
         self.stepEngineControlService = stepEngineControlService
+        self.locationService = locationService
     }
     
     func viewDidLoad() {
+        locationService.statusDelegate = self
+        locationService.delegate = self
         
+        locationService.startMonitoring()
     }
     
     func sendTestMessage() {
@@ -36,5 +42,28 @@ class HomePresenter: Presenter {
     
     func logout() {
         delegate?.didTapLogout(in: self)
+    }
+}
+
+extension HomePresenter: LocationServiceStatusDelegate {
+    func didChangeStatus(in service: LocationService) {
+        switch service.permissionStatus() {
+        case .granted:
+            break
+        case .denied, .notDetermined:
+            DispatchQueue.performUIOperation {
+                self.logout()
+            }
+        }
+    }
+}
+
+extension HomePresenter: LocationServiceDelegate {
+    func didFail(with error: String, in service: LocationService) {
+        print(error)
+    }
+    
+    func didRangeBeacons(beacons: [CLBeacon], in region: CLBeaconRegion) {
+        print(beacons)
     }
 }

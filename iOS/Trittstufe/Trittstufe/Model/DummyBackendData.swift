@@ -12,6 +12,7 @@ let dummyData: String = """
    "cars":[
       {
          "model":"Rolling Chasis",
+         "beaconId":"e339d8b2-7b73-40fd-9c58-44e6b3d1c608",
          "vin":"123123",
          "ipAdress":"192.9.12.2",
          "port":8338,
@@ -46,26 +47,6 @@ let dummyData: String = """
 struct DummyBackendData: Codable {
     let cars: [Car]
     let users: [User]
-    
-    struct Car: Codable {
-        let model: String
-        let vin: String
-        let ipAdress: String
-        let port: UInt16
-        let publicKey: String
-        let authorizedUsers: [AuthorizedUser]
-    }
-    
-    struct AuthorizedUser: Codable {
-        let userIdentification: String
-        let dueDate: String
-    }
-    
-    struct User: Codable {
-        let accountName: String
-        let password: String
-        let userIdentification: String
-    }
     
     static func loadFromUserDefaults() -> DummyBackendData? {
         UserDefaultConfig.dummyBackendData

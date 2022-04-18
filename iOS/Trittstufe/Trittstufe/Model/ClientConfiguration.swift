@@ -17,5 +17,6 @@ struct ClientConfiguration {
         let publicKey: String
         let model: String
         let vin: String
+        let beaconId: UUID
     }
 }

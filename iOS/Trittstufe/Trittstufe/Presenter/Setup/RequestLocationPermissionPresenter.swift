@@ -29,7 +29,7 @@ class RequestLocationPermissionPresenter {
     }
     
     func viewDidLoad() {
-        locationService.delegate = view
+        locationService.statusDelegate = self
         reload()
     }
     
@@ -54,5 +54,13 @@ class RequestLocationPermissionPresenter {
     
     func didAuthorizedPermission() {
         delegate?.didGrantedPermission(in: self)
+    }
+}
+
+extension RequestLocationPermissionPresenter: LocationServiceStatusDelegate {
+    func didChangeStatus(in service: LocationService) {
+        DispatchQueue.performUIOperation {
+            self.reload()
+        }
     }
 }

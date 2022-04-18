@@ -49,7 +49,7 @@ class LocalNetworkService: NetworkService {
                 user.userIdentification == userIdentification
             }
         }.map { car in
-            ClientConfiguration.CarIdentification(ipAdress: car.ipAdress, portNumber: car.port, publicKey: car.publicKey, model: car.model, vin: car.vin )
+            ClientConfiguration.CarIdentification(ipAdress: car.ipAdress, portNumber: car.port, publicKey: car.publicKey, model: car.model, vin: car.vin, beaconId: car.beaconId)
         }
     }
 }

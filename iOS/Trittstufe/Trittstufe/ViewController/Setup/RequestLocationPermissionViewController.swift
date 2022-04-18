@@ -36,18 +36,3 @@ extension RequestLocationPermissionViewController: RequestLocationPermissionView
         descriptionLabel.text = "Die App kann ohne Location nicht funktionieren. Bitte gehe in die Einstellungen und schalte die Location frei."
     }
 }
-
-
-// Mark: CLLocationManagerDelegate protocol implementation
-extension RequestLocationPermissionViewController {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined, .restricted, .denied:
-            presenter?.didDeniedPermission()
-        case .authorizedAlways, .authorizedWhenInUse, .authorized:
-            presenter?.didAuthorizedPermission()
-        @unknown default:
-            presenter?.didDeniedPermission()
-        }
-    }
-}

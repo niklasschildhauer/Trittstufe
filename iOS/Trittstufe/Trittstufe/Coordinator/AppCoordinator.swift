@@ -35,10 +35,8 @@ class AppCoordinator: Coordinator {
         window.rootViewController = rootViewController
     }
 
-    private func createHomeCoordinator(with clientConfiguration: ClientConfiguration) -> HomeCoordinator {
-        let mqttClient = MQTTClientService(clientConfiguration: clientConfiguration)
-    
-        let coordinator = HomeCoordinator(stepEngineControlService: mqttClient)
+    private func createHomeCoordinator(with clientConfiguration: ClientConfiguration) -> HomeCoordinator {    
+        let coordinator = HomeCoordinator(clientConfiguration: clientConfiguration, locationService: locationService)
         coordinator.delegate = self
         
         return coordinator

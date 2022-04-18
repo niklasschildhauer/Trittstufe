@@ -20,15 +20,19 @@ class HomeCoordinator: Coordinator {
     var delegate: HomeCoordinatorDelegate?
     private let navigationController = UINavigationController()
     private let stepEngineControlService: StepEngineControlService
+    private let locationService: LocationService
     
-    init(stepEngineControlService: StepEngineControlService) {
-        self.stepEngineControlService = stepEngineControlService
+    init(clientConfiguration: ClientConfiguration, locationService: LocationService) {
+        locationService.clientConfiguration = clientConfiguration
+        self.locationService = locationService
+        self.stepEngineControlService = MQTTClientService(clientConfiguration: clientConfiguration)
+
         navigationController.setViewControllers([createHomeViewController()], animated: false)
     }
     
     private func createHomeViewController() -> UIViewController {
         let homeViewController = HomeViewController()
-        let homePresenter = HomePresenter(stepEngineControlService: stepEngineControlService)
+        let homePresenter = HomePresenter(stepEngineControlService: stepEngineControlService, locationService: locationService)
 
         homePresenter.delegate = self
         homeViewController.presenter = homePresenter
