@@ -34,6 +34,10 @@
 		85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */; };
 		85826B99280D5082005BEEF6 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B98280D5081005BEEF6 /* Car.swift */; };
 		85826B9B280D508A005BEEF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B9A280D508A005BEEF6 /* User.swift */; };
+		8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE49280E9F6C005BC299 /* RoundedCorner.swift */; };
+		8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */; };
+		8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */; };
+		8582BE50280EA257005BC299 /* LabelTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
 		85D6771D27F87614004500D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D6771B27F87614004500D9 /* Main.storyboard */; };
@@ -103,6 +107,10 @@
 		85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationPermissionPresenter.swift; sourceTree = "<group>"; };
 		85826B98280D5081005BEEF6 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		85826B9A280D508A005BEEF6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8582BE49280E9F6C005BC299 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextFieldView.swift; sourceTree = "<group>"; };
+		8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadingView.swift; sourceTree = "<group>"; };
+		8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelTextFieldView.xib; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +221,17 @@
 			path = Setup;
 			sourceTree = "<group>";
 		};
+		8582BE48280E9F5D005BC299 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */,
+				8582BE49280E9F6C005BC299 /* RoundedCorner.swift */,
+				8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */,
+				8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		85D6770927F87614004500D9 = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +257,7 @@
 		85D6771427F87614004500D9 /* Trittstufe */ = {
 			isa = PBXGroup;
 			children = (
+				8582BE48280E9F5D005BC299 /* View */,
 				85D6774E27F87655004500D9 /* Model */,
 				85D6774D27F8764C004500D9 /* Helper */,
 				85D6774C27F87646004500D9 /* Extension */,
@@ -454,6 +474,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8582BE50280EA257005BC299 /* LabelTextFieldView.xib in Resources */,
 				85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */,
 				85D6772527F87615004500D9 /* LaunchScreen.storyboard in Resources */,
 				854E9BF02802F20F0005546B /* ConfigurationViewController.xib in Resources */,
@@ -599,9 +620,11 @@
 				854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */,
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,
+				8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */,
 				854E9BE72802EDFE0005546B /* CalculateSetupStageViewController.swift in Sources */,
 				854E9BE42802EDED0005546B /* CalculateSetupStagePresenter.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
+				8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */,
 				85D6772027F87614004500D9 /* Trittstufe.xcdatamodeld in Sources */,
 				854E9BF6280359640005546B /* DispatchQueue+Extension.swift in Sources */,
 				85826B92280BF6D5005BEEF6 /* RequestLocationPermissionViewController.swift in Sources */,
@@ -613,6 +636,7 @@
 				85D6775227F87758004500D9 /* HomeCoordinator.swift in Sources */,
 				85F459C92806B122003C1C71 /* QRCodeScannerViewController.swift in Sources */,
 				85826B8D2809D787005BEEF6 /* DummyBackendData.swift in Sources */,
+				8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */,
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,

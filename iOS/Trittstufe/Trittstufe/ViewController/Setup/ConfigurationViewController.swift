@@ -9,9 +9,10 @@ import UIKit
 
 class ConfigurationViewController: UIViewController {
     
-    @IBOutlet weak var ipAdressTextField: UITextField!
-    @IBOutlet weak var portTextField: UITextField!
-    @IBOutlet weak var publicKeyTextField: UITextField!
+    @IBOutlet weak var ipAdressLabelTextField: LabelTextFieldView!
+    @IBOutlet weak var portLabelTextField: LabelTextFieldView!
+    @IBOutlet weak var publicKeyLabelTextField: LabelTextFieldView!
+    @IBOutlet weak var uuidLabelTextField: LabelTextFieldView!
     
     var presenter: ConfigurationPresenter! {
         didSet {
@@ -23,6 +24,13 @@ class ConfigurationViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.viewDidLoad()
+    }
+    
+    private func setupView() {
+//        ipAdressLabelTextField.labelView.text = "IP Adresse"
+//        portLabelTextField.labelView.text = "Port"
+//        publicKeyLabelTextField.labelView.text = "Public Key"
+//        uuidLabelTextField.labelView.text = "UUID"
     }
     
     @IBAction func didTapShowQRCodeSacnnerButton(_ sender: Any) {
@@ -37,29 +45,29 @@ class ConfigurationViewController: UIViewController {
 extension ConfigurationViewController: ConfigurationView {
     var portValue: String? {
         get {
-            portTextField.text
+            portLabelTextField.textFieldView.text
         }
         set {
-            portTextField.text = newValue
+            portLabelTextField.textFieldView.text = newValue
 
         }
     }
     
     var ipAdressValue: String? {
         get {
-            ipAdressTextField.text
+            ipAdressLabelTextField.textFieldView.text
         }
         set {
-            ipAdressTextField.text = newValue
+            ipAdressLabelTextField.textFieldView.text = newValue
         }
     }
     
     var publicKeyValue: String? {
         get {
-            publicKeyTextField.text
+            publicKeyLabelTextField.textFieldView.text
         }
         set {
-            publicKeyTextField.text = newValue
+            publicKeyLabelTextField.textFieldView.text = newValue
         }
     }
     

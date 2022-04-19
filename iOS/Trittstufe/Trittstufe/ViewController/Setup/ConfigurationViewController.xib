@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,9 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfigurationViewController" customModule="Trittstufe" customModuleProvider="target">
             <connections>
-                <outlet property="ipAdressTextField" destination="NoO-fJ-1Rm" id="QwB-wJ-r5D"/>
-                <outlet property="portTextField" destination="R6Q-j7-XqA" id="wnI-hE-RVe"/>
-                <outlet property="publicKeyTextField" destination="kVC-ep-vpy" id="v4S-WW-hAR"/>
+                <outlet property="ipAdressLabelTextField" destination="Lge-sY-gP0" id="zU4-BC-1c0"/>
+                <outlet property="portLabelTextField" destination="Dfa-FE-DRV" id="rgy-O4-lqy"/>
+                <outlet property="publicKeyLabelTextField" destination="l3B-6J-4xN" id="mRM-P5-Ojg"/>
+                <outlet property="uuidLabelTextField" destination="w9g-cE-V7z" id="2bX-k7-Bxl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,29 +30,6 @@
                         <action selector="didTapSubmitButton:" destination="-1" eventType="touchUpInside" id="5pB-ap-4Ru"/>
                     </connections>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="YqC-ga-oNf">
-                    <rect key="frame" x="157.5" y="154" width="99" height="144"/>
-                    <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IP-Adresse" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NoO-fJ-1Rm">
-                            <rect key="frame" x="0.0" y="0.0" width="99" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Port" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R6Q-j7-XqA">
-                            <rect key="frame" x="0.0" y="55" width="99" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Public Key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kVC-ep-vpy">
-                            <rect key="frame" x="0.0" y="110" width="99" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="99" id="2Gl-2W-GY2"/>
-                    </constraints>
-                </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNP-ve-mJs">
                     <rect key="frame" x="166.5" y="522" width="81.5" height="31"/>
                     <state key="normal" title="Button"/>
@@ -60,23 +38,97 @@
                         <action selector="didTapShowQRCodeSacnnerButton:" destination="-1" eventType="touchUpInside" id="ciM-Gc-K70"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgg-yN-Bjs" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="20" y="304" width="374" height="220"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YqC-ga-oNf">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="220"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lge-sY-gP0" customClass="LabelTextFieldView" customModule="Trittstufe" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showSeparator" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dfa-FE-DRV" customClass="LabelTextFieldView" customModule="Trittstufe" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="55" width="374" height="55"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showSeparator" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3B-6J-4xN" customClass="LabelTextFieldView" customModule="Trittstufe" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="110" width="374" height="55"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showSeparator" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9g-cE-V7z" customClass="LabelTextFieldView" customModule="Trittstufe" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="165" width="374" height="55"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showSeparator" value="NO"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <constraints>
+                                <constraint firstItem="Dfa-FE-DRV" firstAttribute="width" secondItem="YqC-ga-oNf" secondAttribute="width" id="3Ue-Vr-HKr"/>
+                                <constraint firstItem="Lge-sY-gP0" firstAttribute="width" secondItem="YqC-ga-oNf" secondAttribute="width" id="7a6-QP-91s"/>
+                                <constraint firstItem="w9g-cE-V7z" firstAttribute="width" secondItem="YqC-ga-oNf" secondAttribute="width" id="SBL-SI-Mcf"/>
+                                <constraint firstItem="l3B-6J-4xN" firstAttribute="width" secondItem="YqC-ga-oNf" secondAttribute="width" id="zNu-f0-pZE"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="220" id="0AL-af-iRe"/>
+                        <constraint firstAttribute="trailing" secondItem="YqC-ga-oNf" secondAttribute="trailing" id="7HG-W0-i3S"/>
+                        <constraint firstItem="YqC-ga-oNf" firstAttribute="leading" secondItem="kgg-yN-Bjs" secondAttribute="leading" id="UzK-wb-AR4"/>
+                        <constraint firstAttribute="bottom" secondItem="YqC-ga-oNf" secondAttribute="bottom" id="jGZ-SM-zuD"/>
+                        <constraint firstItem="YqC-ga-oNf" firstAttribute="top" secondItem="kgg-yN-Bjs" secondAttribute="top" id="nry-Gq-OgM"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dh-Xi-mhW">
+                    <rect key="frame" x="20" y="64" width="374" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="s5Y-Xm-CDX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="kgg-yN-Bjs" firstAttribute="top" secondItem="3dh-Xi-mhW" secondAttribute="bottom" constant="40" id="2Qd-zq-F9B"/>
                 <constraint firstItem="IPk-ET-P9j" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="AfK-VH-eOO"/>
+                <constraint firstItem="kgg-yN-Bjs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Ba3-39-1wf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3dh-Xi-mhW" secondAttribute="trailing" constant="20" id="NtU-7F-mR9"/>
                 <constraint firstItem="bNP-ve-mJs" firstAttribute="top" secondItem="IPk-ET-P9j" secondAttribute="bottom" constant="58.5" id="OaA-mz-aSB"/>
-                <constraint firstItem="YqC-ga-oNf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q32-sN-CwI"/>
                 <constraint firstItem="IPk-ET-P9j" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SeM-r0-dyQ"/>
                 <constraint firstItem="bNP-ve-mJs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cac-xM-ufc"/>
-                <constraint firstItem="IPk-ET-P9j" firstAttribute="top" secondItem="YqC-ga-oNf" secondAttribute="bottom" constant="134.5" id="uz1-vf-4OE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kgg-yN-Bjs" secondAttribute="trailing" constant="20" id="rg2-pM-8ZA"/>
+                <constraint firstItem="3dh-Xi-mhW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="uLP-8i-WQd"/>
+                <constraint firstItem="3dh-Xi-mhW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="vza-Gz-zlO"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="105"/>
+            <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
         </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

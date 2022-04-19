@@ -105,8 +105,11 @@ extension SetupCoordinator: AuthenticationPresenterDelegate {
     }
     
     func didTapEditConfiguration(in presenter: AuthenticationPresenter) {
+        let createConfigurationViewController = createConfigurationViewController()
+        createConfigurationViewController.isModalInPresentation = true
+        
         DispatchQueue.performUIOperation {
-            self.rootViewController.present(self.createConfigurationViewController(), animated: true)
+            self.rootViewController.present(createConfigurationViewController, animated: true)
         }
     }
 }
