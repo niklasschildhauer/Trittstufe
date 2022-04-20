@@ -8,3 +8,8 @@
 
 "QRCodeScannerViewController_Error_Title" = "Scannen ist nich möglich";
 "QRCodeScannerViewController_Error_Message" = "Das Scannen eines QR Codes wird von deinem Gerät nicht unterstützt.";
+"ConfigurationViewController_Description" = "Die Entwicklung der automatisch ausfahrbaren Trittstufe ist noch in der Prototypenphase. Aus diesem Grund wurde die Backendanbindung noch nicht fertiggestellt.
+
+Bitte gebe aus diesem Grund die nötigen Informationen ein, um eine Verbindung zur Trittstufe aufzubauen.
+
+Alternativ können Sie auch die QR-Code an der Trittstufe scannen. In diesem sind alle nötigen Informationen hinterlegt.";

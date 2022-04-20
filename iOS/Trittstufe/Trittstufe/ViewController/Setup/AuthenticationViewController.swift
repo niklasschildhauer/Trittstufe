@@ -9,6 +9,7 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
     
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var accountNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var rememberMeSwitch: UISwitch!
@@ -22,8 +23,19 @@ class AuthenticationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupController()
+        setupViews()
         
         presenter.viewDidLoad()
+    }
+    
+    private func setupController() {
+        self.navigationItem.title = "Anmelden"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func setupViews() {
+        loginButton.configuration = ButtonStyle.plain(title: "Anmelden")
     }
     
     @IBAction func didTapEditConfigurationButton(_ sender: Any) {

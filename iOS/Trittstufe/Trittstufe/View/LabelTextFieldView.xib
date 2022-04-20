@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LabelTextFieldView" customModule="Trittstufe" customModuleProvider="target">
             <connections>
+                <outlet property="labelView" destination="3ee-UY-e2L" id="NS1-cE-gnY"/>
                 <outlet property="separator" destination="zD5-G2-0Oz" id="AwD-aU-VCU"/>
                 <outlet property="textFieldView" destination="bKN-UY-961" id="MPi-iA-W49"/>
             </connections>
@@ -38,10 +39,10 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zD5-G2-0Oz" userLabel="Separator">
-                            <rect key="frame" x="0.0" y="55" width="414" height="0.0"/>
-                            <color key="backgroundColor" systemColor="systemGray2Color"/>
+                            <rect key="frame" x="0.0" y="54" width="414" height="1"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
                             <constraints>
-                                <constraint firstAttribute="height" id="hCf-eh-9fg"/>
+                                <constraint firstAttribute="height" constant="1" id="hCf-eh-9fg"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -72,8 +73,8 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -8,9 +8,10 @@
 import UIKit
 
 class LabelTextFieldView: NibLoadingView {
-    @IBOutlet weak var labelView: NSLayoutConstraint!
+    
     @IBOutlet weak var textFieldView: UITextField!
     @IBOutlet weak var separator: UIView!
+    @IBOutlet weak var labelView: UILabel!
     
     @IBInspectable var showSeparator: Bool = false {
         didSet {
@@ -21,7 +22,7 @@ class LabelTextFieldView: NibLoadingView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        textFieldView.backgroundColor = .yellow
-        
+        labelView.font = Font.captionBold
+        textFieldView.font = Font.body
     }
 }

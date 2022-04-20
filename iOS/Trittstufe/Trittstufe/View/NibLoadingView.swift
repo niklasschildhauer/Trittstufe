@@ -22,14 +22,18 @@ class NibLoadingView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.nibSetup()
-    }
+        if !self.didLoad {
+            self.didLoad = true
+            self.viewDidLoad()
+        }    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.nibSetup()
-    }
+        if !self.didLoad {
+            self.didLoad = true
+            self.viewDidLoad()
+        }    }
     
     open override func layoutSubviews() {
         super.layoutSubviews()

@@ -21,12 +21,18 @@ class SetupCoordinator: Coordinator {
 
     private let navigationController = UINavigationController()
     private let authenticationService: AuthenticationService
+    private var firstStage = true
     
     init(authenticationService: AuthenticationService) {
         self.authenticationService = authenticationService
+        setupApp()
         
         let calculationViewController = createCalculateSetupStageViewController()
         navigationController.setViewControllers([calculationViewController], animated: false)
+    }
+    
+    private func setupApp() {
+        GlobalAppearancee.styleNavigationBarFonts()
     }
     
     private func createCalculateSetupStageViewController() -> UIViewController {
@@ -58,19 +64,27 @@ class SetupCoordinator: Coordinator {
         
         return viewController
     }
+    
+    private func showNext(viewController: UIViewController, animated: Bool) {
+        DispatchQueue.performUIOperation {
+            if self.firstStage {
+                self.navigationController.setViewControllers([viewController], animated: true)
+                self.firstStage = false
+            } else {
+                self.navigationController.popViewController(animated: false)
+                self.navigationController.pushViewController(viewController, animated: animated)
+            }
+        }
+    }
 }
 
 extension SetupCoordinator: SetupPresenterDelegate {
     func didCalculate(next stage: SetupStage, in presenter: CalculateSetupStagePresenter) {
         switch stage {
         case .configurationMissing:
-            DispatchQueue.performUIOperation {
-                self.rootViewController.present(self.createConfigurationViewController(), animated: true)
-            }
+            showNext(viewController: createConfigurationViewController(), animated: true)
         case .authenticationRequired:
-            DispatchQueue.performUIOperation {
-                self.navigationController.setViewControllers([self.createAuthenticationViewController()], animated: false)
-            }
+            showNext(viewController: createAuthenticationViewController(), animated: true)
         case .setupCompleted(let clientConfiguration):
             DispatchQueue.performUIOperation {
                 self.delegate?.didCompleteSetup(with: clientConfiguration, in: self)
@@ -90,26 +104,20 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
     }
     
     func didCompletecConfiguration(in presenter: ConfigurationPresenter) {
-        DispatchQueue.performUIOperation {
-            self.navigationController.setViewControllers([self.createCalculateSetupStageViewController()], animated: false)
-            self.rootViewController.dismiss(animated: true)
-        }
+        showNext(viewController: createCalculateSetupStageViewController(), animated: false)
     }
 }
 
 extension SetupCoordinator: AuthenticationPresenterDelegate {
     func didCompleteAuthentication(with clientConfiguration: ClientConfiguration, in presenter: AuthenticationPresenter) {
-        DispatchQueue.performUIOperation {
-            self.navigationController.setViewControllers([self.createCalculateSetupStageViewController()], animated: false)
-        }
+        showNext(viewController: createCalculateSetupStageViewController(), animated: false)
     }
     
     func didTapEditConfiguration(in presenter: AuthenticationPresenter) {
-        let createConfigurationViewController = createConfigurationViewController()
-        createConfigurationViewController.isModalInPresentation = true
+        let configurationViewController = createConfigurationViewController()
         
         DispatchQueue.performUIOperation {
-            self.rootViewController.present(createConfigurationViewController, animated: true)
+            self.rootViewController.present(configurationViewController, animated: true)
         }
     }
 }
