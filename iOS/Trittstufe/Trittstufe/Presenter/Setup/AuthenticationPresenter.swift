@@ -12,7 +12,7 @@ import LocalAuthentication
 protocol AuthenticationView: AnyObject {
     var presenter: AuthenticationPresenter! { get set }
     
-    func setLoginFieldsHiddenStatus(isHidden: Bool)
+    func setLoginFieldsHiddenStatus(isHidden: Bool, animated: Bool)
     func showError(message: String)
     func hideError()
     
@@ -39,10 +39,10 @@ class AuthenticationPresenter {
     
     func viewDidLoad() {
         if authenticationService.rememberMe {
-            view?.setLoginFieldsHiddenStatus(isHidden: true)
+            view?.setLoginFieldsHiddenStatus(isHidden: true, animated: false)
             startRememberMeAuthentication()
         } else {
-            view?.setLoginFieldsHiddenStatus(isHidden: false)
+            view?.setLoginFieldsHiddenStatus(isHidden: false, animated: false)
         }
     }
     
@@ -70,7 +70,7 @@ class AuthenticationPresenter {
                 }
             } else {
                 DispatchQueue.performUIOperation {
-                    self.view?.setLoginFieldsHiddenStatus(isHidden: false)
+                    self.view?.setLoginFieldsHiddenStatus(isHidden: false, animated: true)
                 }
             }
         }
@@ -92,7 +92,7 @@ class AuthenticationPresenter {
                 case .internalError:
                     self.view?.showError(message: "There was an internal error. Sorry!")
                 }
-                self.view?.setLoginFieldsHiddenStatus(isHidden: false)
+                self.view?.setLoginFieldsHiddenStatus(isHidden: false, animated: true)
             }
         }
     }

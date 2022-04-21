@@ -73,15 +73,20 @@ class AuthenticationViewController: UIViewController {
 }
 
 extension AuthenticationViewController: AuthenticationView {
-    func setLoginFieldsHiddenStatus(isHidden: Bool) {
+    func setLoginFieldsHiddenStatus(isHidden: Bool, animated: Bool) {
         if isHidden {
             loginWrapperView.isHidden = isHidden
             logoContainerHeightConstraint.constant = 350
         } else {
-            self.logoContainerHeightConstraint.constant = 150
-            UIView.animate(withDuration: 0.5, delay: 0.2, options: .curveEaseIn, animations: {
-                self.view.layoutIfNeeded()
-            }) { _ in
+            if animated {
+                self.logoContainerHeightConstraint.constant = 150
+                UIView.animate(withDuration: 0.5, delay: 0.2, options: .curveEaseIn, animations: {
+                    self.view.layoutIfNeeded()
+                }) { _ in
+                    self.loginWrapperView.isHidden = isHidden
+                }
+            } else {
+                self.logoContainerHeightConstraint.constant = 150
                 self.loginWrapperView.isHidden = isHidden
             }
         }
