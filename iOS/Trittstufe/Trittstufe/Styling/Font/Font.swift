@@ -144,7 +144,7 @@ enum Font {
             fontSize = 34
         case .title:
             textStyleWeight = .semiBold
-            fontSize = 22
+            fontSize = 24
         case .caption:
             textStyleWeight = .regular
             fontSize = 11

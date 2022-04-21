@@ -32,7 +32,7 @@ class SetupCoordinator: Coordinator {
     }
     
     private func setupApp() {
-        GlobalAppearancee.styleNavigationBarFonts()
+        GlobalAppearance.styleNavigationBarFonts()
     }
     
     private func createCalculateSetupStageViewController() -> UIViewController {

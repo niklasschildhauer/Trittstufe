@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct GlobalAppearancee {
+struct GlobalAppearance {
     
     static func styleNavigationBarFonts() {
         let attrs = [
@@ -29,5 +29,5 @@ struct GlobalAppearancee {
         UINavigationBar.appearance().standardAppearance = navbarAppearance
     }
     
-    static let cornerRadius: CGFloat = 20.0
+    static let cornerRadius: CGFloat = 10.0
 }

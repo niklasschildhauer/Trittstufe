@@ -33,7 +33,8 @@ class NibLoadingView: UIView {
         if !self.didLoad {
             self.didLoad = true
             self.viewDidLoad()
-        }    }
+        }
+    }
     
     open override func layoutSubviews() {
         super.layoutSubviews()

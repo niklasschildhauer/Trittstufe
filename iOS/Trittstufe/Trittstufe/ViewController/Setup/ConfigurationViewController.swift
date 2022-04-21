@@ -34,8 +34,14 @@ class ConfigurationViewController: UIViewController {
     }
     
     private func setupController() {
-        navigationItem.title = "Konfiguration"
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.title = "Konfiguration"
+//        navigationController?.navigationBar.prefersLargeTitles = true
+        let titleLabel = UILabel(frame: .zero)
+        titleLabel.font = Font.title
+        titleLabel.text = "Konfiguration"
+        navigationItem.backButtonDisplayMode = .minimal
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         
         let submitButton = UIButton()
         submitButton.configuration = ButtonStyle.filled(title: "Bestätigen", image: UIImage(systemName: "checkmark.circle")!)

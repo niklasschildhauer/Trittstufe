@@ -16,4 +16,19 @@ class RoundedCornerView: UIView {
         }
     }
     
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        defer {
+            cornerRadius = GlobalAppearance.cornerRadius
+        }
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        defer {
+            cornerRadius = GlobalAppearance.cornerRadius
+        }
+    }
+    
 }

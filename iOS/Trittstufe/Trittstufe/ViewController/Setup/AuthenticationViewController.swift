@@ -9,9 +9,12 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loginWrapperView: UIStackView!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var accountNameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var changeConfigurationButton: UIButton!
+    @IBOutlet weak var accountNameLabelTextField: LabelTextFieldView!
+    @IBOutlet weak var passwordLabelTextField: LabelTextFieldView!
     @IBOutlet weak var rememberMeSwitch: UISwitch!
     @IBOutlet weak var errorMessageLabel: UILabel!
     
@@ -30,8 +33,14 @@ class AuthenticationViewController: UIViewController {
     }
     
     private func setupController() {
-        self.navigationItem.title = "Anmelden"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        let titleLabel = UILabel(frame: .zero)
+        titleLabel.font = Font.title
+        titleLabel.text = "Anmelden"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+        navigationItem.backButtonDisplayMode = .minimal
+
+        navigationItem.leftItemsSupplementBackButton = true
     }
     
     private func setupViews() {
@@ -49,9 +58,7 @@ class AuthenticationViewController: UIViewController {
 
 extension AuthenticationViewController: AuthenticationView {
     func setLoginFieldsHiddenStatus(isHidden: Bool) {
-        accountNameTextField.isHidden = isHidden
-        passwordTextField.isHidden = isHidden
-        rememberMeSwitch.isHidden = isHidden
+        loginWrapperView.isHidden = isHidden
     }
     
     func showError(message: String) {
@@ -66,19 +73,19 @@ extension AuthenticationViewController: AuthenticationView {
     
     var passwordValue: String? {
         get {
-            passwordTextField.text
+            passwordLabelTextField.textFieldView.text
         }
         set {
-            passwordTextField.text = newValue
+            passwordLabelTextField.textFieldView.text = newValue
         }
     }
     
     var accountNameValue: String? {
         get {
-            accountNameTextField.text
+            accountNameLabelTextField.textFieldView.text
         }
         set {
-            accountNameTextField.text = newValue
+            accountNameLabelTextField.textFieldView.text = newValue
         }
     }
     

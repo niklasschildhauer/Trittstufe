@@ -35,7 +35,7 @@ struct ButtonStyle {
         
         configuration.buttonSize = .large
         configuration.cornerStyle = .dynamic
-        configuration.background.cornerRadius = GlobalAppearancee.cornerRadius
+        configuration.background.cornerRadius = GlobalAppearance.cornerRadius
         
         return configuration
     }
