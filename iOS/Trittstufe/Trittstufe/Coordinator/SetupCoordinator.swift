@@ -80,13 +80,13 @@ class SetupCoordinator: Coordinator {
 
 extension SetupCoordinator: SetupPresenterDelegate {
     func didCalculate(next stage: SetupStage, in presenter: CalculateSetupStagePresenter) {
-        switch stage {
-        case .configurationMissing:
-            showNext(viewController: createConfigurationViewController(), animated: true)
-        case .authenticationRequired:
-            showNext(viewController: createAuthenticationViewController(), animated: true)
-        case .setupCompleted(let clientConfiguration):
-            DispatchQueue.performUIOperation {
+        DispatchQueue.performUIOperation {
+            switch stage {
+            case .configurationMissing:
+                self.showNext(viewController: self.createConfigurationViewController(), animated: true)
+            case .authenticationRequired:
+                self.showNext(viewController: self.createAuthenticationViewController(), animated: true)
+            case .setupCompleted(let clientConfiguration):
                 self.delegate?.didCompleteSetup(with: clientConfiguration, in: self)
             }
         }
@@ -104,13 +104,17 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
     }
     
     func didCompletecConfiguration(in presenter: ConfigurationPresenter) {
-        showNext(viewController: createCalculateSetupStageViewController(), animated: false)
+        DispatchQueue.performUIOperation {
+            self.showNext(viewController: self.createCalculateSetupStageViewController(), animated: false)
+        }
     }
 }
 
 extension SetupCoordinator: AuthenticationPresenterDelegate {
     func didCompleteAuthentication(with clientConfiguration: ClientConfiguration, in presenter: AuthenticationPresenter) {
-        showNext(viewController: createCalculateSetupStageViewController(), animated: false)
+        DispatchQueue.performUIOperation {
+            self.showNext(viewController: self.createCalculateSetupStageViewController(), animated: false)
+        }
     }
     
     func didTapEditConfiguration(in presenter: AuthenticationPresenter) {

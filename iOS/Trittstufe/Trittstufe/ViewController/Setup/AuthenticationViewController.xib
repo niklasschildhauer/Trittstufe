@@ -13,11 +13,14 @@
                 <outlet property="accountNameLabelTextField" destination="Yp6-aN-vQT" id="3yw-5U-v1F"/>
                 <outlet property="changeConfigurationButton" destination="YY9-kL-vgy" id="b11-P4-yIE"/>
                 <outlet property="errorMessageLabel" destination="jSg-Ee-0Us" id="htQ-wf-es4"/>
+                <outlet property="faceIDLabel" destination="A10-W1-Ee9" id="lXc-O8-Iji"/>
                 <outlet property="loginButton" destination="B5D-fU-WdK" id="NeU-by-kpX"/>
                 <outlet property="loginWrapperView" destination="yrA-XL-H2v" id="MUj-tt-Gdc"/>
+                <outlet property="logoContainerHeightConstraint" destination="iz6-mt-STO" id="wwO-yx-Q4E"/>
                 <outlet property="passwordLabelTextField" destination="G89-U5-Fq9" id="YZb-pd-x66"/>
                 <outlet property="rememberMeSwitch" destination="2yH-5u-Oco" id="F8I-8m-dQ4"/>
                 <outlet property="scrollView" destination="Bao-0t-L73" id="UCF-nE-W0z"/>
+                <outlet property="scrollViewBottomConstraint" destination="5bh-6H-QHk" id="Nu9-nZ-Ql0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,11 +32,29 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Bao-0t-L73">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-F7-6zp">
-                            <rect key="frame" x="16" y="10" width="382" height="281"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-F7-6zp">
+                            <rect key="frame" x="16" y="10" width="382" height="561"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEL-uy-wuS">
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="250"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car.2" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a5L-QT-xC2">
+                                            <rect key="frame" x="116" y="51" width="150" height="147.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="MPp-GC-XeY"/>
+                                                <constraint firstAttribute="height" constant="150" id="v1x-2q-KZq"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="a5L-QT-xC2" firstAttribute="centerX" secondItem="JEL-uy-wuS" secondAttribute="centerX" id="fkA-aJ-FsZ"/>
+                                        <constraint firstAttribute="height" constant="250" id="iz6-mt-STO"/>
+                                        <constraint firstItem="a5L-QT-xC2" firstAttribute="centerY" secondItem="JEL-uy-wuS" secondAttribute="centerY" id="un7-jf-wkM"/>
+                                    </constraints>
+                                </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="yrA-XL-H2v">
-                                    <rect key="frame" x="0.0" y="0.0" width="382" height="281"/>
+                                    <rect key="frame" x="0.0" y="280" width="382" height="281"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6AL-kq-h4W" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="110"/>
@@ -110,6 +131,9 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="JEL-uy-wuS" firstAttribute="width" secondItem="gIe-F7-6zp" secondAttribute="width" id="eV6-j6-dEG"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -145,6 +169,7 @@
         </view>
     </objects>
     <resources>
+        <image name="car.2" catalog="system" width="128" height="72"/>
         <image name="faceid" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -34,8 +34,6 @@ class ConfigurationViewController: UIViewController {
     }
     
     private func setupController() {
-//        navigationItem.title = "Konfiguration"
-//        navigationController?.navigationBar.prefersLargeTitles = true
         let titleLabel = UILabel(frame: .zero)
         titleLabel.font = Font.title
         titleLabel.text = "Konfiguration"
@@ -54,7 +52,6 @@ class ConfigurationViewController: UIViewController {
     private func setupViews() {
         showScannerButton.configuration = ButtonStyle.fullWidth(title: "QR-Scanner öffnen")
 
-        
         ipAdressLabelTextField.labelView.text = "IP Adresse"
         portLabelTextField.labelView.text = "Port"
         publicKeyLabelTextField.labelView.text = "Public Key"
@@ -66,8 +63,6 @@ class ConfigurationViewController: UIViewController {
     private func setupKeyboardBehaviour() {
         bottomConstraint.isActive = false
         scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor).isActive = true
-        
-        
     }
     
     @IBAction func didTapShowQRCodeSacnnerButton(_ sender: Any) {

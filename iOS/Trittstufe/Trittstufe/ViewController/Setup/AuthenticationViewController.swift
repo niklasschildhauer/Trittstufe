@@ -9,6 +9,7 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
     
+    @IBOutlet weak var logoContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginWrapperView: UIStackView!
     @IBOutlet weak var loginButton: UIButton!
@@ -17,6 +18,8 @@ class AuthenticationViewController: UIViewController {
     @IBOutlet weak var passwordLabelTextField: LabelTextFieldView!
     @IBOutlet weak var rememberMeSwitch: UISwitch!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var faceIDLabel: UILabel!
     
     var presenter: AuthenticationPresenter! {
         didSet {
@@ -28,6 +31,7 @@ class AuthenticationViewController: UIViewController {
         super.viewDidLoad()
         setupController()
         setupViews()
+        setupKeyboardBehaviour()
         
         presenter.viewDidLoad()
     }
@@ -44,7 +48,19 @@ class AuthenticationViewController: UIViewController {
     }
     
     private func setupViews() {
-        loginButton.configuration = ButtonStyle.plain(title: "Anmelden")
+        loginButton.configuration = ButtonStyle.fullWidth(title: "Anmelden")
+        changeConfigurationButton.configuration = ButtonStyle.plain(title: "Konfiguration ändern")
+        
+        errorMessageLabel.font = Font.bodyBold
+        faceIDLabel.font = Font.body
+        
+        accountNameLabelTextField.labelView.text = "Name"
+        passwordLabelTextField.labelView.text = "Passwort"
+    }
+    
+    private func setupKeyboardBehaviour() {
+        scrollViewBottomConstraint.isActive = false
+        scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor).isActive = true
     }
     
     @IBAction func didTapEditConfigurationButton(_ sender: Any) {
@@ -58,7 +74,17 @@ class AuthenticationViewController: UIViewController {
 
 extension AuthenticationViewController: AuthenticationView {
     func setLoginFieldsHiddenStatus(isHidden: Bool) {
-        loginWrapperView.isHidden = isHidden
+        if isHidden {
+            loginWrapperView.isHidden = isHidden
+            logoContainerHeightConstraint.constant = 350
+        } else {
+            self.logoContainerHeightConstraint.constant = 150
+            UIView.animate(withDuration: 0.5, delay: 0.2, options: .curveEaseIn, animations: {
+                self.view.layoutIfNeeded()
+            }) { _ in
+                self.loginWrapperView.isHidden = isHidden
+            }
+        }
     }
     
     func showError(message: String) {
