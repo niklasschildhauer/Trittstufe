@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 protocol RequestLocationPermissionView: CLLocationManagerDelegate {
     var presenter: RequestLocationPermissionPresenter? { get set }
@@ -46,6 +47,10 @@ class RequestLocationPermissionPresenter {
     
     func didTapConfirmButton() {
         locationService.requestAuthorization()
+    }
+    
+    func didTapOpenSettingsButton() {
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
     }
     
     func didDeniedPermission() {

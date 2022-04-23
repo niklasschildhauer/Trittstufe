@@ -19,6 +19,13 @@ class LabelTextFieldView: NibLoadingView {
         }
     }
     
+    @IBInspectable var isSebsible: Bool = false {
+        didSet {
+            textFieldView.textContentType = .password
+            textFieldView.isSecureTextEntry = isSebsible
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

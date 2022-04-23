@@ -55,6 +55,7 @@ extension HomeCoordinator: HomePresenterDelegate {
     func didChangePermissionStatus(in presenter: HomePresenter) {
         let requestPermissionViewController = self.createRequestLocationPermissionViewController()
         requestPermissionViewController.isModalInPresentation = true
+        requestPermissionViewController.sheetPresentationController?.detents = [.medium()]
         
         DispatchQueue.performUIOperation {
             self.rootViewController.present(requestPermissionViewController, animated: true, completion: nil)
