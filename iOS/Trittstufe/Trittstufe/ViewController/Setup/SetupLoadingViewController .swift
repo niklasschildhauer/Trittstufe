@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CalculateSetupStageViewController: UIViewController {
+class SetupLoadingViewController : UIViewController {
     
-    var presenter: CalculateSetupStagePresenter! {
+    var presenter: SetupLoadingPresenter! {
         didSet {
             presenter.view = self
         }
@@ -18,10 +18,10 @@ class CalculateSetupStageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.viewDidAppear()
+        presenter.viewDidLoad()
     }
 }
 
-extension CalculateSetupStageViewController: SetupView {
+extension SetupLoadingViewController : SetupLoadingView {
     
 }

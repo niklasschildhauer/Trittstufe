@@ -21,10 +21,13 @@ class SetupCoordinator: Coordinator {
 
     private let navigationController = UINavigationController()
     private let authenticationService: AuthenticationService
+    private let setupStageService: SetupStageService
     private var firstStage = true
     
     init(authenticationService: AuthenticationService) {
         self.authenticationService = authenticationService
+        self.setupStageService = SetupStageService(authenticationService: authenticationService)
+        
         setupApp()
         
         let calculationViewController = createCalculateSetupStageViewController()
@@ -36,8 +39,8 @@ class SetupCoordinator: Coordinator {
     }
     
     private func createCalculateSetupStageViewController() -> UIViewController {
-        let viewController = CalculateSetupStageViewController()
-        let presenter = CalculateSetupStagePresenter(authenticationService: authenticationService)
+        let viewController = SetupLoadingViewController ()
+        let presenter = SetupLoadingPresenter(authenticationService: authenticationService)
         
         viewController.presenter = presenter
         presenter.delegate = self
@@ -76,10 +79,9 @@ class SetupCoordinator: Coordinator {
             }
         }
     }
-}
-
-extension SetupCoordinator: SetupPresenterDelegate {
-    func didCalculate(next stage: SetupStage, in presenter: CalculateSetupStagePresenter) {
+    
+    private func showNextStage() {
+        let stage = setupStageService.calculateNextStage()
         DispatchQueue.performUIOperation {
             switch stage {
             case .configurationMissing:
@@ -90,6 +92,12 @@ extension SetupCoordinator: SetupPresenterDelegate {
                 self.delegate?.didCompleteSetup(with: clientConfiguration, in: self)
             }
         }
+    }
+}
+
+extension SetupCoordinator: SetupLoadingPresenterDelegate {
+    func setupDidAppear(in presenter: SetupLoadingPresenter) {
+        showNextStage()
     }
 }
 
@@ -104,17 +112,14 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
     }
     
     func didCompletecConfiguration(in presenter: ConfigurationPresenter) {
-        DispatchQueue.performUIOperation {
-            self.showNext(viewController: self.createCalculateSetupStageViewController(), animated: false)
-        }
+        showNextStage()
     }
 }
 
 extension SetupCoordinator: AuthenticationPresenterDelegate {
     func didCompleteAuthentication(with clientConfiguration: ClientConfiguration, in presenter: AuthenticationPresenter) {
-        DispatchQueue.performUIOperation {
-            self.showNext(viewController: self.createCalculateSetupStageViewController(), animated: false)
-        }
+        showNextStage()
+
     }
     
     func didTapEditConfiguration(in presenter: AuthenticationPresenter) {

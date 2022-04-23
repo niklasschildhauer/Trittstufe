@@ -12,9 +12,9 @@
 		85242A6B2806DCE6004FC32C /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6A2806DCE6004FC32C /* AuthenticationService.swift */; };
 		85242A6D28084BE9004FC32C /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6C28084BE9004FC32C /* ClientConfiguration.swift */; };
 		854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE12802E9C70005546B /* SetupCoordinator.swift */; };
-		854E9BE42802EDED0005546B /* CalculateSetupStagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE32802EDED0005546B /* CalculateSetupStagePresenter.swift */; };
-		854E9BE72802EDFE0005546B /* CalculateSetupStageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE52802EDFE0005546B /* CalculateSetupStageViewController.swift */; };
-		854E9BE82802EDFE0005546B /* CalculateSetupStageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854E9BE62802EDFE0005546B /* CalculateSetupStageViewController.xib */; };
+		854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */; };
+		854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */; };
+		854E9BE82802EDFE0005546B /* SetupLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854E9BE62802EDFE0005546B /* SetupLoadingViewController.xib */; };
 		854E9BEA2802EECB0005546B /* SetupStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE92802EECB0005546B /* SetupStage.swift */; };
 		854E9BEF2802F20F0005546B /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BED2802F20F0005546B /* ConfigurationViewController.swift */; };
 		854E9BF02802F20F0005546B /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854E9BEE2802F20F0005546B /* ConfigurationViewController.xib */; };
@@ -38,6 +38,7 @@
 		8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */; };
 		8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */; };
 		8582BE50280EA257005BC299 /* LabelTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */; };
+		8589766A2813DF5C001E264C /* SetupStageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858976692813DF5C001E264C /* SetupStageService.swift */; };
 		85C9733A2810282200D855D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C9730B2810282200D855D4 /* Color.xcassets */; };
 		85C9733B2810282200D855D4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9730C2810282200D855D4 /* Color.swift */; };
 		85C9733F2810282200D855D4 /* Barlow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973132810282200D855D4 /* Barlow-Light.ttf */; };
@@ -108,9 +109,9 @@
 		85242A6A2806DCE6004FC32C /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		85242A6C28084BE9004FC32C /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
 		854E9BE12802E9C70005546B /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
-		854E9BE32802EDED0005546B /* CalculateSetupStagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateSetupStagePresenter.swift; sourceTree = "<group>"; };
-		854E9BE52802EDFE0005546B /* CalculateSetupStageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateSetupStageViewController.swift; sourceTree = "<group>"; };
-		854E9BE62802EDFE0005546B /* CalculateSetupStageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalculateSetupStageViewController.xib; sourceTree = "<group>"; };
+		854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLoadingViewController.swift; sourceTree = "<group>"; };
+		854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupLoadingViewController .swift"; sourceTree = "<group>"; };
+		854E9BE62802EDFE0005546B /* SetupLoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupLoadingViewController.xib; sourceTree = "<group>"; };
 		854E9BE92802EECB0005546B /* SetupStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupStage.swift; sourceTree = "<group>"; };
 		854E9BED2802F20F0005546B /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		854E9BEE2802F20F0005546B /* ConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
@@ -134,6 +135,7 @@
 		8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextFieldView.swift; sourceTree = "<group>"; };
 		8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadingView.swift; sourceTree = "<group>"; };
 		8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelTextFieldView.xib; sourceTree = "<group>"; };
+		858976692813DF5C001E264C /* SetupStageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupStageService.swift; sourceTree = "<group>"; };
 		85C9730B2810282200D855D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		85C9730C2810282200D855D4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		85C973132810282200D855D4 /* Barlow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Light.ttf"; sourceTree = "<group>"; };
@@ -242,8 +244,8 @@
 		854E9BEB2802F1E60005546B /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				854E9BE52802EDFE0005546B /* CalculateSetupStageViewController.swift */,
-				854E9BE62802EDFE0005546B /* CalculateSetupStageViewController.xib */,
+				854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */,
+				854E9BE62802EDFE0005546B /* SetupLoadingViewController.xib */,
 				854E9BED2802F20F0005546B /* ConfigurationViewController.swift */,
 				854E9BEE2802F20F0005546B /* ConfigurationViewController.xib */,
 				854E9BFD2803621D0005546B /* AuthenticationViewController.swift */,
@@ -259,7 +261,7 @@
 		854E9BEC2802F1F10005546B /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				854E9BE32802EDED0005546B /* CalculateSetupStagePresenter.swift */,
+				854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */,
 				854E9BF12802F2200005546B /* ConfigurationPresenter.swift */,
 				854E9BFB280361C70005546B /* AuthenticationPresenter.swift */,
 				85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */,
@@ -426,6 +428,7 @@
 				85242A6A2806DCE6004FC32C /* AuthenticationService.swift */,
 				85826B8E2809E04D005BEEF6 /* NetworkService.swift */,
 				85826B94280BF7FD005BEEF6 /* LocationService.swift */,
+				858976692813DF5C001E264C /* SetupStageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -581,7 +584,7 @@
 				854E9BF02802F20F0005546B /* ConfigurationViewController.xib in Resources */,
 				85C973532810282200D855D4 /* Barlow-ExtraBold.ttf in Resources */,
 				85C9734E2810282200D855D4 /* Barlow-Italic.ttf in Resources */,
-				854E9BE82802EDFE0005546B /* CalculateSetupStageViewController.xib in Resources */,
+				854E9BE82802EDFE0005546B /* SetupLoadingViewController.xib in Resources */,
 				85C973562810282200D855D4 /* Barlow-Medium.ttf in Resources */,
 				85C9733A2810282200D855D4 /* Color.xcassets in Resources */,
 				85C973482810282200D855D4 /* Barlow-ThinItalic.ttf in Resources */,
@@ -726,6 +729,7 @@
 			files = (
 				85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */,
 				854E9BF22802F2200005546B /* ConfigurationPresenter.swift in Sources */,
+				8589766A2813DF5C001E264C /* SetupStageService.swift in Sources */,
 				85826B99280D5082005BEEF6 /* Car.swift in Sources */,
 				85D6775427F877A3004500D9 /* Coordinator+Protocol.swift in Sources */,
 				85C9735F2810282200D855D4 /* Font.swift in Sources */,
@@ -735,8 +739,8 @@
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,
 				8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */,
-				854E9BE72802EDFE0005546B /* CalculateSetupStageViewController.swift in Sources */,
-				854E9BE42802EDED0005546B /* CalculateSetupStagePresenter.swift in Sources */,
+				854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */,
+				854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
 				8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */,
 				85D6772027F87614004500D9 /* Trittstufe.xcdatamodeld in Sources */,
