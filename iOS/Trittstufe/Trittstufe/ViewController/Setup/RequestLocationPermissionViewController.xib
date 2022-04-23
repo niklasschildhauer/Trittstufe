@@ -22,12 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sodass die App funktioniert, brauchen wir deine Friegabe des Standorts!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K31-Jb-gud">
-                    <rect key="frame" x="16" y="253" width="382" height="41"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0H-UK-QgZ">
                     <rect key="frame" x="186" y="811" width="42.5" height="31"/>
                     <state key="normal" title="Button"/>
@@ -36,51 +30,72 @@
                         <action selector="didTapConfirmButton:" destination="-1" eventType="touchUpInside" id="7b8-lZ-EzN"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-needed-illustration" translatesAutoresizingMaskIntoConstraints="NO" id="ifB-8Q-ZiS">
-                    <rect key="frame" x="131.5" y="105" width="151" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="07a-qg-JiJ"/>
-                        <constraint firstAttribute="width" constant="151" id="epX-9e-heP"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standortfreigabe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-Ir-IiT">
-                    <rect key="frame" x="16" y="64" width="129" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuF-xt-QwX">
-                    <rect key="frame" x="168" y="811" width="78" height="31"/>
+                    <rect key="frame" x="168.5" y="811" width="77.5" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Settings"/>
                     <connections>
                         <action selector="didTapSettingsButton:" destination="-1" eventType="touchUpInside" id="oGK-mn-d9q"/>
                     </connections>
                 </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="kT1-gE-jH4">
+                    <rect key="frame" x="16" y="64" width="382" height="234.5"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIN-wY-ErI" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="135"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-needed-illustration" translatesAutoresizingMaskIntoConstraints="NO" id="PCa-yq-Ivf">
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="135"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <constraints>
+                                <constraint firstItem="PCa-yq-Ivf" firstAttribute="top" secondItem="QIN-wY-ErI" secondAttribute="top" id="CAq-69-9LU"/>
+                                <constraint firstAttribute="height" constant="135" id="DWR-Em-KvP"/>
+                                <constraint firstAttribute="trailing" secondItem="PCa-yq-Ivf" secondAttribute="trailing" id="Ztz-ll-5NR"/>
+                                <constraint firstItem="PCa-yq-Ivf" firstAttribute="leading" secondItem="QIN-wY-ErI" secondAttribute="leading" id="jL7-lN-mDZ"/>
+                                <constraint firstAttribute="bottom" secondItem="PCa-yq-Ivf" secondAttribute="bottom" id="xQP-C7-BPb"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standortfreigabe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-Ir-IiT">
+                            <rect key="frame" x="0.0" y="154" width="129" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sodass die App funktioniert, brauchen wir deine Friegabe des Standorts!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K31-Jb-gud">
+                            <rect key="frame" x="0.0" y="193.5" width="368.5" height="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="QIN-wY-ErI" firstAttribute="width" secondItem="kT1-gE-jH4" secondAttribute="width" id="iZj-T8-nIk"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="K31-Jb-gud" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2VS-pV-uxR"/>
                 <constraint firstItem="C0H-UK-QgZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Eg-g0-n5X"/>
-                <constraint firstItem="K31-Jb-gud" firstAttribute="top" secondItem="ifB-8Q-ZiS" secondAttribute="bottom" constant="20" id="67M-9A-SZz"/>
                 <constraint firstItem="TuF-xt-QwX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6OK-wA-cb2"/>
-                <constraint firstItem="ifB-8Q-ZiS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JUb-qs-xsz"/>
+                <constraint firstItem="kT1-gE-jH4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="KF0-eJ-bGE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="C0H-UK-QgZ" secondAttribute="bottom" constant="20" id="RWp-X9-DXL"/>
-                <constraint firstItem="KWO-Ir-IiT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="XEp-V8-wCA"/>
-                <constraint firstItem="K31-Jb-gud" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="fXB-Yj-rGQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TuF-xt-QwX" secondAttribute="bottom" constant="20" id="gPe-7i-9qM"/>
-                <constraint firstItem="KWO-Ir-IiT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="hBl-ay-67p"/>
-                <constraint firstAttribute="trailing" secondItem="K31-Jb-gud" secondAttribute="trailing" constant="16" id="lr4-jD-v0l"/>
-                <constraint firstItem="ifB-8Q-ZiS" firstAttribute="top" secondItem="KWO-Ir-IiT" secondAttribute="bottom" constant="20" id="qNX-0r-QaJ"/>
+                <constraint firstItem="kT1-gE-jH4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="mdf-wp-YxO"/>
+                <constraint firstAttribute="trailing" secondItem="kT1-gE-jH4" secondAttribute="trailing" constant="16" id="sE4-CI-ffQ"/>
             </constraints>
             <point key="canvasLocation" x="139" y="82"/>
         </view>
     </objects>
     <resources>
-        <image name="location-needed-illustration" width="151" height="145"/>
+        <image name="location-needed-illustration" width="358" height="135"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
