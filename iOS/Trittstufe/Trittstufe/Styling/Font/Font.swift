@@ -9,7 +9,7 @@ import UIKit
 
 enum Font {
    
-    static var largeTitle: UIFont { custom(for: .largeTitle) }
+//    static var largeTitle: UIFont { custom(for: .largeTitle) }
     static var title: UIFont { custom(for: .title) }
 //    static var title2: UIFont { custom(for: .title2) }
 //    static var title3: UIFont { custom(for: .title3) }
@@ -18,9 +18,9 @@ enum Font {
     static var body: UIFont { custom(for: .body, customWeight: .medium) }
     static var bodyBold: UIFont { custom(for: .body, customWeight: .bold) }
 
-    static var footnote: UIFont { custom(for: .footnote) }
-    static var footnoteBold: UIFont { custom(for: .footnote, customWeight: .semiBold) }
-    static var caption: UIFont { custom(for: .caption) }
+//    static var footnote: UIFont { custom(for: .footnote) }
+//    static var footnoteBold: UIFont { custom(for: .footnote, customWeight: .semiBold) }
+//    static var caption: UIFont { custom(for: .caption) }
     static var captionBold: UIFont { custom(for: .caption, customWeight: .semiBold) }
 
     

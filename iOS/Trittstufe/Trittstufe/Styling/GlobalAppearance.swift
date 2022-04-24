@@ -15,7 +15,7 @@ struct GlobalAppearance {
         ]
         
         let largeAttrs = [
-            NSAttributedString.Key.font: Font.largeTitle
+            NSAttributedString.Key.font: Font.title
         ]
         
         let buttonAppearance = UIBarButtonItemAppearance()

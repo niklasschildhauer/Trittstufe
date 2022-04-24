@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0H-UK-QgZ">
-                    <rect key="frame" x="186" y="811" width="42.5" height="31"/>
+                    <rect key="frame" x="16" y="811" width="382" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="gray" title="Ok"/>
                     <connections>
@@ -31,7 +31,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuF-xt-QwX">
-                    <rect key="frame" x="168.5" y="811" width="77.5" height="31"/>
+                    <rect key="frame" x="16" y="811" width="382" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Settings"/>
                     <connections>
@@ -82,7 +82,11 @@
                 <constraint firstItem="TuF-xt-QwX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6OK-wA-cb2"/>
                 <constraint firstItem="kT1-gE-jH4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="KF0-eJ-bGE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="C0H-UK-QgZ" secondAttribute="bottom" constant="20" id="RWp-X9-DXL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="C0H-UK-QgZ" secondAttribute="trailing" constant="16" id="SpG-Pw-udF"/>
+                <constraint firstItem="TuF-xt-QwX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ZA9-7z-pRx"/>
+                <constraint firstItem="C0H-UK-QgZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fnb-Wh-Wy1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TuF-xt-QwX" secondAttribute="bottom" constant="20" id="gPe-7i-9qM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TuF-xt-QwX" secondAttribute="trailing" constant="16" id="kBx-ci-tzO"/>
                 <constraint firstItem="kT1-gE-jH4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="mdf-wp-YxO"/>
                 <constraint firstAttribute="trailing" secondItem="kT1-gE-jH4" secondAttribute="trailing" constant="16" id="sE4-CI-ffQ"/>
             </constraints>

@@ -49,7 +49,7 @@ class RequestLocationPermissionViewController: UIViewController {
 
 extension RequestLocationPermissionViewController: RequestLocationPermissionView {
     func showAppWillNotWorkView() {
-        settingsButton.titleLabel?.text = "Einstellungen öffnen"
+        settingsButton.configuration = ButtonStyle.fullWidth(title: "Einstellungen öffnen")
         descriptionLabel.text = "Die App kann ohne Standortfreigabe nicht funktionieren. Bitte gehen Sie in die Einstellungen und geben den Standort frei."
         
         settingsButton.isHidden = false

@@ -39,6 +39,8 @@
 		8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */; };
 		8582BE50280EA257005BC299 /* LabelTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */; };
 		8589766A2813DF5C001E264C /* SetupStageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858976692813DF5C001E264C /* SetupStageService.swift */; };
+		8589766C28153B87001E264C /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8589766B28153B87001E264C /* SwipeButton.swift */; };
+		8589766E28153BD4001E264C /* SwipeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8589766D28153BD4001E264C /* SwipeButton.xib */; };
 		85C9733A2810282200D855D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C9730B2810282200D855D4 /* Color.xcassets */; };
 		85C9733B2810282200D855D4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9730C2810282200D855D4 /* Color.swift */; };
 		85C9733F2810282200D855D4 /* Barlow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973132810282200D855D4 /* Barlow-Light.ttf */; };
@@ -136,6 +138,8 @@
 		8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadingView.swift; sourceTree = "<group>"; };
 		8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelTextFieldView.xib; sourceTree = "<group>"; };
 		858976692813DF5C001E264C /* SetupStageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupStageService.swift; sourceTree = "<group>"; };
+		8589766B28153B87001E264C /* SwipeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
+		8589766D28153BD4001E264C /* SwipeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeButton.xib; sourceTree = "<group>"; };
 		85C9730B2810282200D855D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		85C9730C2810282200D855D4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		85C973132810282200D855D4 /* Barlow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Light.ttf"; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 				8582BE49280E9F6C005BC299 /* RoundedCorner.swift */,
 				8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */,
 				8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */,
+				8589766B28153B87001E264C /* SwipeButton.swift */,
+				8589766D28153BD4001E264C /* SwipeButton.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -586,6 +592,7 @@
 				85C9734E2810282200D855D4 /* Barlow-Italic.ttf in Resources */,
 				854E9BE82802EDFE0005546B /* SetupLoadingViewController.xib in Resources */,
 				85C973562810282200D855D4 /* Barlow-Medium.ttf in Resources */,
+				8589766E28153BD4001E264C /* SwipeButton.xib in Resources */,
 				85C9733A2810282200D855D4 /* Color.xcassets in Resources */,
 				85C973482810282200D855D4 /* Barlow-ThinItalic.ttf in Resources */,
 				85C973522810282200D855D4 /* Barlow-Thin.ttf in Resources */,
@@ -735,6 +742,7 @@
 				85C9735F2810282200D855D4 /* Font.swift in Sources */,
 				85C973692810343800D855D4 /* ButtonStyle.swift in Sources */,
 				85826B9B280D508A005BEEF6 /* User.swift in Sources */,
+				8589766C28153B87001E264C /* SwipeButton.swift in Sources */,
 				854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */,
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,
