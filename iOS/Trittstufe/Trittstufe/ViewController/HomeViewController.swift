@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var swipeButton: SwipeButton!
     var presenter: HomePresenter! {
         didSet {
             presenter.view = self
@@ -17,8 +18,16 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
 
         presenter.viewDidLoad()
+    }
+    
+    private func setupViews() {
+        swipeButton.activeConfiguration = .init(label: "Ausfahren", icon: UIImage(systemName: "lock.open.fill")!)
+        
+        swipeButton.deactiveConfiguration
+        = .init(label: "Einfahren", icon: UIImage(systemName: "lock.circle")!)
     }
     
     @IBAction func didTapLogout(_ sender: Any) {

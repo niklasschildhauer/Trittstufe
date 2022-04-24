@@ -22,13 +22,23 @@ class SwipeButton: NibLoadingView {
     }
 
     @IBOutlet weak var draggableView: UIView!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var dragViewLeadingAnchor: NSLayoutConstraint!
     var delegate: SwipeButtonDelegate?
     var initialCenter = CGPoint()
     var buttonState: State = .deactivated
-    
+    var activeConfiguration: Configuration?
+    var deactiveConfiguration: Configuration?
+
     enum State {
         case activated
         case deactivated
+    }
+    
+    struct Configuration {
+        let label: String
+        let icon: UIImage
     }
     
     @IBAction func panPiece(_ gestureRecognizer : UIPanGestureRecognizer) {
@@ -60,13 +70,27 @@ class SwipeButton: NibLoadingView {
             case .deactivated:
                 if currentCenter.x >= deactivatePosition {
                     buttonState = .activated
+                    delegate?.didActivate(in: self)
                     initialCenter = CGPoint(x: activatePosition, y: initialCenter.y)
+                    dragViewLeadingAnchor.constant = deactivatePosition - width/2
+                    
+                    guard let activeConfiguration = activeConfiguration else {
+                        return
+                    }
+                    set(configuration: activeConfiguration)
                     return
                 }
             case .activated:
                 if currentCenter.x <= activatePosition  {
                     buttonState = .deactivated
+                    delegate?.didDeactivate(in: self)
                     initialCenter = CGPoint(x: deactivatePosition, y: initialCenter.y)
+                    dragViewLeadingAnchor.constant = 0
+                    
+                    guard let deactiveConfiguration = deactiveConfiguration else {
+                        return
+                    }
+                    set(configuration: deactiveConfiguration)
                     return
                 }
             }
@@ -81,4 +105,8 @@ class SwipeButton: NibLoadingView {
         }
     }
     
+    private func set(configuration: Configuration) {
+        label.text = configuration.label
+        iconImageView.image = configuration.icon
+    }
 }
