@@ -24,7 +24,7 @@ class LocalNetworkService: NetworkService {
         }
         
         // At the moment we only allow to be authorized for one car. Maybe we can change this behaviour in the future
-        guard let authorizedCar = loadAuthorizedCars(userIdentification: userIdentification, dummyBackendData: dummyBackendData).first else {
+        guard let authorizedCar = loadAuthorizedCar(userIdentification: userIdentification, dummyBackendData: dummyBackendData) else {
             completion(.failure(.internalError))
             return
         }
@@ -43,14 +43,13 @@ class LocalNetworkService: NetworkService {
         return user.userIdentification
     }
     
-    private func loadAuthorizedCars(userIdentification: String, dummyBackendData: DummyBackendData) -> [ClientConfiguration.CarIdentification] {
-        return dummyBackendData.cars.filter { car in
-            car.authorizedUsers.contains { user in
-                user.userIdentification == userIdentification
-            }
-        }.map { car in
-            ClientConfiguration.CarIdentification(ipAdress: car.ipAdress, portNumber: car.port, publicKey: car.publicKey, model: car.model, vin: car.vin, beaconId: car.beaconId)
+    private func loadAuthorizedCar(userIdentification: String, dummyBackendData: DummyBackendData) -> ClientConfiguration.CarIdentification? {
+        if dummyBackendData.car.authorizedUsers.contains(where: { user in
+            user.userIdentification == userIdentification
+        }) {
+            return ClientConfiguration.CarIdentification(ipAdress: dummyBackendData.car.ipAdress, portNumber: dummyBackendData.car.port, publicKey: dummyBackendData.car.publicKey, model: dummyBackendData.car.model, vin: dummyBackendData.car.vin, beaconId: dummyBackendData.car.beaconId)
         }
+        return nil
     }
 }
 

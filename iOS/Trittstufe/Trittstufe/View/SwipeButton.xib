@@ -20,54 +20,71 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="118"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oH-9W-pAT" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opP-F7-USK" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="118"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-ab-Oe9" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="19" width="80" height="80"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oH-9W-pAT" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
+                            <rect key="frame" x="3" y="3" width="408" height="112"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KHp-qb-kAr">
-                                    <rect key="frame" x="15" y="15" width="50" height="50"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-ab-Oe9" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="16" width="80" height="80"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KHp-qb-kAr">
+                                            <rect key="frame" x="15" y="15" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="KtD-1w-97H"/>
+                                                <constraint firstAttribute="width" constant="50" id="ktm-Y7-8v8"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="KtD-1w-97H"/>
-                                        <constraint firstAttribute="width" constant="50" id="ktm-Y7-8v8"/>
+                                        <constraint firstItem="KHp-qb-kAr" firstAttribute="centerY" secondItem="JGv-ab-Oe9" secondAttribute="centerY" id="Hq5-Fu-Jbq"/>
+                                        <constraint firstItem="KHp-qb-kAr" firstAttribute="centerX" secondItem="JGv-ab-Oe9" secondAttribute="centerX" id="f0f-1E-1Bc"/>
+                                        <constraint firstAttribute="width" constant="80" id="pMh-QG-3ID"/>
+                                        <constraint firstAttribute="height" constant="80" id="y9Y-bo-iEf"/>
                                     </constraints>
-                                </imageView>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="40"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="0LG-rv-oKt" appends="YES" id="50D-4J-SEt"/>
+                                    </connections>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRr-4s-1Wr">
+                                    <rect key="frame" x="204" y="56" width="0.0" height="0.0"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <gestureRecognizers/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="KHp-qb-kAr" firstAttribute="centerY" secondItem="JGv-ab-Oe9" secondAttribute="centerY" id="Hq5-Fu-Jbq"/>
-                                <constraint firstItem="KHp-qb-kAr" firstAttribute="centerX" secondItem="JGv-ab-Oe9" secondAttribute="centerX" id="f0f-1E-1Bc"/>
-                                <constraint firstAttribute="width" constant="80" id="pMh-QG-3ID"/>
-                                <constraint firstAttribute="height" constant="80" id="y9Y-bo-iEf"/>
+                                <constraint firstItem="JGv-ab-Oe9" firstAttribute="leading" secondItem="7oH-9W-pAT" secondAttribute="leading" id="Nrl-v7-3wi"/>
+                                <constraint firstItem="TRr-4s-1Wr" firstAttribute="centerY" secondItem="7oH-9W-pAT" secondAttribute="centerY" id="TGz-7w-kJi"/>
+                                <constraint firstItem="JGv-ab-Oe9" firstAttribute="centerY" secondItem="7oH-9W-pAT" secondAttribute="centerY" id="WFa-WO-e5f"/>
+                                <constraint firstItem="TRr-4s-1Wr" firstAttribute="centerX" secondItem="7oH-9W-pAT" secondAttribute="centerX" id="hD4-MD-M6F"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="40"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="0LG-rv-oKt" appends="YES" id="50D-4J-SEt"/>
-                            </connections>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRr-4s-1Wr">
-                            <rect key="frame" x="207" y="59" width="0.0" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="JGv-ab-Oe9" firstAttribute="leading" secondItem="7oH-9W-pAT" secondAttribute="leading" id="Nrl-v7-3wi"/>
-                        <constraint firstItem="TRr-4s-1Wr" firstAttribute="centerY" secondItem="7oH-9W-pAT" secondAttribute="centerY" id="TGz-7w-kJi"/>
-                        <constraint firstItem="JGv-ab-Oe9" firstAttribute="centerY" secondItem="7oH-9W-pAT" secondAttribute="centerY" id="WFa-WO-e5f"/>
-                        <constraint firstItem="TRr-4s-1Wr" firstAttribute="centerX" secondItem="7oH-9W-pAT" secondAttribute="centerX" id="hD4-MD-M6F"/>
+                        <constraint firstItem="7oH-9W-pAT" firstAttribute="leading" secondItem="opP-F7-USK" secondAttribute="leading" constant="3" id="9xX-Q5-iYS"/>
+                        <constraint firstItem="7oH-9W-pAT" firstAttribute="top" secondItem="opP-F7-USK" secondAttribute="top" constant="3" id="W9Z-34-9gz"/>
+                        <constraint firstAttribute="trailing" secondItem="7oH-9W-pAT" secondAttribute="trailing" constant="3" id="WE8-PX-CZ2"/>
+                        <constraint firstAttribute="bottom" secondItem="7oH-9W-pAT" secondAttribute="bottom" constant="3" id="sfF-tW-snL"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="40"/>
+                            <real key="value" value="43"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
@@ -75,10 +92,10 @@
             <viewLayoutGuide key="safeArea" id="XY1-bH-2N0"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="7oH-9W-pAT" firstAttribute="top" secondItem="eah-aL-A2g" secondAttribute="top" id="4nn-aW-eZg"/>
-                <constraint firstAttribute="bottom" secondItem="7oH-9W-pAT" secondAttribute="bottom" id="NPT-Kz-Fyh"/>
-                <constraint firstItem="7oH-9W-pAT" firstAttribute="leading" secondItem="eah-aL-A2g" secondAttribute="leading" id="Y5p-QH-kVB"/>
-                <constraint firstItem="XY1-bH-2N0" firstAttribute="trailing" secondItem="7oH-9W-pAT" secondAttribute="trailing" id="hK9-8V-kX6"/>
+                <constraint firstAttribute="trailing" secondItem="opP-F7-USK" secondAttribute="trailing" id="0V0-aF-dJu"/>
+                <constraint firstItem="opP-F7-USK" firstAttribute="top" secondItem="eah-aL-A2g" secondAttribute="top" id="GSd-Bj-l9y"/>
+                <constraint firstItem="opP-F7-USK" firstAttribute="leading" secondItem="eah-aL-A2g" secondAttribute="leading" id="cdR-wq-fPz"/>
+                <constraint firstAttribute="bottom" secondItem="opP-F7-USK" secondAttribute="bottom" id="yLB-UL-LWO"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

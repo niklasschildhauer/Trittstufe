@@ -41,9 +41,10 @@ class AuthenticationViewController: UIViewController {
         titleLabel.font = Font.title
         titleLabel.text = "Anmelden"
         
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         navigationItem.backButtonDisplayMode = .minimal
-
+        
         navigationItem.leftItemsSupplementBackButton = true
     }
     

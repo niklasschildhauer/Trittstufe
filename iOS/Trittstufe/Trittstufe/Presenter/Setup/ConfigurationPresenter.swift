@@ -13,7 +13,7 @@ protocol ConfigurationView: AnyObject {
     var portValue: String? { get set }
     var ipAdressValue: String? { get set }
     var publicKeyValue: String? { get set }
-
+    
     func showError(message: String)
     func hideError()
 }
@@ -26,7 +26,7 @@ protocol ConfigurationPresenterDelegate: AnyObject {
 class ConfigurationPresenter: Presenter {
     weak var view: ConfigurationView?
     var delegate: ConfigurationPresenterDelegate?
-        
+    
     func viewDidLoad() {
         let jsonData = dummyData.data(using: .utf8)!
         let dummyDataEncoded: DummyBackendData = try! JSONDecoder().decode(DummyBackendData.self, from: jsonData)
@@ -47,30 +47,40 @@ class ConfigurationPresenter: Presenter {
             return
         }
         
-        let configuration = DummyBackendData(
-            cars: [
-                .init(model: "Rolling Chasis",
-                      vin: "123123",
-                      ipAdress: ipAdress,
-                      port: portValue,
-                      publicKey: publicKey,
-                      authorizedUsers: [
-                        .init(userIdentification: "testtest", dueDate: "forever")
-                      ])
-            ],
-            users: [
-                .init(accountName: "test",
-                      password: "test",
-                      userIdentification: "testtest")
+        if let existingConfiguration = UserDefaultConfig.dummyBackendData {
+            let newCarConfiguration = Car(model: existingConfiguration.car.model,
+                                          beaconId: existingConfiguration.car.beaconId,
+                                          vin: existingConfiguration.car.model,
+                                          ipAdress: ipAdress,
+                                          port: portValue,
+                                          publicKey: publicKey,
+                                          authorizedUsers: existingConfiguration.car.authorizedUsers)
+            
+            saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: existingConfiguration.users))
+        } else {
+            let configuration = DummyBackendData(
+                car: .init(model: "Rolling Chasis",
+                          vin: "123123",
+                          ipAdress: ipAdress,
+                          port: portValue,
+                          publicKey: publicKey,
+                          authorizedUsers: [
+                            .init(userIdentification: "testtest", dueDate: "forever")
+                          ]),
+                users: [
+                    .init(accountName: "test",
+                          password: "test",
+                          userIdentification: "testtest")
                 ]
             )
-        
-        saveDummyBackendData(dummyBackendData: configuration)
+            
+            saveDummyBackendData(dummyBackendData: configuration)
+        }
     }
     
     private func saveDummyBackendData(dummyBackendData: DummyBackendData) {
         UserDefaultConfig.dummyBackendData = dummyBackendData
-
+        
         delegate?.didCompletecConfiguration(in: self)
     }
 }

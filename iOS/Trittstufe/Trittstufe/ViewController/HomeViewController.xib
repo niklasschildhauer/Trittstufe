@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,41 +19,27 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bp-ER-X1a">
-                    <rect key="frame" x="85" y="268.5" width="150" height="31"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="gray" title="Send Test Message"/>
-                    <connections>
-                        <action selector="didTapSendTestMessage:" destination="-1" eventType="touchUpInside" id="sr7-AB-hQW"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOT-hq-4YD">
-                    <rect key="frame" x="125" y="318.5" width="70" height="31"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Logout"/>
-                    <connections>
-                        <action selector="didTapLogout:" destination="-1" eventType="touchUpInside" id="Pu6-1K-eZ2"/>
-                    </connections>
-                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTX-UA-OVf" customClass="SwipeButton" customModule="Trittstufe" customModuleProvider="target">
-                    <rect key="frame" x="16" y="468" width="288" height="80"/>
+                    <rect key="frame" x="32" y="422" width="256" height="86"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="FFg-4X-iki"/>
+                        <constraint firstAttribute="height" constant="86" id="FFg-4X-iki"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WTX-UA-OVf" secondAttribute="trailing" constant="16" id="08N-aQ-J3C"/>
-                <constraint firstItem="qOT-hq-4YD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q9F-cB-FKo"/>
-                <constraint firstItem="7Bp-ER-X1a" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TiM-6q-cvx"/>
-                <constraint firstItem="7Bp-ER-X1a" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TqX-us-vdr"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WTX-UA-OVf" secondAttribute="bottom" constant="20" id="nxZ-4K-94V"/>
-                <constraint firstItem="WTX-UA-OVf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="vC7-Xy-aiy"/>
-                <constraint firstItem="qOT-hq-4YD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="50" id="xOM-x4-Glx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WTX-UA-OVf" secondAttribute="trailing" constant="32" id="08N-aQ-J3C"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WTX-UA-OVf" secondAttribute="bottom" constant="60" id="nxZ-4K-94V"/>
+                <constraint firstItem="WTX-UA-OVf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="vC7-Xy-aiy"/>
             </constraints>
             <point key="canvasLocation" x="132" y="131"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -13,13 +13,14 @@ protocol SwipeButtonDelegate {
 }
 
 class SwipeButton: NibLoadingView {
-    private let width: CGFloat = 80
+    private let buttonWidth: CGFloat = 80
     private var deactivatePosition: CGFloat {
-        view.frame.width  - width/2
+        view.frame.width  - buttonWidth/2 - 6
     }
     private var activatePosition: CGFloat {
-        width/2
+        buttonWidth/2
     }
+    private let tolerance: CGFloat = 15.0
 
     @IBOutlet weak var draggableView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -28,8 +29,16 @@ class SwipeButton: NibLoadingView {
     var delegate: SwipeButtonDelegate?
     var initialCenter = CGPoint()
     var buttonState: State = .deactivated
-    var activeConfiguration: Configuration?
-    var deactiveConfiguration: Configuration?
+    var activeConfiguration: Configuration? { 
+        didSet {
+            reloadConfiguration()
+        }
+    }
+    var deactiveConfiguration: Configuration? {
+        didSet {
+            reloadConfiguration()
+        }
+    }
 
     enum State {
         case activated
@@ -68,20 +77,24 @@ class SwipeButton: NibLoadingView {
 
             switch buttonState {
             case .deactivated:
-                if currentCenter.x >= deactivatePosition {
+                if currentCenter.x >= (deactivatePosition - tolerance) {
                     buttonState = .activated
                     delegate?.didActivate(in: self)
                     initialCenter = CGPoint(x: activatePosition, y: initialCenter.y)
-                    dragViewLeadingAnchor.constant = deactivatePosition - width/2
+                    dragViewLeadingAnchor.constant = deactivatePosition - buttonWidth/2
                     
                     guard let activeConfiguration = activeConfiguration else {
                         return
                     }
                     set(configuration: activeConfiguration)
+          
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.notificationOccurred(.success)
+
                     return
                 }
             case .activated:
-                if currentCenter.x <= activatePosition  {
+                if currentCenter.x <= (activatePosition + tolerance) {
                     buttonState = .deactivated
                     delegate?.didDeactivate(in: self)
                     initialCenter = CGPoint(x: deactivatePosition, y: initialCenter.y)
@@ -91,6 +104,10 @@ class SwipeButton: NibLoadingView {
                         return
                     }
                     set(configuration: deactiveConfiguration)
+                    
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.notificationOccurred(.error)
+                    
                     return
                 }
             }
@@ -105,8 +122,27 @@ class SwipeButton: NibLoadingView {
         }
     }
     
+    private func reloadConfiguration() {
+        switch buttonState {
+        case .deactivated:
+            guard let deactiveConfiguration = deactiveConfiguration else {
+                return
+            }
+            set(configuration: deactiveConfiguration)
+        case .activated:
+            guard let activeConfiguration = activeConfiguration else {
+                return
+            }
+            set(configuration: activeConfiguration)
+        }
+    }
+    
     private func set(configuration: Configuration) {
-        label.text = configuration.label
-        iconImageView.image = configuration.icon
+        UIView.transition(with: self.iconImageView,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          animations: {
+            self.iconImageView.image = configuration.icon
+        })
     }
 }
