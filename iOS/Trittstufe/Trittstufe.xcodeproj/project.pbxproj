@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A4F4E59DF2C9A001B6076CA /* Pods_TrittstufeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */; };
 		8387DC4BB5212A6E7158F7DF /* Pods_Trittstufe_TrittstufeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091062914BEE10808895AC2 /* Pods_Trittstufe_TrittstufeUITests.framework */; };
+		850404902827A452009DB876 /* CryptoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504048F2827A452009DB876 /* CryptoHelper.swift */; };
 		85242A6B2806DCE6004FC32C /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6A2806DCE6004FC32C /* AuthenticationService.swift */; };
 		85242A6D28084BE9004FC32C /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6C28084BE9004FC32C /* ClientConfiguration.swift */; };
 		854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE12802E9C70005546B /* SetupCoordinator.swift */; };
@@ -32,8 +33,8 @@
 		85826B93280BF6D5005BEEF6 /* RequestLocationPermissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85826B91280BF6D5005BEEF6 /* RequestLocationPermissionViewController.xib */; };
 		85826B95280BF7FD005BEEF6 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B94280BF7FD005BEEF6 /* LocationService.swift */; };
 		85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */; };
-		85826B99280D5082005BEEF6 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B98280D5081005BEEF6 /* Car.swift */; };
-		85826B9B280D508A005BEEF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B9A280D508A005BEEF6 /* User.swift */; };
+		85826B99280D5082005BEEF6 /* CarBackendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B98280D5081005BEEF6 /* CarBackendModel.swift */; };
+		85826B9B280D508A005BEEF6 /* UserBackendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B9A280D508A005BEEF6 /* UserBackendModel.swift */; };
 		8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE49280E9F6C005BC299 /* RoundedCorner.swift */; };
 		8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */; };
 		8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */; };
@@ -64,6 +65,7 @@
 		85C973622810282200D855D4 /* Barlow-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973362810282200D855D4 /* Barlow-Black.ttf */; };
 		85C9736728102AD500D855D4 /* GlobalAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9736628102AD500D855D4 /* GlobalAppearance.swift */; };
 		85C973692810343800D855D4 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973682810343800D855D4 /* ButtonStyle.swift */; };
+		85D190F028229CF4004D1506 /* SignatureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D190EF28229CF4004D1506 /* SignatureHelper.swift */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
 		85D6771D27F87614004500D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D6771B27F87614004500D9 /* Main.storyboard */; };
@@ -108,6 +110,7 @@
 		37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trittstufe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE963B7E3D2F294F75DDC25 /* Pods-TrittstufeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.debug.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		62E1BD9DA078029E8172C317 /* Pods-TrittstufeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.release.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.release.xcconfig"; sourceTree = "<group>"; };
+		8504048F2827A452009DB876 /* CryptoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHelper.swift; sourceTree = "<group>"; };
 		85242A6A2806DCE6004FC32C /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		85242A6C28084BE9004FC32C /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
 		854E9BE12802E9C70005546B /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
@@ -131,8 +134,8 @@
 		85826B91280BF6D5005BEEF6 /* RequestLocationPermissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestLocationPermissionViewController.xib; sourceTree = "<group>"; };
 		85826B94280BF7FD005BEEF6 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationPermissionPresenter.swift; sourceTree = "<group>"; };
-		85826B98280D5081005BEEF6 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
-		85826B9A280D508A005BEEF6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		85826B98280D5081005BEEF6 /* CarBackendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarBackendModel.swift; sourceTree = "<group>"; };
+		85826B9A280D508A005BEEF6 /* UserBackendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBackendModel.swift; sourceTree = "<group>"; };
 		8582BE49280E9F6C005BC299 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		8582BE4B280EA16D005BC299 /* LabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextFieldView.swift; sourceTree = "<group>"; };
 		8582BE4D280EA1DE005BC299 /* NibLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadingView.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		85C973362810282200D855D4 /* Barlow-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Black.ttf"; sourceTree = "<group>"; };
 		85C9736628102AD500D855D4 /* GlobalAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAppearance.swift; sourceTree = "<group>"; };
 		85C973682810343800D855D4 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		85D190EF28229CF4004D1506 /* SignatureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureHelper.swift; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -451,6 +455,8 @@
 			isa = PBXGroup;
 			children = (
 				854E9C03280370A90005546B /* UserDefaults.swift */,
+				85D190EF28229CF4004D1506 /* SignatureHelper.swift */,
+				8504048F2827A452009DB876 /* CryptoHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -461,8 +467,8 @@
 				854E9BE92802EECB0005546B /* SetupStage.swift */,
 				85242A6C28084BE9004FC32C /* ClientConfiguration.swift */,
 				85826B8C2809D787005BEEF6 /* DummyBackendData.swift */,
-				85826B98280D5081005BEEF6 /* Car.swift */,
-				85826B9A280D508A005BEEF6 /* User.swift */,
+				85826B98280D5081005BEEF6 /* CarBackendModel.swift */,
+				85826B9A280D508A005BEEF6 /* UserBackendModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -737,11 +743,12 @@
 				85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */,
 				854E9BF22802F2200005546B /* ConfigurationPresenter.swift in Sources */,
 				8589766A2813DF5C001E264C /* SetupStageService.swift in Sources */,
-				85826B99280D5082005BEEF6 /* Car.swift in Sources */,
+				85826B99280D5082005BEEF6 /* CarBackendModel.swift in Sources */,
 				85D6775427F877A3004500D9 /* Coordinator+Protocol.swift in Sources */,
 				85C9735F2810282200D855D4 /* Font.swift in Sources */,
 				85C973692810343800D855D4 /* ButtonStyle.swift in Sources */,
-				85826B9B280D508A005BEEF6 /* User.swift in Sources */,
+				85826B9B280D508A005BEEF6 /* UserBackendModel.swift in Sources */,
+				850404902827A452009DB876 /* CryptoHelper.swift in Sources */,
 				8589766C28153B87001E264C /* SwipeButton.swift in Sources */,
 				854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */,
 				854E9BFF2803621D0005546B /* AuthenticationViewController.swift in Sources */,
@@ -773,6 +780,7 @@
 				85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */,
 				85C9736728102AD500D855D4 /* GlobalAppearance.swift in Sources */,
 				85826B8F2809E04D005BEEF6 /* NetworkService.swift in Sources */,
+				85D190F028229CF4004D1506 /* SignatureHelper.swift in Sources */,
 				854E9BEA2802EECB0005546B /* SetupStage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

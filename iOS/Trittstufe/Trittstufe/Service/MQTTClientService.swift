@@ -21,7 +21,9 @@ protocol StepEngineControlServiceDelegate: AnyObject {
 protocol StepEngineControlService {
     var statusDelegate: StepEngineControlServiceDelegate? { get set }
     
+    func connect(completion: (Result<String, AuthenticationError>) -> Void)
     func extendStep()
+    func shrinkStep()
 }
 
 
@@ -44,30 +46,46 @@ class MQTTClientService {
                                port: clientConfiguration.carIdentification.portNumber)
 //        client.username = clientConfiguration.clientCredentials.accountName
 //        client.password = clientConfiguration.clientCredentials.password
-        client.willMessage = CocoaMQTTMessage(topic: "/will", string: "dieout")
+//        client.willMessage = CocoaMQTTMessage(topic: "", string: "dieout")
         client.keepAlive = 60
         client.delegate = self
         let success = client.connect()
         
-//        if success {
-//            userIdentification = "Das ist eine ClientID"
-//            userLoggedIn = true
-//            mqttClient = client
-//            completion(.success(userIdentification!))
-//        } else {
-//            userLoggedIn = false
-//            completion(.failure(.serverError))
-//        }
+        if success {
+            mqttClient = client
+            completion(.success("Das ist eine ClientID"))
+        } else {
+            completion(.failure(.serverError))
+        }
+    }
+    
+    private func send(message: String, to topic: String) {
+        guard let client = mqttClient else { return }
+                
+        let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: message, publicKeyReviever: "XWOVfM+MFrs26wdQntzXUjatvN/CJvDQ47sd/LZ1YwQ=")
+        print(encryptedMessage)
+        client.publish(topic, withString: encryptedMessage, qos: .qos0)
     }
 }
 
 extension MQTTClientService: StepEngineControlService {
+    func connect(completion: (Result<String, AuthenticationError>) -> Void) {
+        loginClientAtBroker(for: "", password: "", completion: completion)
+    }
+    
     func extendStep() {
-        guard let client = mqttClient else { return }
-        let publishProperties = MqttPublishProperties()
-        publishProperties.contentType = "JSON"
+        let json: [String: Any] = [
+            "token": clientConfiguration.userToken,
+            "position": "open"
+        ]
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+       
+        send(message: jsonString, to: "engine_control")
+    }
+    
+    func shrinkStep() {
 
-        client.publish("engine_control", withString: "Das ist ein Test", qos: .qos1)
     }
 }
 

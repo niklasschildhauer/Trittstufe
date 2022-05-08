@@ -8,7 +8,7 @@
 import Foundation
 
 struct ClientConfiguration {
-    let userIdentification: String
+    let userToken: String
     let carIdentification: CarIdentification
     
     struct CarIdentification {

@@ -37,6 +37,7 @@ class HomePresenter: Presenter {
         
         if locationService.permissionStatus() == .granted {
             startLocationService()
+            startEngineControlService()
         } else {
             delegate?.didChangePermissionStatus(in: self)
         }
@@ -44,6 +45,10 @@ class HomePresenter: Presenter {
     
     private func startLocationService() {
         locationService.startMonitoring()
+    }
+    
+    private func startEngineControlService() {
+        stepEngineControlService.connect() { _ in }
     }
     
     private func stopLocationService() {

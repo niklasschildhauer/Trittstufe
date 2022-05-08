@@ -18,11 +18,11 @@ let dummyData: String = """
      "publicKey":"DasisteinKey",
      "authorizedUsers":[
         {
-           "userIdentification":"11442322",
+           "userToken":"11442322",
            "dueDate":"Sonntag"
         },
         {
-           "userIdentification":"12312322",
+           "userToken":"12312322",
            "dueDate":"Sonntag"
         }
      ]
@@ -30,12 +30,12 @@ let dummyData: String = """
    "users":[
       {
          "accountName":"Niklas",
-         "userIdentification":"11442322",
+         "userToken":"11442322",
          "password":"Sonnenblume"
       },
       {
          "accountName":"Ansgar",
-         "userIdentification":"12312322",
+         "userToken":"12312322",
          "password":"Sonnenblume2"
       }
    ]

@@ -11,7 +11,7 @@ load_dotenv()
 
 private_key_string = os.getenv('PRIVATE_KEY')
 
-def generate_symmetric_key(public_key_client_string, private_key_string=private_key_string, salt_string = "a test salt"):
+def generate_symmetric_key(public_key_client_string, private_key_string=private_key_string, salt_string = "trittstufe-hdm-stuttgart"):
     # X25519
     public_client_key = X25519PublicKey.from_public_bytes(base64.b64decode(public_key_client_string))
     private_key = X25519PrivateKey.from_private_bytes(base64.b64decode(private_key_string))

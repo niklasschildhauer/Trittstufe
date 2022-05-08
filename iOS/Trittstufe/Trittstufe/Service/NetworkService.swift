@@ -29,7 +29,7 @@ class LocalNetworkService: NetworkService {
             return
         }
 
-        let clientConfiguration = ClientConfiguration(userIdentification: userIdentification, carIdentification: authorizedCar)
+        let clientConfiguration = ClientConfiguration(userToken: userIdentification, carIdentification: authorizedCar)
         
         completion(.success(clientConfiguration))
     }
