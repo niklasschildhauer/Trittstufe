@@ -2,11 +2,12 @@ from paho.mqtt import client as mqtt_client
 from dotenv import load_dotenv
 from Cryptography.ChaCha20 import encrypt_cipher_text
 import os
+import json
 
 load_dotenv()
 
 raspberry_ip_address = os.getenv('IP_ADDRESS')
-mosquitto_port = os.getenv('PORT')
+mosquitto_port = int(os.getenv('PORT'))
   
 mqtt_topic = "engine_control"
 
@@ -20,10 +21,10 @@ def on_connect(client, userdata, flags, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, message):
     print(message.topic+" "+str(message.payload))
-    json = json.loads(message.payload)
+    recievedJson = json.loads(message.payload)
 
-    public_key = json['publicKey']
-    payload = json['payload']
+    public_key = recievedJson['publicKey']
+    payload = recievedJson['payload']
 
     print("test")
     print(public_key)
