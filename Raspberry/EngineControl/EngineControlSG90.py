@@ -1,0 +1,59 @@
+import RPi.GPIO as GPIO
+import time
+from paho.mqtt import client as mqtt_client
+
+# der Servomotor wurde an den GPIO Pin 18 angeschlossen
+servo_PIN = 18 
+# moegliche Servopositionen fuer dieses Beispiel
+servo_positions = [2.5,12.5]
+# damit wir den GPIO Pin ueber die Nummer referenzieren koennen
+
+GPIO.setwarnings(False) 
+GPIO.setmode(GPIO.BCM)
+# setzen des GPIO Pins als Ausgang
+GPIO.setup(servo_PIN, GPIO.OUT)
+
+# Funktion zum setzen eines Winkels
+# als Parameter wird die Position erwartet
+def set_servo_cycle(p, position):
+    p.ChangeDutyCycle(position)
+    # eine Pause von 0,5 Sekunden
+    time.sleep(0.5)
+  
+def start_servo_cycle():
+    try:
+        p = GPIO.PWM(servo_PIN, 50) # GPIO als PWM mit 50Hz
+        p.start(servo_positions[0]) # Initialisierung mit dem ersten Wert aus unserer Liste
+        # eine Endlos Schleife
+        for pos in servo_positions:
+          # setzen der Servopostion
+          set_servo_cycle(p, pos)
+          # durchlaufen der Liste  in umgekehrter Reihenfolge
+        for pos in reversed(servo_positions):
+          set_servo_cycle(p, pos)
+          
+    # wenn das Script auf dem Terminal / der Konsole abgebrochen wird, dann...
+    except KeyboardInterrupt:
+        p.stop()
+        # alle Pins zuruecksetzen
+        GPIO.cleanup()
+        
+def set_position(position):
+    print(position)
+    try:
+        p = GPIO.PWM(servo_PIN, 50) # GPIO als PWM mit 50Hz
+        p.start(servo_positions[0]) # Initialisierung mit dem ersten Wert aus unserer Liste
+        # eine Endlos Schleife
+        for pos in servo_positions:
+          # setzen der Servopostion
+          set_servo_cycle(p, pos)
+          
+    # wenn das Script auf dem Terminal / der Konsole abgebrochen wird, dann...
+    except KeyboardInterrupt:
+        p.stop()
+        # alle Pins zuruecksetzen
+        GPIO.cleanup()
+
+
+
+
