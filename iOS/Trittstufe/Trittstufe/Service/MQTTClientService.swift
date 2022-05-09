@@ -10,7 +10,6 @@ import CocoaMQTT
 
 protocol MQTTClientServiceAuthenticationDelegate: AnyObject {
 //    func didRegisterForTopic(in service: MQTTClientService)
-//    func did
 //    func didLogoutAtBroker(in service: MQTTClientService)
 }
 
@@ -74,18 +73,25 @@ extension MQTTClientService: StepEngineControlService {
     }
     
     func extendStep() {
-        let json: [String: Any] = [
-            "token": clientConfiguration.userToken,
-            "position": "open"
-        ]
-        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = String(data: jsonData, encoding: .utf8)!
-       
-        send(message: jsonString, to: "engine_control")
+        send(message: createPositionChangeJsonString(position: .open), to: "engine_control")
     }
     
     func shrinkStep() {
-
+        send(message: createPositionChangeJsonString(position: .close), to: "engine_control")
+    }
+    
+    enum Position: String {
+        case open
+        case close
+    }
+    
+    private func createPositionChangeJsonString(position: Position) -> String {
+        let json: [String: Any] = [
+            "token": clientConfiguration.userToken,
+            "position": position.rawValue
+        ]
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        return String(data: jsonData, encoding: .utf8)!
     }
 }
 

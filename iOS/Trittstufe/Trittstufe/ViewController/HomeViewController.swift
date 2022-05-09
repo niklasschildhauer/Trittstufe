@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var swipeButton: SwipeButton!
+    @IBOutlet weak var distanceLabel: UILabel!
     var presenter: HomePresenter! {
         didSet {
             presenter.view = self
@@ -56,16 +57,22 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeView {
+    func display(carDistance: String) {
+        distanceLabel.text = carDistance
+    }
     
+    func display(openButton: Bool) {
+        swipeButton.isHidden = !openButton
+    }
 }
 
 extension HomeViewController: SwipeButtonDelegate {
     func didActivate(in swipeButton: SwipeButton) {
-        presenter.sendTestMessage()
+        presenter.extendStep()
     }
     
     func didDeactivate(in swipeButton: SwipeButton) {
-        presenter.sendTestMessage()
+        presenter.shrinkStep()
     }
 }
 

@@ -11,7 +11,7 @@ let dummyData: String = """
 {
    "car": {
      "model":"Rolling Chasis",
-     "beaconId":"e339d8b2-7b73-40fd-9c58-44e6b3d1c608",
+     "beaconId":"05c13100-102b-42cf-babb-ace7dd99c4e3",
      "vin":"123123",
      "ipAdress":"192.9.12.2",
      "port":8338,

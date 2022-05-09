@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Trittstufe" customModuleProvider="target">
             <connections>
+                <outlet property="distanceLabel" destination="3LC-WR-kgy" id="pWI-B7-pUw"/>
                 <outlet property="swipeButton" destination="WTX-UA-OVf" id="Mfk-od-eUd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,13 +27,22 @@
                         <constraint firstAttribute="height" constant="86" id="FFg-4X-iki"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LC-WR-kgy">
+                    <rect key="frame" x="16" y="284" width="288" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WTX-UA-OVf" secondAttribute="trailing" constant="32" id="08N-aQ-J3C"/>
+                <constraint firstItem="3LC-WR-kgy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Pch-i3-nuN"/>
+                <constraint firstItem="3LC-WR-kgy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="UW2-g1-lEM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WTX-UA-OVf" secondAttribute="bottom" constant="60" id="nxZ-4K-94V"/>
                 <constraint firstItem="WTX-UA-OVf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="vC7-Xy-aiy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3LC-WR-kgy" secondAttribute="trailing" constant="16" id="xVa-9e-MiG"/>
             </constraints>
             <point key="canvasLocation" x="132" y="131"/>
         </view>
