@@ -58,7 +58,12 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeView {
     func display(stepPosition: StepPosition) {
-        
+        switch stepPosition {
+        case .open:
+            swipeButton.buttonState = .activated
+        case .close:
+            swipeButton.buttonState = .deactivated
+        }
     }
     
     func display(carDistance: String) {

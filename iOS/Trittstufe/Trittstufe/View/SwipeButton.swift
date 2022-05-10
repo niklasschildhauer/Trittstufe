@@ -115,7 +115,7 @@ class SwipeButton: NibLoadingView {
     
     private func setNewPosition(buttonState: ButtonState) {
         switch buttonState {
-        case .activated:
+        case .deactivated:
             guard let activeConfiguration = activeConfiguration else {
                 return
             }
@@ -123,7 +123,7 @@ class SwipeButton: NibLoadingView {
             dragViewLeadingAnchor.constant = 0
 
 
-        case .deactivated:
+        case .activated:
             guard let deactiveConfiguration = deactiveConfiguration else {
                 return
             }
@@ -134,12 +134,12 @@ class SwipeButton: NibLoadingView {
     
     private func reloadConfiguration() {
         switch buttonState {
-        case .deactivated:
+        case .activated:
             guard let deactiveConfiguration = deactiveConfiguration else {
                 return
             }
             set(configuration: deactiveConfiguration)
-        case .activated:
+        case .deactivated:
             guard let activeConfiguration = activeConfiguration else {
                 return
             }

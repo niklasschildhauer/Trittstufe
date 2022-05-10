@@ -48,11 +48,11 @@ class MQTTClientService {
 //        client.willMessage = CocoaMQTTMessage(topic: "", string: "dieout")
         client.keepAlive = 60
         client.delegate = self
+        client.logLevel = .debug
         let success = client.connect()
     
         if success {
             mqttClient = client
-            mqttClient?.subscribe("engine_control_status", qos: .qos1)
             completion(.success("Das ist eine ClientID"))
         } else {
             completion(.failure(.serverError))
@@ -64,7 +64,7 @@ class MQTTClientService {
                 
         let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: message, publicKeyReviever: "XWOVfM+MFrs26wdQntzXUjatvN/CJvDQ47sd/LZ1YwQ=")
         
-        client.publish(topic, withString: encryptedMessage, qos: .qos0)
+        client.publish(topic, withString: encryptedMessage, qos: .qos1)
     }
 }
 
@@ -93,6 +93,9 @@ extension MQTTClientService: StepEngineControlService {
 
 extension MQTTClientService: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
+        print("didConnect")
+        mqtt.subscribe("engine_control_status", qos: .qos1)
+
 //        if let completion = self.loginCompletion {
 //            completion(.success("Das ist die User Id"))
 //            loginCompletion = nil
@@ -102,6 +105,8 @@ extension MQTTClientService: CocoaMQTTDelegate {
     }
     
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
+        print("diddisConnect")
+
 //        if let completion = self.loginCompletion {
 //            completion(.failure(AuthenticationError.serverError))
 //            loginCompletion = nil

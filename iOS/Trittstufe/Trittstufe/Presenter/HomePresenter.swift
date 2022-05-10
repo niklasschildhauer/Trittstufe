@@ -93,7 +93,7 @@ extension HomePresenter: LocationServiceDelegate {
     func didRangeCar(car: ClientConfiguration.CarIdentification, with proximity: CLProximity, meters: Double) {
         switch proximity {
         case .unknown:
-            view?.display(openButton: false)
+            view?.display(openButton: true)
             view?.display(carDistance: "Das Fahrzeug befindet sich nicht in der Nähe \(meters)m")
         case .immediate:
             view?.display(openButton: true)
@@ -102,7 +102,7 @@ extension HomePresenter: LocationServiceDelegate {
             view?.display(openButton: true)
             view?.display(carDistance: "Du bist nah am Fahrzeug: \(meters)m")
         case .far:
-            view?.display(openButton: false)
+            view?.display(openButton: true)
             view?.display(carDistance: "Bitte laufe zum Fahrzeug: \(meters)")
         @unknown default:
             fatalError()
