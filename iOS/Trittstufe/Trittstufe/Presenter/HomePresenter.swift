@@ -14,6 +14,7 @@ protocol HomeView: AnyObject {
     
     func display(carDistance: String)
     func display(openButton: Bool)
+    func display(stepPosition: StepPosition)
 }
 
 protocol HomePresenterDelegate: AnyObject {
@@ -25,7 +26,7 @@ class HomePresenter: Presenter {
     weak var view: HomeView?
     var delegate: HomePresenterDelegate?
     
-    private let stepEngineControlService: StepEngineControlService
+    private var stepEngineControlService: StepEngineControlService
     private let locationService: LocationService
     
     init(stepEngineControlService: StepEngineControlService, locationService: LocationService) {
@@ -54,6 +55,7 @@ class HomePresenter: Presenter {
     
     private func startEngineControlService() {
         stepEngineControlService.connect() { _ in }
+        stepEngineControlService.statusDelegate = self
     }
     
     private func stopLocationService() {
@@ -109,5 +111,12 @@ extension HomePresenter: LocationServiceDelegate {
     
     func didFail(with error: String, in service: LocationService) {
         print(error)
+    }
+}
+
+extension HomePresenter: StepEngineControlServiceDelegate {
+    func didReceive(message: String, in service: StepEngineControlService) {
+        guard let newStepPosition = StepPosition(rawValue: message) else { return }
+        view?.display(stepPosition: newStepPosition)
     }
 }

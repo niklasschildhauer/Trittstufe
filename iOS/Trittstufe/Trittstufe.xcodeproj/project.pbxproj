@@ -82,6 +82,7 @@
 		85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775927F87840004500D9 /* HomeViewController.swift */; };
 		85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D6775A27F87840004500D9 /* HomeViewController.xib */; };
 		85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775D27F87E34004500D9 /* MQTTClientService.swift */; };
+		85E8BD56282A5C1C0037F040 /* StepPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8BD55282A5C1C0037F040 /* StepPosition.swift */; };
 		85F459C22806B0DD003C1C71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C42806B0DD003C1C71 /* Localizable.strings */; };
 		85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C62806B122003C1C71 /* QRCodeScannerViewController.xib */; };
 		85F459C92806B122003C1C71 /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F459C72806B122003C1C71 /* QRCodeScannerViewController.swift */; };
@@ -185,6 +186,7 @@
 		85D6775927F87840004500D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		85D6775A27F87840004500D9 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		85D6775D27F87E34004500D9 /* MQTTClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTClientService.swift; sourceTree = "<group>"; };
+		85E8BD55282A5C1C0037F040 /* StepPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPosition.swift; sourceTree = "<group>"; };
 		85F459C02806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85F459C12806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85F459C32806B0DD003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				85826B8C2809D787005BEEF6 /* DummyBackendData.swift */,
 				85826B98280D5081005BEEF6 /* CarBackendModel.swift */,
 				85826B9A280D508A005BEEF6 /* UserBackendModel.swift */,
+				85E8BD55282A5C1C0037F040 /* StepPosition.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */,
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */,
+				85E8BD56282A5C1C0037F040 /* StepPosition.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
 				854E9C04280370A90005546B /* UserDefaults.swift in Sources */,
 				85242A6B2806DCE6004FC32C /* AuthenticationService.swift in Sources */,

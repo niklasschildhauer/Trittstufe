@@ -57,6 +57,10 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeView {
+    func display(stepPosition: StepPosition) {
+        
+    }
+    
     func display(carDistance: String) {
         distanceLabel.text = carDistance
     }

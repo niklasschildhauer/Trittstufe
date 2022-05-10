@@ -14,7 +14,7 @@ protocol MQTTClientServiceAuthenticationDelegate: AnyObject {
 }
 
 protocol StepEngineControlServiceDelegate: AnyObject {
-    func didReceive(message: String, in service: MQTTClientService)
+    func didReceive(message: String, in service: StepEngineControlService)
 }
 
 protocol StepEngineControlService {
@@ -49,9 +49,10 @@ class MQTTClientService {
         client.keepAlive = 60
         client.delegate = self
         let success = client.connect()
-        
+    
         if success {
             mqttClient = client
+            mqttClient?.subscribe("engine_control_status", qos: .qos1)
             completion(.success("Das ist eine ClientID"))
         } else {
             completion(.failure(.serverError))
@@ -62,7 +63,7 @@ class MQTTClientService {
         guard let client = mqttClient else { return }
                 
         let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: message, publicKeyReviever: "XWOVfM+MFrs26wdQntzXUjatvN/CJvDQ47sd/LZ1YwQ=")
-        print(encryptedMessage)
+        
         client.publish(topic, withString: encryptedMessage, qos: .qos0)
     }
 }
@@ -79,13 +80,8 @@ extension MQTTClientService: StepEngineControlService {
     func shrinkStep() {
         send(message: createPositionChangeJsonString(position: .close), to: "engine_control")
     }
-    
-    enum Position: String {
-        case open
-        case close
-    }
-    
-    private func createPositionChangeJsonString(position: Position) -> String {
+
+    private func createPositionChangeJsonString(position: StepPosition) -> String {
         let json: [String: Any] = [
             "token": clientConfiguration.userToken,
             "position": position.rawValue
@@ -126,7 +122,7 @@ extension MQTTClientService: CocoaMQTTDelegate {
     
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
         guard let message = message.string else { return }
-
+        statusDelegate?.didReceive(message: message, in: self)
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {

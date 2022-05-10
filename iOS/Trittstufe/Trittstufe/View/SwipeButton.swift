@@ -28,7 +28,13 @@ class SwipeButton: NibLoadingView {
     @IBOutlet weak var dragViewLeadingAnchor: NSLayoutConstraint!
     var delegate: SwipeButtonDelegate?
     var initialCenter = CGPoint()
-    var buttonState: State = .deactivated
+    var buttonState: ButtonState = .deactivated {
+        didSet {
+            if oldValue != buttonState {
+                setNewPosition(buttonState: buttonState)
+            }
+        }
+    }
     var activeConfiguration: Configuration? { 
         didSet {
             reloadConfiguration()
@@ -40,7 +46,7 @@ class SwipeButton: NibLoadingView {
         }
     }
 
-    enum State {
+    enum ButtonState {
         case activated
         case deactivated
     }
@@ -74,6 +80,7 @@ class SwipeButton: NibLoadingView {
             piece.center = newCenter
         case .ended, .cancelled, .failed:
             let currentCenter = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y)
+            let generator = UINotificationFeedbackGenerator()
 
             switch buttonState {
             case .deactivated:
@@ -81,14 +88,6 @@ class SwipeButton: NibLoadingView {
                     buttonState = .activated
                     delegate?.didActivate(in: self)
                     initialCenter = CGPoint(x: activatePosition, y: initialCenter.y)
-                    dragViewLeadingAnchor.constant = deactivatePosition - buttonWidth/2
-                    
-                    guard let activeConfiguration = activeConfiguration else {
-                        return
-                    }
-                    set(configuration: activeConfiguration)
-          
-                    let generator = UINotificationFeedbackGenerator()
                     generator.notificationOccurred(.success)
 
                     return
@@ -98,14 +97,6 @@ class SwipeButton: NibLoadingView {
                     buttonState = .deactivated
                     delegate?.didDeactivate(in: self)
                     initialCenter = CGPoint(x: deactivatePosition, y: initialCenter.y)
-                    dragViewLeadingAnchor.constant = 0
-                    
-                    guard let deactiveConfiguration = deactiveConfiguration else {
-                        return
-                    }
-                    set(configuration: deactiveConfiguration)
-                    
-                    let generator = UINotificationFeedbackGenerator()
                     generator.notificationOccurred(.error)
                     
                     return
@@ -119,6 +110,25 @@ class SwipeButton: NibLoadingView {
             }
         @unknown default:
             fatalError()
+        }
+    }
+    
+    private func setNewPosition(buttonState: ButtonState) {
+        switch buttonState {
+        case .activated:
+            guard let activeConfiguration = activeConfiguration else {
+                return
+            }
+            set(configuration: activeConfiguration)
+            dragViewLeadingAnchor.constant = 0
+
+
+        case .deactivated:
+            guard let deactiveConfiguration = deactiveConfiguration else {
+                return
+            }
+            set(configuration: deactiveConfiguration)
+            dragViewLeadingAnchor.constant = deactivatePosition - buttonWidth/2
         }
     }
     

@@ -38,7 +38,7 @@ class LocationService: NSObject {
     
     var clientConfiguration: ClientConfiguration?
     
-    private var locatedBeaconsHistory: [CLBeacon] = []
+    private var locatedBeaconsHistory: [CLBeacon?] = []
     
     override init() {
         super.init()
@@ -109,22 +109,34 @@ extension LocationService: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        locatedBeaconsHistory.append(contentsOf: beacons)
+        if beacons.count > 0 {
+            locatedBeaconsHistory.append(contentsOf: beacons)
+        } else {
+            locatedBeaconsHistory.append(nil)
+        }
         
-        guard locatedBeaconsHistory.count > 4,
-        let car = clientConfiguration?.carIdentification else { return }
+        if locatedBeaconsHistory.count % 2 == 1 {
+            return
+        }
         
-        let history = locatedBeaconsHistory
-        locatedBeaconsHistory = []
+        guard let car = clientConfiguration?.carIdentification else { return }
+        
+        let history = locatedBeaconsHistory.count > 4 ? Array(locatedBeaconsHistory.suffix(4)) : locatedBeaconsHistory
         
         let proximityCount = history.reduce( [CLProximity.far:0, CLProximity.immediate:0, CLProximity.near:0, CLProximity.unknown:0] , { partialResult, beacon in
             var partialResult = partialResult
-            if beacon.uuid == car.beaconId {
-                if var currentValue = partialResult[beacon.proximity] {
-                    currentValue += 1
-                    partialResult.updateValue(currentValue, forKey: beacon.proximity)
+            if let beacon = beacon {
+                if beacon.uuid == car.beaconId {
+                    if var currentValue = partialResult[beacon.proximity] {
+                        currentValue += 1
+                        partialResult.updateValue(currentValue, forKey: beacon.proximity)
+                    }
                 }
-            }
+            } else {
+                if var currentValue = partialResult[.unknown] {
+                    currentValue += 1
+                    partialResult.updateValue(currentValue, forKey: .unknown)
+                }            }
             return partialResult
         })
         
@@ -133,7 +145,8 @@ extension LocationService: CLLocationManagerDelegate {
         let count = averageProximityCount.value
         
         let sumMeters = history.reduce(0.0) { partialResult, beacon in
-            if beacon.uuid == car.beaconId ,
+            if let beacon = beacon,
+               beacon.uuid == car.beaconId ,
                beacon.proximity == averageProximity {
                 return partialResult + beacon.accuracy
             }
