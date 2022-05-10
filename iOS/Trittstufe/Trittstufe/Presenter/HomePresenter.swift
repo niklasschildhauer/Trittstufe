@@ -11,6 +11,9 @@ import CoreLocation
 
 protocol HomeView: AnyObject {
     var presenter: HomePresenter! { get set }
+    
+    func display(carDistance: String)
+    func display(openButton: Bool)
 }
 
 protocol HomePresenterDelegate: AnyObject {
@@ -45,6 +48,8 @@ class HomePresenter: Presenter {
     
     private func startLocationService() {
         locationService.startMonitoring()
+        
+        view?.display(openButton: false)
     }
     
     private func startEngineControlService() {
@@ -55,8 +60,12 @@ class HomePresenter: Presenter {
         locationService.stopMonitoring()
     }
     
-    func sendTestMessage() {
+    func extendStep() {
         stepEngineControlService.extendStep()
+    }
+    
+    func shrinkStep() {
+        stepEngineControlService.shrinkStep()
     }
     
     func logout() {
@@ -79,11 +88,26 @@ extension HomePresenter: LocationServiceStatusDelegate {
 }
 
 extension HomePresenter: LocationServiceDelegate {
-    func didFail(with error: String, in service: LocationService) {
-        print(error)
+    func didRangeCar(car: ClientConfiguration.CarIdentification, with proximity: CLProximity, meters: Double) {
+        switch proximity {
+        case .unknown:
+            view?.display(openButton: false)
+            view?.display(carDistance: "Das Fahrzeug befindet sich nicht in der Nähe \(meters)m")
+        case .immediate:
+            view?.display(openButton: true)
+            view?.display(carDistance: "Du bist beinahe am Fahrzeug: \(meters)m")
+        case .near:
+            view?.display(openButton: true)
+            view?.display(carDistance: "Du bist nah am Fahrzeug: \(meters)m")
+        case .far:
+            view?.display(openButton: false)
+            view?.display(carDistance: "Bitte laufe zum Fahrzeug: \(meters)")
+        @unknown default:
+            fatalError()
+        }
     }
     
-    func didRangeBeacons(beacons: [CLBeacon], in region: CLBeaconRegion) {
-        print(beacons)
+    func didFail(with error: String, in service: LocationService) {
+        print(error)
     }
 }

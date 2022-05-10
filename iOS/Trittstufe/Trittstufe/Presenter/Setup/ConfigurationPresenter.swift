@@ -65,12 +65,12 @@ class ConfigurationPresenter: Presenter {
                           port: portValue,
                           publicKey: publicKey,
                           authorizedUsers: [
-                            .init(userIdentification: "testtest", dueDate: "forever")
+                            .init(userToken: "testtest", dueDate: "forever")
                           ]),
                 users: [
                     .init(accountName: "test",
                           password: "test",
-                          userIdentification: "testtest")
+                          userToken: "testtest")
                 ]
             )
             

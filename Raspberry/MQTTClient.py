@@ -4,6 +4,7 @@ from Cryptography.ChaCha20 import encrypt_cipher_text
 import json
 import os
 from EngineControl.EngineControlSG90 import start_servo_cycle, set_position
+import json
 
 load_dotenv()
 
@@ -23,19 +24,20 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, message):
     print(message.topic+" "+str(message.payload))
     recievedJson = json.loads(message.payload)
-if (message.topic == "engine_control"):
-    public_key = recievedJson['publicKey']
-    payload = recievedJson['payload']
+    if (message.topic == "engine_control"):
 
-    print("test")
-    print(public_key)
-    print(payload)
-    print("test")
+        public_key = recievedJson['publicKey']
+        payload = recievedJson['payload']
 
-    message = encrypt_cipher_text(cipher_stirng=payload, public_key=public_key)
-    print("----message----")
-    print(message)
-    print("----message----")
+        print("test")
+        print(public_key)
+        print(payload)
+        print("test")
+
+        message = encrypt_cipher_text(cipher_stirng=payload, public_key=public_key)
+        print("----message----")
+        print(message)
+        print("----message----")
     
     
         new_position_json = json.loads(message)

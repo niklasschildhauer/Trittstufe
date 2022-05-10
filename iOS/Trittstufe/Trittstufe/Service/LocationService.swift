@@ -15,13 +15,13 @@ protocol LocationServiceStatusDelegate {
 
 protocol LocationServiceDelegate {
     func didFail(with error: String, in service: LocationService)
-    func didRangeBeacons(beacons: [CLBeacon], in region: CLBeaconRegion)
+    func didRangeCar(car: ClientConfiguration.CarIdentification, with proximity: CLProximity, meters: Double)
 }
 
 class LocationService: NSObject {
     
     private let locationManager = CLLocationManager()
-        
+    
     enum LocationPermission {
         case granted
         case denied
@@ -38,8 +38,8 @@ class LocationService: NSObject {
     
     var clientConfiguration: ClientConfiguration?
     
-    private var locatedBeaconsHistory: [[CLBeacon]] = []
-        
+    private var locatedBeaconsHistory: [CLBeacon] = []
+    
     override init() {
         super.init()
         
@@ -50,7 +50,7 @@ class LocationService: NSObject {
         guard let clientConfiguration = clientConfiguration else {
             return
         }
-
+        
         let car = clientConfiguration.carIdentification
         let beaconRegion = car.asBeaconRegion()
         locationManager.startMonitoring(for: beaconRegion)
@@ -66,7 +66,6 @@ class LocationService: NSObject {
         let beaconRegion = car.asBeaconRegion()
         locationManager.stopMonitoring(for: beaconRegion)
         locationManager.stopRangingBeacons(satisfying: .init(uuid: car.beaconId))
-
     }
     
     func requestAuthorization() {
@@ -99,7 +98,7 @@ extension LocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         delegate?.didFail(with: "Failed monitoring region: \(error.localizedDescription)", in: self)
     }
-      
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         delegate?.didFail(with:"Location manager failed: \(error.localizedDescription)", in: self)
     }
@@ -110,16 +109,17 @@ extension LocationService: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        locatedBeaconsHistory.append(beacons)
+        locatedBeaconsHistory.append(contentsOf: beacons)
         
-        guard beacons.count > 10 else { return }
+        guard locatedBeaconsHistory.count > 4,
+        let car = clientConfiguration?.carIdentification else { return }
         
         let history = locatedBeaconsHistory
+        locatedBeaconsHistory = []
         
-        let proximityCount = history.reduce( [CLProximity.far:0, CLProximity.immediate:0, CLProximity.near:0, CLProximity.unknown:0] , { partialResult, beacons in
+        let proximityCount = history.reduce( [CLProximity.far:0, CLProximity.immediate:0, CLProximity.near:0, CLProximity.unknown:0] , { partialResult, beacon in
             var partialResult = partialResult
-            if let beacon = beacons.first,
-               beacon.uuid == clientConfiguration?.carIdentification.beaconId {
+            if beacon.uuid == car.beaconId {
                 if var currentValue = partialResult[beacon.proximity] {
                     currentValue += 1
                     partialResult.updateValue(currentValue, forKey: beacon.proximity)
@@ -128,16 +128,25 @@ extension LocationService: CLLocationManagerDelegate {
             return partialResult
         })
         
-        let averageProximity = proximityCount.max { first, second in
-            first.value > second.value
+        guard let averageProximityCount = proximityCount.max(by: { $0.value < $1.value }) else { return }
+        let averageProximity = averageProximityCount.key
+        let count = averageProximityCount.value
+        
+        let sumMeters = history.reduce(0.0) { partialResult, beacon in
+            if beacon.uuid == car.beaconId ,
+               beacon.proximity == averageProximity {
+                return partialResult + beacon.accuracy
+            }
+            return partialResult
         }
-    
-        delegate?.didRangeBeacons(beacons: beacons, in: region)
+        let averageMeters = sumMeters / Double(count)
+        
+        delegate?.didRangeCar(car: car, with: averageProximity, meters: averageMeters)
     }
 }
 
 extension ClientConfiguration.CarIdentification {
     func asBeaconRegion() -> CLBeaconRegion {
-      return CLBeaconRegion(uuid: beaconId, identifier: model)
+        return CLBeaconRegion(uuid: beaconId, identifier: model)
     }
 }
