@@ -15,6 +15,8 @@ protocol MQTTClientServiceAuthenticationDelegate: AnyObject {
 
 protocol StepEngineControlServiceDelegate: AnyObject {
     func didReceive(message: String, in service: StepEngineControlService)
+    func didConnectToCar(in service: StepEngineControlService)
+    func didDisconnectToCar(in service: StepEngineControlService)
 }
 
 protocol StepEngineControlService {
@@ -31,6 +33,7 @@ class MQTTClientService {
     var statusDelegate: StepEngineControlServiceDelegate?
     
     private var mqttClient: CocoaMQTT?
+    private var mqtt5Client: CocoaMQTT5?
     private let clientConfiguration: ClientConfiguration
 
     init(clientConfiguration: ClientConfiguration) {
@@ -48,15 +51,40 @@ class MQTTClientService {
 //        client.willMessage = CocoaMQTTMessage(topic: "", string: "dieout")
         client.keepAlive = 60
         client.delegate = self
+        //client.autoReconnect = true
         client.logLevel = .debug
         let success = client.connect()
-    
+
         if success {
             mqttClient = client
             completion(.success("Das ist eine ClientID"))
         } else {
             completion(.failure(.serverError))
         }
+        
+//        let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
+//        let mqtt5 = CocoaMQTT5(clientID: clientID, host: "localhost", port: 1883)
+//
+//        let connectProperties = MqttConnectProperties()
+//        connectProperties.topicAliasMaximum = 0
+//        connectProperties.sessionExpiryInterval = 0
+//        //connectProperties.receiveMaximum = 100
+//        //connectProperties.maximumPacketSize = 500
+//        mqtt5.connectProperties = connectProperties
+//
+//        mqtt5.username = "test"
+//        mqtt5.password = "public"
+////        mqtt5.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
+//        mqtt5.keepAlive = 60
+//        mqtt5.delegate = self
+//        let success = mqtt5.connect()
+//
+//        if success {
+//           mqtt5Client = mqtt5
+//           completion(.success("Das ist eine ClientID"))
+//       } else {
+//           completion(.failure(.serverError))
+//       }
     }
     
     private func send(message: String, to topic: String) {
@@ -91,9 +119,68 @@ extension MQTTClientService: StepEngineControlService {
     }
 }
 
+extension MQTTClientService: CocoaMQTT5Delegate {
+    func mqtt5(_ mqtt5: CocoaMQTT5, didConnectAck ack: CocoaMQTTCONNACKReasonCode, connAckData: MqttDecodeConnAck) {
+        print("didConnect")
+        statusDelegate?.didConnectToCar(in: self)
+        mqtt5.subscribe("engine_control_status", qos: .qos1)
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishMessage message: CocoaMQTT5Message, id: UInt16) {
+        print("didPublishMessage")
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishAck id: UInt16, pubAckData: MqttDecodePubAck) {
+         
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishRec id: UInt16, pubRecData: MqttDecodePubRec) {
+         
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveMessage message: CocoaMQTT5Message, id: UInt16, publishData: MqttDecodePublish) {
+        guard let message = message.string else { return }
+        statusDelegate?.didReceive(message: message, in: self)
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didSubscribeTopics success: NSDictionary, failed: [String], subAckData: MqttDecodeSubAck) {
+        print("didSubscribeTopics")
+
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didUnsubscribeTopics topics: [String], UnsubAckData: MqttDecodeUnsubAck) {
+        print("didUnsubscribeTopics")
+
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveDisconnectReasonCode reasonCode: CocoaMQTTDISCONNECTReasonCode) {
+        print("didReceiveDisconnectReasonCode: \(reasonCode)")
+    }
+    
+    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveAuthReasonCode reasonCode: CocoaMQTTAUTHReasonCode) {
+         
+    }
+    
+    func mqtt5DidPing(_ mqtt5: CocoaMQTT5) {
+        print("didPong")
+    }
+    
+    func mqtt5DidReceivePong(_ mqtt5: CocoaMQTT5) {
+        print("didRecievePong")
+
+    }
+    
+    func mqtt5DidDisconnect(_ mqtt5: CocoaMQTT5, withError err: Error?) {
+        print("didDisconnect")
+        print(err?.localizedDescription)
+        statusDelegate?.didDisconnectToCar(in: self)
+    }
+}
+
 extension MQTTClientService: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         print("didConnect")
+        statusDelegate?.didConnectToCar(in: self)
         mqtt.subscribe("engine_control_status", qos: .qos1)
 
 //        if let completion = self.loginCompletion {
@@ -106,6 +193,8 @@ extension MQTTClientService: CocoaMQTTDelegate {
     
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
         print("diddisConnect")
+        print(err?.localizedDescription)
+        statusDelegate?.didDisconnectToCar(in: self)
 
 //        if let completion = self.loginCompletion {
 //            completion(.failure(AuthenticationError.serverError))

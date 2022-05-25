@@ -44,25 +44,7 @@
 		8589766E28153BD4001E264C /* SwipeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8589766D28153BD4001E264C /* SwipeButton.xib */; };
 		85C9733A2810282200D855D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C9730B2810282200D855D4 /* Color.xcassets */; };
 		85C9733B2810282200D855D4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9730C2810282200D855D4 /* Color.swift */; };
-		85C9733F2810282200D855D4 /* Barlow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973132810282200D855D4 /* Barlow-Light.ttf */; };
-		85C973402810282200D855D4 /* Barlow-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973142810282200D855D4 /* Barlow-SemiBoldItalic.ttf */; };
-		85C973442810282200D855D4 /* Barlow-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973182810282200D855D4 /* Barlow-BoldItalic.ttf */; };
-		85C973462810282200D855D4 /* Barlow-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C9731A2810282200D855D4 /* Barlow-ExtraLight.ttf */; };
-		85C973482810282200D855D4 /* Barlow-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C9731C2810282200D855D4 /* Barlow-ThinItalic.ttf */; };
-		85C973492810282200D855D4 /* Barlow-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C9731D2810282200D855D4 /* Barlow-MediumItalic.ttf */; };
-		85C9734E2810282200D855D4 /* Barlow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973222810282200D855D4 /* Barlow-Italic.ttf */; };
-		85C9734F2810282200D855D4 /* Barlow-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973232810282200D855D4 /* Barlow-ExtraLightItalic.ttf */; };
-		85C973502810282200D855D4 /* Barlow-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973242810282200D855D4 /* Barlow-ExtraBoldItalic.ttf */; };
-		85C973522810282200D855D4 /* Barlow-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973262810282200D855D4 /* Barlow-Thin.ttf */; };
-		85C973532810282200D855D4 /* Barlow-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973272810282200D855D4 /* Barlow-ExtraBold.ttf */; };
-		85C973542810282200D855D4 /* Barlow-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973282810282200D855D4 /* Barlow-LightItalic.ttf */; };
-		85C973552810282200D855D4 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973292810282200D855D4 /* Barlow-Bold.ttf */; };
-		85C973562810282200D855D4 /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C9732A2810282200D855D4 /* Barlow-Medium.ttf */; };
-		85C973582810282200D855D4 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C9732C2810282200D855D4 /* Barlow-Regular.ttf */; };
-		85C9735B2810282200D855D4 /* Barlow-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C9732F2810282200D855D4 /* Barlow-BlackItalic.ttf */; };
-		85C9735C2810282200D855D4 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973302810282200D855D4 /* Barlow-SemiBold.ttf */; };
 		85C9735F2810282200D855D4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973332810282200D855D4 /* Font.swift */; };
-		85C973622810282200D855D4 /* Barlow-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85C973362810282200D855D4 /* Barlow-Black.ttf */; };
 		85C9736728102AD500D855D4 /* GlobalAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9736628102AD500D855D4 /* GlobalAppearance.swift */; };
 		85C973692810343800D855D4 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973682810343800D855D4 /* ButtonStyle.swift */; };
 		85D190F028229CF4004D1506 /* SignatureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D190EF28229CF4004D1506 /* SignatureHelper.swift */; };
@@ -83,6 +65,17 @@
 		85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D6775A27F87840004500D9 /* HomeViewController.xib */; };
 		85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775D27F87E34004500D9 /* MQTTClientService.swift */; };
 		85E8BD56282A5C1C0037F040 /* StepPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8BD55282A5C1C0037F040 /* StepPosition.swift */; };
+		85E99BC2283E733A00532EA3 /* CarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E99BC1283E733A00532EA3 /* CarHeaderView.swift */; };
+		85E99BC4283E735500532EA3 /* CarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC3283E735500532EA3 /* CarHeaderView.xib */; };
+		85E99BCE283E774E00532EA3 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC5283E774D00532EA3 /* Inter-ExtraBold.ttf */; };
+		85E99BCF283E774E00532EA3 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC6283E774D00532EA3 /* Inter-Medium.ttf */; };
+		85E99BD0283E774E00532EA3 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC7283E774E00532EA3 /* Inter-ExtraLight.ttf */; };
+		85E99BD1283E774E00532EA3 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC8283E774E00532EA3 /* Inter-Light.ttf */; };
+		85E99BD2283E774E00532EA3 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC9283E774E00532EA3 /* Inter-Bold.ttf */; };
+		85E99BD3283E774E00532EA3 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BCA283E774E00532EA3 /* Inter-Regular.ttf */; };
+		85E99BD4283E774E00532EA3 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BCB283E774E00532EA3 /* Inter-Thin.ttf */; };
+		85E99BD5283E774E00532EA3 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BCC283E774E00532EA3 /* Inter-SemiBold.ttf */; };
+		85E99BD6283E774E00532EA3 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BCD283E774E00532EA3 /* Inter-Black.ttf */; };
 		85F459C22806B0DD003C1C71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C42806B0DD003C1C71 /* Localizable.strings */; };
 		85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C62806B122003C1C71 /* QRCodeScannerViewController.xib */; };
 		85F459C92806B122003C1C71 /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F459C72806B122003C1C71 /* QRCodeScannerViewController.swift */; };
@@ -146,25 +139,7 @@
 		8589766D28153BD4001E264C /* SwipeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeButton.xib; sourceTree = "<group>"; };
 		85C9730B2810282200D855D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		85C9730C2810282200D855D4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		85C973132810282200D855D4 /* Barlow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Light.ttf"; sourceTree = "<group>"; };
-		85C973142810282200D855D4 /* Barlow-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		85C973182810282200D855D4 /* Barlow-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-BoldItalic.ttf"; sourceTree = "<group>"; };
-		85C9731A2810282200D855D4 /* Barlow-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraLight.ttf"; sourceTree = "<group>"; };
-		85C9731C2810282200D855D4 /* Barlow-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ThinItalic.ttf"; sourceTree = "<group>"; };
-		85C9731D2810282200D855D4 /* Barlow-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-MediumItalic.ttf"; sourceTree = "<group>"; };
-		85C973222810282200D855D4 /* Barlow-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Italic.ttf"; sourceTree = "<group>"; };
-		85C973232810282200D855D4 /* Barlow-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		85C973242810282200D855D4 /* Barlow-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		85C973262810282200D855D4 /* Barlow-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Thin.ttf"; sourceTree = "<group>"; };
-		85C973272810282200D855D4 /* Barlow-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraBold.ttf"; sourceTree = "<group>"; };
-		85C973282810282200D855D4 /* Barlow-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-LightItalic.ttf"; sourceTree = "<group>"; };
-		85C973292810282200D855D4 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Bold.ttf"; sourceTree = "<group>"; };
-		85C9732A2810282200D855D4 /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Medium.ttf"; sourceTree = "<group>"; };
-		85C9732C2810282200D855D4 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Regular.ttf"; sourceTree = "<group>"; };
-		85C9732F2810282200D855D4 /* Barlow-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-BlackItalic.ttf"; sourceTree = "<group>"; };
-		85C973302810282200D855D4 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
 		85C973332810282200D855D4 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		85C973362810282200D855D4 /* Barlow-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Black.ttf"; sourceTree = "<group>"; };
 		85C9736628102AD500D855D4 /* GlobalAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAppearance.swift; sourceTree = "<group>"; };
 		85C973682810343800D855D4 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		85D190EF28229CF4004D1506 /* SignatureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureHelper.swift; sourceTree = "<group>"; };
@@ -187,6 +162,17 @@
 		85D6775A27F87840004500D9 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		85D6775D27F87E34004500D9 /* MQTTClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTClientService.swift; sourceTree = "<group>"; };
 		85E8BD55282A5C1C0037F040 /* StepPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPosition.swift; sourceTree = "<group>"; };
+		85E99BC1283E733A00532EA3 /* CarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarHeaderView.swift; sourceTree = "<group>"; };
+		85E99BC3283E735500532EA3 /* CarHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarHeaderView.xib; sourceTree = "<group>"; };
+		85E99BC5283E774D00532EA3 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
+		85E99BC6283E774D00532EA3 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		85E99BC7283E774E00532EA3 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
+		85E99BC8283E774E00532EA3 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		85E99BC9283E774E00532EA3 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		85E99BCA283E774E00532EA3 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		85E99BCB283E774E00532EA3 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
+		85E99BCC283E774E00532EA3 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		85E99BCD283E774E00532EA3 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		85F459C02806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85F459C12806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85F459C32806B0DD003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -288,6 +274,8 @@
 				8582BE4F280EA257005BC299 /* LabelTextFieldView.xib */,
 				8589766B28153B87001E264C /* SwipeButton.swift */,
 				8589766D28153BD4001E264C /* SwipeButton.xib */,
+				85E99BC1283E733A00532EA3 /* CarHeaderView.swift */,
+				85E99BC3283E735500532EA3 /* CarHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,25 +303,16 @@
 		85C973112810282200D855D4 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				85C973132810282200D855D4 /* Barlow-Light.ttf */,
-				85C973142810282200D855D4 /* Barlow-SemiBoldItalic.ttf */,
-				85C973182810282200D855D4 /* Barlow-BoldItalic.ttf */,
-				85C9731A2810282200D855D4 /* Barlow-ExtraLight.ttf */,
-				85C9731C2810282200D855D4 /* Barlow-ThinItalic.ttf */,
-				85C9731D2810282200D855D4 /* Barlow-MediumItalic.ttf */,
-				85C973222810282200D855D4 /* Barlow-Italic.ttf */,
-				85C973232810282200D855D4 /* Barlow-ExtraLightItalic.ttf */,
-				85C973242810282200D855D4 /* Barlow-ExtraBoldItalic.ttf */,
-				85C973262810282200D855D4 /* Barlow-Thin.ttf */,
-				85C973272810282200D855D4 /* Barlow-ExtraBold.ttf */,
-				85C973282810282200D855D4 /* Barlow-LightItalic.ttf */,
-				85C973292810282200D855D4 /* Barlow-Bold.ttf */,
-				85C9732A2810282200D855D4 /* Barlow-Medium.ttf */,
-				85C9732C2810282200D855D4 /* Barlow-Regular.ttf */,
-				85C9732F2810282200D855D4 /* Barlow-BlackItalic.ttf */,
-				85C973302810282200D855D4 /* Barlow-SemiBold.ttf */,
+				85E99BCD283E774E00532EA3 /* Inter-Black.ttf */,
+				85E99BC9283E774E00532EA3 /* Inter-Bold.ttf */,
+				85E99BC5283E774D00532EA3 /* Inter-ExtraBold.ttf */,
+				85E99BC7283E774E00532EA3 /* Inter-ExtraLight.ttf */,
+				85E99BC8283E774E00532EA3 /* Inter-Light.ttf */,
+				85E99BC6283E774D00532EA3 /* Inter-Medium.ttf */,
+				85E99BCA283E774E00532EA3 /* Inter-Regular.ttf */,
+				85E99BCC283E774E00532EA3 /* Inter-SemiBold.ttf */,
+				85E99BCB283E774E00532EA3 /* Inter-Thin.ttf */,
 				85C973332810282200D855D4 /* Font.swift */,
-				85C973362810282200D855D4 /* Barlow-Black.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -585,37 +564,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85C973502810282200D855D4 /* Barlow-ExtraBoldItalic.ttf in Resources */,
 				8582BE50280EA257005BC299 /* LabelTextFieldView.xib in Resources */,
-				85C973402810282200D855D4 /* Barlow-SemiBoldItalic.ttf in Resources */,
-				85C973582810282200D855D4 /* Barlow-Regular.ttf in Resources */,
 				85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */,
-				85C9733F2810282200D855D4 /* Barlow-Light.ttf in Resources */,
-				85C973442810282200D855D4 /* Barlow-BoldItalic.ttf in Resources */,
-				85C9735C2810282200D855D4 /* Barlow-SemiBold.ttf in Resources */,
-				85C973552810282200D855D4 /* Barlow-Bold.ttf in Resources */,
+				85E99BD2283E774E00532EA3 /* Inter-Bold.ttf in Resources */,
+				85E99BCF283E774E00532EA3 /* Inter-Medium.ttf in Resources */,
+				85E99BD1283E774E00532EA3 /* Inter-Light.ttf in Resources */,
 				85D6772527F87615004500D9 /* LaunchScreen.storyboard in Resources */,
-				85C9734F2810282200D855D4 /* Barlow-ExtraLightItalic.ttf in Resources */,
 				854E9BF02802F20F0005546B /* ConfigurationViewController.xib in Resources */,
-				85C973532810282200D855D4 /* Barlow-ExtraBold.ttf in Resources */,
-				85C9734E2810282200D855D4 /* Barlow-Italic.ttf in Resources */,
 				854E9BE82802EDFE0005546B /* SetupLoadingViewController.xib in Resources */,
-				85C973562810282200D855D4 /* Barlow-Medium.ttf in Resources */,
 				8589766E28153BD4001E264C /* SwipeButton.xib in Resources */,
 				85C9733A2810282200D855D4 /* Color.xcassets in Resources */,
-				85C973482810282200D855D4 /* Barlow-ThinItalic.ttf in Resources */,
-				85C973522810282200D855D4 /* Barlow-Thin.ttf in Resources */,
-				85C973622810282200D855D4 /* Barlow-Black.ttf in Resources */,
+				85E99BD3283E774E00532EA3 /* Inter-Regular.ttf in Resources */,
 				85D6772227F87615004500D9 /* Assets.xcassets in Resources */,
-				85C973492810282200D855D4 /* Barlow-MediumItalic.ttf in Resources */,
+				85E99BCE283E774E00532EA3 /* Inter-ExtraBold.ttf in Resources */,
+				85E99BD5283E774E00532EA3 /* Inter-SemiBold.ttf in Resources */,
 				85D6771D27F87614004500D9 /* Main.storyboard in Resources */,
-				85C973542810282200D855D4 /* Barlow-LightItalic.ttf in Resources */,
 				85826B93280BF6D5005BEEF6 /* RequestLocationPermissionViewController.xib in Resources */,
 				85F459C22806B0DD003C1C71 /* Localizable.strings in Resources */,
 				854E9C002803621D0005546B /* AuthenticationViewController.xib in Resources */,
-				85C9735B2810282200D855D4 /* Barlow-BlackItalic.ttf in Resources */,
-				85C973462810282200D855D4 /* Barlow-ExtraLight.ttf in Resources */,
+				85E99BC4283E735500532EA3 /* CarHeaderView.xib in Resources */,
+				85E99BD6283E774E00532EA3 /* Inter-Black.ttf in Resources */,
+				85E99BD0283E774E00532EA3 /* Inter-ExtraLight.ttf in Resources */,
 				85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */,
+				85E99BD4283E774E00532EA3 /* Inter-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,6 +730,7 @@
 				8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */,
 				854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */,
 				854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */,
+				85E99BC2283E733A00532EA3 /* CarHeaderView.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
 				8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */,
 				85D6772027F87614004500D9 /* Trittstufe.xcdatamodeld in Sources */,

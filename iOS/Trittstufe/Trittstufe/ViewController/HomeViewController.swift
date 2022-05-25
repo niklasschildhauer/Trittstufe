@@ -11,6 +11,9 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var swipeButton: SwipeButton!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var carHeaderView: CarHeaderView!
+    @IBOutlet weak var retryButton: UIButton!
+    
     var presenter: HomePresenter! {
         didSet {
             presenter.view = self
@@ -21,8 +24,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupController()
-
-        presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter.viewWillAppear()
     }
     
     private func setupController() {
@@ -51,6 +58,10 @@ class HomeViewController: UIViewController {
         swipeButton.delegate = self
     }
     
+    @IBAction func didTapRetryButton(_ sender: Any) {
+        presenter.reload()
+    }
+    
     @objc func didTapLogoutButton() {
         presenter.logout()
     }
@@ -72,6 +83,14 @@ extension HomeViewController: HomeView {
     
     func display(openButton: Bool) {
         swipeButton.isHidden = !openButton
+    }
+    
+    func display(retryButton: Bool) {
+        self.retryButton.isHidden = !retryButton
+    }
+    
+    func display(carHeaderViewModel: CarHeaderView.ViewModel) {
+        carHeaderView.viewModel = carHeaderViewModel
     }
 }
 
