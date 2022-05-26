@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Car: Codable {
+struct CarBackend: Codable {
     let model: String
     var beaconId: UUID = UUID(uuidString: "05c13100-102b-42cf-babb-ace7dd99c4e3")!
     let vin: String

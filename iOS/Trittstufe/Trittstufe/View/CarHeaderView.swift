@@ -21,18 +21,18 @@ class CarHeaderView: NibLoadingView {
         }
     }
     
-    public var viewModel: ViewModel? {
+    var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else {
                 isHidden = true
                 return
             }
-
+            
             reload(with: viewModel)
             isHidden = false
         }
     }
-
+    
     @IBOutlet private weak var yourCarLabel: UILabel!
     @IBOutlet private weak var carNameLabel: UILabel!
     
@@ -43,7 +43,7 @@ class CarHeaderView: NibLoadingView {
     @IBOutlet private weak var locationStatusBackgroundView: RoundedCornerView!
     @IBOutlet private weak var locationImageView: UIImageView!
     @IBOutlet private weak var locationLabel: UILabel!
-  
+    
     private func reload(with viewModel: ViewModel) {
         carNameLabel.text = viewModel.carName
         
@@ -56,17 +56,17 @@ class CarHeaderView: NibLoadingView {
         locationLabel.text = viewModel.locationStatus.text.uppercased()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         isHidden = true
-        
+    
         yourCarLabel.font = Font.caption
         carNameLabel.font = Font.bodyBold
         
         locationLabel.font = Font.caption
         networkStatusLabel.font = Font.caption
     }
-
+    
 }
 

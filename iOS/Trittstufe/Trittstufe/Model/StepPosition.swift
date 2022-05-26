@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct CarPosition {
+    let name: String
+    var stepPosition: StepPosition
+}
+
 enum StepPosition: String {
     case open
     case close

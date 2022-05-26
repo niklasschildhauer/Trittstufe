@@ -55,6 +55,34 @@ struct ButtonStyle {
         configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 15)
         configuration.imagePadding = 10
         
+        configuration.cornerStyle = .large
+        
         return configuration
+    }
+}
+
+public extension UIButton {
+    enum ViewModel {
+        case filled(title: String, image: UIImage, size: UIButton.Configuration.Size = .medium)
+        case fullWidth(title: String)
+        case plain(title: String)
+    }
+    
+    func setViewModel(viewModel: ViewModel?) {
+        guard let viewModel = viewModel else {
+            isHidden = true
+            return
+        }
+        
+        switch viewModel {
+        case .filled(let title, let image, let size):
+            configuration = ButtonStyle.filled(title: title, image: image, size: size)
+        case .fullWidth(let title):
+            configuration = ButtonStyle.fullWidth(title: title)
+        case .plain(let title):
+            configuration = ButtonStyle.plain(title: title)
+        }
+        
+        isHidden = false
     }
 }

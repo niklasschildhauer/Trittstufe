@@ -12,11 +12,12 @@ import CoreLocation
 protocol HomeView: AnyObject {
     var presenter: HomePresenter! { get set }
     
-    func display(carDistance: String)
-    func display(openButton: Bool)
-    func display(stepPosition: StepPosition)
-    func display(retryButton: Bool)
-    func display(carHeaderViewModel: CarHeaderView.ViewModel)
+    func display(reconnectButton: Bool)
+    func display(carHeaderView viewModel: CarHeaderView.ViewModel?)
+    func display(actionButton viewModel: UIButton.ViewModel?)
+    func display(distanceView viewModel: DistanceView.ViewModel?, animated: Bool)
+    func display(stepStatusView viewModel: StepStatusView.ViewModel?)
+    func display(informationView viewModel: InformationView.ViewModel?)
 }
 
 protocol HomePresenterDelegate: AnyObject {
@@ -25,47 +26,18 @@ protocol HomePresenterDelegate: AnyObject {
 }
 
 class HomePresenter: Presenter {
-    
-    struct Status {
-        var proximity: CLProximity = .near
-        var meters: Double = 2.0
-        var connectedToCar: Bool = true
-        
-        var distanceDescription: String {
-            let roundedMeters = Int(meters)
-            switch proximity {
-            case .unknown:
-                return "Das Fahrzeug befindet sich nicht in der Nähe \(roundedMeters)m"
-            case .immediate:
-                return "Du bist beinahe am Fahrzeug: \(roundedMeters)m"
-            case .near:
-                return "Du bist nah am Fahrzeug: \(roundedMeters)m"
-            case .far:
-                return "Bitte laufe zum Fahrzeug: \(roundedMeters)"
-            @unknown default:
-                fatalError()
-            }
-        }
-        
-        var carHeaderViewModel: CarHeaderView.ViewModel {
-            .init(carName: "TODO", networkStatus: .init(image: UIImage(systemName: "wifi")!, color: .cyan, text: "Verbunden"), locationStatus: .init(image: UIImage(systemName: "location")!, color: .red, text: "WEIT"))
-        }
-        
-        var showOpenButton: Bool {
-            proximity == .unknown ? false : true
-        }
-    }
-    
+
     weak var view: HomeView?
     var delegate: HomePresenterDelegate?
     
     private var stepEngineControlService: StepEngineControlService
     private let locationService: LocationService
-    private var status = Status()
+    private var carStatus: CarStatus
     
-    init(stepEngineControlService: StepEngineControlService, locationService: LocationService) {
+    init(stepEngineControlService: StepEngineControlService, locationService: LocationService, carIdentification: CarIdentification) {
         self.stepEngineControlService = stepEngineControlService
         self.locationService = locationService
+        self.carStatus = CarStatus(car: carIdentification)
     }
     
     func reload() {
@@ -83,12 +55,16 @@ class HomePresenter: Presenter {
     func viewWillAppear() {
         reload()
         updateView()
+        
+        //TODO:
+        view?.display(distanceView: .init(distance: .immediate, image: UIImage(named: "distance-car-image")!), animated: false)
+        view?.display(actionButton: .filled(title: "Beteis am Fahrzeug?", image: UIImage(systemName: "location")!, size: .medium))
     }
     
     private func startLocationService() {
         locationService.startMonitoring()
         
-        view?.display(openButton: false)
+        //view?.display(openButton: false)
     }
     
     private func startEngineControlService() {
@@ -109,21 +85,28 @@ class HomePresenter: Presenter {
     }
     
     func logout() {
-        delegate?.didTapLogout(in: self)
+        view?.display(distanceView: .init(distance: .far, image: UIImage(named:"distance-car-image")!), animated: true)
+        view?.display(informationView: .init(text: "Bitte gehe näher zum Fahrzeug", image: UIImage(systemName: "location")!))
+//        delegate?.didTapLogout(in: self)
+    }
+    
+    func didTapActionButton() {
+        view?.display(distanceView: .init(distance: .near, image: UIImage(named: "distance-car-image")!), animated: true)
+        view?.display(informationView: nil)
     }
 
     private func updateView() {
-        if status.connectedToCar {
-            view?.display(retryButton: false)
-            view?.display(carDistance: status.distanceDescription)
-            view?.display(openButton: status.showOpenButton)
+        if carStatus.connectedToCar {
+            //view?.display(retryButton: false)
+            //view?.display(carDistance: status.distanceDescription)
+            //view?.display(openButton: status.showOpenButton)
         } else {
-            view?.display(openButton: false)
-            view?.display(carDistance: "Verbindungsfehler")
-            view?.display(retryButton: true)
+            //view?.display(openButton: false)
+            //view?.display(carDistance: "Verbindungsfehler")
+            //view?.display(retryButton: true)
         }
         
-        view?.display(carHeaderViewModel: status.carHeaderViewModel)
+        view?.display(carHeaderView: carStatus.carHeaderViewModel)
     }
 }
 
@@ -142,9 +125,9 @@ extension HomePresenter: LocationServiceStatusDelegate {
 }
 
 extension HomePresenter: LocationServiceDelegate {
-    func didRangeCar(car: ClientConfiguration.CarIdentification, with proximity: CLProximity, meters: Double) {
-        status.proximity = proximity
-        status.meters = meters
+    func didRangeCar(car: CarIdentification, with proximity: CLProximity, meters: Double) {
+        carStatus.proximity = proximity
+        carStatus.meters = meters
         
         //TODO: Is called very often!
         updateView()
@@ -157,7 +140,7 @@ extension HomePresenter: LocationServiceDelegate {
 
 extension HomePresenter: StepEngineControlServiceDelegate {
     func didConnectToCar(in service: StepEngineControlService) {
-        status.connectedToCar = true
+        carStatus.connectedToCar = true
         updateView()
 
     }
@@ -169,6 +152,6 @@ extension HomePresenter: StepEngineControlServiceDelegate {
     
     func didReceive(message: String, in service: StepEngineControlService) {
         guard let newStepPosition = StepPosition(rawValue: message) else { return }
-        view?.display(stepPosition: newStepPosition)
+        //view?.display(stepPosition: newStepPosition)
     }
 }

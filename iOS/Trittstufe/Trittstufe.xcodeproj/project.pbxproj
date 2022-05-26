@@ -76,6 +76,13 @@
 		85E99BD4283E774E00532EA3 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BCB283E774E00532EA3 /* Inter-Thin.ttf */; };
 		85E99BD5283E774E00532EA3 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BCC283E774E00532EA3 /* Inter-SemiBold.ttf */; };
 		85E99BD6283E774E00532EA3 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BCD283E774E00532EA3 /* Inter-Black.ttf */; };
+		85E99BD8283F83F600532EA3 /* InformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BD7283F83F600532EA3 /* InformationView.xib */; };
+		85E99BDA283F840000532EA3 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E99BD9283F840000532EA3 /* InformationView.swift */; };
+		85E99BDC283F8FDC00532EA3 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E99BDB283F8FDC00532EA3 /* DistanceView.swift */; };
+		85E99BDE283F8FEB00532EA3 /* StepStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E99BDD283F8FEB00532EA3 /* StepStatusView.swift */; };
+		85E99BE0283F964800532EA3 /* CarIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E99BDF283F964800532EA3 /* CarIdentification.swift */; };
+		85E99BE2283F97AF00532EA3 /* CarStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E99BE1283F97AF00532EA3 /* CarStatus.swift */; };
+		85E99BE5283FB42C00532EA3 /* DistanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BE4283FB42C00532EA3 /* DistanceView.xib */; };
 		85F459C22806B0DD003C1C71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C42806B0DD003C1C71 /* Localizable.strings */; };
 		85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F459C62806B122003C1C71 /* QRCodeScannerViewController.xib */; };
 		85F459C92806B122003C1C71 /* QRCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F459C72806B122003C1C71 /* QRCodeScannerViewController.swift */; };
@@ -173,6 +180,13 @@
 		85E99BCB283E774E00532EA3 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
 		85E99BCC283E774E00532EA3 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		85E99BCD283E774E00532EA3 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
+		85E99BD7283F83F600532EA3 /* InformationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InformationView.xib; sourceTree = "<group>"; };
+		85E99BD9283F840000532EA3 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		85E99BDB283F8FDC00532EA3 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
+		85E99BDD283F8FEB00532EA3 /* StepStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepStatusView.swift; sourceTree = "<group>"; };
+		85E99BDF283F964800532EA3 /* CarIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarIdentification.swift; sourceTree = "<group>"; };
+		85E99BE1283F97AF00532EA3 /* CarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarStatus.swift; sourceTree = "<group>"; };
+		85E99BE4283FB42C00532EA3 /* DistanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistanceView.xib; sourceTree = "<group>"; };
 		85F459C02806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85F459C12806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85F459C32806B0DD003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -276,6 +290,11 @@
 				8589766D28153BD4001E264C /* SwipeButton.xib */,
 				85E99BC1283E733A00532EA3 /* CarHeaderView.swift */,
 				85E99BC3283E735500532EA3 /* CarHeaderView.xib */,
+				85E99BD7283F83F600532EA3 /* InformationView.xib */,
+				85E99BD9283F840000532EA3 /* InformationView.swift */,
+				85E99BDB283F8FDC00532EA3 /* DistanceView.swift */,
+				85E99BDD283F8FEB00532EA3 /* StepStatusView.swift */,
+				85E99BE4283FB42C00532EA3 /* DistanceView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,14 +464,24 @@
 		85D6774E27F87655004500D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				85E99BE3283F97CE00532EA3 /* DummyBackend */,
 				854E9BE92802EECB0005546B /* SetupStage.swift */,
 				85242A6C28084BE9004FC32C /* ClientConfiguration.swift */,
-				85826B8C2809D787005BEEF6 /* DummyBackendData.swift */,
-				85826B98280D5081005BEEF6 /* CarBackendModel.swift */,
-				85826B9A280D508A005BEEF6 /* UserBackendModel.swift */,
 				85E8BD55282A5C1C0037F040 /* StepPosition.swift */,
+				85E99BDF283F964800532EA3 /* CarIdentification.swift */,
+				85E99BE1283F97AF00532EA3 /* CarStatus.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		85E99BE3283F97CE00532EA3 /* DummyBackend */ = {
+			isa = PBXGroup;
+			children = (
+				85826B98280D5081005BEEF6 /* CarBackendModel.swift */,
+				85826B9A280D508A005BEEF6 /* UserBackendModel.swift */,
+				85826B8C2809D787005BEEF6 /* DummyBackendData.swift */,
+			);
+			path = DummyBackend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,6 +600,7 @@
 				85E99BD1283E774E00532EA3 /* Inter-Light.ttf in Resources */,
 				85D6772527F87615004500D9 /* LaunchScreen.storyboard in Resources */,
 				854E9BF02802F20F0005546B /* ConfigurationViewController.xib in Resources */,
+				85E99BE5283FB42C00532EA3 /* DistanceView.xib in Resources */,
 				854E9BE82802EDFE0005546B /* SetupLoadingViewController.xib in Resources */,
 				8589766E28153BD4001E264C /* SwipeButton.xib in Resources */,
 				85C9733A2810282200D855D4 /* Color.xcassets in Resources */,
@@ -585,6 +615,7 @@
 				85E99BC4283E735500532EA3 /* CarHeaderView.xib in Resources */,
 				85E99BD6283E774E00532EA3 /* Inter-Black.ttf in Resources */,
 				85E99BD0283E774E00532EA3 /* Inter-ExtraLight.ttf in Resources */,
+				85E99BD8283F83F600532EA3 /* InformationView.xib in Resources */,
 				85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */,
 				85E99BD4283E774E00532EA3 /* Inter-Thin.ttf in Resources */,
 			);
@@ -716,6 +747,7 @@
 			files = (
 				85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */,
 				854E9BF22802F2200005546B /* ConfigurationPresenter.swift in Sources */,
+				85E99BE0283F964800532EA3 /* CarIdentification.swift in Sources */,
 				8589766A2813DF5C001E264C /* SetupStageService.swift in Sources */,
 				85826B99280D5082005BEEF6 /* CarBackendModel.swift in Sources */,
 				85D6775427F877A3004500D9 /* Coordinator+Protocol.swift in Sources */,
@@ -729,6 +761,7 @@
 				85D6775027F876C2004500D9 /* AppCoordinator.swift in Sources */,
 				8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */,
 				854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */,
+				85E99BDA283F840000532EA3 /* InformationView.swift in Sources */,
 				854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */,
 				85E99BC2283E733A00532EA3 /* CarHeaderView.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
@@ -742,16 +775,19 @@
 				85242A6D28084BE9004FC32C /* ClientConfiguration.swift in Sources */,
 				854E9C02280367EF0005546B /* Presenter+Protocol.swift in Sources */,
 				85D6775227F87758004500D9 /* HomeCoordinator.swift in Sources */,
+				85E99BE2283F97AF00532EA3 /* CarStatus.swift in Sources */,
 				85F459C92806B122003C1C71 /* QRCodeScannerViewController.swift in Sources */,
 				85C9733B2810282200D855D4 /* Color.swift in Sources */,
 				85826B8D2809D787005BEEF6 /* DummyBackendData.swift in Sources */,
 				8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */,
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
+				85E99BDE283F8FEB00532EA3 /* StepStatusView.swift in Sources */,
 				85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */,
 				85E8BD56282A5C1C0037F040 /* StepPosition.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
 				854E9C04280370A90005546B /* UserDefaults.swift in Sources */,
 				85242A6B2806DCE6004FC32C /* AuthenticationService.swift in Sources */,
+				85E99BDC283F8FDC00532EA3 /* DistanceView.swift in Sources */,
 				854E9BEF2802F20F0005546B /* ConfigurationViewController.swift in Sources */,
 				85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */,
 				85C9736728102AD500D855D4 /* GlobalAppearance.swift in Sources */,

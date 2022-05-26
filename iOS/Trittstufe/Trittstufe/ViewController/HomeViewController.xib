@@ -10,10 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Trittstufe" customModuleProvider="target">
             <connections>
+                <outlet property="actionButton" destination="yHR-Dv-uj8" id="krS-iy-3GH"/>
                 <outlet property="carHeaderView" destination="3E4-po-4to" id="4Oz-sq-AbD"/>
                 <outlet property="distanceLabel" destination="3LC-WR-kgy" id="pWI-B7-pUw"/>
+                <outlet property="distanceView" destination="ND4-mT-DfP" id="qd4-jp-jvz"/>
+                <outlet property="informationView" destination="7AU-lB-qXL" id="IMd-Pr-RWx"/>
                 <outlet property="retryButton" destination="SVL-lb-Lg1" id="FNk-xH-3fr"/>
-                <outlet property="swipeButton" destination="WTX-UA-OVf" id="Mfk-od-eUd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,13 +24,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTX-UA-OVf" customClass="SwipeButton" customModule="Trittstufe" customModuleProvider="target">
-                    <rect key="frame" x="32" y="422" width="256" height="86"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="86" id="FFg-4X-iki"/>
-                    </constraints>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LC-WR-kgy">
                     <rect key="frame" x="16" y="284" width="288" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -50,18 +45,40 @@
                         <constraint firstAttribute="height" constant="67" id="WjU-E6-I9E"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ND4-mT-DfP" customClass="DistanceView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="87" width="320" height="481"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="7AU-lB-qXL" customClass="InformationView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="16" y="398" width="288" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHR-Dv-uj8">
+                    <rect key="frame" x="126.5" y="481" width="67" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="OgZ-AD-Tnm"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WTX-UA-OVf" secondAttribute="trailing" constant="32" id="08N-aQ-J3C"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3E4-po-4to" secondAttribute="trailing" constant="16" id="2Ul-wf-P8m"/>
                 <constraint firstItem="3E4-po-4to" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="2ZS-N9-1eJ"/>
+                <constraint firstItem="yHR-Dv-uj8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8kx-G8-Dm9"/>
+                <constraint firstItem="ND4-mT-DfP" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="8zz-oR-k96"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7AU-lB-qXL" secondAttribute="bottom" constant="130" id="IdL-Le-Clo"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Pch-i3-nuN"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="UW2-g1-lEM"/>
                 <constraint firstItem="3E4-po-4to" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Wt1-9s-1x7"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WTX-UA-OVf" secondAttribute="bottom" constant="60" id="nxZ-4K-94V"/>
-                <constraint firstItem="WTX-UA-OVf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="vC7-Xy-aiy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ND4-mT-DfP" secondAttribute="trailing" id="eqy-j4-rSD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ND4-mT-DfP" secondAttribute="bottom" id="gMv-Tm-lOy"/>
+                <constraint firstItem="7AU-lB-qXL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pPx-H8-tAC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yHR-Dv-uj8" secondAttribute="bottom" constant="43" id="rIK-IW-gwG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7AU-lB-qXL" secondAttribute="trailing" constant="16" id="rPy-vk-xFU"/>
+                <constraint firstItem="ND4-mT-DfP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wmY-1U-LL6"/>
                 <constraint firstItem="SVL-lb-Lg1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wr4-GB-Wzz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3LC-WR-kgy" secondAttribute="trailing" constant="16" id="xVa-9e-MiG"/>
                 <constraint firstItem="SVL-lb-Lg1" firstAttribute="top" secondItem="3LC-WR-kgy" secondAttribute="bottom" constant="38" id="zXn-04-wwn"/>
@@ -69,6 +86,11 @@
             <point key="canvasLocation" x="132" y="131"/>
         </view>
     </objects>
+    <designables>
+        <designable name="7AU-lB-qXL">
+            <size key="intrinsicContentSize" width="288" height="40"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

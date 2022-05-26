@@ -9,10 +9,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var swipeButton: SwipeButton!
+    @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var informationView: InformationView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var carHeaderView: CarHeaderView!
     @IBOutlet weak var retryButton: UIButton!
+    @IBOutlet weak var distanceView: DistanceView!
     
     var presenter: HomePresenter! {
         didSet {
@@ -30,6 +32,8 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         presenter.viewWillAppear()
+        
+        informationView.viewModel = .init(text: "Test", image: UIImage(systemName: "location")!)
     }
     
     private func setupController() {
@@ -51,11 +55,13 @@ class HomeViewController: UIViewController {
     }
     
     private func setupViews() {
-        swipeButton.activeConfiguration = .init(label: "Ausfahren", icon: UIImage(systemName: "lock.open.fill")!)
+        //swipeButton.activeConfiguration = .init(label: "Ausfahren", icon: UIImage(systemName: "lock.open.fill")!)
         
-        swipeButton.deactiveConfiguration = .init(label: "Einfahren", icon: UIImage(systemName: "lock.circle")!)
+        //swipeButton.deactiveConfiguration = .init(label: "Einfahren", icon: UIImage(systemName: "lock.circle")!)
         
-        swipeButton.delegate = self
+        //swipeButton.delegate = self
+        
+        actionButton.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
     }
     
     @IBAction func didTapRetryButton(_ sender: Any) {
@@ -65,32 +71,40 @@ class HomeViewController: UIViewController {
     @objc func didTapLogoutButton() {
         presenter.logout()
     }
+    
+    @objc func didTapActionButton() {
+        presenter.didTapActionButton()
+    }
 }
 
 extension HomeViewController: HomeView {
-    func display(stepPosition: StepPosition) {
-        switch stepPosition {
-        case .open:
-            swipeButton.buttonState = .activated
-        case .close:
-            swipeButton.buttonState = .deactivated
+    func display(informationView viewModel: InformationView.ViewModel?) {
+        informationView.viewModel = viewModel
+    }
+    
+    func display(actionButton viewModel: UIButton.ViewModel?) {
+        actionButton.setViewModel(viewModel: viewModel)
+    }
+    
+    func display(distanceView viewModel: DistanceView.ViewModel?, animated: Bool) {
+        distanceView.viewModel = viewModel
+        if animated {
+            UIView.animate(withDuration: 0.5) {
+                self.distanceView.layoutIfNeeded()
+            }
         }
     }
     
-    func display(carDistance: String) {
-        distanceLabel.text = carDistance
+    func display(stepStatusView viewModel: StepStatusView.ViewModel?) {
+        //TODO
     }
     
-    func display(openButton: Bool) {
-        swipeButton.isHidden = !openButton
+    func display(reconnectButton: Bool) {
+        retryButton.isHidden = !reconnectButton
     }
     
-    func display(retryButton: Bool) {
-        self.retryButton.isHidden = !retryButton
-    }
-    
-    func display(carHeaderViewModel: CarHeaderView.ViewModel) {
-        carHeaderView.viewModel = carHeaderViewModel
+    func display(carHeaderView viewModel: CarHeaderView.ViewModel?) {
+        carHeaderView.viewModel = viewModel
     }
 }
 

@@ -43,8 +43,8 @@ let dummyData: String = """
 """
 
 struct DummyBackendData: Codable {
-    let car: Car
-    let users: [User]
+    let car: CarBackend
+    let users: [UserBackend]
     
     static func loadFromUserDefaults() -> DummyBackendData? {
         UserDefaultConfig.dummyBackendData

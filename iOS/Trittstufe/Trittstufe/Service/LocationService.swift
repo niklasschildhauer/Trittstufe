@@ -15,7 +15,7 @@ protocol LocationServiceStatusDelegate {
 
 protocol LocationServiceDelegate {
     func didFail(with error: String, in service: LocationService)
-    func didRangeCar(car: ClientConfiguration.CarIdentification, with proximity: CLProximity, meters: Double)
+    func didRangeCar(car: CarIdentification, with proximity: CLProximity, meters: Double)
 }
 
 class LocationService: NSObject {
@@ -158,7 +158,7 @@ extension LocationService: CLLocationManagerDelegate {
     }
 }
 
-extension ClientConfiguration.CarIdentification {
+extension CarIdentification {
     func asBeaconRegion() -> CLBeaconRegion {
         return CLBeaconRegion(uuid: beaconId, identifier: model)
     }

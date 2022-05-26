@@ -48,7 +48,7 @@ class ConfigurationPresenter: Presenter {
         }
         
         if let existingConfiguration = UserDefaultConfig.dummyBackendData {
-            let newCarConfiguration = Car(model: existingConfiguration.car.model,
+            let newCarConfiguration = CarBackend(model: existingConfiguration.car.model,
                                           beaconId: existingConfiguration.car.beaconId,
                                           vin: existingConfiguration.car.model,
                                           ipAdress: ipAdress,
