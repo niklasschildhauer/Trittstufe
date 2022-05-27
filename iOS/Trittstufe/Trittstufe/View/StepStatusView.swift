@@ -49,11 +49,11 @@ class StepStatusView: NibLoadingView {
     private func reload(with viewModel: ViewModel) {
         switch viewModel.selectedSideStatus.side {
         case .left:
+            arrowLeftImageView.isHidden = true
+            arrowRightImageView.isHidden = false
+        case .right:
             arrowLeftImageView.isHidden = false
             arrowRightImageView.isHidden = true
-        case .right:
-            arrowLeftImageView.isHidden = true
-            arrowLeftImageView.isHidden = false
         }
         
         carStatusImageView.image = viewModel.currentStatusImage
