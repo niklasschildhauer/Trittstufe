@@ -110,11 +110,13 @@ extension HomeViewController: HomeView {
 
 extension HomeViewController: SwipeButtonDelegate {
     func didActivate(in swipeButton: SwipeButton) {
-        presenter.extendStep()
+        //TODO
+        presenter.extendStep(on: .left)
     }
     
     func didDeactivate(in swipeButton: SwipeButton) {
-        presenter.shrinkStep()
+        //TODO
+        presenter.shrinkStep(on: .left)
     }
 }
 

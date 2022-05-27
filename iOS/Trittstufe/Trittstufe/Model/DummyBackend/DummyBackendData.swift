@@ -11,20 +11,28 @@ let dummyData: String = """
 {
    "car": {
      "model":"Rolling Chasis",
-     "beaconId":"05c13100-102b-42cf-babb-ace7dd99c4e3",
-     "vin":"123123",
-     "ipAdress":"192.9.12.2",
-     "port":8338,
-     "publicKey":"DasisteinKey",
+     "ipAdress":"169.254.222.28",
+     "port":1883,
+     "publicKey":"XWOVfM+MFrs26wdQntzXUjatvN/CJvDQ47sd/LZ1YwQ=",
      "authorizedUsers":[
         {
-           "userToken":"11442322",
-           "dueDate":"Sonntag"
+           "userToken":"11442322"
         },
         {
-           "userToken":"12312322",
-           "dueDate":"Sonntag"
+           "userToken":"12312322"
         }
+     ],
+     "steps": [
+        {
+            "beaconId":"05c13100-102b-42cf-babb-ace7dd99c4e3",
+            "nfcTokenId":"unkown",
+            "side":"left"
+        },
+        {
+            "beaconId":"05c13100-102b-42cf-babb-ace7dd99c4e1",
+            "nfcTokenId":"unkown",
+            "side":"right"
+        },
      ]
     },
    "users":[
@@ -36,7 +44,7 @@ let dummyData: String = """
       {
          "accountName":"Ansgar",
          "userToken":"12312322",
-         "password":"Sonnenblume2"
+         "password":"Sonnenblume"
       }
    ]
 }

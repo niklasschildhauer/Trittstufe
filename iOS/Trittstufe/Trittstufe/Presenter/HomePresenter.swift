@@ -76,12 +76,12 @@ class HomePresenter: Presenter {
         locationService.stopMonitoring()
     }
     
-    func extendStep() {
-        stepEngineControlService.extendStep()
+    func extendStep(on side: CarStepIdentification.Side) {
+        stepEngineControlService.extendStep(on: side)
     }
     
-    func shrinkStep() {
-        stepEngineControlService.shrinkStep()
+    func shrinkStep(on side: CarStepIdentification.Side) {
+        stepEngineControlService.shrinkStep(on: side)
     }
     
     func logout() {
@@ -139,6 +139,10 @@ extension HomePresenter: LocationServiceDelegate {
 }
 
 extension HomePresenter: StepEngineControlServiceDelegate {
+    func didReceive(stepStatus: [CarStepStatus], in service: StepEngineControlService) {
+        print(stepStatus)
+    }
+    
     func didConnectToCar(in service: StepEngineControlService) {
         carStatus.connectedToCar = true
         updateView()
@@ -148,10 +152,5 @@ extension HomePresenter: StepEngineControlServiceDelegate {
     func didDisconnectToCar(in service: StepEngineControlService) {
 //        status.connectedToCar = false
         updateView()
-    }
-    
-    func didReceive(message: String, in service: StepEngineControlService) {
-        guard let newStepPosition = StepPosition(rawValue: message) else { return }
-        //view?.display(stepPosition: newStepPosition)
     }
 }

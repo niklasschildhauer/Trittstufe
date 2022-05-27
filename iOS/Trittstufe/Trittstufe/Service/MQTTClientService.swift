@@ -14,7 +14,7 @@ protocol MQTTClientServiceAuthenticationDelegate: AnyObject {
 }
 
 protocol StepEngineControlServiceDelegate: AnyObject {
-    func didReceive(message: String, in service: StepEngineControlService)
+    func didReceive(stepStatus: [CarStepStatus], in service: StepEngineControlService)
     func didConnectToCar(in service: StepEngineControlService)
     func didDisconnectToCar(in service: StepEngineControlService)
 }
@@ -23,8 +23,8 @@ protocol StepEngineControlService {
     var statusDelegate: StepEngineControlServiceDelegate? { get set }
     
     func connect(completion: (Result<String, AuthenticationError>) -> Void)
-    func extendStep()
-    func shrinkStep()
+    func extendStep(on side: CarStepIdentification.Side)
+    func shrinkStep(on side: CarStepIdentification.Side)
 }
 
 
@@ -35,7 +35,12 @@ class MQTTClientService {
     private var mqttClient: CocoaMQTT?
     private var mqtt5Client: CocoaMQTT5?
     private let clientConfiguration: ClientConfiguration
-
+    
+    struct StepStatus: Codable {
+        var position: CarStepStatus.Position
+        var side: CarStepIdentification.Side
+    }
+    
     init(clientConfiguration: ClientConfiguration) {
         self.clientConfiguration = clientConfiguration
     }
@@ -101,17 +106,18 @@ extension MQTTClientService: StepEngineControlService {
         loginClientAtBroker(for: "", password: "", completion: completion)
     }
     
-    func extendStep() {
-        send(message: createPositionChangeJsonString(position: .open), to: "engine_control")
+    func extendStep(on side: CarStepIdentification.Side) {
+        send(message: createPositionChangeJsonString(side: side, position: .open), to: "engine_control")
     }
     
-    func shrinkStep() {
-        send(message: createPositionChangeJsonString(position: .close), to: "engine_control")
+    func shrinkStep(on side: CarStepIdentification.Side) {
+        send(message: createPositionChangeJsonString(side: side, position: .open), to: "engine_control")
     }
 
-    private func createPositionChangeJsonString(position: StepPosition) -> String {
+    private func createPositionChangeJsonString(side: CarStepIdentification.Side, position: CarStepStatus.Position) -> String {
         let json: [String: Any] = [
             "token": clientConfiguration.userToken,
+            "side": side.rawValue,
             "position": position.rawValue
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
@@ -119,63 +125,63 @@ extension MQTTClientService: StepEngineControlService {
     }
 }
 
-extension MQTTClientService: CocoaMQTT5Delegate {
-    func mqtt5(_ mqtt5: CocoaMQTT5, didConnectAck ack: CocoaMQTTCONNACKReasonCode, connAckData: MqttDecodeConnAck) {
-        print("didConnect")
-        statusDelegate?.didConnectToCar(in: self)
-        mqtt5.subscribe("engine_control_status", qos: .qos1)
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishMessage message: CocoaMQTT5Message, id: UInt16) {
-        print("didPublishMessage")
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishAck id: UInt16, pubAckData: MqttDecodePubAck) {
-         
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishRec id: UInt16, pubRecData: MqttDecodePubRec) {
-         
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveMessage message: CocoaMQTT5Message, id: UInt16, publishData: MqttDecodePublish) {
-        guard let message = message.string else { return }
-        statusDelegate?.didReceive(message: message, in: self)
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didSubscribeTopics success: NSDictionary, failed: [String], subAckData: MqttDecodeSubAck) {
-        print("didSubscribeTopics")
-
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didUnsubscribeTopics topics: [String], UnsubAckData: MqttDecodeUnsubAck) {
-        print("didUnsubscribeTopics")
-
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveDisconnectReasonCode reasonCode: CocoaMQTTDISCONNECTReasonCode) {
-        print("didReceiveDisconnectReasonCode: \(reasonCode)")
-    }
-    
-    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveAuthReasonCode reasonCode: CocoaMQTTAUTHReasonCode) {
-         
-    }
-    
-    func mqtt5DidPing(_ mqtt5: CocoaMQTT5) {
-        print("didPong")
-    }
-    
-    func mqtt5DidReceivePong(_ mqtt5: CocoaMQTT5) {
-        print("didRecievePong")
-
-    }
-    
-    func mqtt5DidDisconnect(_ mqtt5: CocoaMQTT5, withError err: Error?) {
-        print("didDisconnect")
-        print(err?.localizedDescription)
-        statusDelegate?.didDisconnectToCar(in: self)
-    }
-}
+//extension MQTTClientService: CocoaMQTT5Delegate {
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didConnectAck ack: CocoaMQTTCONNACKReasonCode, connAckData: MqttDecodeConnAck) {
+//        print("didConnect")
+//        statusDelegate?.didConnectToCar(in: self)
+//        mqtt5.subscribe("engine_control_status", qos: .qos1)
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishMessage message: CocoaMQTT5Message, id: UInt16) {
+//        print("didPublishMessage")
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishAck id: UInt16, pubAckData: MqttDecodePubAck) {
+//
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishRec id: UInt16, pubRecData: MqttDecodePubRec) {
+//
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveMessage message: CocoaMQTT5Message, id: UInt16, publishData: MqttDecodePublish) {
+//        guard let message = message.string else { return }
+//        statusDelegate?.didReceive(message: message, in: self)
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didSubscribeTopics success: NSDictionary, failed: [String], subAckData: MqttDecodeSubAck) {
+//        print("didSubscribeTopics")
+//
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didUnsubscribeTopics topics: [String], UnsubAckData: MqttDecodeUnsubAck) {
+//        print("didUnsubscribeTopics")
+//
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveDisconnectReasonCode reasonCode: CocoaMQTTDISCONNECTReasonCode) {
+//        print("didReceiveDisconnectReasonCode: \(reasonCode)")
+//    }
+//
+//    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveAuthReasonCode reasonCode: CocoaMQTTAUTHReasonCode) {
+//
+//    }
+//
+//    func mqtt5DidPing(_ mqtt5: CocoaMQTT5) {
+//        print("didPong")
+//    }
+//
+//    func mqtt5DidReceivePong(_ mqtt5: CocoaMQTT5) {
+//        print("didRecievePong")
+//
+//    }
+//
+//    func mqtt5DidDisconnect(_ mqtt5: CocoaMQTT5, withError err: Error?) {
+//        print("didDisconnect")
+//        print(err?.localizedDescription)
+//        statusDelegate?.didDisconnectToCar(in: self)
+//    }
+//}
 
 extension MQTTClientService: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
@@ -216,7 +222,21 @@ extension MQTTClientService: CocoaMQTTDelegate {
     
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
         guard let message = message.string else { return }
-        statusDelegate?.didReceive(message: message, in: self)
+        
+        let stepStatus: [StepStatus]? = try? JSONDecoder().decode([StepStatus].self, from: message.data(using: .utf8)!)
+        
+        guard let stepStatus = stepStatus else { return }
+
+        
+        let carStepStatus: [CarStepStatus] = stepStatus.compactMap { mqttStatus in
+            if let step = clientConfiguration.carIdentification.steps.first(where: { step in
+                mqttStatus.side == step.side
+            }){
+                return CarStepStatus(stepIdentification: step, position: mqttStatus.position)
+            }
+            return nil
+        }
+        statusDelegate?.didReceive(stepStatus: carStepStatus, in: self)
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {

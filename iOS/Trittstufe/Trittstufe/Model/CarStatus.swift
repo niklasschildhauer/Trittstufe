@@ -14,11 +14,17 @@ struct CarStatus {
     var proximity: CLProximity = .near
     var meters: Double = 2.0
     var connectedToCar: Bool = true
+    let stepStatus: [CarStepStatus]
+    
+    init(car: CarIdentification) {
+        self.car = car
+        stepStatus = car.steps.map {CarStepStatus(stepIdentification: $0) }
+    }
     
     enum state {
         case notConnected
         case inLocalization(proximity: CLProximity, description: String)
-        case localized(atCarPosition: CarPosition)
+        case localizedStep(stepStatus: CarStepStatus)
     }
     
     var distanceDescription: String {
@@ -44,4 +50,16 @@ struct CarStatus {
     var showOpenButton: Bool {
         proximity == .unknown ? false : true
     }
+}
+
+
+struct CarStepStatus {
+    enum Position: String, Codable {
+        case open
+        case close
+        case unknown
+    }
+    
+    let stepIdentification: CarStepIdentification
+    var position: Position = .unknown
 }

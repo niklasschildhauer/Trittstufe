@@ -64,7 +64,6 @@
 		85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775927F87840004500D9 /* HomeViewController.swift */; };
 		85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D6775A27F87840004500D9 /* HomeViewController.xib */; };
 		85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6775D27F87E34004500D9 /* MQTTClientService.swift */; };
-		85E8BD56282A5C1C0037F040 /* StepPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8BD55282A5C1C0037F040 /* StepPosition.swift */; };
 		85E99BC2283E733A00532EA3 /* CarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E99BC1283E733A00532EA3 /* CarHeaderView.swift */; };
 		85E99BC4283E735500532EA3 /* CarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC3283E735500532EA3 /* CarHeaderView.xib */; };
 		85E99BCE283E774E00532EA3 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E99BC5283E774D00532EA3 /* Inter-ExtraBold.ttf */; };
@@ -168,7 +167,6 @@
 		85D6775927F87840004500D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		85D6775A27F87840004500D9 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		85D6775D27F87E34004500D9 /* MQTTClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTClientService.swift; sourceTree = "<group>"; };
-		85E8BD55282A5C1C0037F040 /* StepPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPosition.swift; sourceTree = "<group>"; };
 		85E99BC1283E733A00532EA3 /* CarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarHeaderView.swift; sourceTree = "<group>"; };
 		85E99BC3283E735500532EA3 /* CarHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarHeaderView.xib; sourceTree = "<group>"; };
 		85E99BC5283E774D00532EA3 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -467,7 +465,6 @@
 				85E99BE3283F97CE00532EA3 /* DummyBackend */,
 				854E9BE92802EECB0005546B /* SetupStage.swift */,
 				85242A6C28084BE9004FC32C /* ClientConfiguration.swift */,
-				85E8BD55282A5C1C0037F040 /* StepPosition.swift */,
 				85E99BDF283F964800532EA3 /* CarIdentification.swift */,
 				85E99BE1283F97AF00532EA3 /* CarStatus.swift */,
 			);
@@ -783,7 +780,6 @@
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85E99BDE283F8FEB00532EA3 /* StepStatusView.swift in Sources */,
 				85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */,
-				85E8BD56282A5C1C0037F040 /* StepPosition.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
 				854E9C04280370A90005546B /* UserDefaults.swift in Sources */,
 				85242A6B2806DCE6004FC32C /* AuthenticationService.swift in Sources */,

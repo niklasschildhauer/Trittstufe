@@ -12,6 +12,16 @@ struct CarIdentification {
     let portNumber: UInt16
     let publicKey: String
     let model: String
-    let vin: String
-    let beaconId: UUID
+    let steps: [CarStepIdentification]
+}
+
+struct CarStepIdentification: Codable {
+    enum Side: String, Codable {
+        case left
+        case right
+    }
+    
+    let beaconId: String // = UUID(uuidString: "05c13100-102b-42cf-babb-ace7dd99c4e3")!
+    let nfcTokenId: String
+    let side: Side
 }
