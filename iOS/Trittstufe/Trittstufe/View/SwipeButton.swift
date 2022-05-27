@@ -14,10 +14,10 @@ protocol SwipeButtonDelegate {
 
 class SwipeButton: NibLoadingView {
     private let buttonWidth: CGFloat = 80
-    private var deactivatePosition: CGFloat {
-        view.frame.width  - buttonWidth/2 - 6
+    private var lockedPosition: CGFloat {
+        view.frame.width - buttonWidth/2 - 6
     }
-    private var activatePosition: CGFloat {
+    private var unlockedPosition: CGFloat {
         buttonWidth/2
     }
     private let tolerance: CGFloat = 15.0
@@ -28,33 +28,20 @@ class SwipeButton: NibLoadingView {
     @IBOutlet weak var dragViewLeadingAnchor: NSLayoutConstraint!
     var delegate: SwipeButtonDelegate?
     var initialCenter = CGPoint()
-    var buttonState: ButtonState = .deactivated {
+    var stepStatus: CarStepStatus = .init(side: .left, position: .unknown) {
         didSet {
-            if oldValue != buttonState {
-                setNewPosition(buttonState: buttonState)
+            if oldValue != stepStatus {
+                reload()
             }
         }
     }
-    var activeConfiguration: Configuration? { 
-        didSet {
-            reloadConfiguration()
-        }
-    }
-    var deactiveConfiguration: Configuration? {
-        didSet {
-            reloadConfiguration()
-        }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        reload()
     }
 
-    enum ButtonState {
-        case activated
-        case deactivated
-    }
-    
-    struct Configuration {
-        let label: String
-        let icon: UIImage
-    }
     
     @IBAction func panPiece(_ gestureRecognizer : UIPanGestureRecognizer) {
         guard gestureRecognizer.view != nil else {return}
@@ -69,12 +56,12 @@ class SwipeButton: NibLoadingView {
         case .changed:
             var newCenter = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y)
             
-            if newCenter.x < activatePosition {
-                newCenter.x = activatePosition
+            if newCenter.x < unlockedPosition {
+                newCenter.x = unlockedPosition
             }
             
-            if newCenter.x > deactivatePosition {
-                newCenter.x = deactivatePosition
+            if newCenter.x > lockedPosition {
+                newCenter.x = lockedPosition
             }
             
             piece.center = newCenter
@@ -82,25 +69,27 @@ class SwipeButton: NibLoadingView {
             let currentCenter = CGPoint(x: initialCenter.x + translation.x, y: initialCenter.y)
             let generator = UINotificationFeedbackGenerator()
 
-            switch buttonState {
-            case .deactivated:
-                if currentCenter.x >= (deactivatePosition - tolerance) {
-                    buttonState = .activated
+            switch stepStatus.position {
+            case .close:
+                if currentCenter.x >= (lockedPosition - tolerance) {
+                    stepStatus.position = .open
                     delegate?.didActivate(in: self)
-                    initialCenter = CGPoint(x: activatePosition, y: initialCenter.y)
+                    initialCenter = CGPoint(x: unlockedPosition, y: initialCenter.y)
                     generator.notificationOccurred(.success)
 
                     return
                 }
-            case .activated:
-                if currentCenter.x <= (activatePosition + tolerance) {
-                    buttonState = .deactivated
+            case .open:
+                if currentCenter.x <= (unlockedPosition + tolerance) {
+                    stepStatus.position = .close
                     delegate?.didDeactivate(in: self)
-                    initialCenter = CGPoint(x: deactivatePosition, y: initialCenter.y)
+                    initialCenter = CGPoint(x: lockedPosition, y: initialCenter.y)
                     generator.notificationOccurred(.error)
                     
                     return
                 }
+            case .unknown:
+                break
             }
             
             if piece.center != self.initialCenter {
@@ -113,46 +102,42 @@ class SwipeButton: NibLoadingView {
         }
     }
     
-    private func setNewPosition(buttonState: ButtonState) {
-        switch buttonState {
-        case .deactivated:
-            guard let activeConfiguration = activeConfiguration else {
-                return
-            }
-            set(configuration: activeConfiguration)
-            dragViewLeadingAnchor.constant = 0
-
-
-        case .activated:
-            guard let deactiveConfiguration = deactiveConfiguration else {
-                return
-            }
-            set(configuration: deactiveConfiguration)
-            dragViewLeadingAnchor.constant = deactivatePosition - buttonWidth/2
-        }
-    }
+//    private func setNewPosition(stepPosition: CarStepStatus.Position) {
+//        switch stepPosition {
+//        case .open:
+//            reload()
+//            dragViewLeadingAnchor.constant = 0
+//            isHidden = false
+//        case .close:
+//            reload()
+//            dragViewLeadingAnchor.constant = lockedPosition - buttonWidth/2
+//            isHidden = false
+//        case .unknown:
+//            isHidden = true
+//        }
+//    }
     
-    private func reloadConfiguration() {
-        switch buttonState {
-        case .activated:
-            guard let deactiveConfiguration = deactiveConfiguration else {
-                return
-            }
-            set(configuration: deactiveConfiguration)
-        case .deactivated:
-            guard let activeConfiguration = activeConfiguration else {
-                return
-            }
-            set(configuration: activeConfiguration)
-        }
-    }
-    
-    private func set(configuration: Configuration) {
+    private func reload() {
         UIView.transition(with: self.iconImageView,
                           duration: 0.5,
                           options: .transitionCrossDissolve,
                           animations: {
-            self.iconImageView.image = configuration.icon
+            switch self.stepStatus.position  {
+            case .close:
+                self.dragViewLeadingAnchor.constant = 0
+
+                self.iconImageView.image = UIImage(systemName: "lock")
+                self.label.text = "\(self.stepStatus.side.rawValue) Treppe ausfahren"
+            case .open:
+                self.dragViewLeadingAnchor.constant = self.lockedPosition - self.buttonWidth/2
+
+                self.iconImageView.image = UIImage(systemName: "lock.open")
+                self.label.text = "\(self.stepStatus.side.rawValue) Treppe einfahren"
+            case .unknown:
+                self.label.text = ""
+                self.iconImageView.image = nil
+            }
         })
+       
     }
 }

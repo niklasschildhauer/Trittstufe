@@ -26,6 +26,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oH-9W-pAT" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
                             <rect key="frame" x="3" y="3" width="408" height="112"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRr-4s-1Wr">
+                                    <rect key="frame" x="204" y="56" width="0.0" height="0.0"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-ab-Oe9" customClass="RoundedCornerView" customModule="Trittstufe" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="16" width="80" height="80"/>
                                     <subviews>
@@ -54,12 +60,6 @@
                                         <outletCollection property="gestureRecognizers" destination="0LG-rv-oKt" appends="YES" id="50D-4J-SEt"/>
                                     </connections>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRr-4s-1Wr">
-                                    <rect key="frame" x="204" y="56" width="0.0" height="0.0"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>

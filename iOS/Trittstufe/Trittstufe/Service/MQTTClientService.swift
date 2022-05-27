@@ -8,11 +8,6 @@
 import Foundation
 import CocoaMQTT
 
-protocol MQTTClientServiceAuthenticationDelegate: AnyObject {
-//    func didRegisterForTopic(in service: MQTTClientService)
-//    func didLogoutAtBroker(in service: MQTTClientService)
-}
-
 protocol StepEngineControlServiceDelegate: AnyObject {
     func didReceive(stepStatus: [CarStepStatus], in service: StepEngineControlService)
     func didConnectToCar(in service: StepEngineControlService)
@@ -29,18 +24,12 @@ protocol StepEngineControlService {
 
 
 class MQTTClientService {
-    var auhtenticationDelegate: MQTTClientServiceAuthenticationDelegate?
     var statusDelegate: StepEngineControlServiceDelegate?
     
     private var mqttClient: CocoaMQTT?
     private var mqtt5Client: CocoaMQTT5?
     private let clientConfiguration: ClientConfiguration
-    
-    struct StepStatus: Codable {
-        var position: CarStepStatus.Position
-        var side: CarStepIdentification.Side
-    }
-    
+
     init(clientConfiguration: ClientConfiguration) {
         self.clientConfiguration = clientConfiguration
     }
@@ -51,9 +40,6 @@ class MQTTClientService {
         let client = CocoaMQTT(clientID: clientID,
                                host: clientConfiguration.carIdentification.ipAdress,
                                port: clientConfiguration.carIdentification.portNumber)
-//        client.username = clientConfiguration.clientCredentials.accountName
-//        client.password = clientConfiguration.clientCredentials.password
-//        client.willMessage = CocoaMQTTMessage(topic: "", string: "dieout")
         client.keepAlive = 60
         client.delegate = self
         //client.autoReconnect = true
@@ -66,30 +52,6 @@ class MQTTClientService {
         } else {
             completion(.failure(.serverError))
         }
-        
-//        let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
-//        let mqtt5 = CocoaMQTT5(clientID: clientID, host: "localhost", port: 1883)
-//
-//        let connectProperties = MqttConnectProperties()
-//        connectProperties.topicAliasMaximum = 0
-//        connectProperties.sessionExpiryInterval = 0
-//        //connectProperties.receiveMaximum = 100
-//        //connectProperties.maximumPacketSize = 500
-//        mqtt5.connectProperties = connectProperties
-//
-//        mqtt5.username = "test"
-//        mqtt5.password = "public"
-////        mqtt5.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
-//        mqtt5.keepAlive = 60
-//        mqtt5.delegate = self
-//        let success = mqtt5.connect()
-//
-//        if success {
-//           mqtt5Client = mqtt5
-//           completion(.success("Das ist eine ClientID"))
-//       } else {
-//           completion(.failure(.serverError))
-//       }
     }
     
     private func send(message: String, to topic: String) {
@@ -125,63 +87,6 @@ extension MQTTClientService: StepEngineControlService {
     }
 }
 
-//extension MQTTClientService: CocoaMQTT5Delegate {
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didConnectAck ack: CocoaMQTTCONNACKReasonCode, connAckData: MqttDecodeConnAck) {
-//        print("didConnect")
-//        statusDelegate?.didConnectToCar(in: self)
-//        mqtt5.subscribe("engine_control_status", qos: .qos1)
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishMessage message: CocoaMQTT5Message, id: UInt16) {
-//        print("didPublishMessage")
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishAck id: UInt16, pubAckData: MqttDecodePubAck) {
-//
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didPublishRec id: UInt16, pubRecData: MqttDecodePubRec) {
-//
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveMessage message: CocoaMQTT5Message, id: UInt16, publishData: MqttDecodePublish) {
-//        guard let message = message.string else { return }
-//        statusDelegate?.didReceive(message: message, in: self)
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didSubscribeTopics success: NSDictionary, failed: [String], subAckData: MqttDecodeSubAck) {
-//        print("didSubscribeTopics")
-//
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didUnsubscribeTopics topics: [String], UnsubAckData: MqttDecodeUnsubAck) {
-//        print("didUnsubscribeTopics")
-//
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveDisconnectReasonCode reasonCode: CocoaMQTTDISCONNECTReasonCode) {
-//        print("didReceiveDisconnectReasonCode: \(reasonCode)")
-//    }
-//
-//    func mqtt5(_ mqtt5: CocoaMQTT5, didReceiveAuthReasonCode reasonCode: CocoaMQTTAUTHReasonCode) {
-//
-//    }
-//
-//    func mqtt5DidPing(_ mqtt5: CocoaMQTT5) {
-//        print("didPong")
-//    }
-//
-//    func mqtt5DidReceivePong(_ mqtt5: CocoaMQTT5) {
-//        print("didRecievePong")
-//
-//    }
-//
-//    func mqtt5DidDisconnect(_ mqtt5: CocoaMQTT5, withError err: Error?) {
-//        print("didDisconnect")
-//        print(err?.localizedDescription)
-//        statusDelegate?.didDisconnectToCar(in: self)
-//    }
-//}
 
 extension MQTTClientService: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
@@ -223,19 +128,10 @@ extension MQTTClientService: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
         guard let message = message.string else { return }
         
-        let stepStatus: [StepStatus]? = try? JSONDecoder().decode([StepStatus].self, from: message.data(using: .utf8)!)
+        let carStepStatus: [CarStepStatus]? = try? JSONDecoder().decode([CarStepStatus].self, from: message.data(using: .utf8)!)
         
-        guard let stepStatus = stepStatus else { return }
+        guard let carStepStatus = carStepStatus else { return }
 
-        
-        let carStepStatus: [CarStepStatus] = stepStatus.compactMap { mqttStatus in
-            if let step = clientConfiguration.carIdentification.steps.first(where: { step in
-                mqttStatus.side == step.side
-            }){
-                return CarStepStatus(stepIdentification: step, position: mqttStatus.position)
-            }
-            return nil
-        }
         statusDelegate?.didReceive(stepStatus: carStepStatus, in: self)
     }
     

@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var carHeaderView: CarHeaderView!
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var distanceView: DistanceView!
+    @IBOutlet weak var stepStatusView: StepStatusView!
     
     var presenter: HomePresenter! {
         didSet {
@@ -96,7 +97,8 @@ extension HomeViewController: HomeView {
     }
     
     func display(stepStatusView viewModel: StepStatusView.ViewModel?) {
-        //TODO
+        stepStatusView.viewModel = viewModel
+        stepStatusView.swipeButtonDelegate = self
     }
     
     func display(reconnectButton: Bool) {

@@ -57,7 +57,7 @@
     </objects>
     <resources>
         <image name="distance-background" width="589" height="725"/>
-        <image name="distance-car-image" width="96" height="96"/>
+        <image name="distance-car-image" width="240" height="240"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

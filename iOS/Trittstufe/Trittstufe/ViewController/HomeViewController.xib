@@ -16,6 +16,7 @@
                 <outlet property="distanceView" destination="ND4-mT-DfP" id="qd4-jp-jvz"/>
                 <outlet property="informationView" destination="7AU-lB-qXL" id="IMd-Pr-RWx"/>
                 <outlet property="retryButton" destination="SVL-lb-Lg1" id="FNk-xH-3fr"/>
+                <outlet property="stepStatusView" destination="7x5-Bm-0gt" id="c6p-JA-jUb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,7 +51,11 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="7AU-lB-qXL" customClass="InformationView" customModule="Trittstufe" customModuleProvider="target">
-                    <rect key="frame" x="16" y="398" width="288" height="40"/>
+                    <rect key="frame" x="16" y="394.5" width="288" height="43.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-Bm-0gt" customClass="StepStatusView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="87" width="320" height="481"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHR-Dv-uj8">
@@ -70,9 +75,12 @@
                 <constraint firstItem="yHR-Dv-uj8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8kx-G8-Dm9"/>
                 <constraint firstItem="ND4-mT-DfP" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="8zz-oR-k96"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7AU-lB-qXL" secondAttribute="bottom" constant="130" id="IdL-Le-Clo"/>
+                <constraint firstItem="7x5-Bm-0gt" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="LD0-H8-tyU"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Pch-i3-nuN"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="UW2-g1-lEM"/>
                 <constraint firstItem="3E4-po-4to" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Wt1-9s-1x7"/>
+                <constraint firstItem="7x5-Bm-0gt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XkA-5g-uwy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7x5-Bm-0gt" secondAttribute="trailing" id="bVV-pV-wTQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ND4-mT-DfP" secondAttribute="trailing" id="eqy-j4-rSD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ND4-mT-DfP" secondAttribute="bottom" id="gMv-Tm-lOy"/>
                 <constraint firstItem="7AU-lB-qXL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pPx-H8-tAC"/>
@@ -81,6 +89,7 @@
                 <constraint firstItem="ND4-mT-DfP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wmY-1U-LL6"/>
                 <constraint firstItem="SVL-lb-Lg1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wr4-GB-Wzz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3LC-WR-kgy" secondAttribute="trailing" constant="16" id="xVa-9e-MiG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7x5-Bm-0gt" secondAttribute="bottom" id="z5t-fU-hwm"/>
                 <constraint firstItem="SVL-lb-Lg1" firstAttribute="top" secondItem="3LC-WR-kgy" secondAttribute="bottom" constant="38" id="zXn-04-wwn"/>
             </constraints>
             <point key="canvasLocation" x="132" y="131"/>

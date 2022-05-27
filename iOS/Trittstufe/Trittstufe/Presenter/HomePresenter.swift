@@ -57,8 +57,11 @@ class HomePresenter: Presenter {
         updateView()
         
         //TODO:
-        view?.display(distanceView: .init(distance: .immediate, image: UIImage(named: "distance-car-image")!), animated: false)
-        view?.display(actionButton: .filled(title: "Beteis am Fahrzeug?", image: UIImage(systemName: "location")!, size: .medium))
+        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .right, position: .open), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .open)]))
+//        view?.display(distanceView: .init(distance: .immediate, image: UIImage(named: "distance-car-image")!), animated: false)
+//        view?.display(actionButton: .filled(title: "Beteis am Fahrzeug?", image: UIImage(systemName: "location")!, size: .medium))
+        view?.display(actionButton: .filled(title: "Andere Seite", image: UIImage(systemName: "location")!, size: .medium))
+
     }
     
     private func startLocationService() {
@@ -78,10 +81,12 @@ class HomePresenter: Presenter {
     
     func extendStep(on side: CarStepIdentification.Side) {
         stepEngineControlService.extendStep(on: side)
+        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .right, position: .open), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .open)]))
     }
     
     func shrinkStep(on side: CarStepIdentification.Side) {
         stepEngineControlService.shrinkStep(on: side)
+        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .right, position: .close), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .close)]))
     }
     
     func logout() {
@@ -91,8 +96,11 @@ class HomePresenter: Presenter {
     }
     
     func didTapActionButton() {
-        view?.display(distanceView: .init(distance: .near, image: UIImage(named: "distance-car-image")!), animated: true)
+        //view?.display(distanceView: .init(distance: .near, image: UIImage(named: "distance-car-image")!), animated: true)
+        view?.display(stepStatusView: nil)
         view?.display(informationView: nil)
+        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .left, position: .close), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .open)]))
+
     }
 
     private func updateView() {

@@ -42,6 +42,7 @@
 		8589766A2813DF5C001E264C /* SetupStageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858976692813DF5C001E264C /* SetupStageService.swift */; };
 		8589766C28153B87001E264C /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8589766B28153B87001E264C /* SwipeButton.swift */; };
 		8589766E28153BD4001E264C /* SwipeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8589766D28153BD4001E264C /* SwipeButton.xib */; };
+		85A13CAF2840D53300ECF271 /* StepStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A13CAE2840D53300ECF271 /* StepStatusView.xib */; };
 		85C9733A2810282200D855D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C9730B2810282200D855D4 /* Color.xcassets */; };
 		85C9733B2810282200D855D4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9730C2810282200D855D4 /* Color.swift */; };
 		85C9735F2810282200D855D4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973332810282200D855D4 /* Font.swift */; };
@@ -143,6 +144,7 @@
 		858976692813DF5C001E264C /* SetupStageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupStageService.swift; sourceTree = "<group>"; };
 		8589766B28153B87001E264C /* SwipeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
 		8589766D28153BD4001E264C /* SwipeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeButton.xib; sourceTree = "<group>"; };
+		85A13CAE2840D53300ECF271 /* StepStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepStatusView.xib; sourceTree = "<group>"; };
 		85C9730B2810282200D855D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		85C9730C2810282200D855D4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		85C973332810282200D855D4 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				85E99BDB283F8FDC00532EA3 /* DistanceView.swift */,
 				85E99BDD283F8FEB00532EA3 /* StepStatusView.swift */,
 				85E99BE4283FB42C00532EA3 /* DistanceView.xib */,
+				85A13CAE2840D53300ECF271 /* StepStatusView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A13CAF2840D53300ECF271 /* StepStatusView.xib in Resources */,
 				8582BE50280EA257005BC299 /* LabelTextFieldView.xib in Resources */,
 				85F459C82806B122003C1C71 /* QRCodeScannerViewController.xib in Resources */,
 				85E99BD2283E774E00532EA3 /* Inter-Bold.ttf in Resources */,

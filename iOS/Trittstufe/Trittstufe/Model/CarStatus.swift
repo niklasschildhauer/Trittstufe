@@ -18,7 +18,7 @@ struct CarStatus {
     
     init(car: CarIdentification) {
         self.car = car
-        stepStatus = car.steps.map {CarStepStatus(stepIdentification: $0) }
+        stepStatus = car.steps.map {CarStepStatus(side: $0.side) }
     }
     
     enum state {
@@ -53,13 +53,13 @@ struct CarStatus {
 }
 
 
-struct CarStepStatus {
+struct CarStepStatus: Codable, Equatable {
     enum Position: String, Codable {
         case open
         case close
         case unknown
     }
     
-    let stepIdentification: CarStepIdentification
+    let side: CarStepIdentification.Side
     var position: Position = .unknown
 }
