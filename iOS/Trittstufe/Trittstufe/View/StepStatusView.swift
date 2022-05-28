@@ -32,12 +32,12 @@ class StepStatusView: NibLoadingView {
     var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else {
-                isHidden = true
+                fadeOut()
                 return
             }
 
             reload(with: viewModel)
-            isHidden = false
+            fadeIn()
         }
     }
     

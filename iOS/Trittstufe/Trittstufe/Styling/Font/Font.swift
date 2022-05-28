@@ -110,13 +110,13 @@ enum Font {
         switch textStyle {
         case .body:
             textStyleWeight = .regular
-            fontSize = 16
+            fontSize = 15
         case .largeTitle:
             textStyleWeight = .bold
             fontSize = 34
         case .title:
             textStyleWeight = .semiBold
-            fontSize = 28
+            fontSize = 24
         case .caption:
             textStyleWeight = .regular
             fontSize = 11

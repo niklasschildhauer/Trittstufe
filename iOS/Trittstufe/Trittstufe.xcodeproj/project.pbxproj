@@ -44,6 +44,7 @@
 		8589766E28153BD4001E264C /* SwipeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8589766D28153BD4001E264C /* SwipeButton.xib */; };
 		85A13CAF2840D53300ECF271 /* StepStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A13CAE2840D53300ECF271 /* StepStatusView.xib */; };
 		85B1B67A284241E400B63038 /* CarStepStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1B679284241E400B63038 /* CarStepStatus.swift */; };
+		85B1B67C2842AF9700B63038 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1B67B2842AF9700B63038 /* UIView+Extension.swift */; };
 		85C9733A2810282200D855D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C9730B2810282200D855D4 /* Color.xcassets */; };
 		85C9733B2810282200D855D4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9730C2810282200D855D4 /* Color.swift */; };
 		85C9735F2810282200D855D4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973332810282200D855D4 /* Font.swift */; };
@@ -147,6 +148,7 @@
 		8589766D28153BD4001E264C /* SwipeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeButton.xib; sourceTree = "<group>"; };
 		85A13CAE2840D53300ECF271 /* StepStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepStatusView.xib; sourceTree = "<group>"; };
 		85B1B679284241E400B63038 /* CarStepStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarStepStatus.swift; sourceTree = "<group>"; };
+		85B1B67B2842AF9700B63038 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		85C9730B2810282200D855D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		85C9730C2810282200D855D4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		85C973332810282200D855D4 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -292,11 +294,11 @@
 				8589766D28153BD4001E264C /* SwipeButton.xib */,
 				85E99BC1283E733A00532EA3 /* CarHeaderView.swift */,
 				85E99BC3283E735500532EA3 /* CarHeaderView.xib */,
-				85E99BD7283F83F600532EA3 /* InformationView.xib */,
 				85E99BD9283F840000532EA3 /* InformationView.swift */,
+				85E99BD7283F83F600532EA3 /* InformationView.xib */,
 				85E99BDB283F8FDC00532EA3 /* DistanceView.swift */,
-				85E99BDD283F8FEB00532EA3 /* StepStatusView.swift */,
 				85E99BE4283FB42C00532EA3 /* DistanceView.xib */,
+				85E99BDD283F8FEB00532EA3 /* StepStatusView.swift */,
 				85A13CAE2840D53300ECF271 /* StepStatusView.xib */,
 			);
 			path = View;
@@ -450,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				854E9BF5280359640005546B /* DispatchQueue+Extension.swift */,
+				85B1B67B2842AF9700B63038 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				85C9736728102AD500D855D4 /* GlobalAppearance.swift in Sources */,
 				85826B8F2809E04D005BEEF6 /* NetworkService.swift in Sources */,
 				85D190F028229CF4004D1506 /* SignatureHelper.swift in Sources */,
+				85B1B67C2842AF9700B63038 /* UIView+Extension.swift in Sources */,
 				854E9BEA2802EECB0005546B /* SetupStage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -991,9 +995,15 @@
 				DEVELOPMENT_TEAM = YP55X74PC3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trittstufe/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Scan the qr code";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Identify yourself";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need this!";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need this!";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need this!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1020,9 +1030,15 @@
 				DEVELOPMENT_TEAM = YP55X74PC3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trittstufe/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Scan the qr code";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Identify yourself";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need this!";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need this!";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need this!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

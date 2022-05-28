@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,9 +32,16 @@
                                 <constraint firstAttribute="width" constant="140" id="5UZ-04-GAR"/>
                             </constraints>
                         </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-outlines" translatesAutoresizingMaskIntoConstraints="NO" id="btw-SX-2kj">
+                            <rect key="frame" x="137" y="211" width="140" height="180"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="140" id="g4F-uR-ovC"/>
+                                <constraint firstAttribute="height" constant="180" id="xUo-v2-xvZ"/>
+                            </constraints>
+                        </imageView>
                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wgx-fd-ty6">
                             <rect key="frame" x="297" y="308.5" width="40" height="35"/>
-                            <color key="tintColor" systemColor="labelColor"/>
+                            <color key="tintColor" name="black"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="RJh-Mg-fvF"/>
                                 <constraint firstAttribute="width" constant="40" id="Ye5-YH-RZo"/>
@@ -41,7 +49,7 @@
                         </imageView>
                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Pww-Ea-hyl">
                             <rect key="frame" x="77" y="308.5" width="40" height="35"/>
-                            <color key="tintColor" systemColor="labelColor"/>
+                            <color key="tintColor" name="black"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="RQ0-bU-i2i"/>
                                 <constraint firstAttribute="height" constant="40" id="aOu-Rb-pVZ"/>
@@ -52,8 +60,10 @@
                     <constraints>
                         <constraint firstItem="wgx-fd-ty6" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" constant="25" id="1oq-my-D1m"/>
                         <constraint firstItem="wgx-fd-ty6" firstAttribute="leading" secondItem="c6D-fu-x09" secondAttribute="trailing" constant="20" id="DzT-5w-Q5t"/>
+                        <constraint firstItem="btw-SX-2kj" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" id="Fke-NR-68g"/>
                         <constraint firstItem="c6D-fu-x09" firstAttribute="leading" secondItem="Pww-Ea-hyl" secondAttribute="trailing" constant="20" id="Q4V-Kt-HJS"/>
                         <constraint firstItem="c6D-fu-x09" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" id="dvk-C5-Nt4"/>
+                        <constraint firstItem="btw-SX-2kj" firstAttribute="centerX" secondItem="kp1-2r-LzD" secondAttribute="centerX" id="nUB-En-ULB"/>
                         <constraint firstItem="c6D-fu-x09" firstAttribute="centerX" secondItem="kp1-2r-LzD" secondAttribute="centerX" id="qPj-31-hqH"/>
                         <constraint firstItem="Pww-Ea-hyl" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" constant="25" id="sP8-I1-ng6"/>
                     </constraints>
@@ -83,10 +93,11 @@
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <image name="car-outlines" width="154" height="185"/>
         <image name="unknown-unknown" width="154" height="185"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="black">
+            <color red="0.050000000000000003" green="0.050000000000000003" blue="0.050000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

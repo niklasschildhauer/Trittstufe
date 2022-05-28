@@ -64,8 +64,8 @@ class CarHeaderView: NibLoadingView {
         yourCarLabel.font = Font.caption
         carNameLabel.font = Font.bodyBold
         
-        locationLabel.font = Font.caption
-        networkStatusLabel.font = Font.caption
+        locationLabel.font = Font.captionBold
+        networkStatusLabel.font = Font.captionBold
     }
     
 }

@@ -32,6 +32,8 @@ struct ButtonStyle {
         attributedString.font = Font.bodyBold
         
         configuration.attributedTitle = attributedString
+        configuration.baseBackgroundColor = Color.black
+        configuration.baseForegroundColor = Color.white
         
         configuration.buttonSize = .large
         configuration.cornerStyle = .dynamic
@@ -49,6 +51,8 @@ struct ButtonStyle {
         configuration.attributedTitle = attributedString
         
         configuration.buttonSize = size
+        configuration.baseBackgroundColor = Color.black
+        configuration.baseForegroundColor = Color.white
     
         configuration.image = image
         configuration.titleAlignment = .leading

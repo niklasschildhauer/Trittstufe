@@ -46,11 +46,7 @@ class HomeViewController: UIViewController {
         
         navigationItem.leftItemsSupplementBackButton = true
         
-        let logoutButton = UIButton()
-        logoutButton.configuration = ButtonStyle.filled(title: "Abmelden", image: UIImage(systemName: "figure.wave")!)
-        logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
-        
-        let barButtonItem = UIBarButtonItem(customView: logoutButton)
+        let barButtonItem =  UIBarButtonItem(title: NSLocalizedString("HomeViewController_LogoutButton", comment: ""), style: .plain, target: self, action: #selector(didTapLogoutButton))
         navigationItem.setRightBarButton(barButtonItem, animated: false)
     }
     
@@ -99,7 +95,7 @@ extension HomeViewController: HomeView {
     }
     
     func display(reconnectButton: Bool) {
-        retryButton.isHidden = !reconnectButton
+        reconnectButton ? retryButton.fadeIn() : retryButton.fadeOut()
     }
     
     func display(carHeaderView viewModel: CarHeaderView.ViewModel?) {

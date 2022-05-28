@@ -18,3 +18,6 @@ Alternatively, you can also scan the QR code on the step. This contains all the 
 "HomeViewController_ActionButton_NotConnected" = "Edit configuration";
 "HomeViewController_ActionButton_InLocalization" = "Already on the vehicle?";
 "HomeViewController_ActionButton_ReadyToUnlock" = "Open other side?";
+"HomeViewController_LogoutButton" = "Logout";
+"AuthenticationController_LoginButton" = "Login";
+"ConfigurationController_SubmitButton" = "Confirm";

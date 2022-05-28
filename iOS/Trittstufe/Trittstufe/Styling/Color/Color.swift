@@ -19,8 +19,10 @@ struct Color {
     static var plainWhite: UIColor { UIColor(named: "whiteNoDarkMode", in: Bundle.main, compatibleWith: nil)! }
     static var plainBlack: UIColor { UIColor(named: "blackNoDarkMode", in: Bundle.main, compatibleWith: nil)! }
 
-    static var statusRed: UIColor { UIColor.red }
-    static var statusGreen: UIColor { UIColor.green }
-    static var statusYellow: UIColor { UIColor.yellow }
-
+    static var statusRed: UIColor { UIColor(named: "statusRed", in: Bundle.main, compatibleWith: nil)! }
+    static var statusGreen: UIColor { UIColor(named: "statusGreen", in: Bundle.main, compatibleWith: nil)! }
+    static var statusYellow: UIColor { UIColor(named: "statusYellow", in: Bundle.main, compatibleWith: nil)!}
+    
+    static var black: UIColor { UIColor(named: "black", in: Bundle.main, compatibleWith: nil)! }
+    static var white: UIColor { UIColor(named: "white", in: Bundle.main, compatibleWith: nil)! }
 }
