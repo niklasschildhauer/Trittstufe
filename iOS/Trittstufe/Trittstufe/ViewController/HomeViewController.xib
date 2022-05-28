@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="actionButton" destination="yHR-Dv-uj8" id="krS-iy-3GH"/>
                 <outlet property="carHeaderView" destination="3E4-po-4to" id="4Oz-sq-AbD"/>
+                <outlet property="connectionFailedView" destination="nz9-6a-G1N" id="jMZ-cP-fwX"/>
                 <outlet property="distanceLabel" destination="3LC-WR-kgy" id="pWI-B7-pUw"/>
                 <outlet property="distanceView" destination="ND4-mT-DfP" id="qd4-jp-jvz"/>
                 <outlet property="informationView" destination="7AU-lB-qXL" id="IMd-Pr-RWx"/>
@@ -31,14 +32,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVL-lb-Lg1">
-                    <rect key="frame" x="130.5" y="322" width="59" height="31"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Retry"/>
-                    <connections>
-                        <action selector="didTapRetryButton:" destination="-1" eventType="touchUpInside" id="vkd-rC-x4g"/>
-                    </connections>
-                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E4-po-4to" customClass="CarHeaderView" customModule="Trittstufe" customModuleProvider="target">
                     <rect key="frame" x="16" y="20" width="288" height="67"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,8 +44,47 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="7AU-lB-qXL" customClass="InformationView" customModule="Trittstufe" customModuleProvider="target">
-                    <rect key="frame" x="16" y="394.5" width="288" height="43.5"/>
+                    <rect key="frame" x="16" y="398" width="288" height="40"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nz9-6a-G1N" userLabel="ConnectionFailedView">
+                    <rect key="frame" x="0.0" y="87" width="320" height="311"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFB-vC-XCd">
+                            <rect key="frame" x="100" y="125.5" width="120" height="60"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ItF-ud-9wm">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="58"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="YMW-0g-5Fg"/>
+                                        <constraint firstAttribute="height" constant="60" id="Ywi-98-QZo"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1rJ-Xi-UTk">
+                                    <rect key="frame" x="60" y="1" width="60" height="58.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="MBg-cN-bcy"/>
+                                        <constraint firstAttribute="width" constant="60" id="p2c-wc-VHY"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVL-lb-Lg1">
+                            <rect key="frame" x="93" y="205.5" width="134.5" height="31"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="tinted" title="Erneut verbinden"/>
+                            <connections>
+                                <action selector="didTapRetryButton:" destination="-1" eventType="touchUpInside" id="vkd-rC-x4g"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="SVL-lb-Lg1" firstAttribute="top" secondItem="KFB-vC-XCd" secondAttribute="bottom" constant="20" id="76q-hf-ftF"/>
+                        <constraint firstItem="KFB-vC-XCd" firstAttribute="centerY" secondItem="nz9-6a-G1N" secondAttribute="centerY" id="Xve-Of-qOi"/>
+                        <constraint firstItem="KFB-vC-XCd" firstAttribute="centerX" secondItem="nz9-6a-G1N" secondAttribute="centerX" id="k1P-Kx-mgK"/>
+                        <constraint firstItem="SVL-lb-Lg1" firstAttribute="centerX" secondItem="nz9-6a-G1N" secondAttribute="centerX" id="ouZ-ZO-BHC"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-Bm-0gt" customClass="StepStatusView" customModule="Trittstufe" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="87" width="320" height="481"/>
@@ -66,6 +98,9 @@
                     <color key="tintColor" systemColor="labelColor"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                    <connections>
+                        <action selector="didTapActionButton:" destination="-1" eventType="touchUpInside" id="jjc-IF-uZY"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -79,21 +114,23 @@
                 <constraint firstItem="7x5-Bm-0gt" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="LD0-H8-tyU"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Pch-i3-nuN"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="UW2-g1-lEM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nz9-6a-G1N" secondAttribute="trailing" id="VDu-cs-A6V"/>
                 <constraint firstItem="3E4-po-4to" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Wt1-9s-1x7"/>
                 <constraint firstItem="7x5-Bm-0gt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XkA-5g-uwy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7x5-Bm-0gt" secondAttribute="trailing" id="bVV-pV-wTQ"/>
+                <constraint firstItem="nz9-6a-G1N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eLg-Uz-9dp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ND4-mT-DfP" secondAttribute="trailing" id="eqy-j4-rSD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ND4-mT-DfP" secondAttribute="bottom" id="gMv-Tm-lOy"/>
+                <constraint firstItem="nz9-6a-G1N" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="n6a-iB-Whe"/>
+                <constraint firstItem="7AU-lB-qXL" firstAttribute="top" secondItem="nz9-6a-G1N" secondAttribute="bottom" id="o6Q-6N-9NO"/>
                 <constraint firstItem="7AU-lB-qXL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pPx-H8-tAC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yHR-Dv-uj8" secondAttribute="bottom" constant="43" id="rIK-IW-gwG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7AU-lB-qXL" secondAttribute="trailing" constant="16" id="rPy-vk-xFU"/>
                 <constraint firstItem="ND4-mT-DfP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wmY-1U-LL6"/>
-                <constraint firstItem="SVL-lb-Lg1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wr4-GB-Wzz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3LC-WR-kgy" secondAttribute="trailing" constant="16" id="xVa-9e-MiG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7x5-Bm-0gt" secondAttribute="bottom" id="z5t-fU-hwm"/>
-                <constraint firstItem="SVL-lb-Lg1" firstAttribute="top" secondItem="3LC-WR-kgy" secondAttribute="bottom" constant="38" id="zXn-04-wwn"/>
             </constraints>
-            <point key="canvasLocation" x="132" y="131"/>
+            <point key="canvasLocation" x="131.25" y="130.98591549295776"/>
         </view>
     </objects>
     <designables>
@@ -102,6 +139,8 @@
         </designable>
     </designables>
     <resources>
+        <image name="location.slash" catalog="system" width="128" height="118"/>
+        <image name="wifi.slash" catalog="system" width="128" height="102"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

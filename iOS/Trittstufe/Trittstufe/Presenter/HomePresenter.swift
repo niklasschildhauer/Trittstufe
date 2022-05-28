@@ -12,7 +12,7 @@ import CoreLocation
 protocol HomeView: AnyObject {
     var presenter: HomePresenter! { get set }
     
-    func display(reconnectButton: Bool)
+    func show(reconnectButton: Bool)
     func display(carHeaderView viewModel: CarHeaderView.ViewModel?)
     func display(actionButton viewModel: UIButton.ViewModel?)
     func display(distanceView viewModel: DistanceView.ViewModel?, animated: Bool)
@@ -26,7 +26,7 @@ protocol HomePresenterDelegate: AnyObject {
 }
 
 class HomePresenter: Presenter {
-
+    
     weak var view: HomeView?
     var delegate: HomePresenterDelegate?
     
@@ -40,7 +40,7 @@ class HomePresenter: Presenter {
         self.carStatus = CarStatus(car: carIdentification)
     }
     
-    func reload() {
+    func reloadServices() {
         locationService.statusDelegate = self
         locationService.delegate = self
         
@@ -51,23 +51,14 @@ class HomePresenter: Presenter {
             delegate?.didChangePermissionStatus(in: self)
         }
     }
-
+    
     func viewWillAppear() {
-        reload()
-        updateView()
-        
-        //TODO:
-        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .right, position: .open), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .open)]))
-//        view?.display(distanceView: .init(distance: .immediate, image: UIImage(named: "distance-car-image")!), animated: false)
-//        view?.display(actionButton: .filled(title: "Beteis am Fahrzeug?", image: UIImage(systemName: "location")!, size: .medium))
-        view?.display(actionButton: .filled(title: "Andere Seite", image: UIImage(systemName: "location")!, size: .medium))
-
+        reloadServices()
+        reloadView()
     }
     
     private func startLocationService() {
         locationService.startMonitoring()
-        
-        //view?.display(openButton: false)
     }
     
     private func startEngineControlService() {
@@ -79,42 +70,45 @@ class HomePresenter: Presenter {
         locationService.stopMonitoring()
     }
     
-    func extendStep(on side: CarStepIdentification.Side) {
+    func extendStep() {
+        let side = carStatus.selectedSide.side
         stepEngineControlService.extendStep(on: side)
-        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .right, position: .open), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .open)]))
     }
     
-    func shrinkStep(on side: CarStepIdentification.Side) {
+    func shrinkStep() {
+        let side = carStatus.selectedSide.side
         stepEngineControlService.shrinkStep(on: side)
-        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .right, position: .close), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .close)]))
     }
     
     func logout() {
-        view?.display(distanceView: .init(distance: .far, image: UIImage(named:"distance-car-image")!), animated: true)
-        view?.display(informationView: .init(text: "Bitte gehe näher zum Fahrzeug", image: UIImage(systemName: "location")!))
-//        delegate?.didTapLogout(in: self)
+        delegate?.didTapLogout(in: self)
     }
     
     func didTapActionButton() {
-        //view?.display(distanceView: .init(distance: .near, image: UIImage(named: "distance-car-image")!), animated: true)
-        view?.display(stepStatusView: nil)
-        view?.display(informationView: nil)
-        view?.display(stepStatusView: .init(selectedSideStatus: .init(side: .left, position: .close), currentStatus: [.init(side: .left, position: .close), .init(side: .right, position: .open)]))
+        switch carStatus.currentState {
+        case .notConnected:
+            carStatus.connected = true
+            print("Konfiguration")
+        case .inLocalization:
+            carStatus.selectedSide = (side: .right, forceLocated: false)
 
-    }
+            print("Open NFC Tag")
+        case .readyToUnlock:
+            carStatus.connected = false
+            carStatus.selectedSide = (side: .unknown, forceLocated: false)
 
-    private func updateView() {
-        if carStatus.connectedToCar {
-            //view?.display(retryButton: false)
-            //view?.display(carDistance: status.distanceDescription)
-            //view?.display(openButton: status.showOpenButton)
-        } else {
-            //view?.display(openButton: false)
-            //view?.display(carDistance: "Verbindungsfehler")
-            //view?.display(retryButton: true)
+            print("Open NFC Tag, Switch sides")
         }
-        
+        reloadView()
+    }
+    
+    private func reloadView(animated: Bool = false) {
         view?.display(carHeaderView: carStatus.carHeaderViewModel)
+        view?.display(stepStatusView: carStatus.stepStatusViewModel)
+        view?.display(actionButton: carStatus.actionButtonViewModel)
+        view?.display(informationView: carStatus.informationViewModel)
+        view?.display(distanceView: carStatus.distanceViewModel, animated: animated)
+        view?.show(reconnectButton: carStatus.currentState == .notConnected)
     }
 }
 
@@ -133,32 +127,58 @@ extension HomePresenter: LocationServiceStatusDelegate {
 }
 
 extension HomePresenter: LocationServiceDelegate {
-    func didRangeCar(car: CarIdentification, with proximity: CLProximity, meters: Double) {
-        carStatus.proximity = proximity
-        carStatus.meters = meters
+    func didRangeNothing(in service: LocationService) {
+        guard !carStatus.selectedSide.forceLocated else { return }
+
+        print("Nothing to find")
+        carStatus.distance = (proximity: .unknown, meters: nil, count: 0)
+        carStatus.selectedSide = (side: .unknown, forceLocated: false)
         
-        //TODO: Is called very often!
-        updateView()
+        reloadView()
     }
     
+    func didRangeCar(car: CarIdentification, side: CarStepIdentification.Side, with proximity: CLProximity, meters: Double, in service: LocationService) {
+        guard !carStatus.selectedSide.forceLocated else { return }
+    
+        print("Find: \(car.model), \(side), \(meters)m - \(proximity.rawValue)")
+
+        let distanceCount = carStatus.distance.proximity == proximity ? carStatus.distance.count + 1 : 0
+        carStatus.distance = (proximity: proximity, meters: meters > 0 ? meters : nil, count: distanceCount)
+
+        if proximity != .far && carStatus.distance.count > 3 {
+            carStatus.selectedSide = (side: side, forceLocated: false)
+        }
+        
+        if proximity == .far && carStatus.distance.count > 6 {
+            carStatus.selectedSide = (side: .unknown, forceLocated: false)
+        }
+        
+        reloadView(animated: true)
+    }
+        
     func didFail(with error: String, in service: LocationService) {
+        carStatus.distance = (proximity: .unknown, meters: nil, count: 0)
         print(error)
+
+        reloadView()
     }
 }
 
 extension HomePresenter: StepEngineControlServiceDelegate {
     func didReceive(stepStatus: [CarStepStatus], in service: StepEngineControlService) {
-        print(stepStatus)
+        carStatus.stepStatus = stepStatus
+        
+        reloadView()
     }
     
     func didConnectToCar(in service: StepEngineControlService) {
-        carStatus.connectedToCar = true
-        updateView()
-
+        carStatus.connected = true
+        reloadView()
     }
     
     func didDisconnectToCar(in service: StepEngineControlService) {
-//        status.connectedToCar = false
-        updateView()
+        carStatus.connected = false
+
+        reloadView()
     }
 }

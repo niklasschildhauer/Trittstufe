@@ -10,40 +10,38 @@ import Foundation
 let dummyData: String = """
 {
    "car": {
-     "model":"Rolling Chasis",
+     "model":"Rolling Chassis",
      "ipAdress":"169.254.222.28",
      "port":1883,
      "publicKey":"XWOVfM+MFrs26wdQntzXUjatvN/CJvDQ47sd/LZ1YwQ=",
      "authorizedUsers":[
         {
-           "userToken":"11442322"
+           "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZS5uaWtsYXNzY2hpbGRoYXVlci50cml0dHN0dWZlIiwiaWF0IjoxNjUzNzMyNTc5LCJleHAiOjE3Nzk5NjI5OTMsImF1ZCI6Ind3dy5oZG0tc3R1dHRnYXJ0LmRlIiwic3ViIjoiVXNlciIsImFjY291bnROYW1lIjoiQW5zZ2FyIn0.TbqXgQv7oi3a2p9rQ5pFBGQ_5j_ZkJ4SUhNBhSwmHko"
         },
         {
-           "userToken":"12312322"
+           "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZS5uaWtsYXNzY2hpbGRoYXVlci50cml0dHN0dWZlIiwiaWF0IjoxNjUzNzMyNTc5LCJleHAiOjE3Nzk5NjI5OTMsImF1ZCI6Ind3dy5oZG0tc3R1dHRnYXJ0LmRlIiwic3ViIjoiVXNlciIsImFjY291bnROYW1lIjoiTmlrbGFzIn0.nha5Ptxn-Bv0EtHoZYMe5RFZzqRquDHzYIb8RF1zB9I"
         }
      ],
      "steps": [
         {
-            "beaconId":"05c13100-102b-42cf-babb-ace7dd99c4e3",
-            "nfcTokenId":"unkown",
+            "uid":"05c13100-102b-42cf-babb-ace7dd99c4e3",
             "side":"left"
         },
         {
-            "beaconId":"05c13100-102b-42cf-babb-ace7dd99c4e1",
-            "nfcTokenId":"unkown",
+            "uid":"6C820B8E-324C-4443-BF4E-FBB71EF73004",
             "side":"right"
         },
      ]
     },
    "users":[
       {
-         "accountName":"Niklas",
-         "userToken":"11442322",
+         "accountName":"Ansgar",
+         "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZS5uaWtsYXNzY2hpbGRoYXVlci50cml0dHN0dWZlIiwiaWF0IjoxNjUzNzMyNTc5LCJleHAiOjE3Nzk5NjI5OTMsImF1ZCI6Ind3dy5oZG0tc3R1dHRnYXJ0LmRlIiwic3ViIjoiVXNlciIsImFjY291bnROYW1lIjoiQW5zZ2FyIn0.TbqXgQv7oi3a2p9rQ5pFBGQ_5j_ZkJ4SUhNBhSwmHko",
          "password":"Sonnenblume"
       },
       {
-         "accountName":"Ansgar",
-         "userToken":"12312322",
+         "accountName":"Niklas",
+         "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZS5uaWtsYXNzY2hpbGRoYXVlci50cml0dHN0dWZlIiwiaWF0IjoxNjUzNzMyNTc5LCJleHAiOjE3Nzk5NjI5OTMsImF1ZCI6Ind3dy5oZG0tc3R1dHRnYXJ0LmRlIiwic3ViIjoiVXNlciIsImFjY291bnROYW1lIjoiTmlrbGFzIn0.nha5Ptxn-Bv0EtHoZYMe5RFZzqRquDHzYIb8RF1zB9I",
          "password":"Sonnenblume"
       }
    ]

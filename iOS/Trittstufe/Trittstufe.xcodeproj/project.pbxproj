@@ -43,6 +43,7 @@
 		8589766C28153B87001E264C /* SwipeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8589766B28153B87001E264C /* SwipeButton.swift */; };
 		8589766E28153BD4001E264C /* SwipeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8589766D28153BD4001E264C /* SwipeButton.xib */; };
 		85A13CAF2840D53300ECF271 /* StepStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A13CAE2840D53300ECF271 /* StepStatusView.xib */; };
+		85B1B67A284241E400B63038 /* CarStepStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1B679284241E400B63038 /* CarStepStatus.swift */; };
 		85C9733A2810282200D855D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C9730B2810282200D855D4 /* Color.xcassets */; };
 		85C9733B2810282200D855D4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9730C2810282200D855D4 /* Color.swift */; };
 		85C9735F2810282200D855D4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973332810282200D855D4 /* Font.swift */; };
@@ -145,6 +146,7 @@
 		8589766B28153B87001E264C /* SwipeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeButton.swift; sourceTree = "<group>"; };
 		8589766D28153BD4001E264C /* SwipeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeButton.xib; sourceTree = "<group>"; };
 		85A13CAE2840D53300ECF271 /* StepStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepStatusView.xib; sourceTree = "<group>"; };
+		85B1B679284241E400B63038 /* CarStepStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarStepStatus.swift; sourceTree = "<group>"; };
 		85C9730B2810282200D855D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		85C9730C2810282200D855D4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		85C973332810282200D855D4 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				85242A6C28084BE9004FC32C /* ClientConfiguration.swift */,
 				85E99BDF283F964800532EA3 /* CarIdentification.swift */,
 				85E99BE1283F97AF00532EA3 /* CarStatus.swift */,
+				85B1B679284241E400B63038 /* CarStepStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				85826B8D2809D787005BEEF6 /* DummyBackendData.swift in Sources */,
 				8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */,
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
+				85B1B67A284241E400B63038 /* CarStepStatus.swift in Sources */,
 				85E99BDE283F8FEB00532EA3 /* StepStatusView.swift in Sources */,
 				85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,

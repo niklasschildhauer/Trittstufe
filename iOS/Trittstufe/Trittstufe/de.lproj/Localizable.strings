@@ -13,3 +13,12 @@
 Bitte gebe aus diesem Grund die nötigen Informationen ein, um eine Verbindung zur Trittstufe aufzubauen.
 
 Alternativ können Sie auch die QR-Code an der Trittstufe scannen. In diesem sind alle nötigen Informationen hinterlegt.";
+"HomeViewController_InformationView_NotConnected" = "Es konnte keine Verbindung zum Fahrzeug hergestellt werden. Bitte überprüfe das Netzwerk.";
+"HomeViewController_InformationView_InLocalization" = "Das Fahrzeug ist zu weit entfernt. Bitte gehen Sie näher zum Fahrzeug.";
+"HomeViewController_ActionButton_NotConnected" = "Konfiguration bearbeiten";
+"HomeViewController_ActionButton_InLocalization" = "Bereits am Fahrzeug?";
+"HomeViewController_ActionButton_ReadyToUnlock" = "Andere Seite öffnen?";
+
+
+
+

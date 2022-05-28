@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var distanceView: DistanceView!
     @IBOutlet weak var stepStatusView: StepStatusView!
+    @IBOutlet weak var connectionFailedView: UIView!
     
     var presenter: HomePresenter! {
         didSet {
@@ -33,8 +34,6 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         presenter.viewWillAppear()
-        
-        informationView.viewModel = .init(text: "Test", image: UIImage(systemName: "location")!)
     }
     
     private func setupController() {
@@ -56,29 +55,27 @@ class HomeViewController: UIViewController {
     }
     
     private func setupViews() {
-        //swipeButton.activeConfiguration = .init(label: "Ausfahren", icon: UIImage(systemName: "lock.open.fill")!)
         
-        //swipeButton.deactiveConfiguration = .init(label: "Einfahren", icon: UIImage(systemName: "lock.circle")!)
-        
-        //swipeButton.delegate = self
-        
-        actionButton.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
     }
     
     @IBAction func didTapRetryButton(_ sender: Any) {
-        presenter.reload()
+        presenter.reloadServices()
     }
     
     @objc func didTapLogoutButton() {
         presenter.logout()
     }
     
-    @objc func didTapActionButton() {
+    @IBAction func didTapActionButton(_ sender: Any) {
         presenter.didTapActionButton()
     }
 }
 
 extension HomeViewController: HomeView {
+    func show(reconnectButton: Bool) {
+        connectionFailedView.isHidden = !reconnectButton
+    }
+    
     func display(informationView viewModel: InformationView.ViewModel?) {
         informationView.viewModel = viewModel
     }
@@ -112,13 +109,11 @@ extension HomeViewController: HomeView {
 
 extension HomeViewController: SwipeButtonDelegate {
     func didActivate(in swipeButton: SwipeButton) {
-        //TODO
-        presenter.extendStep(on: .left)
+        presenter.extendStep()
     }
     
     func didDeactivate(in swipeButton: SwipeButton) {
-        //TODO
-        presenter.shrinkStep(on: .left)
+        presenter.shrinkStep()
     }
 }
 

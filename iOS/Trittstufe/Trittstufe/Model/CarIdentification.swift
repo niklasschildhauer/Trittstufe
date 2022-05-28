@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct CarIdentification {
     let ipAdress: String
@@ -13,15 +14,19 @@ struct CarIdentification {
     let publicKey: String
     let model: String
     let steps: [CarStepIdentification]
+    
+    var image: UIImage {
+        UIImage(named:"car-image")!
+    }
 }
 
 struct CarStepIdentification: Codable {
     enum Side: String, Codable {
         case left
         case right
+        case unknown
     }
     
-    let beaconId: String // = UUID(uuidString: "05c13100-102b-42cf-babb-ace7dd99c4e3")!
-    let nfcTokenId: String
+    let uid: String // = UUID(uuidString: "05c13100-102b-42cf-babb-ace7dd99c4e3")!
     let side: Side
 }

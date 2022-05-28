@@ -11,8 +11,15 @@ import CoreLocation
 class DistanceView: NibLoadingView {
     
     struct ViewModel {
-        var distance: CLProximity
+        var position: Position
         var image: UIImage
+        
+        enum Position {
+            case far
+            case middle
+            case close
+            case unknown
+        }
     }
     
     var viewModel: ViewModel? {
@@ -32,7 +39,7 @@ class DistanceView: NibLoadingView {
     @IBOutlet weak var carTopConstraint: NSLayoutConstraint!
     
     private func reload(with viewModel: ViewModel) {
-        setConstraints(for: viewModel.distance)
+        setConstraints(for: viewModel.position)
         carImageView.image = viewModel.image
     }
     
@@ -52,19 +59,17 @@ class DistanceView: NibLoadingView {
         reload(with: viewModel)
     }
     
-    private func setConstraints(for proximity: CLProximity) {
+    private func setConstraints(for position: ViewModel.Position) {
         let height = frame.height
         let simpleDistance = (height / 2) / 4
         
         
-        switch proximity {
-        case .unknown:
-            carBackgroundView.isHidden = true
-        case .immediate:
+        switch position {
+        case .close:
             carBackgroundView.isHidden = false
             carWidthConstraint.constant = simpleDistance * 1.5
             carTopConstraint.constant = simpleDistance * 3.25 - carWidthConstraint.constant
-        case .near:
+        case .middle:
             carBackgroundView.isHidden = false
             carWidthConstraint.constant = simpleDistance * 1.25
             carTopConstraint.constant = simpleDistance * 2 - carWidthConstraint.constant
@@ -72,6 +77,8 @@ class DistanceView: NibLoadingView {
             carBackgroundView.isHidden = false
             carWidthConstraint.constant = simpleDistance
             carTopConstraint.constant = 0
+        case .unknown:
+            carBackgroundView.isHidden = true
         }        
     }
 }

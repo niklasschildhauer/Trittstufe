@@ -15,7 +15,8 @@ protocol LocationServiceStatusDelegate {
 
 protocol LocationServiceDelegate {
     func didFail(with error: String, in service: LocationService)
-    func didRangeCar(car: CarIdentification, with proximity: CLProximity, meters: Double)
+    func didRangeNothing(in service: LocationService)
+    func didRangeCar(car: CarIdentification, side: CarStepIdentification.Side, with proximity: CLProximity, meters: Double, in service: LocationService)
 }
 
 class LocationService: NSObject {
@@ -24,6 +25,12 @@ class LocationService: NSObject {
     
     private var beaconConstraints = [CLBeaconIdentityConstraint: [CLBeacon]]()
     private var beacons = [CLProximity: [CLBeacon]]()
+    private var nothingRangedCount = 0
+    
+    var statusDelegate: LocationServiceStatusDelegate?
+    var delegate: LocationServiceDelegate?
+    
+    var clientConfiguration: ClientConfiguration?
     
     enum LocationPermission {
         case granted
@@ -31,16 +38,6 @@ class LocationService: NSObject {
         case notDetermined
     }
     
-//    struct Beacon {
-//        let id: UUID
-//        var proximity: CLProximity
-//    }
-    
-    var statusDelegate: LocationServiceStatusDelegate?
-    var delegate: LocationServiceDelegate?
-    
-    var clientConfiguration: ClientConfiguration?
-        
     override init() {
         super.init()
         
@@ -53,23 +50,19 @@ class LocationService: NSObject {
         }
         
         clientConfiguration.carIdentification.steps.forEach { steps in
-         
+            
             // Create a new constraint and add it to the dictionary.
-            let constraint = CLBeaconIdentityConstraint(uuid: UUID(uuidString: steps.beaconId)!)
+            let constraint = CLBeaconIdentityConstraint(uuid: UUID(uuidString: steps.uid)!)
             self.beaconConstraints[constraint] = []
             
             /*
-            By monitoring for the beacon before ranging, the app is more
-            energy efficient if the beacon is not immediately observable.
-            */
-            let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: steps.beaconId)
+             By monitoring for the beacon before ranging, the app is more
+             energy efficient if the beacon is not immediately observable.
+             */
+            let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: steps.uid)
             self.locationManager.startMonitoring(for: beaconRegion)
         }
         
-//        let car = clientConfiguration.carIdentification
-//        let beaconRegion = car.asBeaconRegion()
-//        locationManager.startMonitoring(for: beaconRegion)
-//        locationManager.startRangingBeacons(satisfying: .init(uuid: car.beaconId))
     }
     
     func stopMonitoring() {
@@ -157,66 +150,31 @@ extension LocationService: CLLocationManagerDelegate {
             }
         }
         
-//        allBeacons.filter { $0.uuid == car.steps.contains(where: {      <#code#>
-//        }) }
-        
-        guard let clientConfiguration = clientConfiguration else {
-            return
+        if let closestBeacon = getClosestBeacon(beacons: allBeacons),
+           let car = clientConfiguration?.carIdentification,
+           let side = getCarSideFor(beacon: closestBeacon, car: car) {
+            nothingRangedCount = 0
+            delegate?.didRangeCar(car: car, side: side, with: closestBeacon.proximity, meters: closestBeacon.accuracy, in: self)
+        } else {
+            nothingRangedCount = nothingRangedCount + 1
+            if nothingRangedCount > 6 {
+                delegate?.didRangeNothing(in: self)
+            }
         }
-        
-        delegate?.didRangeCar(car: clientConfiguration.carIdentification, with: .immediate, meters: 10)
-
-//        if beacons.count > 0 {
-//            locatedBeaconsHistory.append(contentsOf: beacons)
-//        } else {
-//            locatedBeaconsHistory.append(nil)
-//        }
-//
-//        if locatedBeaconsHistory.count % 2 == 1 {
-//            return
-//        }
-//
-//        guard let car = clientConfiguration?.carIdentification else { return }
-//
-//        let history = locatedBeaconsHistory.count > 4 ? Array(locatedBeaconsHistory.suffix(4)) : locatedBeaconsHistory
-//
-//        let proximityCount = history.reduce( [CLProximity.far:0, CLProximity.immediate:0, CLProximity.near:0, CLProximity.unknown:0] , { partialResult, beacon in
-//            var partialResult = partialResult
-//            if let beacon = beacon {
-//                if beacon.uuid == car.beaconId {
-//                    if var currentValue = partialResult[beacon.proximity] {
-//                        currentValue += 1
-//                        partialResult.updateValue(currentValue, forKey: beacon.proximity)
-//                    }
-//                }
-//            } else {
-//                if var currentValue = partialResult[.unknown] {
-//                    currentValue += 1
-//                    partialResult.updateValue(currentValue, forKey: .unknown)
-//                }            }
-//            return partialResult
-//        })
-//
-//        guard let averageProximityCount = proximityCount.max(by: { $0.value < $1.value }) else { return }
-//        let averageProximity = averageProximityCount.key
-//        let count = averageProximityCount.value
-//
-//        let sumMeters = history.reduce(0.0) { partialResult, beacon in
-//            if let beacon = beacon,
-//               beacon.uuid == car.beaconId ,
-//               beacon.proximity == averageProximity {
-//                return partialResult + beacon.accuracy
-//            }
-//            return partialResult
-//        }
-//        let averageMeters = sumMeters / Double(count)
-//
-//        delegate?.didRangeCar(car: car, with: averageProximity, meters: averageMeters)
+    }
+    
+    private func getClosestBeacon(beacons: [CLBeacon]) -> CLBeacon? {
+        beacons.sorted { $0.accuracy > $1.accuracy }.first
+    }
+    
+    private func getCarSideFor(beacon: CLBeacon, car: CarIdentification) -> CarStepIdentification.Side? {
+        let beaconId = beacon.uuid
+        for step in car.steps {
+            if let stepUUID = UUID(uuidString: step.uid),
+               stepUUID == beaconId{
+                return step.side
+            }
+        }
+        return nil
     }
 }
-
-//extension CarIdentification {
-//    func asBeaconRegion() -> CLBeaconRegion {
-//        return CLBeaconRegion(uuid: beaconId, identifier: model)
-//    }
-//}

@@ -10,7 +10,7 @@ import UIKit
 class StepStatusView: NibLoadingView {
     
     struct ViewModel {
-        let selectedSideStatus: CarStepStatus
+        let selectedSide: CarStepIdentification.Side
         let currentStatus: [CarStepStatus]
         
         var currentStatusImage: UIImage {
@@ -18,6 +18,10 @@ class StepStatusView: NibLoadingView {
             let rightStatus: CarStepStatus.Position = currentStatus.first(where: { $0.side == .right })?.position ?? .unknown
 
             return UIImage(named: "\(leftStatus.rawValue)-\(rightStatus.rawValue)")!
+        }
+        
+        var selectedStepStatus: CarStepStatus? {
+            currentStatus.first(where: { $0.side == selectedSide })
         }
     }
     @IBOutlet weak var arrowLeftImageView: UIImageView!
@@ -47,25 +51,32 @@ class StepStatusView: NibLoadingView {
     }
 
     private func reload(with viewModel: ViewModel) {
-        switch viewModel.selectedSideStatus.side {
+        switch viewModel.selectedSide {
         case .left:
             arrowLeftImageView.isHidden = true
             arrowRightImageView.isHidden = false
         case .right:
             arrowLeftImageView.isHidden = false
             arrowRightImageView.isHidden = true
+        case .unknown:
+            arrowLeftImageView.isHidden = true
+            arrowRightImageView.isHidden = true
         }
         
         carStatusImageView.image = viewModel.currentStatusImage
+        guard let selectedStepStatus = viewModel.selectedStepStatus else {
+            swipeButtonView.isHidden = true
+            return
+        }
         
-        switch viewModel.selectedSideStatus.position {
+        switch selectedStepStatus.position {
         case .close, .open:
             swipeButtonView.isHidden = false
         case .unknown:
             swipeButtonView.isHidden = true
         }
         
-        swipeButtonView.stepStatus = viewModel.selectedSideStatus
+        swipeButtonView.stepStatus = selectedStepStatus
     }
     
     override func viewDidLoad() {
