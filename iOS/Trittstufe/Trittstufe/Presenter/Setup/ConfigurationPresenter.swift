@@ -27,10 +27,18 @@ class ConfigurationPresenter: Presenter {
     weak var view: ConfigurationView?
     var delegate: ConfigurationPresenterDelegate?
     
+    private var dummyBackendData: DummyBackendData?
+    
     func viewDidLoad() {
-        let jsonData = dummyData.data(using: .utf8)!
-        let dummyDataEncoded: DummyBackendData = try! JSONDecoder().decode(DummyBackendData.self, from: jsonData)
-        print(dummyDataEncoded)
+        dummyBackendData = loadDummyDataFromDevice()
+        
+        guard let dummyBackendData = dummyBackendData else {
+            self.view?.showError(message: "Ein interner Fehler ist aufgetreten.")
+            return
+        }
+        view?.portValue = String(dummyBackendData.car.port)
+        view?.ipAdressValue = dummyBackendData.car.ipAdress
+        view?.publicKeyValue = dummyBackendData.car.publicKey
     }
     
     func didTapShowQRScannerButton() {
@@ -47,34 +55,19 @@ class ConfigurationPresenter: Presenter {
             return
         }
         
+        
         if let existingConfiguration = UserDefaultConfig.dummyBackendData {
-            let newCarConfiguration = Car(model: existingConfiguration.car.model,
-                                          beaconId: existingConfiguration.car.beaconId,
-                                          vin: existingConfiguration.car.model,
-                                          ipAdress: ipAdress,
-                                          port: portValue,
-                                          publicKey: publicKey,
-                                          authorizedUsers: existingConfiguration.car.authorizedUsers)
+            let newCarConfiguration = CarBackend(model: existingConfiguration.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: existingConfiguration.car.authorizedUsers, steps: existingConfiguration.car.steps)
             
             saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: existingConfiguration.users))
         } else {
-            let configuration = DummyBackendData(
-                car: .init(model: "Rolling Chasis",
-                          vin: "123123",
-                          ipAdress: ipAdress,
-                          port: portValue,
-                          publicKey: publicKey,
-                          authorizedUsers: [
-                            .init(userToken: "testtest", dueDate: "forever")
-                          ]),
-                users: [
-                    .init(accountName: "test",
-                          password: "test",
-                          userToken: "testtest")
-                ]
-            )
+            guard let dummyBackendData = dummyBackendData else {
+                self.view?.showError(message: "Ein interner Fehler ist aufgetreten.")
+                return
+            }
+            let newCarConfiguration = CarBackend(model: dummyBackendData.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: dummyBackendData.car.authorizedUsers, steps: dummyBackendData.car.steps)
             
-            saveDummyBackendData(dummyBackendData: configuration)
+            saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: dummyBackendData.users))
         }
     }
     
@@ -82,6 +75,13 @@ class ConfigurationPresenter: Presenter {
         UserDefaultConfig.dummyBackendData = dummyBackendData
         
         delegate?.didCompletecConfiguration(in: self)
+    }
+    
+    private func loadDummyDataFromDevice() -> DummyBackendData? {
+        let jsonData = dummyData.data(using: .utf8)!
+        let dummyDataEncoded: DummyBackendData? = try! JSONDecoder().decode(DummyBackendData.self, from: jsonData)
+        
+        return dummyDataEncoded
     }
 }
 

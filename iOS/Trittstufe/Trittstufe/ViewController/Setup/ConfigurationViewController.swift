@@ -41,11 +41,8 @@ class ConfigurationViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         
-        let submitButton = UIButton()
-        submitButton.configuration = ButtonStyle.filled(title: "Bestätigen", image: UIImage(systemName: "checkmark.circle")!)
-        submitButton.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
+        let barButtonItem =  UIBarButtonItem(title: NSLocalizedString("ConfigurationController_SubmitButton", comment: ""), style: .plain, target: self, action: #selector(didTapSubmitButton))
         
-        let barButtonItem = UIBarButtonItem(customView: submitButton)
         navigationItem.rightBarButtonItem  = barButtonItem
     }
 

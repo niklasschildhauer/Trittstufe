@@ -43,11 +43,11 @@ class LocalNetworkService: NetworkService {
         return user.userToken
     }
     
-    private func loadAuthorizedCar(userToken: String, dummyBackendData: DummyBackendData) -> ClientConfiguration.CarIdentification? {
+    private func loadAuthorizedCar(userToken: String, dummyBackendData: DummyBackendData) -> CarIdentification? {
         if dummyBackendData.car.authorizedUsers.contains(where: { user in
             user.userToken == userToken
         }) {
-            return ClientConfiguration.CarIdentification(ipAdress: dummyBackendData.car.ipAdress, portNumber: dummyBackendData.car.port, publicKey: dummyBackendData.car.publicKey, model: dummyBackendData.car.model, vin: dummyBackendData.car.vin, beaconId: dummyBackendData.car.beaconId)
+            return CarIdentification(ipAdress: dummyBackendData.car.ipAdress, portNumber: dummyBackendData.car.port, publicKey: dummyBackendData.car.publicKey, model: dummyBackendData.car.model, steps: dummyBackendData.car.steps)
         }
         return nil
     }

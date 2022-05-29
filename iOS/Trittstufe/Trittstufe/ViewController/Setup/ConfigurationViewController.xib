@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,7 +31,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="I4R-iv-wfn">
-                            <rect key="frame" x="16" y="10" width="382" height="391.5"/>
+                            <rect key="frame" x="16" y="10" width="382" height="404.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dh-Xi-mhW">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
@@ -80,16 +81,29 @@
                                         <constraint firstAttribute="trailing" secondItem="L3K-Cn-ekf" secondAttribute="trailing" id="qFo-Ws-iXb"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNP-ve-mJs">
-                                    <rect key="frame" x="0.0" y="280.5" width="382" height="31"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="filled" title="show QR"/>
-                                    <connections>
-                                        <action selector="didTapShowQRCodeSacnnerButton:" destination="-1" eventType="touchUpInside" id="ciM-Gc-K70"/>
-                                    </connections>
-                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdN-no-KJU">
+                                    <rect key="frame" x="0.0" y="280.5" width="382" height="44"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNP-ve-mJs">
+                                            <rect key="frame" x="150.5" y="0.0" width="81.5" height="44"/>
+                                            <color key="tintColor" name="black"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="show QR"/>
+                                            <connections>
+                                                <action selector="didTapShowQRCodeSacnnerButton:" destination="-1" eventType="touchUpInside" id="ciM-Gc-K70"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="bNP-ve-mJs" firstAttribute="top" secondItem="bdN-no-KJU" secondAttribute="top" id="2aY-9V-b67"/>
+                                        <constraint firstAttribute="height" constant="44" id="GUU-Yg-911"/>
+                                        <constraint firstAttribute="bottom" secondItem="bNP-ve-mJs" secondAttribute="bottom" id="PwS-5z-oYq"/>
+                                        <constraint firstItem="bNP-ve-mJs" firstAttribute="centerX" secondItem="bdN-no-KJU" secondAttribute="centerX" id="TOZ-wh-xQO"/>
+                                    </constraints>
+                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYZ-zE-G4l" userLabel="Spacer">
-                                    <rect key="frame" x="0.0" y="331.5" width="382" height="60"/>
+                                    <rect key="frame" x="0.0" y="344.5" width="382" height="60"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="tEF-V7-c9c"/>
@@ -121,6 +135,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="black">
+            <color red="0.050000000000000003" green="0.050000000000000003" blue="0.050000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

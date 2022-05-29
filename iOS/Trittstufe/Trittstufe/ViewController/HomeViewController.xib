@@ -3,6 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,8 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Trittstufe" customModuleProvider="target">
             <connections>
+                <outlet property="actionButton" destination="yHR-Dv-uj8" id="krS-iy-3GH"/>
+                <outlet property="carHeaderView" destination="3E4-po-4to" id="4Oz-sq-AbD"/>
+                <outlet property="connectionFailedView" destination="nz9-6a-G1N" id="jMZ-cP-fwX"/>
                 <outlet property="distanceLabel" destination="3LC-WR-kgy" id="pWI-B7-pUw"/>
-                <outlet property="swipeButton" destination="WTX-UA-OVf" id="Mfk-od-eUd"/>
+                <outlet property="distanceView" destination="ND4-mT-DfP" id="qd4-jp-jvz"/>
+                <outlet property="informationView" destination="7AU-lB-qXL" id="IMd-Pr-RWx"/>
+                <outlet property="retryButton" destination="SVL-lb-Lg1" id="FNk-xH-3fr"/>
+                <outlet property="stepStatusView" destination="7x5-Bm-0gt" id="c6p-JA-jUb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,34 +27,126 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTX-UA-OVf" customClass="SwipeButton" customModule="Trittstufe" customModuleProvider="target">
-                    <rect key="frame" x="32" y="422" width="256" height="86"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="86" id="FFg-4X-iki"/>
-                    </constraints>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LC-WR-kgy">
                     <rect key="frame" x="16" y="284" width="288" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E4-po-4to" customClass="CarHeaderView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="16" y="20" width="288" height="67"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="67" id="WjU-E6-I9E"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ND4-mT-DfP" customClass="DistanceView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="87" width="320" height="441"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="7AU-lB-qXL" customClass="InformationView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="16" y="395.5" width="288" height="42.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nz9-6a-G1N" userLabel="ConnectionFailedView">
+                    <rect key="frame" x="0.0" y="87" width="320" height="308.5"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFB-vC-XCd">
+                            <rect key="frame" x="100" y="94.5" width="120" height="60"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ItF-ud-9wm">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="58"/>
+                                    <color key="tintColor" name="black"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="YMW-0g-5Fg"/>
+                                        <constraint firstAttribute="height" constant="60" id="Ywi-98-QZo"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1rJ-Xi-UTk">
+                                    <rect key="frame" x="60" y="1" width="60" height="58.5"/>
+                                    <color key="tintColor" name="black"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="MBg-cN-bcy"/>
+                                        <constraint firstAttribute="width" constant="60" id="p2c-wc-VHY"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVL-lb-Lg1">
+                            <rect key="frame" x="93" y="174.5" width="134.5" height="31"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="tinted" title="Erneut verbinden"/>
+                            <connections>
+                                <action selector="didTapRetryButton:" destination="-1" eventType="touchUpInside" id="vkd-rC-x4g"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="SVL-lb-Lg1" firstAttribute="top" secondItem="KFB-vC-XCd" secondAttribute="bottom" constant="20" id="76q-hf-ftF"/>
+                        <constraint firstItem="KFB-vC-XCd" firstAttribute="centerY" secondItem="nz9-6a-G1N" secondAttribute="centerY" constant="-30" id="Xve-Of-qOi"/>
+                        <constraint firstItem="KFB-vC-XCd" firstAttribute="centerX" secondItem="nz9-6a-G1N" secondAttribute="centerX" id="k1P-Kx-mgK"/>
+                        <constraint firstItem="SVL-lb-Lg1" firstAttribute="centerX" secondItem="nz9-6a-G1N" secondAttribute="centerX" id="ouZ-ZO-BHC"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-Bm-0gt" customClass="StepStatusView" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="87" width="320" height="481"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHR-Dv-uj8">
+                    <rect key="frame" x="126.5" y="481" width="67" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="OgZ-AD-Tnm"/>
+                    </constraints>
+                    <color key="tintColor" name="black"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                    <connections>
+                        <action selector="didTapActionButton:" destination="-1" eventType="touchUpInside" id="jjc-IF-uZY"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WTX-UA-OVf" secondAttribute="trailing" constant="32" id="08N-aQ-J3C"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3E4-po-4to" secondAttribute="trailing" constant="16" id="2Ul-wf-P8m"/>
+                <constraint firstItem="3E4-po-4to" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="2ZS-N9-1eJ"/>
+                <constraint firstItem="yHR-Dv-uj8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8kx-G8-Dm9"/>
+                <constraint firstItem="ND4-mT-DfP" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="8zz-oR-k96"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7AU-lB-qXL" secondAttribute="bottom" constant="130" id="IdL-Le-Clo"/>
+                <constraint firstItem="7x5-Bm-0gt" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="LD0-H8-tyU"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Pch-i3-nuN"/>
                 <constraint firstItem="3LC-WR-kgy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="UW2-g1-lEM"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WTX-UA-OVf" secondAttribute="bottom" constant="60" id="nxZ-4K-94V"/>
-                <constraint firstItem="WTX-UA-OVf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="vC7-Xy-aiy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nz9-6a-G1N" secondAttribute="trailing" id="VDu-cs-A6V"/>
+                <constraint firstItem="3E4-po-4to" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Wt1-9s-1x7"/>
+                <constraint firstItem="7x5-Bm-0gt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XkA-5g-uwy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7x5-Bm-0gt" secondAttribute="trailing" id="bVV-pV-wTQ"/>
+                <constraint firstItem="nz9-6a-G1N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eLg-Uz-9dp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ND4-mT-DfP" secondAttribute="trailing" id="eqy-j4-rSD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ND4-mT-DfP" secondAttribute="bottom" constant="40" id="gMv-Tm-lOy"/>
+                <constraint firstItem="nz9-6a-G1N" firstAttribute="top" secondItem="3E4-po-4to" secondAttribute="bottom" id="n6a-iB-Whe"/>
+                <constraint firstItem="7AU-lB-qXL" firstAttribute="top" secondItem="nz9-6a-G1N" secondAttribute="bottom" id="o6Q-6N-9NO"/>
+                <constraint firstItem="7AU-lB-qXL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pPx-H8-tAC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yHR-Dv-uj8" secondAttribute="bottom" constant="43" id="rIK-IW-gwG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7AU-lB-qXL" secondAttribute="trailing" constant="16" id="rPy-vk-xFU"/>
+                <constraint firstItem="ND4-mT-DfP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wmY-1U-LL6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3LC-WR-kgy" secondAttribute="trailing" constant="16" id="xVa-9e-MiG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7x5-Bm-0gt" secondAttribute="bottom" id="z5t-fU-hwm"/>
             </constraints>
-            <point key="canvasLocation" x="132" y="131"/>
+            <point key="canvasLocation" x="131.25" y="130.98591549295776"/>
         </view>
     </objects>
+    <designables>
+        <designable name="7AU-lB-qXL">
+            <size key="intrinsicContentSize" width="288" height="40"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="location.slash" catalog="system" width="128" height="118"/>
+        <image name="wifi.slash" catalog="system" width="128" height="102"/>
+        <namedColor name="black">
+            <color red="0.050000000000000003" green="0.050000000000000003" blue="0.050000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

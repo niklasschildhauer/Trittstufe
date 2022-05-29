@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepStatusView" customModule="Trittstufe" customModuleProvider="target">
+            <connections>
+                <outlet property="arrowLeftImageView" destination="wgx-fd-ty6" id="0Xf-kG-WkT"/>
+                <outlet property="arrowRightImageView" destination="Pww-Ea-hyl" id="EEt-5L-9ha"/>
+                <outlet property="carStatusImageView" destination="c6D-fu-x09" id="7ld-X7-1x6"/>
+                <outlet property="swipeButtonView" destination="man-zU-yHx" id="jA1-wj-ljf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kp1-2r-LzD">
+                    <rect key="frame" x="0.0" y="44" width="414" height="602"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unknown-unknown" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-fu-x09">
+                            <rect key="frame" x="137" y="211" width="140" height="180"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="180" id="5Cb-a6-7a1"/>
+                                <constraint firstAttribute="width" constant="140" id="5UZ-04-GAR"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-outlines" translatesAutoresizingMaskIntoConstraints="NO" id="btw-SX-2kj">
+                            <rect key="frame" x="137" y="211" width="140" height="180"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="140" id="g4F-uR-ovC"/>
+                                <constraint firstAttribute="height" constant="180" id="xUo-v2-xvZ"/>
+                            </constraints>
+                        </imageView>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wgx-fd-ty6">
+                            <rect key="frame" x="297" y="308.5" width="40" height="35"/>
+                            <color key="tintColor" name="black"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="RJh-Mg-fvF"/>
+                                <constraint firstAttribute="width" constant="40" id="Ye5-YH-RZo"/>
+                            </constraints>
+                        </imageView>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Pww-Ea-hyl">
+                            <rect key="frame" x="77" y="308.5" width="40" height="35"/>
+                            <color key="tintColor" name="black"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="RQ0-bU-i2i"/>
+                                <constraint firstAttribute="height" constant="40" id="aOu-Rb-pVZ"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="wgx-fd-ty6" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" constant="25" id="1oq-my-D1m"/>
+                        <constraint firstItem="wgx-fd-ty6" firstAttribute="leading" secondItem="c6D-fu-x09" secondAttribute="trailing" constant="20" id="DzT-5w-Q5t"/>
+                        <constraint firstItem="btw-SX-2kj" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" id="Fke-NR-68g"/>
+                        <constraint firstItem="c6D-fu-x09" firstAttribute="leading" secondItem="Pww-Ea-hyl" secondAttribute="trailing" constant="20" id="Q4V-Kt-HJS"/>
+                        <constraint firstItem="c6D-fu-x09" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" id="dvk-C5-Nt4"/>
+                        <constraint firstItem="btw-SX-2kj" firstAttribute="centerX" secondItem="kp1-2r-LzD" secondAttribute="centerX" id="nUB-En-ULB"/>
+                        <constraint firstItem="c6D-fu-x09" firstAttribute="centerX" secondItem="kp1-2r-LzD" secondAttribute="centerX" id="qPj-31-hqH"/>
+                        <constraint firstItem="Pww-Ea-hyl" firstAttribute="centerY" secondItem="kp1-2r-LzD" secondAttribute="centerY" constant="25" id="sP8-I1-ng6"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="man-zU-yHx" customClass="SwipeButton" customModule="Trittstufe" customModuleProvider="target">
+                    <rect key="frame" x="20" y="646" width="374" height="86"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="86" id="ujs-vR-0Vm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="man-zU-yHx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="2Hs-2A-I0c"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="man-zU-yHx" secondAttribute="bottom" constant="130" id="43n-jQ-gFC"/>
+                <constraint firstItem="kp1-2r-LzD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7Yd-p7-HrT"/>
+                <constraint firstItem="kp1-2r-LzD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Iao-hL-24w"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kp1-2r-LzD" secondAttribute="trailing" id="ZQs-Rb-rJJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="man-zU-yHx" secondAttribute="trailing" constant="20" id="pba-zx-CI1"/>
+                <constraint firstItem="man-zU-yHx" firstAttribute="top" secondItem="kp1-2r-LzD" secondAttribute="bottom" id="yRF-I2-AiI"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+        <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <image name="car-outlines" width="154" height="185"/>
+        <image name="unknown-unknown" width="154" height="185"/>
+        <namedColor name="black">
+            <color red="0.050000000000000003" green="0.050000000000000003" blue="0.050000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

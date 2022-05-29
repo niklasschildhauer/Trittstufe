@@ -8,29 +8,26 @@
 import Foundation
 import CocoaMQTT
 
-protocol MQTTClientServiceAuthenticationDelegate: AnyObject {
-//    func didRegisterForTopic(in service: MQTTClientService)
-//    func didLogoutAtBroker(in service: MQTTClientService)
-}
-
 protocol StepEngineControlServiceDelegate: AnyObject {
-    func didReceive(message: String, in service: StepEngineControlService)
+    func didReceive(stepStatus: [CarStepStatus], in service: StepEngineControlService)
+    func didConnectToCar(in service: StepEngineControlService)
+    func didDisconnectToCar(in service: StepEngineControlService)
 }
 
 protocol StepEngineControlService {
     var statusDelegate: StepEngineControlServiceDelegate? { get set }
     
     func connect(completion: (Result<String, AuthenticationError>) -> Void)
-    func extendStep()
-    func shrinkStep()
+    func extendStep(on side: CarStepIdentification.Side)
+    func shrinkStep(on side: CarStepIdentification.Side)
 }
 
 
 class MQTTClientService {
-    var auhtenticationDelegate: MQTTClientServiceAuthenticationDelegate?
     var statusDelegate: StepEngineControlServiceDelegate?
     
     private var mqttClient: CocoaMQTT?
+    private var mqtt5Client: CocoaMQTT5?
     private let clientConfiguration: ClientConfiguration
 
     init(clientConfiguration: ClientConfiguration) {
@@ -43,16 +40,14 @@ class MQTTClientService {
         let client = CocoaMQTT(clientID: clientID,
                                host: clientConfiguration.carIdentification.ipAdress,
                                port: clientConfiguration.carIdentification.portNumber)
-//        client.username = clientConfiguration.clientCredentials.accountName
-//        client.password = clientConfiguration.clientCredentials.password
-//        client.willMessage = CocoaMQTTMessage(topic: "", string: "dieout")
         client.keepAlive = 60
         client.delegate = self
+        //client.autoReconnect = true
+        client.logLevel = .debug
         let success = client.connect()
-    
+
         if success {
             mqttClient = client
-            mqttClient?.subscribe("engine_control_status", qos: .qos1)
             completion(.success("Das ist eine ClientID"))
         } else {
             completion(.failure(.serverError))
@@ -64,7 +59,7 @@ class MQTTClientService {
                 
         let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: message, publicKeyReviever: "XWOVfM+MFrs26wdQntzXUjatvN/CJvDQ47sd/LZ1YwQ=")
         
-        client.publish(topic, withString: encryptedMessage, qos: .qos0)
+        client.publish(topic, withString: encryptedMessage, qos: .qos1)
     }
 }
 
@@ -73,17 +68,18 @@ extension MQTTClientService: StepEngineControlService {
         loginClientAtBroker(for: "", password: "", completion: completion)
     }
     
-    func extendStep() {
-        send(message: createPositionChangeJsonString(position: .open), to: "engine_control")
+    func extendStep(on side: CarStepIdentification.Side) {
+        send(message: createPositionChangeJsonString(side: side, position: .open), to: "engine_control")
     }
     
-    func shrinkStep() {
-        send(message: createPositionChangeJsonString(position: .close), to: "engine_control")
+    func shrinkStep(on side: CarStepIdentification.Side) {
+        send(message: createPositionChangeJsonString(side: side, position: .open), to: "engine_control")
     }
 
-    private func createPositionChangeJsonString(position: StepPosition) -> String {
+    private func createPositionChangeJsonString(side: CarStepIdentification.Side, position: CarStepStatus.Position) -> String {
         let json: [String: Any] = [
             "token": clientConfiguration.userToken,
+            "side": side.rawValue,
             "position": position.rawValue
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
@@ -91,8 +87,13 @@ extension MQTTClientService: StepEngineControlService {
     }
 }
 
+
 extension MQTTClientService: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
+        print("didConnect")
+        statusDelegate?.didConnectToCar(in: self)
+        mqtt.subscribe("engine_control_status", qos: .qos1)
+
 //        if let completion = self.loginCompletion {
 //            completion(.success("Das ist die User Id"))
 //            loginCompletion = nil
@@ -102,6 +103,10 @@ extension MQTTClientService: CocoaMQTTDelegate {
     }
     
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
+        print("diddisConnect")
+        print(err?.localizedDescription)
+        statusDelegate?.didDisconnectToCar(in: self)
+
 //        if let completion = self.loginCompletion {
 //            completion(.failure(AuthenticationError.serverError))
 //            loginCompletion = nil
@@ -122,7 +127,12 @@ extension MQTTClientService: CocoaMQTTDelegate {
     
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
         guard let message = message.string else { return }
-        statusDelegate?.didReceive(message: message, in: self)
+        
+        let carStepStatus: [CarStepStatus]? = try? JSONDecoder().decode([CarStepStatus].self, from: message.data(using: .utf8)!)
+        
+        guard let carStepStatus = carStepStatus else { return }
+
+        statusDelegate?.didReceive(stepStatus: carStepStatus, in: self)
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {

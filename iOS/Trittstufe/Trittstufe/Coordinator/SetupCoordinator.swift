@@ -18,7 +18,7 @@ class SetupCoordinator: Coordinator {
     }
     
     var delegate: SetupCoordinatorDelegate?
-
+    
     private let navigationController = UINavigationController()
     private let authenticationService: AuthenticationService
     private let setupStageService: SetupStageService
@@ -44,10 +44,10 @@ class SetupCoordinator: Coordinator {
         
         viewController.presenter = presenter
         presenter.delegate = self
-                
+        
         return viewController
     }
-        
+    
     private func createConfigurationViewController() -> UIViewController {
         let viewController = ConfigurationViewController()
         let presenter = ConfigurationPresenter()
@@ -82,15 +82,16 @@ class SetupCoordinator: Coordinator {
     
     private func showNextStage() {
         let stage = setupStageService.calculateNextStage()
-        DispatchQueue.performUIOperation {
-            switch stage {
-            case .configurationMissing:
-                self.showNext(viewController: self.createConfigurationViewController(), animated: true)
-            case .authenticationRequired:
-                self.showNext(viewController: self.createAuthenticationViewController(), animated: true)
-            case .setupCompleted(let clientConfiguration):
+        switch stage {
+        case .configurationMissing:
+            self.showNext(viewController: self.createConfigurationViewController(), animated: true)
+        case .authenticationRequired:
+            self.showNext(viewController: self.createAuthenticationViewController(), animated: true)
+        case .setupCompleted(let clientConfiguration):
+            DispatchQueue.performUIOperation {
                 self.delegate?.didCompleteSetup(with: clientConfiguration, in: self)
             }
+            
         }
     }
 }
@@ -119,7 +120,7 @@ extension SetupCoordinator: ConfigurationPresenterDelegate {
 extension SetupCoordinator: AuthenticationPresenterDelegate {
     func didCompleteAuthentication(with clientConfiguration: ClientConfiguration, in presenter: AuthenticationPresenter) {
         showNextStage()
-
+        
     }
     
     func didTapEditConfiguration(in presenter: AuthenticationPresenter) {

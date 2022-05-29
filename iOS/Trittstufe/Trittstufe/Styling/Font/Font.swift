@@ -20,7 +20,7 @@ enum Font {
 
 //    static var footnote: UIFont { custom(for: .footnote) }
 //    static var footnoteBold: UIFont { custom(for: .footnote, customWeight: .semiBold) }
-//    static var caption: UIFont { custom(for: .caption) }
+    static var caption: UIFont { custom(for: .caption) }
     static var captionBold: UIFont { custom(for: .caption, customWeight: .semiBold) }
 
     
@@ -59,69 +59,41 @@ enum Font {
     
     enum Weight {
         case medium
-        case mediumItalic
         case regular
         case bold
-        case italic
         case black
         case light
         case extraLight
         case semiBold
-        case boldItalic
-        case blackItalic
-        case lightItalic
-        case extraLightItalic
-        case semiBoldItalic
     }
     
     
     // MARK: Implementation
-    private enum BarlowFont: String {
-        case black = "Barlow-Black"
-        case blackItalic = "Barlow-BlackItalic"
-        case bold = "Barlow-Bold"
-        case boldItalic = "Barlow-BoldItalic"
-        case italic = "Barlow-Italic"
-        case regular = "Barlow-Regular"
-        case medium = "Barlow-Medium"
-        case mediumItalic = "Barlow-MediumItalic"
-        case semiBold = "Barlow-SemiBold"
-        case semiBoldItalic = "Barlow-SemiBoldItalic"
-        case light = "Barlow-Light"
-        case lightItalic = "Barlow-LightItalic"
-        case extraLight = "Barlow-ExtraLight"
-        case extraLightItalic = "Barlow-ExtraLightItalic"
+    private enum InterFont: String {
+        case black = "Inter-Black"
+        case bold = "Inter-Bold"
+        case regular = "Inter-Regular"
+        case medium = "Inter-Medium"
+        case semiBold = "Inter-SemiBold"
+        case light = "Inter-Light"
+        case extraLight = "Inter-ExtraLight"
         
-        static func font(for weight: Weight) -> BarlowFont {
+        static func font(for weight: Weight) -> InterFont {
             switch weight {
             case .regular:
                 return regular
             case .bold:
                 return bold
-            case .italic:
-                return italic
             case .black:
                 return black
             case .light:
                 return light
-            case .extraLight:
-                return extraLight
             case .semiBold:
                 return semiBold
-            case .boldItalic:
-                return boldItalic
-            case .blackItalic:
-                return blackItalic
-            case .lightItalic:
-                return lightItalic
-            case .extraLightItalic:
-                return extraLightItalic
-            case .semiBoldItalic:
-                return semiBoldItalic
             case .medium:
                 return medium
-            case .mediumItalic:
-                return mediumItalic
+            case .extraLight:
+                return extraLight
             }
         }
     }
@@ -138,13 +110,13 @@ enum Font {
         switch textStyle {
         case .body:
             textStyleWeight = .regular
-            fontSize = 16
+            fontSize = 15
         case .largeTitle:
             textStyleWeight = .bold
             fontSize = 34
         case .title:
             textStyleWeight = .semiBold
-            fontSize = 28
+            fontSize = 24
         case .caption:
             textStyleWeight = .regular
             fontSize = 11
@@ -154,11 +126,11 @@ enum Font {
         }
         
         if let customWeight = customWeight {
-            return Descriptor(fontName: BarlowFont.font(for: customWeight).rawValue,
+            return Descriptor(fontName: InterFont.font(for: customWeight).rawValue,
                               fontSize: fontSize)
         }
         
-        return Descriptor(fontName: BarlowFont.font(for: textStyleWeight).rawValue,
+        return Descriptor(fontName: InterFont.font(for: textStyleWeight).rawValue,
                           fontSize: fontSize)
     }
 }

@@ -49,7 +49,7 @@ class AuthenticationViewController: UIViewController {
     }
     
     private func setupViews() {
-        loginButton.configuration = ButtonStyle.fullWidth(title: "Anmelden")
+        loginButton.configuration = ButtonStyle.filled(title: NSLocalizedString("AuthenticationController_LoginButton", comment: ""), image: UIImage(systemName: "arrow.forward.circle")!)
         changeConfigurationButton.configuration = ButtonStyle.plain(title: "Konfiguration ändern")
         
         errorMessageLabel.font = Font.bodyBold
