@@ -3,13 +3,14 @@ from dotenv import load_dotenv
 from Cryptography.ChaCha20 import encrypt_cipher_text
 import json
 import os
-from EngineControl.EngineControlSG90 import test_servo, set_position, current_position
+from EngineControl.EngineControlSG90 import test_servo, set_position
 import json
 import threading
 
 load_dotenv()
 
 raspberry_ip_address = os.getenv('IP_ADDRESS')
+print(raspberry_ip_address)
 mosquitto_port = int(os.getenv('PORT'))
   
 position_topic = os.getenv('POSITION_TOPIC')
@@ -24,6 +25,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(position_topic)
     print(position_topic)
     client.subscribe('engine_control')
+    client.publish(status_topic, payload='close', qos=1, retain=True)
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, message):
@@ -33,24 +35,22 @@ def on_message(client, userdata, message):
         public_key = recievedJson['publicKey']
         payload = recievedJson['payload']
         message = encrypt_cipher_text(cipher_stirng=payload, public_key=public_key)
-        print(message)
         new_position_json = json.loads(message)
         set_position(new_position_json['position'])
+        client.publish(status_topic, payload=new_position_json['position'], qos=1, retain=True)
 
-def status_update():
-    threading.Timer(5.0, status_update).start()
-    client.publish(status_topic, payload=current_position, qos=1, retain=True)
-    print(f"Send status update {current_position}")
+client = mqtt_client.Client(client_id="")
+#client = mqtt_client.Client(client_id="engine_control_sg90", clean_session=True, userdata=None, protocol=MQTTv5, transport="tcp")
 
-client = mqtt_client.Client(client_id="engine_control_sg90")
 client.on_connect = on_connect
 client.on_message = on_message
+
 
 client.connect(raspberry_ip_address, mosquitto_port, 60)
 
 #test motor
 test_servo()
-status_update()
+
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
