@@ -1,11 +1,13 @@
+from turtle import position
 from paho.mqtt import client as mqtt_client
 from dotenv import load_dotenv
 from Cryptography.ChaCha20 import encrypt_cipher_text
 import json
 import os
-from EngineControl.EngineControlSG90 import test_servo, set_position, current_position
+from EngineControl.EngineControlSG90 import test_servo, set_position, create_status_json
 import json
 import threading
+from LocalAuthorization import is_token_valid
 
 load_dotenv()
 
@@ -35,12 +37,18 @@ def on_message(client, userdata, message):
         message = encrypt_cipher_text(cipher_stirng=payload, public_key=public_key)
         print(message)
         new_position_json = json.loads(message)
-        set_position(new_position_json['position'])
+        if is_token_valid(new_position_json["token"]):
+            success = set_position(position=new_position_json['position'], side=new_position_json['side'])
+            if success:
+                print("Successful")
+                send_status_update()
+        else:
+            print("Invalid token")
 
-def status_update():
-    threading.Timer(5.0, status_update).start()
-    client.publish(status_topic, payload=current_position, qos=1, retain=True)
-    print(f"Send status update {current_position}")
+def send_status_update():
+    threading.Timer(5.0, send_status_update).start()
+    client.publish(status_topic, payload=create_status_json(), qos=1, retain=True)
+    print(f"Send status update")
 
 client = mqtt_client.Client(client_id="engine_control_sg90")
 client.on_connect = on_connect
@@ -50,7 +58,7 @@ client.connect(raspberry_ip_address, mosquitto_port, 60)
 
 #test motor
 test_servo()
-status_update()
+send_status_update()
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.

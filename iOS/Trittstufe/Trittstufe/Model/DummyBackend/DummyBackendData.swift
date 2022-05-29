@@ -36,12 +36,12 @@ let dummyData: String = """
    "users":[
       {
          "accountName":"Ansgar",
-         "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZS5uaWtsYXNzY2hpbGRoYXVlci50cml0dHN0dWZlIiwiaWF0IjoxNjUzNzMyNTc5LCJleHAiOjE3Nzk5NjI5OTMsImF1ZCI6Ind3dy5oZG0tc3R1dHRnYXJ0LmRlIiwic3ViIjoiVXNlciIsImFjY291bnROYW1lIjoiQW5zZ2FyIn0.TbqXgQv7oi3a2p9rQ5pFBGQ_5j_ZkJ4SUhNBhSwmHko",
+         "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50TmFtZSI6IkFuc2dhciJ9.Rjt1PCOsae8KB4pIIzhMigdEKc6Gxx1K0h1tfklalIQ",
          "password":"Sonnenblume"
       },
       {
          "accountName":"Niklas",
-         "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZS5uaWtsYXNzY2hpbGRoYXVlci50cml0dHN0dWZlIiwiaWF0IjoxNjUzNzMyNTc5LCJleHAiOjE3Nzk5NjI5OTMsImF1ZCI6Ind3dy5oZG0tc3R1dHRnYXJ0LmRlIiwic3ViIjoiVXNlciIsImFjY291bnROYW1lIjoiTmlrbGFzIn0.nha5Ptxn-Bv0EtHoZYMe5RFZzqRquDHzYIb8RF1zB9I",
+         "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50TmFtZSI6Ik5pa2xhcyJ9.Ylkw5vN_vWO9y7fDtBEZ6ozA4QosH7u_TtGj6kvwE64",
          "password":"Sonnenblume"
       }
    ]
