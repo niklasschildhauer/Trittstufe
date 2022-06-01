@@ -4,6 +4,7 @@ platform :ios, '15.0'
 target 'Trittstufe' do
   use_frameworks!
   pod 'CocoaMQTT'
+  pod 'MQTTClient'
 
   target 'TrittstufeTests' do
     inherit! :search_paths

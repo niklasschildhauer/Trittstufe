@@ -90,12 +90,12 @@ class HomePresenter: Presenter {
             carStatus.connected = true
             print("Konfiguration")
         case .inLocalization:
-            carStatus.selectedSide = (side: .right, forceLocated: false)
+            carStatus.selectedSide = (side: .right, forceLocated: true)
 
             print("Open NFC Tag")
         case .readyToUnlock:
-            carStatus.connected = false
-            carStatus.selectedSide = (side: .unknown, forceLocated: false)
+//            carStatus.connected = false
+            carStatus.selectedSide = (side: .left, forceLocated: true)
 
             print("Open NFC Tag, Switch sides")
         }

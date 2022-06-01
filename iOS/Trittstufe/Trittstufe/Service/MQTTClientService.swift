@@ -8,21 +8,6 @@
 import Foundation
 import CocoaMQTT
 
-protocol StepEngineControlServiceDelegate: AnyObject {
-    func didReceive(stepStatus: [CarStepStatus], in service: StepEngineControlService)
-    func didConnectToCar(in service: StepEngineControlService)
-    func didDisconnectToCar(in service: StepEngineControlService)
-}
-
-protocol StepEngineControlService {
-    var statusDelegate: StepEngineControlServiceDelegate? { get set }
-    
-    func connect(completion: (Result<String, AuthenticationError>) -> Void)
-    func extendStep(on side: CarStepIdentification.Side)
-    func shrinkStep(on side: CarStepIdentification.Side)
-}
-
-
 class MQTTClientService {
     var statusDelegate: StepEngineControlServiceDelegate?
     
@@ -40,7 +25,7 @@ class MQTTClientService {
         let client = CocoaMQTT(clientID: clientID,
                                host: clientConfiguration.carIdentification.ipAdress,
                                port: clientConfiguration.carIdentification.portNumber)
-        client.keepAlive = 60
+        client.keepAlive = 20
         client.delegate = self
         //client.autoReconnect = true
         client.logLevel = .debug
@@ -73,7 +58,7 @@ extension MQTTClientService: StepEngineControlService {
     }
     
     func shrinkStep(on side: CarStepIdentification.Side) {
-        send(message: createPositionChangeJsonString(side: side, position: .open), to: "engine_control")
+        send(message: createPositionChangeJsonString(side: side, position: .close), to: "engine_control")
     }
 
     private func createPositionChangeJsonString(side: CarStepIdentification.Side, position: CarStepStatus.Position) -> String {

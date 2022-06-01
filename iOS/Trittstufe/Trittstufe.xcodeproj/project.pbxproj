@@ -12,6 +12,7 @@
 		850404902827A452009DB876 /* CryptoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504048F2827A452009DB876 /* CryptoHelper.swift */; };
 		85242A6B2806DCE6004FC32C /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6A2806DCE6004FC32C /* AuthenticationService.swift */; };
 		85242A6D28084BE9004FC32C /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6C28084BE9004FC32C /* ClientConfiguration.swift */; };
+		852891322843C24C0074BC64 /* StepEngineControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852891312843C24C0074BC64 /* StepEngineControlService.swift */; };
 		854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE12802E9C70005546B /* SetupCoordinator.swift */; };
 		854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */; };
 		854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */; };
@@ -116,6 +117,7 @@
 		8504048F2827A452009DB876 /* CryptoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHelper.swift; sourceTree = "<group>"; };
 		85242A6A2806DCE6004FC32C /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		85242A6C28084BE9004FC32C /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
+		852891312843C24C0074BC64 /* StepEngineControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepEngineControlService.swift; sourceTree = "<group>"; };
 		854E9BE12802E9C70005546B /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
 		854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLoadingViewController.swift; sourceTree = "<group>"; };
 		854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupLoadingViewController .swift"; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				85826B8E2809E04D005BEEF6 /* NetworkService.swift */,
 				85826B94280BF7FD005BEEF6 /* LocationService.swift */,
 				858976692813DF5C001E264C /* SetupStageService.swift */,
+				852891312843C24C0074BC64 /* StepEngineControlService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */,
 				85D6772027F87614004500D9 /* Trittstufe.xcdatamodeld in Sources */,
 				854E9BF6280359640005546B /* DispatchQueue+Extension.swift in Sources */,
+				852891322843C24C0074BC64 /* StepEngineControlService.swift in Sources */,
 				85826B92280BF6D5005BEEF6 /* RequestLocationPermissionViewController.swift in Sources */,
 				854E9C0628040D6F0005546B /* KeychainService.swift in Sources */,
 				85D6775E27F87E34004500D9 /* MQTTClientService.swift in Sources */,
