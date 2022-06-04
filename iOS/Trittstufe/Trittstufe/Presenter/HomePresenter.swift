@@ -41,9 +41,6 @@ class HomePresenter: Presenter {
     }
     
     func reloadServices() {
-        locationService.statusDelegate = self
-        locationService.delegate = self
-        
         if locationService.permissionStatus() == .granted {
             startLocationService()
             startEngineControlService()
@@ -58,6 +55,9 @@ class HomePresenter: Presenter {
     }
     
     private func startLocationService() {
+        locationService.statusDelegate = self
+        locationService.delegate = self
+        
         locationService.startMonitoring()
     }
     
