@@ -10,6 +10,7 @@ import Foundation
 let dummyData: String = """
 {
    "car": {
+     "id":"05c13100-102b-42cf-babb-ace7dd99c4e3",
      "model":"Rolling Chassis",
      "ipAdress":"169.254.222.28",
      "port":1883,
@@ -22,16 +23,7 @@ let dummyData: String = """
            "userToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50TmFtZSI6Ik5pa2xhcyJ9.Ylkw5vN_vWO9y7fDtBEZ6ozA4QosH7u_TtGj6kvwE64"
         }
      ],
-     "steps": [
-        {
-            "uid":"05c13100-102b-42cf-babb-ace7dd99c4e3",
-            "side":"left"
-        },
-        {
-            "uid":"6C820B8E-324C-4443-BF4E-FBB71EF73004",
-            "side":"right"
-        },
-     ]
+     "stepIdentifications": [1, 2]
     },
    "users":[
       {

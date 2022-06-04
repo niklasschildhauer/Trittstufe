@@ -18,8 +18,8 @@ protocol StepEngineControlService {
     var statusDelegate: StepEngineControlServiceDelegate? { get set }
     
     func connect(completion: @escaping (Result<String, AuthenticationError>) -> Void)
-    func extendStep(on side: CarStepIdentification.Side)
-    func shrinkStep(on side: CarStepIdentification.Side)
+    func extend(step: CarStepIdentification)
+    func shrink(step: CarStepIdentification)
 }
 
 extension StepEngineControlService {
@@ -73,20 +73,20 @@ extension MQTTClient: StepEngineControlService {
         }
     }
     
-    func extendStep(on side: CarStepIdentification.Side) {
-        publishMessage(createPositionChangeJsonString(side: side, position: .open), to: "engine_control")
+    func extend(step: CarStepIdentification) {
+        publishMessage(createPositionChangeJsonString(step: step, position: .open), to: "engine_control")
 
     }
     
-    func shrinkStep(on side: CarStepIdentification.Side) {
-        publishMessage(createPositionChangeJsonString(side: side, position: .close), to: "engine_control")
+    func shrink(step: CarStepIdentification) {
+        publishMessage(createPositionChangeJsonString(step: step, position: .close), to: "engine_control")
 
     }
     
-    private func createPositionChangeJsonString(side: CarStepIdentification.Side, position: CarStepStatus.Position) -> String {
+    private func createPositionChangeJsonString(step: CarStepIdentification, position: CarStepStatus.Position) -> String {
         let json: [String: Any] = [
             "token": clientConfiguration.userToken,
-            "side": side.rawValue,
+            "side": step.rawValue,
             "position": position.rawValue
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())

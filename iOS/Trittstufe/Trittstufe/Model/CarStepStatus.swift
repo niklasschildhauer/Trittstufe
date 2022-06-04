@@ -12,8 +12,16 @@ struct CarStepStatus: Codable, Equatable {
         case open
         case close
         case unknown
+        
+        var imageName: String {
+            switch self {
+            case .close: return "close"
+            case .unknown: return "unknown"
+            case .open: return "open"
+            }
+        }
     }
     
-    let side: CarStepIdentification.Side
+    let step: CarStepIdentification
     var position: Position = .unknown
 }

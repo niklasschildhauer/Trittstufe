@@ -16,7 +16,7 @@ protocol LocationServiceStatusDelegate {
 protocol LocationServiceDelegate {
     func didFail(with error: String, in service: LocationService)
     func didRangeNothing(in service: LocationService)
-    func didRangeCar(car: CarIdentification, side: CarStepIdentification.Side, with proximity: CLProximity, meters: Double, in service: LocationService)
+    func didRangeCar(car: CarIdentification, step: CarStepIdentification, with proximity: CLProximity, meters: Double, in service: LocationService)
 }
 
 class LocationService: NSObject {
@@ -45,24 +45,21 @@ class LocationService: NSObject {
     }
     
     func startMonitoring() {
-        guard let clientConfiguration = clientConfiguration else {
+        guard let clientConfiguration = clientConfiguration,
+        let carUUID = clientConfiguration.carIdentification.uuid else {
             return
         }
         
-        clientConfiguration.carIdentification.steps.forEach { steps in
-            
-            // Create a new constraint and add it to the dictionary.
-            let constraint = CLBeaconIdentityConstraint(uuid: UUID(uuidString: steps.uid)!)
-            self.beaconConstraints[constraint] = []
-            
-            /*
-             By monitoring for the beacon before ranging, the app is more
-             energy efficient if the beacon is not immediately observable.
-             */
-            let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: steps.uid)
-            self.locationManager.startMonitoring(for: beaconRegion)
-        }
+        // Create a new constraint and add it to the dictionary.
+        let constraint = CLBeaconIdentityConstraint(uuid: carUUID)
+        self.beaconConstraints[constraint] = []
         
+        /*
+         By monitoring for the beacon before ranging, the app is more
+         energy efficient if the beacon is not immediately observable.
+         */
+        let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: clientConfiguration.carIdentification.id)
+        self.locationManager.startMonitoring(for: beaconRegion)
     }
     
     func stopMonitoring() {
@@ -152,9 +149,9 @@ extension LocationService: CLLocationManagerDelegate {
         
         if let closestBeacon = getClosestBeacon(beacons: allBeacons),
            let car = clientConfiguration?.carIdentification,
-           let side = getCarSideFor(beacon: closestBeacon, car: car) {
+           let step = getCarStepFor(beacon: closestBeacon, car: car) {
             nothingRangedCount = 0
-            delegate?.didRangeCar(car: car, side: side, with: closestBeacon.proximity, meters: closestBeacon.accuracy, in: self)
+            delegate?.didRangeCar(car: car, step: step, with: closestBeacon.proximity, meters: closestBeacon.accuracy, in: self)
         } else {
             nothingRangedCount = nothingRangedCount + 1
             if nothingRangedCount > 6 {
@@ -167,14 +164,15 @@ extension LocationService: CLLocationManagerDelegate {
         beacons.sorted { $0.accuracy > $1.accuracy }.first
     }
     
-    private func getCarSideFor(beacon: CLBeacon, car: CarIdentification) -> CarStepIdentification.Side? {
+    private func getCarStepFor(beacon: CLBeacon, car: CarIdentification) -> CarStepIdentification? {
         let beaconId = beacon.uuid
-        for step in car.steps {
-            if let stepUUID = UUID(uuidString: step.uid),
-               stepUUID == beaconId{
-                return step.side
-            }
+        let stepId: Int = Int(truncating: beacon.major)
+        if beaconId == car.uuid,
+           let stepId = car.stepIdentifications.first(where: { $0.rawValue == stepId }) {
+            return stepId
+        } else {
+            print("step could not be found")
+            return nil
         }
-        return nil
     }
 }

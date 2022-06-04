@@ -19,11 +19,11 @@ struct CarStatus {
             return .notConnected
         }
         // if no side is selected show localization screen
-        guard selectedSide.side != .unknown else {
+        guard selectedStep.step != .unknown else {
             return .inLocalization
         }
         // if side is selected and forceLocated is true, then show unlock screen
-        guard !selectedSide.forceLocated else {
+        guard !selectedStep.forceLocated else {
             return .readyToUnlock
         }
         // if proximimty is far with a count of 6, then show localization screen
@@ -33,11 +33,11 @@ struct CarStatus {
         return .readyToUnlock
     }
     var stepStatus: [CarStepStatus]
-    var selectedSide: (side: CarStepIdentification.Side, forceLocated: Bool) = (side: .unknown, forceLocated: false)
+    var selectedStep: (step: CarStepIdentification, forceLocated: Bool) = (step: .unknown, forceLocated: false)
     
     init(car: CarIdentification) {
         self.car = car
-        stepStatus = car.steps.map {CarStepStatus(side: $0.side) }
+        stepStatus = car.stepIdentifications.map {CarStepStatus(step: $0) }
     }
     
     enum CarState {
@@ -109,7 +109,7 @@ struct CarStatus {
         case .notConnected,. inLocalization:
             return nil
         case .readyToUnlock:
-            return .init(selectedSide: selectedSide.side, currentStatus: stepStatus)
+            return .init(selectedStep: selectedStep.step, currentStatus: stepStatus)
         }
     }
     

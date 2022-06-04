@@ -8,12 +8,13 @@
 import Foundation
 
 struct CarBackend: Codable {
+    let id: String
     let model: String
     let ipAdress: String
     let port: UInt16
     let publicKey: String
     let authorizedUsers: [AuthorizedUser]
-    let steps: [CarStepIdentification]
+    let stepIdentifications: [CarStepIdentification]
     
     struct AuthorizedUser: Codable {
         let userToken: String

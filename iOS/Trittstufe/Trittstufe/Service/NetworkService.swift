@@ -47,7 +47,7 @@ class LocalNetworkService: NetworkService {
         if dummyBackendData.car.authorizedUsers.contains(where: { user in
             user.userToken == userToken
         }) {
-            return CarIdentification(ipAdress: dummyBackendData.car.ipAdress, portNumber: dummyBackendData.car.port, publicKey: dummyBackendData.car.publicKey, model: dummyBackendData.car.model, steps: dummyBackendData.car.steps)
+            return CarIdentification(id: dummyBackendData.car.id, ipAdress: dummyBackendData.car.ipAdress, portNumber: dummyBackendData.car.port, publicKey: dummyBackendData.car.publicKey, model: dummyBackendData.car.model, stepIdentifications: dummyBackendData.car.stepIdentifications)
         }
         return nil
     }

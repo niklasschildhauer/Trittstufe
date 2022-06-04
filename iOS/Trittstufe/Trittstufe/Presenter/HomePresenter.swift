@@ -71,13 +71,13 @@ class HomePresenter: Presenter {
     }
     
     func extendStep() {
-        let side = carStatus.selectedSide.side
-        stepEngineControlService.extendStep(on: side)
+        let step = carStatus.selectedStep.step
+        stepEngineControlService.extend(step: step)
     }
     
     func shrinkStep() {
-        let side = carStatus.selectedSide.side
-        stepEngineControlService.shrinkStep(on: side)
+        let step = carStatus.selectedStep.step
+        stepEngineControlService.shrink(step: step)
     }
     
     func logout() {
@@ -90,12 +90,12 @@ class HomePresenter: Presenter {
             carStatus.connected = true
             print("Konfiguration")
         case .inLocalization:
-            carStatus.selectedSide = (side: .right, forceLocated: true)
+            carStatus.selectedStep = (step: .right, forceLocated: true)
 
             print("Open NFC Tag")
         case .readyToUnlock:
 //            carStatus.connected = false
-            carStatus.selectedSide = (side: .left, forceLocated: true)
+            carStatus.selectedStep = (step: .left, forceLocated: true)
 
             print("Open NFC Tag, Switch sides")
         }
@@ -128,29 +128,29 @@ extension HomePresenter: LocationServiceStatusDelegate {
 
 extension HomePresenter: LocationServiceDelegate {
     func didRangeNothing(in service: LocationService) {
-        guard !carStatus.selectedSide.forceLocated else { return }
+        guard !carStatus.selectedStep.forceLocated else { return }
 
         print("Nothing to find")
         carStatus.distance = (proximity: .unknown, meters: nil, count: 0)
-        carStatus.selectedSide = (side: .unknown, forceLocated: false)
+        carStatus.selectedStep = (step: .unknown, forceLocated: false)
         
         reloadView()
     }
     
-    func didRangeCar(car: CarIdentification, side: CarStepIdentification.Side, with proximity: CLProximity, meters: Double, in service: LocationService) {
-        guard !carStatus.selectedSide.forceLocated else { return }
+    func didRangeCar(car: CarIdentification, step: CarStepIdentification, with proximity: CLProximity, meters: Double, in service: LocationService) {
+        guard !carStatus.selectedStep.forceLocated else { return }
     
-        print("Find: \(car.model), \(side), \(meters)m - \(proximity.rawValue)")
+        print("Find: \(car.model), \(step), \(meters)m - \(proximity.rawValue)")
 
         let distanceCount = carStatus.distance.proximity == proximity ? carStatus.distance.count + 1 : 0
         carStatus.distance = (proximity: proximity, meters: meters > 0 ? meters : nil, count: distanceCount)
 
         if proximity != .far && carStatus.distance.count > 3 {
-            carStatus.selectedSide = (side: side, forceLocated: false)
+            carStatus.selectedStep = (step: step, forceLocated: false)
         }
         
         if proximity == .far && carStatus.distance.count > 6 {
-            carStatus.selectedSide = (side: .unknown, forceLocated: false)
+            carStatus.selectedStep = (step: .unknown, forceLocated: false)
         }
         
         reloadView(animated: true)

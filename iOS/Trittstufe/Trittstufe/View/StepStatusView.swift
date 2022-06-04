@@ -10,18 +10,18 @@ import UIKit
 class StepStatusView: NibLoadingView {
     
     struct ViewModel {
-        let selectedSide: CarStepIdentification.Side
+        let selectedStep: CarStepIdentification
         let currentStatus: [CarStepStatus]
         
         var currentStatusImage: UIImage {
-            let leftStatus: CarStepStatus.Position = currentStatus.first(where: { $0.side == .left })?.position ?? .unknown
-            let rightStatus: CarStepStatus.Position = currentStatus.first(where: { $0.side == .right })?.position ?? .unknown
+            let leftStatus: CarStepStatus.Position = currentStatus.first(where: { $0.step == .left })?.position ?? .unknown
+            let rightStatus: CarStepStatus.Position = currentStatus.first(where: { $0.step == .right })?.position ?? .unknown
 
-            return UIImage(named: "\(leftStatus.rawValue)-\(rightStatus.rawValue)")!
+            return UIImage(named: "\(leftStatus.imageName)-\(rightStatus.imageName)")!
         }
         
         var selectedStepStatus: CarStepStatus? {
-            currentStatus.first(where: { $0.side == selectedSide })
+            currentStatus.first(where: { $0.step == selectedStep })
         }
     }
     @IBOutlet weak var arrowLeftImageView: UIImageView!
@@ -51,7 +51,7 @@ class StepStatusView: NibLoadingView {
     }
 
     private func reload(with viewModel: ViewModel) {
-        switch viewModel.selectedSide {
+        switch viewModel.selectedStep {
         case .left:
             arrowLeftImageView.isHidden = true
             arrowRightImageView.isHidden = false

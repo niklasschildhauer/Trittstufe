@@ -49,22 +49,22 @@ class MQTTClientService {
 }
 
 extension MQTTClientService: StepEngineControlService {
+    func extend(step: CarStepIdentification) {
+        send(message: createPositionChangeJsonString(step: step, position: .open), to: "engine_control")
+    }
+    
+    func shrink(step: CarStepIdentification) {
+        send(message: createPositionChangeJsonString(step: step, position: .close), to: "engine_control")
+    }
+    
     func connect(completion: (Result<String, AuthenticationError>) -> Void) {
         loginClientAtBroker(for: "", password: "", completion: completion)
     }
     
-    func extendStep(on side: CarStepIdentification.Side) {
-        send(message: createPositionChangeJsonString(side: side, position: .open), to: "engine_control")
-    }
-    
-    func shrinkStep(on side: CarStepIdentification.Side) {
-        send(message: createPositionChangeJsonString(side: side, position: .close), to: "engine_control")
-    }
-
-    private func createPositionChangeJsonString(side: CarStepIdentification.Side, position: CarStepStatus.Position) -> String {
+    private func createPositionChangeJsonString(step: CarStepIdentification, position: CarStepStatus.Position) -> String {
         let json: [String: Any] = [
             "token": clientConfiguration.userToken,
-            "side": side.rawValue,
+            "step": step.rawValue,
             "position": position.rawValue
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
@@ -77,6 +77,7 @@ extension MQTTClientService: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         print("didConnect")
         statusDelegate?.didConnectToCar(in: self)
+        
         mqtt.subscribe("engine_control_status", qos: .qos1)
 
 //        if let completion = self.loginCompletion {

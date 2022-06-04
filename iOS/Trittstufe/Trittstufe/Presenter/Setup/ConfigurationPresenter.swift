@@ -57,7 +57,7 @@ class ConfigurationPresenter: Presenter {
         
         
         if let existingConfiguration = UserDefaultConfig.dummyBackendData {
-            let newCarConfiguration = CarBackend(model: existingConfiguration.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: existingConfiguration.car.authorizedUsers, steps: existingConfiguration.car.steps)
+            let newCarConfiguration = CarBackend(id: existingConfiguration.car.id, model: existingConfiguration.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: existingConfiguration.car.authorizedUsers, stepIdentifications: existingConfiguration.car.stepIdentifications)
             
             saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: existingConfiguration.users))
         } else {
@@ -65,7 +65,7 @@ class ConfigurationPresenter: Presenter {
                 self.view?.showError(message: "Ein interner Fehler ist aufgetreten.")
                 return
             }
-            let newCarConfiguration = CarBackend(model: dummyBackendData.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: dummyBackendData.car.authorizedUsers, steps: dummyBackendData.car.steps)
+            let newCarConfiguration = CarBackend(id: dummyBackendData.car.id, model: dummyBackendData.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: dummyBackendData.car.authorizedUsers, stepIdentifications: dummyBackendData.car.stepIdentifications)
             
             saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: dummyBackendData.users))
         }

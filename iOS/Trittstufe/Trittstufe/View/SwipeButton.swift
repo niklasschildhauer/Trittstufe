@@ -28,7 +28,7 @@ class SwipeButton: NibLoadingView {
     @IBOutlet weak var dragViewLeadingAnchor: NSLayoutConstraint!
     var delegate: SwipeButtonDelegate?
     var initialCenter = CGPoint()
-    var stepStatus: CarStepStatus = .init(side: .left, position: .unknown) {
+    var stepStatus: CarStepStatus = .init(step: .left, position: .unknown) {
         didSet {
             if oldValue != stepStatus {
                 reload()
@@ -127,12 +127,12 @@ class SwipeButton: NibLoadingView {
                 self.dragViewLeadingAnchor.constant = 0
 
                 self.iconImageView.image = UIImage(systemName: "lock")
-                self.label.text = "\(self.stepStatus.side.rawValue) Treppe ausfahren"
+                self.label.text = "\(self.stepStatus.step.name) Treppe ausfahren"
             case .open:
                 self.dragViewLeadingAnchor.constant = self.lockedPosition - self.buttonWidth/2
 
                 self.iconImageView.image = UIImage(systemName: "lock.open")
-                self.label.text = "\(self.stepStatus.side.rawValue) Treppe einfahren"
+                self.label.text = "\(self.stepStatus.step.name) Treppe einfahren"
             case .unknown:
                 self.label.text = ""
                 self.iconImageView.image = nil
