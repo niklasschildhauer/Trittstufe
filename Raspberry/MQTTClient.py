@@ -14,7 +14,10 @@ load_dotenv()
 raspberry_ip_address = os.getenv('IP_ADDRESS')
 print(raspberry_ip_address)
 mosquitto_port = int(os.getenv('PORT'))
-  
+
+domain = os.getenv('DOMAIN')
+car_id = os.getenv('CAR_ID')
+step_id = os.getenv('STEP_ID')  
 position_topic = os.getenv('POSITION_TOPIC')
 status_topic = os.getenv('STAUTS_TOPIC')
 
@@ -26,7 +29,7 @@ def on_connect(client, userdata, flags, rc):
     # reconnect then subscriptions will be renewed.
     client.subscribe(position_topic)
     print(position_topic)
-    client.subscribe('engine_control')
+    client.subscribe(f'{domain}/{car_id}/{step_id}/{position_topic}')
     client.publish(status_topic, payload='close', qos=1, retain=True)
 
 # The callback for when a PUBLISH message is received from the server.
@@ -39,7 +42,7 @@ def on_message(client, userdata, message):
         message = encrypt_cipher_text(cipher_stirng=payload, public_key=public_key)
         new_position_json = json.loads(message)
         if is_token_valid(new_position_json["token"]):
-            success = set_position(position=new_position_json['position'], side=new_position_json['side'])
+            success = set_position(position=new_position_json['position'])
             if success:
                 print("Successful")
                 send_status_update()
@@ -48,7 +51,7 @@ def on_message(client, userdata, message):
 
 def send_status_update():
     #threading.Timer(5.0, send_status_update).start()
-    client.publish(status_topic, payload=create_status_json(), qos=1, retain=True)
+    client.publish(f'{domain}/{car_id}/{step_id}/{status_topic}', payload=create_status_json(), qos=1, retain=True)
     print(f"Send status update")
 
 client = mqtt_client.Client(client_id="engine_control")
