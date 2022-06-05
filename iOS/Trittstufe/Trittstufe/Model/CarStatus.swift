@@ -46,6 +46,14 @@ struct CarStatus {
         case readyToUnlock
     }
     
+    mutating func update(stepStatus: CarStepStatus) {
+        for statusIndex in self.stepStatus.indices {
+            if self.stepStatus[statusIndex].step == stepStatus.step {
+                self.stepStatus[statusIndex].position = stepStatus.position
+            }
+        }
+    }
+    
     private var locationTag: CarHeaderView.ViewModel.TagStatusModel {
         guard let meters = distance.meters?.rounded() else {
             return .init(image: UIImage(systemName: "location.slash")!, color: Color.statusRed, text: "?")

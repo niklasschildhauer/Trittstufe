@@ -165,8 +165,8 @@ extension HomePresenter: LocationServiceDelegate {
 }
 
 extension HomePresenter: StepEngineControlServiceDelegate {
-    func didReceive(stepStatus: [CarStepStatus], in service: StepEngineControlService) {
-        carStatus.stepStatus = stepStatus
+    func didReceive(stepStatus: CarStepStatus, in service: StepEngineControlService) {
+        carStatus.update(stepStatus: stepStatus)
         
         reloadView()
     }
