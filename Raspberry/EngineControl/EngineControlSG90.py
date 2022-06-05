@@ -44,6 +44,7 @@ def set_position(position):
 
 def create_status_json(): 
     data = {"position": current_position}
+    print(json.dumps(data))
     return json.dumps(data)
 
 def test_servo():
