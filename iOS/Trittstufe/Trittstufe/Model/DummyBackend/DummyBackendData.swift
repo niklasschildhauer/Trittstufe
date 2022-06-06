@@ -10,7 +10,7 @@ import Foundation
 let dummyData: String = """
 {
    "car": {
-     "id":"05c13100-102b-42cf-babb-ace7dd99c4e3",
+     "uuid":"05c13100-102b-42cf-babb-ace7dd99c4e3",
      "model":"Rolling Chassis",
      "ipAdress":"169.254.222.28",
      "port":1883,

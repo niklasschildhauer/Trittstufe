@@ -8,7 +8,7 @@
 import Foundation
 
 struct CarBackend: Codable {
-    let id: String
+    let uuid: String
     let model: String
     let ipAdress: String
     let port: UInt16

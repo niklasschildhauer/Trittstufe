@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CoreLocation
+import CoreNFC
 
 protocol HomeView: AnyObject {
     var presenter: HomePresenter! { get set }
@@ -25,7 +26,7 @@ protocol HomePresenterDelegate: AnyObject {
     func didChangePermissionStatus(in presenter: HomePresenter)
 }
 
-class HomePresenter: Presenter {
+class HomePresenter: NSObject, Presenter {
     
     weak var view: HomeView?
     var delegate: HomePresenterDelegate?
@@ -33,6 +34,7 @@ class HomePresenter: Presenter {
     private var stepEngineControlService: StepEngineControlService
     private let locationService: LocationService
     private var carStatus: CarStatus
+    private let nfcReaderService = NFCReaderService()
     
     init(stepEngineControlService: StepEngineControlService, locationService: LocationService, carIdentification: CarIdentification) {
         self.stepEngineControlService = stepEngineControlService
@@ -90,8 +92,8 @@ class HomePresenter: Presenter {
             carStatus.connected = true
             print("Konfiguration")
         case .inLocalization:
-            carStatus.selectedStep = (step: .right, forceLocated: true)
-
+            //carStatus.selectedStep = (step: .right, forceLocated: true)
+            nfcReaderService.startReader()
             print("Open NFC Tag")
         case .readyToUnlock:
 //            carStatus.connected = false
