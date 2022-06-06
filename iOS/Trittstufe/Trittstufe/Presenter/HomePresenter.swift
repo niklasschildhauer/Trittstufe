@@ -90,18 +90,12 @@ class HomePresenter: NSObject, Presenter {
         switch carStatus.currentState {
         case .notConnected:
             carStatus.connected = true
+            reloadView()
             print("Konfiguration")
-        case .inLocalization:
-            //carStatus.selectedStep = (step: .right, forceLocated: true)
-            nfcReaderService.startReader()
-            print("Open NFC Tag")
-        case .readyToUnlock:
-//            carStatus.connected = false
-            carStatus.selectedStep = (step: .left, forceLocated: true)
-
-            print("Open NFC Tag, Switch sides")
+        case .inLocalization, .readyToUnlock:
+            nfcReaderService.delegate = self
+            nfcReaderService.startReader(toLocate: carStatus.car.id)
         }
-        reloadView()
     }
     
     private func reloadView(animated: Bool = false) {
@@ -136,7 +130,9 @@ extension HomePresenter: LocationServiceDelegate {
         carStatus.distance = (proximity: .unknown, meters: nil, count: 0)
         carStatus.selectedStep = (step: .unknown, forceLocated: false)
         
-        reloadView()
+        DispatchQueue.performUIOperation {
+            self.reloadView()
+        }
     }
     
     func didRangeCar(car: CarIdentification, step: CarStepIdentification, with proximity: CLProximity, meters: Double, in service: LocationService) {
@@ -155,32 +151,48 @@ extension HomePresenter: LocationServiceDelegate {
             carStatus.selectedStep = (step: .unknown, forceLocated: false)
         }
         
-        reloadView(animated: true)
+        DispatchQueue.performUIOperation {
+            self.reloadView(animated: true)
+        }
     }
         
     func didFail(with error: String, in service: LocationService) {
         carStatus.distance = (proximity: .unknown, meters: nil, count: 0)
         print(error)
-
-        reloadView()
+        DispatchQueue.performUIOperation {
+            self.reloadView()
+        }
     }
 }
 
 extension HomePresenter: StepEngineControlServiceDelegate {
     func didReceive(stepStatus: CarStepStatus, in service: StepEngineControlService) {
         carStatus.update(stepStatus: stepStatus)
-        
-        reloadView()
+        DispatchQueue.performUIOperation {
+            self.reloadView()
+        }
     }
     
     func didConnectToCar(in service: StepEngineControlService) {
         carStatus.connected = true
-        reloadView()
+        DispatchQueue.performUIOperation {
+            self.reloadView()
+        }
     }
     
     func didDisconnectToCar(in service: StepEngineControlService) {
         carStatus.connected = false
+        DispatchQueue.performUIOperation {
+            self.reloadView()
+        }
+    }
+}
 
-        reloadView()
+extension HomePresenter: NFCReaderServiceDelegate {
+    func didLocate(step: CarStepIdentification, in service: NFCReaderService) {
+        carStatus.selectedStep = (step: step, forceLocated: true)
+        DispatchQueue.performUIOperation {
+            self.reloadView()
+        }
     }
 }

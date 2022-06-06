@@ -21,6 +21,7 @@ Alternativ können Sie auch die QR-Code an der Trittstufe scannen. In diesem sin
 "HomeViewController_LogoutButton" = "Abmelden";
 "AuthenticationController_LoginButton" = "Anmelden";
 "ConfigurationController_SubmitButton" = "Bestätigen";
+"NFCReaderService_Instruction" = "Halte dein iPhone an den NFC Tag der Trittstufe";
 
 
 

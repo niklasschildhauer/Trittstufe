@@ -13,6 +13,7 @@
 		85242A6B2806DCE6004FC32C /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6A2806DCE6004FC32C /* AuthenticationService.swift */; };
 		85242A6D28084BE9004FC32C /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85242A6C28084BE9004FC32C /* ClientConfiguration.swift */; };
 		852891322843C24C0074BC64 /* StepEngineControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852891312843C24C0074BC64 /* StepEngineControlService.swift */; };
+		853C951E284E11480081F396 /* NFCReaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853C951D284E11480081F396 /* NFCReaderService.swift */; };
 		854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE12802E9C70005546B /* SetupCoordinator.swift */; };
 		854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */; };
 		854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */; };
@@ -51,7 +52,6 @@
 		85C9735F2810282200D855D4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973332810282200D855D4 /* Font.swift */; };
 		85C9736728102AD500D855D4 /* GlobalAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9736628102AD500D855D4 /* GlobalAppearance.swift */; };
 		85C973692810343800D855D4 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C973682810343800D855D4 /* ButtonStyle.swift */; };
-		85D190F028229CF4004D1506 /* SignatureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D190EF28229CF4004D1506 /* SignatureHelper.swift */; };
 		85D6771627F87614004500D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771527F87614004500D9 /* AppDelegate.swift */; };
 		85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6771727F87614004500D9 /* SceneDelegate.swift */; };
 		85D6771D27F87614004500D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D6771B27F87614004500D9 /* Main.storyboard */; };
@@ -118,6 +118,8 @@
 		85242A6A2806DCE6004FC32C /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		85242A6C28084BE9004FC32C /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
 		852891312843C24C0074BC64 /* StepEngineControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepEngineControlService.swift; sourceTree = "<group>"; };
+		853C951D284E11480081F396 /* NFCReaderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFCReaderService.swift; sourceTree = "<group>"; };
+		853C951F284E117E0081F396 /* Trittstufe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Trittstufe.entitlements; sourceTree = "<group>"; };
 		854E9BE12802E9C70005546B /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
 		854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLoadingViewController.swift; sourceTree = "<group>"; };
 		854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupLoadingViewController .swift"; sourceTree = "<group>"; };
@@ -156,7 +158,6 @@
 		85C973332810282200D855D4 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		85C9736628102AD500D855D4 /* GlobalAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAppearance.swift; sourceTree = "<group>"; };
 		85C973682810343800D855D4 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
-		85D190EF28229CF4004D1506 /* SignatureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureHelper.swift; sourceTree = "<group>"; };
 		85D6771227F87614004500D9 /* Trittstufe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trittstufe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D6771527F87614004500D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D6771727F87614004500D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -368,6 +369,7 @@
 		85D6771427F87614004500D9 /* Trittstufe */ = {
 			isa = PBXGroup;
 			children = (
+				853C951F284E117E0081F396 /* Trittstufe.entitlements */,
 				85C973092810282200D855D4 /* Styling */,
 				8582BE48280E9F5D005BC299 /* View */,
 				85D6774E27F87655004500D9 /* Model */,
@@ -440,6 +442,7 @@
 		85D6774B27F8763F004500D9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				853C951D284E11480081F396 /* NFCReaderService.swift */,
 				85D6775D27F87E34004500D9 /* MQTTClientService.swift */,
 				854E9C0528040D6F0005546B /* KeychainService.swift */,
 				85242A6A2806DCE6004FC32C /* AuthenticationService.swift */,
@@ -464,7 +467,6 @@
 			isa = PBXGroup;
 			children = (
 				854E9C03280370A90005546B /* UserDefaults.swift */,
-				85D190EF28229CF4004D1506 /* SignatureHelper.swift */,
 				8504048F2827A452009DB876 /* CryptoHelper.swift */,
 			);
 			path = Helper;
@@ -758,6 +760,7 @@
 				85D6775627F877CD004500D9 /* HomePresenter.swift in Sources */,
 				854E9BF22802F2200005546B /* ConfigurationPresenter.swift in Sources */,
 				85E99BE0283F964800532EA3 /* CarIdentification.swift in Sources */,
+				853C951E284E11480081F396 /* NFCReaderService.swift in Sources */,
 				8589766A2813DF5C001E264C /* SetupStageService.swift in Sources */,
 				85826B99280D5082005BEEF6 /* CarBackendModel.swift in Sources */,
 				85D6775427F877A3004500D9 /* Coordinator+Protocol.swift in Sources */,
@@ -803,7 +806,6 @@
 				85D6771827F87614004500D9 /* SceneDelegate.swift in Sources */,
 				85C9736728102AD500D855D4 /* GlobalAppearance.swift in Sources */,
 				85826B8F2809E04D005BEEF6 /* NetworkService.swift in Sources */,
-				85D190F028229CF4004D1506 /* SignatureHelper.swift in Sources */,
 				85B1B67C2842AF9700B63038 /* UIView+Extension.swift in Sources */,
 				854E9BEA2802EECB0005546B /* SetupStage.swift in Sources */,
 			);
@@ -994,9 +996,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Trittstufe/Trittstufe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YP55X74PC3;
+				DEVELOPMENT_TEAM = SFJ44RUBE9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trittstufe/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan the qr code";
@@ -1015,7 +1018,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.niklasschildhauer.Trittstufe;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hdm-stuttgart.step";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1029,9 +1032,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Trittstufe/Trittstufe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YP55X74PC3;
+				DEVELOPMENT_TEAM = SFJ44RUBE9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trittstufe/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan the qr code";
@@ -1050,7 +1054,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.niklasschildhauer.Trittstufe;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hdm-stuttgart.step";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

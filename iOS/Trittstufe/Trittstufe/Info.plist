@@ -33,5 +33,12 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NFCReaderUsageDescription</key>
+	<string>Bitte erlaube es den NFC Reader zu verwenden</string>
+	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+	<array>
+		<string>D2760000850100</string>
+		<string>D2760000850101</string>
+	</array>
 </dict>
 </plist>
