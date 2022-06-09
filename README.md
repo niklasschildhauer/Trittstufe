@@ -13,10 +13,10 @@ The repository is structured into the following three components:
 
 
 ## Requirements
-- iPhone (iOS 15)
-- Raspberry Pi as Mosquitto Broker
-- Each step must be connected to a Raspberry Pi. For each step there must be one step-engine control.
-- iBeacons for each step. This could be an extra iPhone which runs the iBeacon App in ./iOS/iBeacon.
+- iPhone (iOS 15) with the [Trittstufe-App](https://gitlab.mi.hdm-stuttgart.de/ns162/trittstufe/-/tree/main/1_iOS/Trittstufe) running
+- Raspberry Pi as [Mosquitto Broker](https://gitlab.mi.hdm-stuttgart.de/ns162/trittstufe/-/tree/main/2_Raspberry)
+- Each step must be connected to a Raspberry Pi. For each step there must be one [Step-engine control](https://gitlab.mi.hdm-stuttgart.de/ns162/trittstufe/-/tree/main/2_Raspberry/StepEngineControl).
+- iBeacons for each step. This could be an extra iPhone which runs the [iBeacon App](https://gitlab.mi.hdm-stuttgart.de/ns162/trittstufe/-/tree/main/1_iOS/iBeacon).
 - NFC Tags for each step
 
 ## Communication
