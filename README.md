@@ -7,9 +7,9 @@ For the FlexCAR project, two steps are being developed that can be retracted and
 
 ## Structure
 The repository is structured into the following three components:
-1. **iOS-App**
+1. **1_iOS**: Contains the Trittstufen-App and the iBeacon-App
 2. **Raspberry**: Contains the MQTT client for the step-engine control as well as an instruction to run the MQTT Broker Mosquitto on the Raspberry.
-3. **Backend data model**: The dummy data model, which contains both vehicle information and user data. 
+3. **Backend**: The dummy data model, which contains both vehicle information and user data. 
 
 
 ## Requirements
