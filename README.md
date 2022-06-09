@@ -1,6 +1,6 @@
 # App controlled step for FlexCAR
 
-<center><img src="./_assets/logo.png" width=200></center>
+<center><img src="./0_assets/logo.png" width=200></center>
 
 ## Introduction
 For the FlexCAR project, two steps are being developed that can be retracted and extended using an iOS app. For safety reasons, there is a requirement that the user can only extend the step facing him. In this project, technologies were investigated that can be used to localize objects. For this reason, a concept has been developed that uses the technology of Bluetooth beacons and NFC tags to ensure the immediate proximity to the vehicle and to determine the facing side of the vehicle. The iOS-App of this repository has been developed which uses the Bluetooth Beacons to measure the distance to the vehicle. However, there is the problem of the technology being sensitive to interference, so the NFC tags are used as a backup strategy.  
@@ -28,13 +28,13 @@ The diagram also shows the messages that are sent and received by the clients. T
 
 The app publishes on the topic `set_position` to move a step in or out. The step-engine control in turn publishes on `status` the current position, so that the end user can see the current position of the respective step in the app. 
 
-<center><img src="./_assets/mqtt-communication.png"></center>
+<center><img src="./0_assets/mqtt-communication.png"></center>
 
 
 ## Localization
 The figure below shows in simplified form how the car and the facing side can be localized. Each side (step) of the vehicle broadcasts the UUID (Universally Unique Identifier) of the vehicle and the identifier of the respective step. This is received by the app, allowing the facing step and thus the associated side to be identified. The app has previously received the UUID of the vehicle and the identifiers of the steps from the backend.  
-<center><img src="./_assets/localization.png"></center>
+<center><img src="./0_assets/localization.png"></center>
 
 ## Backend commmunication
 An additional instance, a backend, is required to generate the user token and to authorize users to access specific vehicles. This backend is responsible for car rentals and user management. Since the backend development is not part of this project, it is only shown here as a black box in the figure below. Here you can see that the iOS-App first has to login to the backend to get a user token. This user token is later used by the step engine control to verify that the user is authorized to open the step. 
-<center><img src="./_assets/backend-communication.png"></center>
+<center><img src="./0_assets/backend-communication.png"></center>
