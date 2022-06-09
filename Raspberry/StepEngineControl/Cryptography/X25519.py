@@ -25,11 +25,7 @@ def generate_symmetric_key(public_key_client_string, private_key_string=private_
         salt=salt_string.encode('utf-8'),
         info=b'',
     ).derive(shared_secret)
-
-    print(base64.b64encode(shared_secret))
-    print(base64.b64encode(symmetric_key))
-    print(symmetric_key)
-
+    
     return symmetric_key
 
 

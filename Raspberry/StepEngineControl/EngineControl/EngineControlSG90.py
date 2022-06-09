@@ -1,37 +1,33 @@
 import RPi.GPIO as GPIO
 import time
 import json
-from paho.mqtt import client as mqtt_client
-# der Servomotor wurde an den GPIO Pin 18 angeschlossen
+
+# engine was connected to GPIO pin 18
 servo_PIN = 18 
-# moegliche Servopositionen fuer dieses Beispiel
-servo_positions = [2.5,12.5]
+servo_positions = [2.5,12.5] # index 0 = close, index 1 = open
 
-# damit wir den GPIO Pin ueber die Nummer referenzieren koennen
+# the current position of the step. Initial close
 current_position = 'close'
-
 
 GPIO.setwarnings(False) 
 GPIO.setmode(GPIO.BCM)
-# setzen des GPIO Pins als Ausgang
-GPIO.setup(servo_PIN, GPIO.OUT)
+GPIO.setup(servo_PIN, GPIO.OUT) # set the GPIO pin as output
 
-# Funktion zum setzen eines Winkels
-# als Parameter wird die Position erwartet
-def set_servo_cycle(p, position):
+# private function to set a new position angle
+def _set_servo_cycle(p, position):
     p.ChangeDutyCycle(position)
-    # eine Pause von 0,5 Sekunden
-    time.sleep(0.5)
+    time.sleep(0.5) # sleep for 0,5 sec after setting a new position
 
+# public function to set a new position. The position parameter can either be 'close' or 'open'
 def set_position(position):
     global current_position
     if current_position == position:
       return
-    new_position = servo_positions[0] if position == 'close' else servo_positions[1]
+    new_position = servo_positions[1] if position == 'open' else servo_positions[0]
     try:
         p = GPIO.PWM(servo_PIN, 50) # GPIO als PWM mit 50Hz
         p.start(servo_positions[0]) # Initialisierung mit dem ersten Wert aus unserer Liste
-        set_servo_cycle(p, new_position)
+        _set_servo_cycle(p, new_position)
         current_position = position 
         return True
     # wenn das Script auf dem Terminal / der Konsole abgebrochen wird, dann...
@@ -41,12 +37,13 @@ def set_position(position):
         GPIO.cleanup()
         return False
 
-
+# public function to get the current position of the step
 def create_status_json(): 
     data = {"position": current_position}
     print(json.dumps(data))
     return json.dumps(data)
 
+# public function to set the function of the step
 def test_servo():
     try:
         p = GPIO.PWM(servo_PIN, 50) # GPIO als PWM mit 50Hz
@@ -54,10 +51,10 @@ def test_servo():
         # eine Endlos Schleife
         for pos in servo_positions:
           # setzen der Servopostion
-          set_servo_cycle(p, pos)
+          _set_servo_cycle(p, pos)
           # durchlaufen der Liste  in umgekehrter Reihenfolge
         for pos in reversed(servo_positions):
-          set_servo_cycle(p, pos)
+          _set_servo_cycle(p, pos)
           
     # wenn das Script auf dem Terminal / der Konsole abgebrochen wird, dann...
     except KeyboardInterrupt:

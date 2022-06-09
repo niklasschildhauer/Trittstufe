@@ -11,5 +11,5 @@ def encrypt_cipher_text(cipher_stirng, public_key):
     combinedCipher = cipher_data[12:-16]
     decrypted = ChaCha20_Poly1305.new(key=symmetric_key, nonce=combinedNonce).decrypt(combinedCipher).decode()
 
-    print(decrypted)
     return decrypted
+  
