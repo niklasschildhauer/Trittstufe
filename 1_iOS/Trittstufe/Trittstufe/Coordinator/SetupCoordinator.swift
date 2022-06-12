@@ -103,17 +103,12 @@ extension SetupCoordinator: SetupLoadingPresenterDelegate {
 }
 
 extension SetupCoordinator: ConfigurationPresenterDelegate {
-    func didTapShowQRCodeScanner(in presenter: ConfigurationPresenter) {
-        let viewController  = QRCodeScannerViewController()
-        viewController.delegate = presenter
-        
-        DispatchQueue.performUIOperation {
-            self.rootViewController.present(viewController, animated: true, completion: nil)
-        }
-    }
-    
     func didCompletecConfiguration(in presenter: ConfigurationPresenter) {
-        showNextStage()
+        if rootViewController.presentedViewController == nil {
+            showNextStage()
+        } else {
+            rootViewController.dismiss(animated: true)
+        }
     }
 }
 

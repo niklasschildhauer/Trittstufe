@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ConfigurationView: AnyObject, ErrorAlert {
     var presenter: ConfigurationPresenter! { get set }
@@ -14,11 +15,12 @@ protocol ConfigurationView: AnyObject, ErrorAlert {
     var ipAdressValue: String? { get set }
     var publicKeyValue: String? { get set }
     var uuidValue: String? { get set }
+    
+    func present(_ viewController: UIViewController)
 }
 
 protocol ConfigurationPresenterDelegate: AnyObject {
     func didCompletecConfiguration(in presenter: ConfigurationPresenter)
-    func didTapShowQRCodeScanner(in presenter: ConfigurationPresenter)
 }
 
 class ConfigurationPresenter: Presenter {
@@ -41,7 +43,12 @@ class ConfigurationPresenter: Presenter {
     }
     
     func didTapShowQRScannerButton() {
-        delegate?.didTapShowQRCodeScanner(in: self)
+        let viewController  = QRCodeScannerViewController()
+        viewController.delegate = self
+        
+        DispatchQueue.performUIOperation {
+            self.view?.present(viewController)
+        }
     }
     
     func didTapSubmitButton() {

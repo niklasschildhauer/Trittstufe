@@ -72,6 +72,10 @@ class ConfigurationViewController: UIViewController {
 }
 
 extension ConfigurationViewController: ConfigurationView {
+    func present(_ viewController: UIViewController) {
+        present(viewController, animated: true)
+    }
+    
     var uuidValue: String? {
         get {
             uuidLabelTextField.textFieldView.text
