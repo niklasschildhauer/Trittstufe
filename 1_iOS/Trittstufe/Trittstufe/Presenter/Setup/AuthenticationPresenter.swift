@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 import LocalAuthentication
 
-protocol AuthenticationView: AnyObject {
+protocol AuthenticationView: AnyObject, ErrorAlert {
     var presenter: AuthenticationPresenter! { get set }
     
     func setLoginFieldsHiddenStatus(isHidden: Bool, animated: Bool)
-    func showError(message: String)
-    func hideError()
+    func showLoginSpinner()
+    func hideLoginSpinner()
     
     var passwordValue: String? { get set }
     var accountNameValue: String? { get set }
@@ -55,6 +55,7 @@ class AuthenticationPresenter {
               let accountName = view?.accountNameValue,
               let rememberMe = view?.rememberMeValue else { return }
             
+        self.view?.showLoginSpinner()
         authenticationService.login(accountName: accountName, password: password, rememberMe: rememberMe) { [weak self] result in
             self?.handleAuthentication(result: result)
         }
@@ -84,15 +85,16 @@ class AuthenticationPresenter {
             DispatchQueue.performUIOperation {
                 switch error {
                 case .invalidLoginCredentials:
-                    self.view?.showError(message: "The login credentials were invalid.")
+                    self.view?.showErrorAlert(with: "The login credentials were invalid.", title: "Wrong credentials")
                 case .noNetwork:
-                    self.view?.showError(message: "No network. Please check your internet connection")
+                    self.view?.showErrorAlert(with: "No network. Please check your internet connection", title: "No internet")
                 case .serverError:
-                    self.view?.showError(message: "There was an internal server error. Sorry!")
+                    self.view?.showErrorAlert(with: "There was an internal server error. Sorry!", title: "Oops")
                 case .internalError:
-                    self.view?.showError(message: "There was an internal error. Sorry!")
+                    self.view?.showErrorAlert(with: "There was an internal server error. Sorry!", title: "Oops")
                 }
                 self.view?.setLoginFieldsHiddenStatus(isHidden: false, animated: true)
+                self.view?.hideLoginSpinner()
             }
         }
     }

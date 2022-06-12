@@ -37,7 +37,7 @@ struct CarStatus {
     
     init(car: CarIdentification) {
         self.car = car
-        stepStatus = car.stepIdentifications.map {CarStepStatus(step: $0) }
+        stepStatus = car.stepIdentifications.map { CarStepStatus(step: $0) }
     }
     
     enum CarState {

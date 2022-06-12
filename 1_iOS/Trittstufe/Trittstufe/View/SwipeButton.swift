@@ -22,6 +22,7 @@ class SwipeButton: NibLoadingView {
     }
     private let tolerance: CGFloat = 15.0
 
+    @IBOutlet weak var labelCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var draggableView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
@@ -101,21 +102,7 @@ class SwipeButton: NibLoadingView {
             fatalError()
         }
     }
-    
-//    private func setNewPosition(stepPosition: CarStepStatus.Position) {
-//        switch stepPosition {
-//        case .open:
-//            reload()
-//            dragViewLeadingAnchor.constant = 0
-//            isHidden = false
-//        case .close:
-//            reload()
-//            dragViewLeadingAnchor.constant = lockedPosition - buttonWidth/2
-//            isHidden = false
-//        case .unknown:
-//            isHidden = true
-//        }
-//    }
+
     
     private func reload() {
         UIView.transition(with: self.iconImageView,
@@ -128,11 +115,14 @@ class SwipeButton: NibLoadingView {
 
                 self.iconImageView.image = UIImage(systemName: "lock")
                 self.label.text = "\(self.stepStatus.step.name) Treppe ausfahren"
+                self.labelCenterConstraint.constant = 20
             case .open:
                 self.dragViewLeadingAnchor.constant = self.lockedPosition - self.buttonWidth/2
 
                 self.iconImageView.image = UIImage(systemName: "lock.open")
                 self.label.text = "\(self.stepStatus.step.name) Treppe einfahren"
+                self.labelCenterConstraint.constant = -20
+
             case .unknown:
                 self.label.text = ""
                 self.iconImageView.image = nil

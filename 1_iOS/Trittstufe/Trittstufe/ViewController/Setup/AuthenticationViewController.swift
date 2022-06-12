@@ -12,7 +12,7 @@ class AuthenticationViewController: UIViewController {
     @IBOutlet weak var logoContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginWrapperView: UIStackView!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton: LoadingButton!
     @IBOutlet weak var changeConfigurationButton: UIButton!
     @IBOutlet weak var accountNameLabelTextField: LabelTextFieldView!
     @IBOutlet weak var passwordLabelTextField: LabelTextFieldView!
@@ -74,6 +74,14 @@ class AuthenticationViewController: UIViewController {
 }
 
 extension AuthenticationViewController: AuthenticationView {
+    func showLoginSpinner() {
+        loginButton.showLoading()
+    }
+    
+    func hideLoginSpinner() {
+        loginButton.hideLoading()
+    }
+    
     func setLoginFieldsHiddenStatus(isHidden: Bool, animated: Bool) {
         if isHidden {
             loginWrapperView.isHidden = isHidden
@@ -91,16 +99,6 @@ extension AuthenticationViewController: AuthenticationView {
                 self.loginWrapperView.isHidden = isHidden
             }
         }
-    }
-    
-    func showError(message: String) {
-        errorMessageLabel.text = message
-        errorMessageLabel.isHidden = false
-    }
-    
-    func hideError() {
-        errorMessageLabel.isHidden = true
-        errorMessageLabel.text = ""
     }
     
     var passwordValue: String? {

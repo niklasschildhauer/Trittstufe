@@ -34,7 +34,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-F7-6zp">
-                            <rect key="frame" x="16" y="10" width="382" height="440"/>
+                            <rect key="frame" x="16" y="10" width="382" height="604"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEL-uy-wuS">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="250"/>
@@ -118,42 +118,48 @@
                                         </stackView>
                                     </subviews>
                                 </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaY-eN-1vw">
+                                    <rect key="frame" x="0.0" y="470" width="382" height="44"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5D-fU-WdK" customClass="LoadingButton" customModule="Trittstufe" customModuleProvider="target">
+                                            <rect key="frame" x="146.5" y="0.0" width="89" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="fI5-tu-IPh"/>
+                                            </constraints>
+                                            <color key="tintColor" name="black"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Anmelden"/>
+                                            <connections>
+                                                <action selector="didTapLogin:" destination="-1" eventType="touchUpInside" id="gwA-UH-rMs"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="B5D-fU-WdK" firstAttribute="top" secondItem="RaY-eN-1vw" secondAttribute="top" id="BGV-2I-0ZE"/>
+                                        <constraint firstAttribute="bottom" secondItem="B5D-fU-WdK" secondAttribute="bottom" id="ncg-Wd-25v"/>
+                                        <constraint firstItem="B5D-fU-WdK" firstAttribute="centerX" secondItem="RaY-eN-1vw" secondAttribute="centerX" id="tCd-lZ-IhA"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Z3-A1-BD0" userLabel="Spacer">
+                                    <rect key="frame" x="0.0" y="544" width="382" height="60"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="8AT-3y-bO5"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="JEL-uy-wuS" firstAttribute="width" secondItem="gIe-F7-6zp" secondAttribute="width" id="eV6-j6-dEG"/>
                             </constraints>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5D-fU-WdK">
-                            <rect key="frame" x="162.5" y="470" width="89" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="fI5-tu-IPh"/>
-                            </constraints>
-                            <color key="tintColor" name="black"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Anmelden"/>
-                            <connections>
-                                <action selector="didTapLogin:" destination="-1" eventType="touchUpInside" id="gwA-UH-rMs"/>
-                            </connections>
-                        </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Z3-A1-BD0" userLabel="Spacer">
-                            <rect key="frame" x="16" y="534" width="382" height="60"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="8AT-3y-bO5"/>
-                            </constraints>
-                        </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="B5D-fU-WdK" firstAttribute="centerX" secondItem="Bao-0t-L73" secondAttribute="centerX" id="77N-ik-nhj"/>
-                        <constraint firstItem="3JZ-wh-rA4" firstAttribute="trailing" secondItem="0Z3-A1-BD0" secondAttribute="trailing" constant="16" id="Bqr-Vm-OZZ"/>
                         <constraint firstItem="gIe-F7-6zp" firstAttribute="leading" secondItem="Bao-0t-L73" secondAttribute="leading" constant="16" id="Cr2-q3-dAh"/>
                         <constraint firstItem="gIe-F7-6zp" firstAttribute="top" secondItem="3tG-Y0-nFy" secondAttribute="top" constant="10" id="HTb-yu-6aG"/>
-                        <constraint firstItem="B5D-fU-WdK" firstAttribute="top" secondItem="gIe-F7-6zp" secondAttribute="bottom" constant="20" id="JvM-yb-vMa"/>
                         <constraint firstAttribute="trailing" secondItem="gIe-F7-6zp" secondAttribute="trailing" constant="16" id="MJx-NG-yNg"/>
                         <constraint firstItem="gIe-F7-6zp" firstAttribute="centerX" secondItem="Bao-0t-L73" secondAttribute="centerX" id="ZZ9-4D-Fyr"/>
                         <constraint firstItem="3tG-Y0-nFy" firstAttribute="height" secondItem="gIe-F7-6zp" secondAttribute="height" id="d0b-r8-a6V"/>
-                        <constraint firstItem="0Z3-A1-BD0" firstAttribute="top" secondItem="B5D-fU-WdK" secondAttribute="bottom" constant="20" id="qAc-5w-lBF"/>
-                        <constraint firstItem="0Z3-A1-BD0" firstAttribute="leading" secondItem="3JZ-wh-rA4" secondAttribute="leading" constant="16" id="rdE-kz-bhE"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="3tG-Y0-nFy"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="3JZ-wh-rA4"/>
@@ -185,7 +191,7 @@
         <image name="faceid" catalog="system" width="128" height="115"/>
         <image name="logo" width="119" height="47"/>
         <namedColor name="black">
-            <color red="0.050000000000000003" green="0.050000000000000003" blue="0.050000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.05000000074505806" green="0.05000000074505806" blue="0.05000000074505806" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -15,7 +15,7 @@
 		852891322843C24C0074BC64 /* StepEngineControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852891312843C24C0074BC64 /* StepEngineControlService.swift */; };
 		853C951E284E11480081F396 /* NFCReaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853C951D284E11480081F396 /* NFCReaderService.swift */; };
 		854E9BE22802E9C70005546B /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE12802E9C70005546B /* SetupCoordinator.swift */; };
-		854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */; };
+		854E9BE42802EDED0005546B /* SetupLoadingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE32802EDED0005546B /* SetupLoadingPresenter.swift */; };
 		854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */; };
 		854E9BE82802EDFE0005546B /* SetupLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854E9BE62802EDFE0005546B /* SetupLoadingViewController.xib */; };
 		854E9BEA2802EECB0005546B /* SetupStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9BE92802EECB0005546B /* SetupStage.swift */; };
@@ -29,6 +29,8 @@
 		854E9C02280367EF0005546B /* Presenter+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C01280367EF0005546B /* Presenter+Protocol.swift */; };
 		854E9C04280370A90005546B /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C03280370A90005546B /* UserDefaults.swift */; };
 		854E9C0628040D6F0005546B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E9C0528040D6F0005546B /* KeychainService.swift */; };
+		855086CE28560B7000ED1140 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855086CD28560B7000ED1140 /* UIViewController+Extension.swift */; };
+		855086D028560F2800ED1140 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855086CF28560F2800ED1140 /* LoadingButton.swift */; };
 		85826B8D2809D787005BEEF6 /* DummyBackendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B8C2809D787005BEEF6 /* DummyBackendData.swift */; };
 		85826B8F2809E04D005BEEF6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B8E2809E04D005BEEF6 /* NetworkService.swift */; };
 		85826B92280BF6D5005BEEF6 /* RequestLocationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85826B90280BF6D5005BEEF6 /* RequestLocationPermissionViewController.swift */; };
@@ -121,7 +123,7 @@
 		853C951D284E11480081F396 /* NFCReaderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFCReaderService.swift; sourceTree = "<group>"; };
 		853C951F284E117E0081F396 /* Trittstufe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Trittstufe.entitlements; sourceTree = "<group>"; };
 		854E9BE12802E9C70005546B /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
-		854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLoadingViewController.swift; sourceTree = "<group>"; };
+		854E9BE32802EDED0005546B /* SetupLoadingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLoadingPresenter.swift; sourceTree = "<group>"; };
 		854E9BE52802EDFE0005546B /* SetupLoadingViewController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetupLoadingViewController .swift"; sourceTree = "<group>"; };
 		854E9BE62802EDFE0005546B /* SetupLoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupLoadingViewController.xib; sourceTree = "<group>"; };
 		854E9BE92802EECB0005546B /* SetupStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupStage.swift; sourceTree = "<group>"; };
@@ -135,6 +137,8 @@
 		854E9C01280367EF0005546B /* Presenter+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Presenter+Protocol.swift"; sourceTree = "<group>"; };
 		854E9C03280370A90005546B /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		854E9C0528040D6F0005546B /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		855086CD28560B7000ED1140 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		855086CF28560F2800ED1140 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		85826B8C2809D787005BEEF6 /* DummyBackendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyBackendData.swift; sourceTree = "<group>"; };
 		85826B8E2809E04D005BEEF6 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		85826B90280BF6D5005BEEF6 /* RequestLocationPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationPermissionViewController.swift; sourceTree = "<group>"; };
@@ -278,12 +282,21 @@
 		854E9BEC2802F1F10005546B /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				854E9BE32802EDED0005546B /* SetupLoadingViewController.swift */,
+				854E9BE32802EDED0005546B /* SetupLoadingPresenter.swift */,
 				854E9BF12802F2200005546B /* ConfigurationPresenter.swift */,
 				854E9BFB280361C70005546B /* AuthenticationPresenter.swift */,
 				85826B96280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		855086D128560F2D00ED1140 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				85C973682810343800D855D4 /* ButtonStyle.swift */,
+				855086CF28560F2800ED1140 /* LoadingButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		8582BE48280E9F5D005BC299 /* View */ = {
@@ -310,10 +323,10 @@
 		85C973092810282200D855D4 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				855086D128560F2D00ED1140 /* Button */,
 				85C9736628102AD500D855D4 /* GlobalAppearance.swift */,
 				85C9730A2810282200D855D4 /* Color */,
 				85C973112810282200D855D4 /* Font */,
-				85C973682810343800D855D4 /* ButtonStyle.swift */,
 			);
 			path = Styling;
 			sourceTree = "<group>";
@@ -459,6 +472,7 @@
 			children = (
 				854E9BF5280359640005546B /* DispatchQueue+Extension.swift */,
 				85B1B67B2842AF9700B63038 /* UIView+Extension.swift */,
+				855086CD28560B7000ED1140 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -775,7 +789,8 @@
 				8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */,
 				854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */,
 				85E99BDA283F840000532EA3 /* InformationView.swift in Sources */,
-				854E9BE42802EDED0005546B /* SetupLoadingViewController.swift in Sources */,
+				855086D028560F2800ED1140 /* LoadingButton.swift in Sources */,
+				854E9BE42802EDED0005546B /* SetupLoadingPresenter.swift in Sources */,
 				85E99BC2283E733A00532EA3 /* CarHeaderView.swift in Sources */,
 				85D6775B27F87840004500D9 /* HomeViewController.swift in Sources */,
 				8582BE4C280EA16D005BC299 /* LabelTextFieldView.swift in Sources */,
@@ -797,6 +812,7 @@
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85B1B67A284241E400B63038 /* CarStepStatus.swift in Sources */,
 				85E99BDE283F8FEB00532EA3 /* StepStatusView.swift in Sources */,
+				855086CE28560B7000ED1140 /* UIViewController+Extension.swift in Sources */,
 				85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */,
 				85D6771627F87614004500D9 /* AppDelegate.swift in Sources */,
 				854E9C04280370A90005546B /* UserDefaults.swift in Sources */,

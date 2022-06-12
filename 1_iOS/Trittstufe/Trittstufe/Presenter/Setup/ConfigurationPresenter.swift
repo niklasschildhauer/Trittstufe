@@ -7,15 +7,13 @@
 
 import Foundation
 
-protocol ConfigurationView: AnyObject {
+protocol ConfigurationView: AnyObject, ErrorAlert {
     var presenter: ConfigurationPresenter! { get set }
     
     var portValue: String? { get set }
     var ipAdressValue: String? { get set }
     var publicKeyValue: String? { get set }
-    
-    func showError(message: String)
-    func hideError()
+    var uuidValue: String? { get set }
 }
 
 protocol ConfigurationPresenterDelegate: AnyObject {
@@ -33,12 +31,13 @@ class ConfigurationPresenter: Presenter {
         dummyBackendData = loadDummyDataFromDevice()
         
         guard let dummyBackendData = dummyBackendData else {
-            self.view?.showError(message: "Ein interner Fehler ist aufgetreten.")
+            self.view?.showErrorAlert(with: "Ein interner Fehler ist aufgetreten.", title: "Internet Error")
             return
         }
         view?.portValue = String(dummyBackendData.car.port)
         view?.ipAdressValue = dummyBackendData.car.ipAdress
         view?.publicKeyValue = dummyBackendData.car.publicKey
+        view?.uuidValue = dummyBackendData.car.uuid
     }
     
     func didTapShowQRScannerButton() {
@@ -50,22 +49,24 @@ class ConfigurationPresenter: Presenter {
               let ipAdress = view?.ipAdressValue,
               ipAdress != "",
               let publicKey = view?.publicKeyValue,
-              publicKey != "" else {
-            self.view?.showError(message: "Bitte alles ausfüllen!")
+              publicKey != "",
+              let uuidValue = view?.uuidValue,
+              uuidValue != "" else {
+                self.view?.showErrorAlert(with: "Bitte stelle sicher, dass alle Felder ausgefüllt sind.", title: "Eingabefehler")
             return
         }
         
         
         if let existingConfiguration = UserDefaultConfig.dummyBackendData {
-            let newCarConfiguration = CarBackend(uuid: existingConfiguration.car.uuid, model: existingConfiguration.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: existingConfiguration.car.authorizedUsers, stepIdentifications: existingConfiguration.car.stepIdentifications)
+            let newCarConfiguration = CarBackend(uuid: uuidValue, model: existingConfiguration.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: existingConfiguration.car.authorizedUsers, stepIdentifications: existingConfiguration.car.stepIdentifications)
             
             saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: existingConfiguration.users))
         } else {
             guard let dummyBackendData = dummyBackendData else {
-                self.view?.showError(message: "Ein interner Fehler ist aufgetreten.")
+                self.view?.showErrorAlert(with: "Ein interner Fehler ist aufgetreten.", title: "Internet Error")
                 return
             }
-            let newCarConfiguration = CarBackend(uuid: dummyBackendData.car.uuid, model: dummyBackendData.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: dummyBackendData.car.authorizedUsers, stepIdentifications: dummyBackendData.car.stepIdentifications)
+            let newCarConfiguration = CarBackend(uuid: uuidValue, model: dummyBackendData.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: dummyBackendData.car.authorizedUsers, stepIdentifications: dummyBackendData.car.stepIdentifications)
             
             saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: dummyBackendData.users))
         }
@@ -78,10 +79,14 @@ class ConfigurationPresenter: Presenter {
     }
     
     private func loadDummyDataFromDevice() -> DummyBackendData? {
-        let jsonData = dummyData.data(using: .utf8)!
-        let dummyDataEncoded: DummyBackendData? = try! JSONDecoder().decode(DummyBackendData.self, from: jsonData)
-        
-        return dummyDataEncoded
+        if let userDefaults = UserDefaultConfig.dummyBackendData {
+            return userDefaults
+        } else {
+            let jsonData = dummyData.data(using: .utf8)!
+            let dummyDataEncoded: DummyBackendData? = try! JSONDecoder().decode(DummyBackendData.self, from: jsonData)
+            
+            return dummyDataEncoded
+        }
     }
 }
 

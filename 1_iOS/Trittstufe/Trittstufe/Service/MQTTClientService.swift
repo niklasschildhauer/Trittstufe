@@ -101,11 +101,7 @@ extension MQTTClientService: CocoaMQTTDelegate {
         print("didConnect \(ack.description)")
         let topics = clientConfiguration.carIdentification.stepIdentifications.map { (Topic.status.url(for: $0), CocoaMQTTQoS.qos1) }
         mqtt.subscribe(topics)
-        mqtt.subscribe("engine_control_status", qos: .qos1)
-        
-//        extend(step: .left)
-//        extend(step: .right)
-        
+                
         statusDelegate?.didConnectToCar(in: self)
     }
     

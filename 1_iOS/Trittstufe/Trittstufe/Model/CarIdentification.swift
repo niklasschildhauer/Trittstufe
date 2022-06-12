@@ -41,14 +41,3 @@ enum CarStepIdentification: Int, Codable {
         }
     }
 }
-
-//struct CarStepIdentification: Codable {
-//    enum Side: String, Codable {
-//        case left
-//        case right
-//        case unknown
-//    }
-//
-//    let uid: String // = UUID(uuidString: "05c13100-102b-42cf-babb-ace7dd99c4e3")!
-//    let side: Side
-//}

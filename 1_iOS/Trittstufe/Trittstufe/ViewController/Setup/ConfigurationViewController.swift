@@ -72,6 +72,15 @@ class ConfigurationViewController: UIViewController {
 }
 
 extension ConfigurationViewController: ConfigurationView {
+    var uuidValue: String? {
+        get {
+            uuidLabelTextField.textFieldView.text
+        }
+        set {
+            uuidLabelTextField.textFieldView.text = newValue
+        }
+    }
+    
     var portValue: String? {
         get {
             portLabelTextField.textFieldView.text
@@ -98,13 +107,5 @@ extension ConfigurationViewController: ConfigurationView {
         set {
             publicKeyLabelTextField.textFieldView.text = newValue
         }
-    }
-    
-    func showError(message: String) {
-        /// TODO
-    }
-    
-    func hideError() {
-        ///Todo
     }
 }

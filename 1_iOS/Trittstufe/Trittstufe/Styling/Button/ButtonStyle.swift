@@ -53,7 +53,7 @@ struct ButtonStyle {
         configuration.buttonSize = size
         configuration.baseBackgroundColor = Color.black
         configuration.baseForegroundColor = Color.white
-    
+        
         configuration.image = image
         configuration.titleAlignment = .leading
         configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 15)
@@ -90,3 +90,4 @@ public extension UIButton {
         isHidden = false
     }
 }
+
