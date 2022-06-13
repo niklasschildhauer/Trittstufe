@@ -17,7 +17,7 @@ mosquitto_port = int(os.getenv('PORT'))
 
 domain = os.getenv('DOMAIN')
 car_id = os.getenv('CAR_ID')
-step_id = 1
+step_id = os.getenv('STEP_ID')
 position_topic = os.getenv('POSITION_TOPIC')
 status_topic = os.getenv('STAUTS_TOPIC')
 
@@ -28,7 +28,7 @@ def on_connect(client, userdata, flags, rc):
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed
     client.subscribe(f'{domain}/{car_id}/{step_id}/{position_topic}')
-    send_status_update()
+    #client.publish(f'{domain}/{car_id}/{step_id}/{status_topic}', 0, 0 , True);
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, message):
@@ -37,29 +37,32 @@ def on_message(client, userdata, message):
     if (message.topic == f'{domain}/{car_id}/{step_id}/{position_topic}'):
         public_key = recievedJson['publicKey']
         payload = recievedJson['payload']
-        try: 
+        print("1")
+        try:
+            print("2")
             message = encrypt_cipher_text(cipher_stirng=payload, public_key=public_key)
+            print("3")
             print("Message successfully decrypted")
         except:
             print("Decryption failed")
             return 
         new_position_json = json.loads(message)
         if is_token_valid(new_position_json["token"]):
-            print(f'Message is valid. Set new position: {new_position_json["position"]}')
-            success = set_position(position=new_position_json['position'])
-            if success:
-                send_status_update()
-            else:
-                print("Could not set new position. Internal Error.")
+            new_position = new_position_json['position']
+            if new_position != 'unknown':
+                print(f'Message is valid. Set new position: {new_position_json["position"]}')
+                set_position(position=new_position_json['position'])
+            send_status_update()
         else:
             print("Invalid token")
 
 def send_status_update():
     topic = f'{domain}/{car_id}/{step_id}/{status_topic}'
-    client.publish(topic, payload=create_status_json(), qos=1, retain=True)
+    print(topic)
+    client.publish(topic, payload=create_status_json(), qos=1, retain=False)
     print(f"Send status update")
 
-client = mqtt_client.Client(client_id="engine_control_sg90")
+client = mqtt_client.Client(client_id=f"engine_control_{step_id}", clean_session=True)
 client.on_connect = on_connect
 client.on_message = on_message
 
@@ -67,6 +70,7 @@ client.connect(raspberry_ip_address, mosquitto_port, 20)
 
 
 test_servo()
+send_status_update()
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
