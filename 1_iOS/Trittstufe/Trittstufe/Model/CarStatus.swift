@@ -27,7 +27,9 @@ struct CarStatus {
             return .readyToUnlock
         }
         // if proximimty is far with a count of 6, then show localization screen
-        if distance.proximity == .far && distance.count > 6 {
+        if distance.meters ?? 2 > 1.0,
+           distance.proximity == .unknown || distance.proximity == .far,
+           distance.count > 6 {
             return .inLocalization
         }
         return .readyToUnlock

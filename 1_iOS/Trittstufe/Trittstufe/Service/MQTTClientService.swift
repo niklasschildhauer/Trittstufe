@@ -51,7 +51,7 @@ class MQTTClientService {
                                port: clientConfiguration.carIdentification.portNumber)
         client.keepAlive = 20
         client.delegate = self
-        client.autoReconnect = true
+        // client.autoReconnect = true
         client.logLevel = .debug
         let success = client.connect()
         
@@ -69,6 +69,10 @@ class MQTTClientService {
         let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: message, publicKeyReviever: clientConfiguration.carIdentification.publicKey)
         
         client.publish(topic.url(for: step), withString: encryptedMessage, qos: .qos1)
+    }
+    
+    private func checkStatus(for step: CarStepIdentification) {
+        send(message: createPositionChangeJsonString(position: .unknown), to: .position, for: step)
     }
 }
 
@@ -101,6 +105,10 @@ extension MQTTClientService: CocoaMQTTDelegate {
         print("didConnect \(ack.description)")
         let topics = clientConfiguration.carIdentification.stepIdentifications.map { (Topic.status.url(for: $0), CocoaMQTTQoS.qos1) }
         mqtt.subscribe(topics)
+        
+        for step in clientConfiguration.carIdentification.stepIdentifications {
+            checkStatus(for: step)
+        }
                 
         statusDelegate?.didConnectToCar(in: self)
     }

@@ -64,7 +64,7 @@
                                     </connections>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" name="white"/>
                             <constraints>
                                 <constraint firstItem="JGv-ab-Oe9" firstAttribute="leading" secondItem="7oH-9W-pAT" secondAttribute="leading" id="Nrl-v7-3wi"/>
                                 <constraint firstItem="TRr-4s-1Wr" firstAttribute="centerY" secondItem="7oH-9W-pAT" secondAttribute="centerY" id="TGz-7w-kJi"/>

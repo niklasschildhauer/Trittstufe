@@ -109,18 +109,17 @@ class SwipeButton: NibLoadingView {
                           duration: 0.5,
                           options: .transitionCrossDissolve,
                           animations: {
+            self.label.text = self.stepStatus.position.swipeText
             switch self.stepStatus.position  {
             case .close:
                 self.dragViewLeadingAnchor.constant = 0
 
                 self.iconImageView.image = UIImage(systemName: "lock")
-                self.label.text = "\(self.stepStatus.step.name) Treppe ausfahren"
                 self.labelCenterConstraint.constant = 20
             case .open:
                 self.dragViewLeadingAnchor.constant = self.lockedPosition - self.buttonWidth/2
 
                 self.iconImageView.image = UIImage(systemName: "lock.open")
-                self.label.text = "\(self.stepStatus.step.name) Treppe einfahren"
                 self.labelCenterConstraint.constant = -20
 
             case .unknown:

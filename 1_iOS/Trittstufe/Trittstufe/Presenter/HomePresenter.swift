@@ -126,7 +126,7 @@ extension HomePresenter: LocationServiceDelegate {
     func didRangeNothing(in service: LocationService) {
         guard !carStatus.selectedStep.forceLocated else { return }
 
-        print("Nothing to find")
+        print("Reset findings")
         carStatus.distance = (proximity: .unknown, meters: nil, count: 0)
         carStatus.selectedStep = (step: .unknown, forceLocated: false)
         
@@ -137,22 +137,47 @@ extension HomePresenter: LocationServiceDelegate {
     
     func didRangeCar(car: CarIdentification, step: CarStepIdentification, with proximity: CLProximity, meters: Double, in service: LocationService) {
         guard !carStatus.selectedStep.forceLocated else { return }
+        let currentCarState = carStatus.currentState
     
         print("Find: \(car.model), \(step), \(meters)m - \(proximity.rawValue)")
+        
+        let distanceCount: Int
+        switch carStatus.distance.proximity {
+        case .near, .immediate:
+            if (proximity == .immediate || proximity == .near) {
+                distanceCount = carStatus.distance.count + 1
+            } else {
+                distanceCount = 0
+            }
+        case .far, .unknown:
+            if proximity == .far || proximity == .unknown {
+                distanceCount = carStatus.distance.count + 1
+            } else {
+                distanceCount = 0
+            }
+        }
 
-        let distanceCount = carStatus.distance.proximity == proximity ? carStatus.distance.count + 1 : 0
         carStatus.distance = (proximity: proximity, meters: meters > 0 ? meters : nil, count: distanceCount)
 
-        if proximity != .far && carStatus.distance.count > 3 {
+        if proximity == .immediate || proximity == .near,
+           meters < 1,
+           carStatus.distance.count > 3 {
             carStatus.selectedStep = (step: step, forceLocated: false)
         }
-        
+
         if proximity == .far && carStatus.distance.count > 6 {
             carStatus.selectedStep = (step: .unknown, forceLocated: false)
         }
         
+        
         DispatchQueue.performUIOperation {
-            self.reloadView(animated: true)
+            if currentCarState != self.carStatus.currentState {
+                self.reloadView(animated: true)
+            } else {
+                self.view?.display(distanceView: self.carStatus.distanceViewModel, animated: true)
+                self.view?.display(carHeaderView: self.carStatus.carHeaderViewModel)
+
+            }
         }
     }
         
@@ -191,6 +216,8 @@ extension HomePresenter: StepEngineControlServiceDelegate {
 extension HomePresenter: NFCReaderServiceDelegate {
     func didLocate(step: CarStepIdentification, in service: NFCReaderService) {
         carStatus.selectedStep = (step: step, forceLocated: true)
+        stopLocationService()
+        
         DispatchQueue.performUIOperation {
             self.reloadView()
         }

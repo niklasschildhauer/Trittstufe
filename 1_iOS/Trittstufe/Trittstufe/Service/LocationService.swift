@@ -154,7 +154,7 @@ extension LocationService: CLLocationManagerDelegate {
             delegate?.didRangeCar(car: car, step: step, with: closestBeacon.proximity, meters: closestBeacon.accuracy, in: self)
         } else {
             nothingRangedCount = nothingRangedCount + 1
-            if nothingRangedCount > 6 {
+            if nothingRangedCount > 10 {
                 delegate?.didRangeNothing(in: self)
             }
         }
@@ -166,6 +166,7 @@ extension LocationService: CLLocationManagerDelegate {
     
     private func getCarStepFor(beacon: CLBeacon, car: CarIdentification) -> CarStepIdentification? {
         let beaconId = beacon.uuid
+        print(beaconId)
         let stepId: Int = Int(truncating: beacon.major)
         if beaconId == car.uuid,
            let stepId = car.stepIdentifications.first(where: { $0.rawValue == stepId }) {

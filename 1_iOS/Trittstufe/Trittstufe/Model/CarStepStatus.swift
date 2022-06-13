@@ -20,6 +20,14 @@ struct CarStepStatus: Codable, Equatable {
             case .open: return "open"
             }
         }
+        
+        var swipeText: String {
+            switch self {
+            case .unknown: return ""
+            case .open: return "Rechte Stufe einfahren"
+            case .close: return "Rechte Stufe ausfahren"
+            }
+        }
     }
     
     let step: CarStepIdentification
