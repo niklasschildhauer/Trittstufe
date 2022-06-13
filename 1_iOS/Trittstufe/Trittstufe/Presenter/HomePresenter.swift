@@ -162,7 +162,14 @@ extension HomePresenter: LocationServiceDelegate {
         if proximity == .immediate || proximity == .near,
            meters < 1,
            carStatus.distance.count > 3 {
+            let oldStep = carStatus.selectedStep.step
             carStatus.selectedStep = (step: step, forceLocated: false)
+            if oldStep != step {
+                DispatchQueue.performUIOperation {
+                    self.reloadView(animated: true)
+                }
+                return
+            }
         }
 
         if proximity == .far && carStatus.distance.count > 6 {
@@ -176,7 +183,6 @@ extension HomePresenter: LocationServiceDelegate {
             } else {
                 self.view?.display(distanceView: self.carStatus.distanceViewModel, animated: true)
                 self.view?.display(carHeaderView: self.carStatus.carHeaderViewModel)
-
             }
         }
     }

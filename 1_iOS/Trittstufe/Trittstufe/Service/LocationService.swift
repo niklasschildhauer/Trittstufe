@@ -50,16 +50,18 @@ class LocationService: NSObject {
             return
         }
         
-        // Create a new constraint and add it to the dictionary.
-        let constraint = CLBeaconIdentityConstraint(uuid: carUUID)
-        self.beaconConstraints[constraint] = []
-        
-        /*
-         By monitoring for the beacon before ranging, the app is more
-         energy efficient if the beacon is not immediately observable.
-         */
-        let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: clientConfiguration.carIdentification.id)
-        self.locationManager.startMonitoring(for: beaconRegion)
+        for step in clientConfiguration.carIdentification.stepIdentifications {
+            // Create a new constraint and add it to the dictionary.
+            let constraint = CLBeaconIdentityConstraint(uuid: carUUID, major: CLBeaconMajorValue(step.rawValue))
+            self.beaconConstraints[constraint] = []
+            
+            /*
+             By monitoring for the beacon before ranging, the app is more
+             energy efficient if the beacon is not immediately observable.
+             */
+            let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: "\(clientConfiguration.carIdentification.id)\(step.rawValue)")
+            self.locationManager.startMonitoring(for: beaconRegion)
+        }
     }
     
     func stopMonitoring() {
@@ -109,11 +111,6 @@ extension LocationService: CLLocationManagerDelegate {
         delegate?.didFail(with:"Location manager failed: \(error.localizedDescription)", in: self)
     }
     
-    struct ProximityCount {
-        let id: UUID
-        var proximityCount: [CLProximity:Int]
-    }
-    
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         let beaconRegion = region as? CLBeaconRegion
         if state == .inside {
@@ -161,7 +158,7 @@ extension LocationService: CLLocationManagerDelegate {
     }
     
     private func getClosestBeacon(beacons: [CLBeacon]) -> CLBeacon? {
-        beacons.sorted { $0.accuracy > $1.accuracy }.first
+        beacons.sorted { $0.accuracy < $1.accuracy }.first
     }
     
     private func getCarStepFor(beacon: CLBeacon, car: CarIdentification) -> CarStepIdentification? {
