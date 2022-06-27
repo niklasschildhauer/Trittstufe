@@ -44,6 +44,18 @@ class AuthenticationPresenter {
         } else {
             view?.setLoginFieldsHiddenStatus(isHidden: false, animated: false)
         }
+        
+        view?.rememberMeValue = UserDefaultConfig.rememberMe
+    }
+    
+    func didChangeRememberMeValue(newValue: Bool) {
+        if newValue {
+            checkDeviceOwnerAuthenticationWithBiometrics { result in
+                if !result {
+                    self.view?.rememberMeValue = false
+                }
+            }
+        }
     }
     
     func didTapEditConfiguration() {
@@ -103,16 +115,15 @@ class AuthenticationPresenter {
         let context = LAContext()
         var error: NSError?
 
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             let reason = "Identify yourself"
 
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
                 if success {
                     completion(true)
                 } else {
                     completion(false)
                 }
-                
             }
         } else {
             completion(false)

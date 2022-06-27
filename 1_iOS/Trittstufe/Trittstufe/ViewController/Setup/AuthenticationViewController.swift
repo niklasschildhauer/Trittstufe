@@ -48,6 +48,10 @@ class AuthenticationViewController: UIViewController {
         navigationItem.leftItemsSupplementBackButton = true
     }
     
+    @IBAction func changeRememberMeValue(_ sender: Any) {
+        presenter.didChangeRememberMeValue(newValue: rememberMeValue)
+    }
+    
     private func setupViews() {
         loginButton.configuration = ButtonStyle.filled(title: NSLocalizedString("AuthenticationController_LoginButton", comment: ""), image: UIImage(systemName: "arrow.forward.circle")!)
         changeConfigurationButton.configuration = ButtonStyle.plain(title: "Konfiguration ändern")

@@ -85,5 +85,4 @@ class LocalAuthenticationService: AuthenticationService {
         accountName = nil
         rememberMe = false
     }
-    
 }

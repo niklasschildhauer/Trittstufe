@@ -43,7 +43,7 @@ class NFCReaderService: NSObject {
         return false
     }
     
-    struct NDEFStepIdentificationMessage: Codable {
+    private struct NDEFStepIdentificationMessage: Codable {
         let uuid: String
         let stepId: CarStepIdentification
     }
