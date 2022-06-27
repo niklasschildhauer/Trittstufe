@@ -45,7 +45,7 @@ class AuthenticationPresenter {
             view?.setLoginFieldsHiddenStatus(isHidden: false, animated: false)
         }
         
-        view?.rememberMeValue = UserDefaultConfig.rememberMe
+        view?.rememberMeValue = authenticationService.rememberMe
     }
     
     func didChangeRememberMeValue(newValue: Bool) {

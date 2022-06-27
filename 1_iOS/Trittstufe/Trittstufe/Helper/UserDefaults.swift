@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Helper Class to get access to stored user defaults variables through property wrapper
 struct UserDefaultConfig {
     @NilableUserDefault(key: "account_name_key")
     private static var accountNameValue: String?
@@ -52,6 +53,7 @@ extension UserDefaultConfig {
     }
 }
 
+/// Implementation of the user default property wrapper
 @propertyWrapper
 struct UserDefault<Value> {
     let key: String

@@ -40,7 +40,7 @@ class SetupCoordinator: Coordinator {
     
     private func createCalculateSetupStageViewController() -> UIViewController {
         let viewController = SetupLoadingViewController ()
-        let presenter = SetupLoadingPresenter(authenticationService: authenticationService)
+        let presenter = SetupLoadingPresenter()
         
         viewController.presenter = presenter
         presenter.delegate = self

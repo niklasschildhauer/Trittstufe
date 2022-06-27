@@ -15,15 +15,11 @@ protocol SetupLoadingPresenterDelegate: AnyObject {
     func setupDidAppear(in presenter: SetupLoadingPresenter)
 }
 
+/// SetupLoadingPresenter
+/// Informs the coordinator that the view is loaded. Afterwards the setup calucalation can start. 
 class SetupLoadingPresenter: Presenter {
     weak var view: SetupLoadingView?
     var delegate: SetupLoadingPresenterDelegate?
-    
-    private let authenticationService: AuthenticationService
-    
-    init(authenticationService: AuthenticationService) {
-        self.authenticationService = authenticationService
-    }
     
     func viewDidLoad() {
         delegate?.setupDidAppear(in: self)

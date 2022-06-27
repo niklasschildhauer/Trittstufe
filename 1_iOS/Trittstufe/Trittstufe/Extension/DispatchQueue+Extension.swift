@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Async and sync execution
 public extension DispatchQueue {
     static func performUIOperation(execute workItem: @escaping () -> Void ) {
         if Thread.isMainThread {

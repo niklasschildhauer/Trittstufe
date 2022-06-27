@@ -14,6 +14,8 @@ protocol StepEngineControlServiceDelegate: AnyObject {
     func didDisconnectToCar(in service: StepEngineControlService)
 }
 
+/// StepEngineControlService
+/// Defines the methods to extend or to shrink a car step. It is implemented by the MQTTClientService
 protocol StepEngineControlService {
     var statusDelegate: StepEngineControlServiceDelegate? { get set }
     

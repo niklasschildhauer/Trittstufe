@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreNFC
 
-protocol HomeView: AnyObject {
+protocol HomeView: AnyObject, ErrorAlert {
     var presenter: HomePresenter! { get set }
     
     func show(reconnectButton: Bool)
@@ -94,7 +94,11 @@ class HomePresenter: NSObject, Presenter {
             print("Konfiguration")
         case .inLocalization, .readyToUnlock:
             nfcReaderService.delegate = self
-            nfcReaderService.startReader(toLocate: carStatus.car.id)
+            nfcReaderService.startReader(toLocate: carStatus.car.id) { success in
+                if !success {
+                    view?.showErrorAlert(with: "NFC Reader faield", title: "Unable to start NFC Reader")
+                }
+            }
         }
     }
     

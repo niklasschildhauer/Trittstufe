@@ -8,19 +8,24 @@
 import Foundation
 import CoreNFC
 
+/// Delegate which is called when a step was successfully located in the service.
 protocol NFCReaderServiceDelegate {
     func didLocate(step: CarStepIdentification, in service: NFCReaderService)
 }
 
+/// NFC Reader Service
+/// This service class is responsible for reading the NFC tags. It creates a NFCTagReaderSession by which the NDEF message of the tags is read out at startup. Then it checks if the structure of the NDEF message is correct and if the read uuid matches the UUID of the car. Only if this fits the door is selected, which is stored in the NDEF message under stepId.
 class NFCReaderService: NSObject {
     
     private var readerSession: NFCTagReaderSession?
     var delegate: NFCReaderServiceDelegate?
     var carId: String = ""
     
-    func startReader(toLocate car: String) {
+    /// Starts the reader and returns if it is possible to start an nfc reader session
+    func startReader(toLocate car: String, completion: (Bool) -> Void) {
         guard NFCNDEFReaderSession.readingAvailable else {
             print("NFC reader not available")
+            completion(false)
             return
         }
         
@@ -28,6 +33,7 @@ class NFCReaderService: NSObject {
         readerSession = NFCTagReaderSession(pollingOption: [.iso14443, .iso15693], delegate: self, queue: nil)
         readerSession?.alertMessage = NSLocalizedString("NFCReaderService_Instruction", comment: "")
         readerSession?.begin()
+        completion(true)
     }
     
     private func readNDEF(_ message: NFCNDEFMessage) -> Bool {

@@ -7,8 +7,9 @@
 
 import Foundation
 
+/// KeychainService
+/// To store and retrieve passwords
 class KeychainService {
-    
     private static let serviceName = "de.trittstufe.keychain-serivce"
     
     enum KeychainError: Error {

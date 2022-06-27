@@ -14,6 +14,8 @@ enum AuthenticationError: Error {
     case serverError
 }
 
+/// AuthenticationService
+/// Defines the requirements for an authentication service
 protocol AuthenticationService {
     var clientConfiguration: ClientConfiguration? { get }
     var accountName: String? { get }
@@ -24,6 +26,8 @@ protocol AuthenticationService {
     func logout()
 }
 
+/// LocalAuthenticationService
+/// Implements the Authentication Service, but only locally. There is no backend with which the Authentication Service can communicate. In the initializer it takes a local network service as well, to load the client configuration. 
 class LocalAuthenticationService: AuthenticationService {
     var clientConfiguration: ClientConfiguration? = nil
     var accountName: String? {

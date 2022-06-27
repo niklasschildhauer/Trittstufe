@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
+/// Fade in and out animation
 extension UIView {
-    
     func fadeIn(_ duration: TimeInterval? = 0.5, onCompletion: (() -> Void)? = nil) {
         if isHidden == true {
             self.alpha = 0

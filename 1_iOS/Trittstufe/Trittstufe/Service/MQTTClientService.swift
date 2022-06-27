@@ -8,9 +8,12 @@
 import Foundation
 import CocoaMQTT
 
+/// MQTTClientService
+/// IImplements the StepEngineControlService protocol, whereby the class is used to control the step. The MQTT client connects to the broker and sends new step positions to the corresponding topics, as well as receiving status updates.
 class MQTTClientService {
     var statusDelegate: StepEngineControlServiceDelegate?
     
+    /// Defines the status and position topic
     enum Topic: String {
         case status = "status"
         case position = "set_position"
@@ -66,6 +69,7 @@ class MQTTClientService {
     private func send(message: String, to topic: Topic, for step: CarStepIdentification) {
         guard let client = mqttClient else { return }
         
+        /// Uses the CryptoHelper to generate the encrypted String
         let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: message, publicKeyReviever: clientConfiguration.carIdentification.publicKey)
         
         client.publish(topic.url(for: step), withString: encryptedMessage, qos: .qos1)
@@ -99,8 +103,9 @@ extension MQTTClientService: StepEngineControlService {
     }
 }
 
-
+/// Implements the CocoaMQTTDelegate methods.
 extension MQTTClientService: CocoaMQTTDelegate {
+    
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         print("didConnect \(ack.description)")
         let topics = clientConfiguration.carIdentification.stepIdentifications.map { (Topic.status.url(for: $0), CocoaMQTTQoS.qos1) }
@@ -113,26 +118,7 @@ extension MQTTClientService: CocoaMQTTDelegate {
         statusDelegate?.didConnectToCar(in: self)
     }
     
-    func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
-        print("diddisConnect")
-        print(err?.localizedDescription ?? "")
-        statusDelegate?.didDisconnectToCar(in: self)
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
-        print("didPublishMessage")
-        
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
-        print("didPublishAck")
-        
-    }
-    
-    struct MQTTStatusMessage: Codable {
-        let position: CarStepStatus.Position
-    }
-    
+    /// Receiving the status messages
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
         let topic = message.topic
         guard let message = message.string else {
@@ -149,24 +135,37 @@ extension MQTTClientService: CocoaMQTTDelegate {
         statusDelegate?.didReceive(stepStatus: stepStatus, in: self)
     }
     
+    private struct MQTTStatusMessage: Codable {
+        let position: CarStepStatus.Position
+    }
+    
+    func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
+        print("diddisConnect")
+        print(err?.localizedDescription ?? "")
+        statusDelegate?.didDisconnectToCar(in: self)
+    }
+    
+    func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
+        print("didPublishMessage")
+    }
+    
+    func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
+        print("didPublishAck")
+    }
+        
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {
         print("didSubscribeTopics")
-        
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopics topics: [String]) {
         print("didUnsubscribeTopics")
-        
     }
     
     func mqttDidPing(_ mqtt: CocoaMQTT) {
         print("mqttDidPing")
-        
     }
     
     func mqttDidReceivePong(_ mqtt: CocoaMQTT) {
         print("mqttDidReceivePong")
-        
     }
-    
 }

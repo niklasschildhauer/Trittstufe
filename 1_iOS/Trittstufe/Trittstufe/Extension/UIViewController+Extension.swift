@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Easy use of error alert. Implements showErrorAlert function to show an error message.
 protocol ErrorAlert {
     func showErrorAlert(with message: String, title: String)
 }
