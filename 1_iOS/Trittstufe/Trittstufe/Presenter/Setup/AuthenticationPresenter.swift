@@ -27,6 +27,8 @@ protocol AuthenticationPresenterDelegate: AnyObject {
 
 }
 
+/// AuthenticationPresenter
+/// Uses the AuthenticationService to authenticate the user. The user logs in with his credentials and can also use FaceID for unlocking if desired.
 class AuthenticationPresenter {
     weak var view: AuthenticationView?
     var delegate: AuthenticationPresenterDelegate?
@@ -37,6 +39,7 @@ class AuthenticationPresenter {
         self.authenticationService = authenticationService
     }
     
+    /// Checks if FaceID is activated. Then it tries to authenticate via the rememberMe authentication.
     func viewDidLoad() {
         if authenticationService.rememberMe {
             view?.setLoginFieldsHiddenStatus(isHidden: true, animated: false)

@@ -9,7 +9,7 @@ import UIKit
 import CoreNFC
 
 class HomeViewController: UIViewController {
-    
+
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var informationView: InformationView!
     @IBOutlet weak var distanceLabel: UILabel!

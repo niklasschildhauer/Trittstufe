@@ -23,6 +23,9 @@ protocol ConfigurationPresenterDelegate: AnyObject {
     func didCompletecConfiguration(in presenter: ConfigurationPresenter)
 }
 
+/// ConfigurationPresenter
+/// The manual configuration allows the user to set the IP address to which a connection to the broker should be established, or which public key should be used for encryption, or which UUID the rented car has. This configuration is unnecessary as soon as a valid backend service provides this information.
+/// Todo: Load the configuration from a backend service
 class ConfigurationPresenter: Presenter {
     weak var view: ConfigurationView?
     var delegate: ConfigurationPresenterDelegate?
@@ -42,6 +45,7 @@ class ConfigurationPresenter: Presenter {
         view?.uuidValue = dummyBackendData.car.uuid
     }
     
+    /// Open the QR Code Scanner to read the backend data via QR Code
     func didTapShowQRScannerButton() {
         let viewController  = QRCodeScannerViewController()
         viewController.delegate = self
@@ -63,14 +67,13 @@ class ConfigurationPresenter: Presenter {
             return
         }
         
-        
         if let existingConfiguration = UserDefaultConfig.dummyBackendData {
             let newCarConfiguration = CarBackend(uuid: uuidValue, model: existingConfiguration.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: existingConfiguration.car.authorizedUsers, stepIdentifications: existingConfiguration.car.stepIdentifications)
             
             saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: existingConfiguration.users))
         } else {
             guard let dummyBackendData = dummyBackendData else {
-                self.view?.showErrorAlert(with: "Ein interner Fehler ist aufgetreten.", title: "Internet Error")
+                self.view?.showErrorAlert(with: "Ein interner Fehler ist aufgetreten.", title: "Internal Error")
                 return
             }
             let newCarConfiguration = CarBackend(uuid: uuidValue, model: dummyBackendData.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: dummyBackendData.car.authorizedUsers, stepIdentifications: dummyBackendData.car.stepIdentifications)

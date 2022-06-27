@@ -24,8 +24,8 @@ struct CarStepStatus: Codable, Equatable {
         var swipeText: String {
             switch self {
             case .unknown: return ""
-            case .open: return "Rechte Stufe einfahren"
-            case .close: return "Rechte Stufe ausfahren"
+            case .open: return "Stufe einfahren"
+            case .close: return "Stufe ausfahren"
             }
         }
     }

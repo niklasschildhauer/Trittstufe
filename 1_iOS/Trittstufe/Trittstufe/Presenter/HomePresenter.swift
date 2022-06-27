@@ -159,6 +159,8 @@ extension HomePresenter: LocationServiceDelegate {
             } else {
                 distanceCount = 0
             }
+        @unknown default:
+            fatalError()
         }
 
         carStatus.distance = (proximity: proximity, meters: meters > 0 ? meters : nil, count: distanceCount)

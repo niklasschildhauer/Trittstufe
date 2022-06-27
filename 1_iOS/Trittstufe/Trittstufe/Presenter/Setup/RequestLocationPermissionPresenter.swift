@@ -19,7 +19,7 @@ protocol RequestLocationPermissionPresenterDelegate {
     func didGrantedPermission(in presenter: RequestLocationPermissionPresenter)
 }
 
-class RequestLocationPermissionPresenter {
+class RequestLocationPermissionPresenter: Presenter {
     weak var view: RequestLocationPermissionView?
     var delegate: RequestLocationPermissionPresenterDelegate?
     
