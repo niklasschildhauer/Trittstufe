@@ -26,6 +26,9 @@ protocol HomePresenterDelegate: AnyObject {
     func didChangePermissionStatus(in presenter: HomePresenter)
 }
 
+/// HomePresenter
+/// The HomePresenter coordinates the services: StepEngineControlService, NFCReaderService and LocationService. It is responsible for keeping the CarStatus Model up to date. It implements the delegate methods of the services and then decides what to do when certain events occur. Mostly the CarStatus Model is updated and then the View is updated by creating the ViewModels for StepStatusView, InformationView, DistanceView & CarHeaderView and passing them from the HomePresenter to the View.
+/// Furthermore, the HomePresenter is responsible for retracting and extending the Step.
 class HomePresenter: NSObject, Presenter {
     
     weak var view: HomeView?
@@ -96,7 +99,7 @@ class HomePresenter: NSObject, Presenter {
             nfcReaderService.delegate = self
             nfcReaderService.startReader(toLocate: carStatus.car.id) { success in
                 if !success {
-                    view?.showErrorAlert(with: "NFC Reader faield", title: "Unable to start NFC Reader")
+                    view?.showErrorAlert(with: "NFC Reader failed", title: "Unable to start NFC Reader")
                 }
             }
         }
@@ -112,6 +115,7 @@ class HomePresenter: NSObject, Presenter {
     }
 }
 
+/// Implements the LocationServiceStatusDelegate
 extension HomePresenter: LocationServiceStatusDelegate {
     func didChangeStatus(in service: LocationService) {
         switch service.permissionStatus() {
@@ -126,7 +130,9 @@ extension HomePresenter: LocationServiceStatusDelegate {
     }
 }
 
+/// Implements the LocationServiceDelegate to get the information if an iBeacon is near
 extension HomePresenter: LocationServiceDelegate {
+    /// Reset if there is nothing
     func didRangeNothing(in service: LocationService) {
         guard !carStatus.selectedStep.forceLocated else { return }
 
@@ -139,6 +145,7 @@ extension HomePresenter: LocationServiceDelegate {
         }
     }
     
+    /// This method balances the found cars in the proximity. Due to the inaccuracy of iBeacons this method was implemented. It allows a certain degree of inaccuracy.
     func didRangeCar(car: CarIdentification, step: CarStepIdentification, with proximity: CLProximity, meters: Double, in service: LocationService) {
         guard !carStatus.selectedStep.forceLocated else { return }
         let currentCarState = carStatus.currentState
@@ -202,6 +209,7 @@ extension HomePresenter: LocationServiceDelegate {
     }
 }
 
+/// Implements the StepEngineControlServiceDelegate to get status updates about the step position or the network status.
 extension HomePresenter: StepEngineControlServiceDelegate {
     func didReceive(stepStatus: CarStepStatus, in service: StepEngineControlService) {
         carStatus.update(stepStatus: stepStatus)
@@ -225,7 +233,9 @@ extension HomePresenter: StepEngineControlServiceDelegate {
     }
 }
 
+/// Implements the NFCReaderServiceDelegate 
 extension HomePresenter: NFCReaderServiceDelegate {
+    /// If the NFCReaderService did range a step, the home presenter force locate it, so that the locationservice is not longer needed and stops it.
     func didLocate(step: CarStepIdentification, in service: NFCReaderService) {
         carStatus.selectedStep = (step: step, forceLocated: true)
         stopLocationService()
