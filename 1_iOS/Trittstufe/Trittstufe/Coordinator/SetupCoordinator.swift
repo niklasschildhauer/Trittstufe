@@ -12,6 +12,7 @@ protocol SetupCoordinatorDelegate: AnyObject {
     func didCompleteSetup(with clientConfiguration: ClientConfiguration, in coordinator: SetupCoordinator)
 }
 
+/// Coordinates the setup view controllers and presents the appropriate view controller to the current setup stage.
 class SetupCoordinator: Coordinator {
     var rootViewController: UIViewController! {
         navigationController
@@ -91,7 +92,6 @@ class SetupCoordinator: Coordinator {
             DispatchQueue.performUIOperation {
                 self.delegate?.didCompleteSetup(with: clientConfiguration, in: self)
             }
-            
         }
     }
 }

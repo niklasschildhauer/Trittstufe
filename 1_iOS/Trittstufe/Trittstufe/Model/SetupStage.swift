@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Configuration stages that must be successfully passed through before the application can be used.
 enum SetupStage {
     case configurationMissing
     case authenticationRequired

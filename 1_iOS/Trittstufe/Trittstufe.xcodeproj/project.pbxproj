@@ -493,8 +493,8 @@
 				854E9BE92802EECB0005546B /* SetupStage.swift */,
 				85242A6C28084BE9004FC32C /* ClientConfiguration.swift */,
 				85E99BDF283F964800532EA3 /* CarIdentification.swift */,
-				85E99BE1283F97AF00532EA3 /* CarStatus.swift */,
 				85B1B679284241E400B63038 /* CarStepStatus.swift */,
+				85E99BE1283F97AF00532EA3 /* CarStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

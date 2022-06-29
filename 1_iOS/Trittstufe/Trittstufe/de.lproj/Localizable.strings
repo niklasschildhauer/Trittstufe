@@ -21,8 +21,31 @@ Alternativ können Sie auch die QR-Code an der Trittstufe scannen. In diesem sin
 "HomeViewController_LogoutButton" = "Abmelden";
 "AuthenticationController_LoginButton" = "Anmelden";
 "ConfigurationController_SubmitButton" = "Bestätigen";
+"ConfigurationController_Title" = "Konfiguration";
+"ConfigurationController_QRButton" = "QR-Scanner öffnen";
 "NFCReaderService_Instruction" = "Halte dein iPhone an den NFC Tag der Trittstufe";
-
-
-
+"NFCReaderService_Invalid" = "Tag konnte nicht gelesen werden";
+"NFCReaderService_Valid" = "Stufe wurde erfolgreich identifiziert";
+"CarStepIdentification_Right" = "Rechts";
+"CarStepIdentification_Left" = "Links";
+"Position_close" = "Stufe einfahren";
+"Position_open" = "Stufe ausfahren";
+"ConfigurationPresenter_internalError" = "Ein interner Fehler ist aufgetreten.";
+"ConfigurationPresenter_internalErrorTitle" = "Interner Fehler";
+"ConfigurationPresenter_inputError" = "Bitte stelle sicher, dass alle Felder ausgefüllt sind.";
+"ConfigurationPresenter_inputErrorTitle" = "Eingabefehler";
+"AuthenticationPresenter_noNetwork" = "Keine Internetverbindung. Bitte stelle sicher, dass du mit dem Internet verbunden bist.";
+"AuthenticationPresenter_noNetworkTitle" = "Netzwerkfehler";
+"AuthenticationPresenter_wrongCredentials" = "Deine Eingabedaten passen zu keinem Nutzer.";
+"AuthenticationPresenter_wrongCredentialsTitle" = "Falsches Passwort oder Nutzername";
+"AuthenticationPresenter_identifiy" = "Bitte identifiziere dich";
+"HomePresenter_NFCReaderFail" = "NFC Reader konnte nicht gestartet werden.";
+"HomePresenter_NFCReaderFailTitle" = "NFC-Reader Fehler";
+"AuthenticationViewController_ChangeConfig" = "Konfiguration ändern";
+"AuthenticationViewController_Title" = "Anmelden";
+"AuthenticationViewController_Password" = "Passwort";
+"AuthenticationViewController_Settings" = "Einstellungen öffnen";
+"AuthenticationViewController_Title" = "Standortfreigabe";
+"AuthenticationViewController_Text1" = "Die App benötigt Ihren Standort, zum lokalisieren des Rolling-Chassis. Aus diesem Grund bitten wir um Freigabe des Standorts.";
+"AuthenticationViewController_Text2" = "Die App kann ohne Standortfreigabe nicht funktionieren. Bitte gehen Sie in die Einstellungen und geben den Standort frei.";
 

@@ -2,6 +2,7 @@ from base64 import b64decode
 from Crypto.Cipher import ChaCha20_Poly1305
 from Cryptography.X25519 import generate_symmetric_key 
 
+
 def encrypt_cipher_text(cipher_stirng, public_key):
     symmetric_key = generate_symmetric_key(public_key_client_string=public_key)
     cipher_data = b64decode(cipher_stirng)

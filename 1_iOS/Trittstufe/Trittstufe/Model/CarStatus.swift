@@ -9,10 +9,15 @@ import Foundation
 import CoreLocation
 import UIKit
 
+/// CarStatus provides the current state of the rented car. It is the source of truth whether the app is connected to the broker, how far the distance to the car is, whether a step has already been identified and keeps the current status of the steps.
 struct CarStatus {
     var car: CarIdentification
     var connected: Bool = false
+    /// Counter is needed to allow a certain amount of inaccuracy
     var distance: (proximity: CLProximity, meters: Double?, count: Int) = (proximity: .unknown, meters: nil, count: 0)
+    var stepStatus: [CarStepStatus]
+    /// if force located the step was identified through NFC Scan.
+    var selectedStep: (step: CarStepIdentification, forceLocated: Bool) = (step: .unknown, forceLocated: false)
     var currentState: CarState {
         // if not connected, show retry button
         guard connected else {
@@ -34,8 +39,6 @@ struct CarStatus {
         }
         return .readyToUnlock
     }
-    var stepStatus: [CarStepStatus]
-    var selectedStep: (step: CarStepIdentification, forceLocated: Bool) = (step: .unknown, forceLocated: false)
     
     init(car: CarIdentification) {
         self.car = car
@@ -56,6 +59,9 @@ struct CarStatus {
         }
     }
     
+    
+    // MARK: View Models
+    // CarHeaderView.ViewModel.TagStatusModel
     private var locationTag: CarHeaderView.ViewModel.TagStatusModel {
         guard let meters = distance.meters?.rounded() else {
             return .init(image: UIImage(systemName: "location.slash")!, color: Color.statusRed, text: "?")
@@ -71,6 +77,7 @@ struct CarStatus {
         }
     }
     
+    // CarHeaderView.ViewModel.TagStatusModel
     private var networkTag: CarHeaderView.ViewModel.TagStatusModel {
         switch currentState {
         case .notConnected:
@@ -80,10 +87,12 @@ struct CarStatus {
         }
     }
     
+    // CarHeaderView.ViewModel
     var carHeaderViewModel: CarHeaderView.ViewModel {
         .init(carName: car.model, networkStatus: networkTag, locationStatus: locationTag)
     }
     
+    // InformationView.ViewModel
     var informationViewModel: InformationView.ViewModel? {
         switch currentState {
         case .notConnected:
@@ -91,14 +100,15 @@ struct CarStatus {
         case .inLocalization:
             return .init(text: NSLocalizedString("HomeViewController_InformationView_InLocalization", comment: ""), image: .init(systemName: "info.circle")!)
         case .readyToUnlock:
-            return nil
+            return nil /// if nil then the view will be hidden
         }
     }
     
+    // DistanceView.ViewModel
     var distanceViewModel: DistanceView.ViewModel? {
         switch currentState {
         case .notConnected, .readyToUnlock:
-            return nil
+            return nil /// if nil then the view will be hidden
         case .inLocalization:
             guard let meters = distance.meters?.rounded() else {
                 return .init(position: .unknown, image: car.image)
@@ -114,15 +124,17 @@ struct CarStatus {
         }
     }
     
+    // StepStatusView.ViewModel
     var stepStatusViewModel: StepStatusView.ViewModel? {
         switch currentState {
         case .notConnected,. inLocalization:
-            return nil
+            return nil /// if nil then the view will be hidden
         case .readyToUnlock:
             return .init(selectedStep: selectedStep.step, currentStatus: stepStatus)
         }
     }
     
+    // UIButton.ViewModel
     var actionButtonViewModel: UIButton.ViewModel? {
         switch currentState {
         case .notConnected:

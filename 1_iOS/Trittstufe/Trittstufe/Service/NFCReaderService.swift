@@ -82,7 +82,7 @@ extension NFCReaderService: NFCTagReaderSessionDelegate {
         case let .miFare(tag):
             ndefTag = tag
         @unknown default:
-            session.invalidate(errorMessage: "Tag not valid.")
+            session.invalidate(errorMessage: NSLocalizedString("NFCReaderService_Invalid", comment: ""))
             return
         }
         
@@ -94,7 +94,7 @@ extension NFCReaderService: NFCTagReaderSessionDelegate {
             
             ndefTag.queryNDEFStatus() { (status: NFCNDEFStatus, _, error: Error?) in
                 if status == .notSupported {
-                    session.invalidate(errorMessage: "Tag not valid.")
+                    session.invalidate(errorMessage: NSLocalizedString("NFCReaderService_Invalid", comment: ""))
                     return
                 }
                 ndefTag.readNDEF() { (message: NFCNDEFMessage?, error: Error?) in
@@ -104,12 +104,12 @@ extension NFCReaderService: NFCTagReaderSessionDelegate {
                     }
                     
                     if self.readNDEF(message!) {
-                        session.alertMessage = "Tag read success."
+                        session.alertMessage = NSLocalizedString("NFCReaderService_Valid", comment: "")
                         session.invalidate()
                         return
                     }
                     
-                    session.invalidate(errorMessage: "Tag not valid.")
+                    session.invalidate(errorMessage: NSLocalizedString("NFCReaderService_Invalid", comment: ""))
                 }
             }
         }

@@ -36,7 +36,7 @@ class ConfigurationPresenter: Presenter {
         dummyBackendData = loadDummyDataFromDevice()
         
         guard let dummyBackendData = dummyBackendData else {
-            self.view?.showErrorAlert(with: "Ein interner Fehler ist aufgetreten.", title: "Internet Error")
+            self.view?.showErrorAlert(with: NSLocalizedString("ConfigurationPresenter_internalError", comment: ""), title: NSLocalizedString("ConfigurationPresenter_internalErrorTitle", comment: ""))
             return
         }
         view?.portValue = String(dummyBackendData.car.port)
@@ -63,7 +63,7 @@ class ConfigurationPresenter: Presenter {
               publicKey != "",
               let uuidValue = view?.uuidValue,
               uuidValue != "" else {
-                self.view?.showErrorAlert(with: "Bitte stelle sicher, dass alle Felder ausgefüllt sind.", title: "Eingabefehler")
+                self.view?.showErrorAlert(with: NSLocalizedString("ConfigurationPresenter_inputError", comment: ""), title: NSLocalizedString("ConfigurationPresenter_inputErrorTitle", comment: ""))
             return
         }
         
@@ -73,7 +73,7 @@ class ConfigurationPresenter: Presenter {
             saveDummyBackendData(dummyBackendData: .init(car: newCarConfiguration, users: existingConfiguration.users))
         } else {
             guard let dummyBackendData = dummyBackendData else {
-                self.view?.showErrorAlert(with: "Ein interner Fehler ist aufgetreten.", title: "Internal Error")
+                self.view?.showErrorAlert(with: NSLocalizedString("ConfigurationPresenter_internalError", comment: ""), title: NSLocalizedString("ConfigurationPresenter_internalErrorTitle", comment: ""))
                 return
             }
             let newCarConfiguration = CarBackend(uuid: uuidValue, model: dummyBackendData.car.model, ipAdress: ipAdress, port: portValue, publicKey: publicKey, authorizedUsers: dummyBackendData.car.authorizedUsers, stepIdentifications: dummyBackendData.car.stepIdentifications)

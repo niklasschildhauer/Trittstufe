@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Dummy data which should be replaced later by a valid backend. If data is changed here, it must be ensured that it is also changed on the Raspberry Pi and vice versa.
 let dummyData: String = """
 {
    "car": {

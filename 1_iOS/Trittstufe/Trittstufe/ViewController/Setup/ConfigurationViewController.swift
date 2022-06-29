@@ -36,7 +36,7 @@ class ConfigurationViewController: UIViewController {
     private func setupController() {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.font = Font.title
-        titleLabel.text = "Konfiguration"
+        titleLabel.text = NSLocalizedString("ConfigurationController_Title", comment: "")
         navigationItem.backButtonDisplayMode = .minimal
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
@@ -47,7 +47,7 @@ class ConfigurationViewController: UIViewController {
     }
 
     private func setupViews() {
-        showScannerButton.configuration = ButtonStyle.fullWidth(title: "QR-Scanner öffnen")
+        showScannerButton.configuration = ButtonStyle.fullWidth(title: NSLocalizedString("ConfigurationController_QRButton", comment: ""))
 
         ipAdressLabelTextField.labelView.text = "IP Adresse"
         portLabelTextField.labelView.text = "Port"

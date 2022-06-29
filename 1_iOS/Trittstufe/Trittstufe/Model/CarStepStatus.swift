@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Assigns a current position to each CarStepIdentification, which can be either open, close or unkwon. At the beginning the status is unknown until a status update is sent by the step.
 struct CarStepStatus: Codable, Equatable {
     enum Position: String, Codable {
         case open
@@ -24,8 +25,8 @@ struct CarStepStatus: Codable, Equatable {
         var swipeText: String {
             switch self {
             case .unknown: return ""
-            case .open: return "Stufe einfahren"
-            case .close: return "Stufe ausfahren"
+            case .open: return NSLocalizedString("Position_close", comment: "")
+            case .close: return NSLocalizedString("Position_open", comment: "")
             }
         }
     }

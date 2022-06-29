@@ -99,7 +99,7 @@ class HomePresenter: NSObject, Presenter {
             nfcReaderService.delegate = self
             nfcReaderService.startReader(toLocate: carStatus.car.id) { success in
                 if !success {
-                    view?.showErrorAlert(with: "NFC Reader failed", title: "Unable to start NFC Reader")
+                    view?.showErrorAlert(with: NSLocalizedString("HomePresenter_NFCReaderFail", comment: ""), title: NSLocalizedString("HomePresenter_NFCReaderFailTitle", comment: ""))
                 }
             }
         }

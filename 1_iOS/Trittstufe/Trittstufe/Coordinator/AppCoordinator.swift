@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Main coordinator. Called right after startup and is responsible for creating the setup and home coordinator. First the setup coordinator is displayed and after the setup is finished the home coordinator is presented.
 class AppCoordinator: Coordinator {
     var rootViewController: UIViewController! = UIViewController() {
         didSet {
@@ -16,7 +17,7 @@ class AppCoordinator: Coordinator {
             let options: UIView.AnimationOptions = .transitionCrossDissolve
             let duration: TimeInterval = 0.5
 
-            // Creates a transition animation.
+            /// Creates a transition animation.
             UIView.transition(with: window, duration: duration, options: options, animations: {}, completion: { completed in
                 self.window.makeKeyAndVisible()
             })

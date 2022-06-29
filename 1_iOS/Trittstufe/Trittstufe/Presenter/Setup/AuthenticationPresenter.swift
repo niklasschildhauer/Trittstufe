@@ -100,13 +100,13 @@ class AuthenticationPresenter {
             DispatchQueue.performUIOperation {
                 switch error {
                 case .invalidLoginCredentials:
-                    self.view?.showErrorAlert(with: "The login credentials were invalid.", title: "Wrong credentials")
+                    self.view?.showErrorAlert(with: NSLocalizedString("AuthenticationPresenter_wrongCredentials", comment: ""), title: NSLocalizedString("AuthenticationPresenter_wrongCredentialsTitle", comment: ""))
                 case .noNetwork:
-                    self.view?.showErrorAlert(with: "No network. Please check your internet connection", title: "No internet")
+                    self.view?.showErrorAlert(with: NSLocalizedString("AuthenticationPresenter_noNetwork", comment: ""), title: NSLocalizedString("AuthenticationPresenter_noNetworkTitle", comment: ""))
                 case .serverError:
-                    self.view?.showErrorAlert(with: "There was an internal server error. Sorry!", title: "Oops")
+                    self.view?.showErrorAlert(with: NSLocalizedString("ConfigurationPresenter_internalError", comment: ""), title: NSLocalizedString("ConfigurationPresenter_internalErrorTitle", comment: ""))
                 case .internalError:
-                    self.view?.showErrorAlert(with: "There was an internal server error. Sorry!", title: "Oops")
+                    self.view?.showErrorAlert(with: NSLocalizedString("ConfigurationPresenter_internalError", comment: ""), title: NSLocalizedString("ConfigurationPresenter_internalErrorTitle", comment: ""))
                 }
                 self.view?.setLoginFieldsHiddenStatus(isHidden: false, animated: true)
                 self.view?.hideLoginSpinner()
@@ -119,7 +119,7 @@ class AuthenticationPresenter {
         var error: NSError?
 
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            let reason = "Identify yourself"
+            let reason = NSLocalizedString("AuthenticationPresenter_identifiy", comment: "")
 
             context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
                 if success {

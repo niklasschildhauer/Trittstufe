@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import json
 
-# engine was connected to GPIO pin 18
+# engine connected to GPIO pin 18
 servo_PIN = 18 
 servo_positions = [2.5,12.5] # index 0 = close, index 1 = open
 
@@ -25,15 +25,15 @@ def set_position(position):
       return
     new_position = servo_positions[1] if position == 'open' else servo_positions[0]
     try:
-        p = GPIO.PWM(servo_PIN, 50) # GPIO als PWM mit 50Hz
-        p.start(servo_positions[0]) # Initialisierung mit dem ersten Wert aus unserer Liste
+        p = GPIO.PWM(servo_PIN, 50) # GPIO as PWM with 50Hz
+        p.start(servo_positions[0])
         _set_servo_cycle(p, new_position)
         current_position = position 
         return True
-    # wenn das Script auf dem Terminal / der Konsole abgebrochen wird, dann...
+    # when the script is aborted on the terminal / console
     except KeyboardInterrupt:
         p.stop()
-        # alle Pins zuruecksetzen
+        # reset all pins
         GPIO.cleanup()
         return False
 
@@ -46,20 +46,17 @@ def create_status_json():
 # public function to set the function of the step
 def test_servo():
     try:
-        p = GPIO.PWM(servo_PIN, 50) # GPIO als PWM mit 50Hz
-        p.start(servo_positions[0]) # Initialisierung mit dem ersten Wert aus unserer Liste
-        # eine Endlos Schleife
+        p = GPIO.PWM(servo_PIN, 50) # GPIO as PWM with 50Hz
+        p.start(servo_positions[0])
         for pos in servo_positions:
-          # setzen der Servopostion
           _set_servo_cycle(p, pos)
-          # durchlaufen der Liste  in umgekehrter Reihenfolge
         for pos in reversed(servo_positions):
           _set_servo_cycle(p, pos)
           
-    # wenn das Script auf dem Terminal / der Konsole abgebrochen wird, dann...
+    # when the script is aborted on the terminal / console
     except KeyboardInterrupt:
         p.stop()
-        # alle Pins zuruecksetzen
+        # reset all pins
         GPIO.cleanup()
         
 

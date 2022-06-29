@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# load private key of client from .env file
 private_key_string = os.getenv('PRIVATE_KEY')
 
 def generate_symmetric_key(public_key_client_string, private_key_string=private_key_string, salt_string = "trittstufe-hdm-stuttgart"):

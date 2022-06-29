@@ -39,7 +39,7 @@ class AuthenticationViewController: UIViewController {
     private func setupController() {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.font = Font.title
-        titleLabel.text = "Anmelden"
+        titleLabel.text = NSLocalizedString("AuthenticationViewController_Title", comment: "")
         
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
@@ -54,13 +54,13 @@ class AuthenticationViewController: UIViewController {
     
     private func setupViews() {
         loginButton.configuration = ButtonStyle.filled(title: NSLocalizedString("AuthenticationController_LoginButton", comment: ""), image: UIImage(systemName: "arrow.forward.circle")!)
-        changeConfigurationButton.configuration = ButtonStyle.plain(title: "Konfiguration ändern")
+        changeConfigurationButton.configuration = ButtonStyle.plain(title: NSLocalizedString("AuthenticationViewController_ChangeConfig", comment: ""))
         
         errorMessageLabel.font = Font.bodyBold
         faceIDLabel.font = Font.body
         
         accountNameLabelTextField.labelView.text = "Name"
-        passwordLabelTextField.labelView.text = "Passwort"
+        passwordLabelTextField.labelView.text = NSLocalizedString("AuthenticationViewController_Password", comment: "")
     }
     
     private func setupKeyboardBehaviour() {

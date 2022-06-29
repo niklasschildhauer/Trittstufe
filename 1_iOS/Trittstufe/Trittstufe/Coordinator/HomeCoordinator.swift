@@ -12,6 +12,7 @@ protocol HomeCoordinatorDelegate: AnyObject {
     func didLogout(in coordinator: HomeCoordinator)
 }
 
+/// Is responsible for creating the Home View Controller
 class HomeCoordinator: Coordinator {
     var rootViewController: UIViewController! {
         navigationController

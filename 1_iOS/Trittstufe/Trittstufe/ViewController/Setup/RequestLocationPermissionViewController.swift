@@ -28,12 +28,12 @@ class RequestLocationPermissionViewController: UIViewController {
     }
     
     private func setupViews() {
-        confirmButton.configuration = ButtonStyle.fullWidth(title: "Verstanden")
+        confirmButton.configuration = ButtonStyle.fullWidth(title: "OK")
         
-        titleLabel.text = "Standortfreigabe"
+        titleLabel.text = NSLocalizedString("AuthenticationViewController_Title", comment: "")
         titleLabel.font = Font.title
         
-        descriptionLabel.text = "Die App benötigt Ihren Standort, zum lokalisieren des Rolling-Chassis. Aus diesem Grund bitten wir um Freigabe des Standorts."
+        descriptionLabel.text = NSLocalizedString("AuthenticationViewController_Text1", comment: "")
         descriptionLabel.font = Font.body
     }
     
@@ -49,8 +49,8 @@ class RequestLocationPermissionViewController: UIViewController {
 
 extension RequestLocationPermissionViewController: RequestLocationPermissionView {
     func showAppWillNotWorkView() {
-        settingsButton.configuration = ButtonStyle.fullWidth(title: "Einstellungen öffnen")
-        descriptionLabel.text = "Die App kann ohne Standortfreigabe nicht funktionieren. Bitte gehen Sie in die Einstellungen und geben den Standort frei."
+        settingsButton.configuration = ButtonStyle.fullWidth(title: NSLocalizedString("AuthenticationViewController_Settings", comment: ""))
+        descriptionLabel.text = NSLocalizedString("AuthenticationViewController_Text2", comment: "")
         
         settingsButton.isHidden = false
         confirmButton.isHidden = true
