@@ -8,8 +8,8 @@
 ## Structure
 The repository is structured into the following three components:
 1. **1_iOS**: Contains the Trittstufen-App and the iBeacon-App
-2. **Raspberry**: Contains the MQTT client for the step-engine control as well as an instruction to run the MQTT Broker Mosquitto on the Raspberry.
-3. **Backend**: The dummy data model, which contains both vehicle information and user data. 
+2. **2_Raspberry**: Contains the MQTT client for the step-engine control as well as an instruction to run the MQTT Broker Mosquitto on the Raspberry.
+3. **3_Backend**: The dummy data model, which contains both vehicle information and user data. 
 
 
 ## Requirements
