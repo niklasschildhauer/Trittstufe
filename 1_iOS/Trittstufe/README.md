@@ -20,7 +20,7 @@ pod install
 
 ## Update Dummy Backend Data
 If important data like the IP address of the MQTT broker or the UUID of the vehicle changes, there are three ways to tell the app. 
-1. Either one updates the JSON, which can be found under `./Trittstufe/Model/DummyBackendData.swift`. 
+1. Either you update the JSON, which can be found under `./Trittstufe/Model/DummyBackendData.swift` and reinstall the app.
 2. You update the values manually in the app. 
 3. Or you create a new QR code, which can be read by the app.
 
