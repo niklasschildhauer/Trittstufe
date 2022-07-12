@@ -3,7 +3,7 @@
 //  Trittstufe
 //
 //  Created by Niklas Schildhauer on 02.04.22.
-//
+//  Modified by Ansgar Gerlicher on 11.07.22.
 
 import Foundation
 import UIKit
@@ -25,7 +25,7 @@ class AppCoordinator: Coordinator {
     }
     
     private let window: UIWindow
-    
+    var carIsBooked : Bool = false
     private var authenticationService: AuthenticationService?
     private let locationService = LocationService()
     
@@ -35,6 +35,14 @@ class AppCoordinator: Coordinator {
         rootViewController = createSetupCoordinator().rootViewController
         window.rootViewController = rootViewController
     }
+    
+    private func createBookingCoordinator(with clientConfiguration: ClientConfiguration) -> BookingCoordinator {
+        let coordinator = BookingCoordinator(clientConfiguration: clientConfiguration)
+        coordinator.delegate = self
+        
+        return coordinator
+    }
+    
 
     private func createHomeCoordinator(with clientConfiguration: ClientConfiguration) -> HomeCoordinator {    
         let coordinator = HomeCoordinator(clientConfiguration: clientConfiguration, locationService: locationService)
@@ -58,8 +66,17 @@ class AppCoordinator: Coordinator {
 
 extension AppCoordinator: SetupCoordinatorDelegate {
     func didCompleteSetup(with clientConfiguration: ClientConfiguration, in coordinator: SetupCoordinator) {
+        
+        // TODO check if car was booked, if not show booking screen
+        // after booking show HomeCoordinator screen
+        
         DispatchQueue.scheduleOnMainThread {
+            if self.carIsBooked {
             self.rootViewController = self.createHomeCoordinator(with: clientConfiguration).rootViewController
+            } else {
+                self.rootViewController = self.createBookingCoordinator(with: clientConfiguration).rootViewController
+            }
+            
         }
     }
 }
@@ -69,6 +86,17 @@ extension AppCoordinator: HomeCoordinatorDelegate {
         authenticationService?.logout()
         DispatchQueue.scheduleOnMainThread {
             self.rootViewController = self.createSetupCoordinator().rootViewController
+        }
+    }
+}
+
+extension AppCoordinator: BookingCoordinatorDelegate {
+
+    func didBook(with clientConfiguration: ClientConfiguration, in coordinator: BookingCoordinator) {
+        
+        DispatchQueue.scheduleOnMainThread {
+            self.carIsBooked = true
+            self.rootViewController = self.createHomeCoordinator(with: clientConfiguration).rootViewController
         }
     }
 }

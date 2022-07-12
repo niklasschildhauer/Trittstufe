@@ -3,7 +3,7 @@
 //  Trittstufe
 //
 //  Created by Niklas Schildhauer on 10.04.22.
-//
+//  Modified by Ansgar Gerlicher on 11.07.22.
 
 import Foundation
 import UIKit

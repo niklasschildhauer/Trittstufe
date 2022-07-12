@@ -3,6 +3,7 @@
 //  Trittstufe
 //
 //  Created by Niklas Schildhauer on 26.05.22.
+//  Modified by Ansgar Gerlicher on 11.07.22
 //
 
 import Foundation
@@ -11,6 +12,9 @@ import UIKit
 
 /// CarStatus provides the current state of the rented car. It is the source of truth whether the app is connected to the broker, how far the distance to the car is, whether a step has already been identified and keeps the current status of the steps.
 struct CarStatus {
+    
+  
+    
     var car: CarIdentification
     var connected: Bool = false
     /// Counter is needed to allow a certain amount of inaccuracy
@@ -46,6 +50,7 @@ struct CarStatus {
     }
     
     enum CarState {
+
         case notConnected
         case inLocalization
         case readyToUnlock

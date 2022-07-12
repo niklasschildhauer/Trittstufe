@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CF7758287C1B84006B0754 /* BookingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF7757287C1B84006B0754 /* BookingCoordinator.swift */; };
+		04CF775B287D1F61006B0754 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF7759287D1F61006B0754 /* BookingViewController.swift */; };
+		04CF775C287D1F61006B0754 /* BookingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF775A287D1F61006B0754 /* BookingViewController.xib */; };
 		6A4F4E59DF2C9A001B6076CA /* Pods_TrittstufeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8B6589B068F220BFB46D28 /* Pods_TrittstufeTests.framework */; };
 		8387DC4BB5212A6E7158F7DF /* Pods_Trittstufe_TrittstufeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091062914BEE10808895AC2 /* Pods_Trittstufe_TrittstufeUITests.framework */; };
 		850404902827A452009DB876 /* CryptoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504048F2827A452009DB876 /* CryptoHelper.swift */; };
@@ -113,6 +116,11 @@
 
 /* Begin PBXFileReference section */
 		0091062914BEE10808895AC2 /* Pods_Trittstufe_TrittstufeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trittstufe_TrittstufeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04276D3C286EF4990001C0C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		04276D3D286EF49A0001C0C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04CF7757287C1B84006B0754 /* BookingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCoordinator.swift; sourceTree = "<group>"; };
+		04CF7759287D1F61006B0754 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		04CF775A287D1F61006B0754 /* BookingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingViewController.xib; sourceTree = "<group>"; };
 		37AC2BB143BB9218AB40ECE9 /* Pods_Trittstufe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trittstufe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE963B7E3D2F294F75DDC25 /* Pods-TrittstufeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.debug.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		62E1BD9DA078029E8172C317 /* Pods-TrittstufeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrittstufeTests.release.xcconfig"; path = "Target Support Files/Pods-TrittstufeTests/Pods-TrittstufeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,8 +206,6 @@
 		85E99BDF283F964800532EA3 /* CarIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarIdentification.swift; sourceTree = "<group>"; };
 		85E99BE1283F97AF00532EA3 /* CarStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarStatus.swift; sourceTree = "<group>"; };
 		85E99BE4283FB42C00532EA3 /* DistanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DistanceView.xib; sourceTree = "<group>"; };
-		85F459C02806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		85F459C12806B082003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85F459C32806B0DD003C1C71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85F459C52806B0F4003C1C71 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85F459C62806B122003C1C71 /* QRCodeScannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeScannerViewController.xib; sourceTree = "<group>"; };
@@ -428,6 +434,7 @@
 				85D6775127F87758004500D9 /* HomeCoordinator.swift */,
 				85D6775327F877A3004500D9 /* Coordinator+Protocol.swift */,
 				854E9BE12802E9C70005546B /* SetupCoordinator.swift */,
+				04CF7757287C1B84006B0754 /* BookingCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -438,6 +445,8 @@
 				854E9BEB2802F1E60005546B /* Setup */,
 				85D6775927F87840004500D9 /* HomeViewController.swift */,
 				85D6775A27F87840004500D9 /* HomeViewController.xib */,
+				04CF7759287D1F61006B0754 /* BookingViewController.swift */,
+				04CF775A287D1F61006B0754 /* BookingViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -600,6 +609,7 @@
 			knownRegions = (
 				en,
 				de,
+				Base,
 			);
 			mainGroup = 85D6770927F87614004500D9;
 			productRefGroup = 85D6771327F87614004500D9 /* Products */;
@@ -642,6 +652,7 @@
 				85E99BD6283E774E00532EA3 /* Inter-Black.ttf in Resources */,
 				85E99BD0283E774E00532EA3 /* Inter-ExtraLight.ttf in Resources */,
 				85E99BD8283F83F600532EA3 /* InformationView.xib in Resources */,
+				04CF775C287D1F61006B0754 /* BookingViewController.xib in Resources */,
 				85D6775C27F87840004500D9 /* HomeViewController.xib in Resources */,
 				85E99BD4283E774E00532EA3 /* Inter-Thin.ttf in Resources */,
 			);
@@ -789,6 +800,7 @@
 				8582BE4A280E9F6C005BC299 /* RoundedCorner.swift in Sources */,
 				854E9BE72802EDFE0005546B /* SetupLoadingViewController .swift in Sources */,
 				85E99BDA283F840000532EA3 /* InformationView.swift in Sources */,
+				04CF775B287D1F61006B0754 /* BookingViewController.swift in Sources */,
 				855086D028560F2800ED1140 /* LoadingButton.swift in Sources */,
 				854E9BE42802EDED0005546B /* SetupLoadingPresenter.swift in Sources */,
 				85E99BC2283E733A00532EA3 /* CarHeaderView.swift in Sources */,
@@ -811,6 +823,7 @@
 				8582BE4E280EA1DE005BC299 /* NibLoadingView.swift in Sources */,
 				854E9BFC280361C70005546B /* AuthenticationPresenter.swift in Sources */,
 				85B1B67A284241E400B63038 /* CarStepStatus.swift in Sources */,
+				04CF7758287C1B84006B0754 /* BookingCoordinator.swift in Sources */,
 				85E99BDE283F8FEB00532EA3 /* StepStatusView.swift in Sources */,
 				855086CE28560B7000ED1140 /* UIViewController+Extension.swift in Sources */,
 				85826B97280BFBB5005BEEF6 /* RequestLocationPermissionPresenter.swift in Sources */,
@@ -863,7 +876,7 @@
 		85D6771B27F87614004500D9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				85F459C12806B082003C1C71 /* en */,
+				04276D3C286EF4990001C0C2 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -871,7 +884,7 @@
 		85D6772327F87615004500D9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				85F459C02806B082003C1C71 /* en */,
+				04276D3D286EF49A0001C0C2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
