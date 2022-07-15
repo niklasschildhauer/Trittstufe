@@ -7,6 +7,7 @@
 
 import Foundation
 import CocoaMQTT
+import UIKit
 
 /// MQTTClientService
 /// IImplements the StepEngineControlService protocol, whereby the class is used to control the step. The MQTT client connects to the broker and sends new step positions to the corresponding topics, as well as receiving status updates.
@@ -75,6 +76,8 @@ class MQTTClientService {
         client.publish(topic.url(for: step), withString: encryptedMessage, qos: .qos1)
     }
     
+    
+    
     private func checkStatus(for step: CarStepIdentification) {
         send(message: createPositionChangeJsonString(position: .unknown), to: .position, for: step)
     }
@@ -91,6 +94,15 @@ extension MQTTClientService: StepEngineControlService {
     
     func connect(completion: (Result<String, AuthenticationError>) -> Void) {
         loginClientAtBroker(for: "", password: "", completion: completion)
+    }
+
+    func book() {
+        
+       guard let client = mqttClient else { print("failed")
+           return }
+       let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: "start", publicKeyReviever: clientConfiguration.carIdentification.publicKey)
+       client.publish("arena2036/rolling_chassis/book", withString: encryptedMessage)
+    
     }
     
     private func createPositionChangeJsonString(position: CarStepStatus.Position) -> String {

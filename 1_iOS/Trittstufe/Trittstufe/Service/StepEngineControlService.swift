@@ -22,5 +22,6 @@ protocol StepEngineControlService {
     func connect(completion: @escaping (Result<String, AuthenticationError>) -> Void)
     func extend(step: CarStepIdentification)
     func shrink(step: CarStepIdentification)
+    
 }
 

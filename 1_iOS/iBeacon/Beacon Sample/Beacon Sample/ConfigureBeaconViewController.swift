@@ -15,7 +15,7 @@ class ConfigureBeaconViewController: UITableViewController, CBPeripheralManagerD
     @IBOutlet weak var majorTextField: UITextField!
     @IBOutlet weak var minorTextField: UITextField!
     
-    let beaconUUID = UUID(uuidString: "05c13100-102b-42cf-babb-ace7dd99c4e3")
+    let beaconUUID = UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
     var major: UInt16 = 1
     var minor: UInt16 = 0
     var enabled = false

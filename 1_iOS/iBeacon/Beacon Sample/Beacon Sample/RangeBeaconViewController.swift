@@ -17,7 +17,7 @@ class RangeBeaconViewController: UIViewController, UITableViewDelegate, UITableV
      It is the same UUID used in ConfigureBeaconViewController
      for creating a beacon.
      */
-    let defaultUUID = "05c13100-102b-42cf-babb-ace7dd99c4e3"
+    let defaultUUID = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
 
     /// This location manager is used to demonstrate how to range beacons.
     var locationManager = CLLocationManager()
