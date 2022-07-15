@@ -100,8 +100,8 @@ extension MQTTClientService: StepEngineControlService {
         
        guard let client = mqttClient else { print("failed")
            return }
-       let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: "start", publicKeyReviever: clientConfiguration.carIdentification.publicKey)
-       client.publish("arena2036/rolling_chassis/book", withString: encryptedMessage)
+      // let encryptedMessage = CryptoHelper.generateEncryptedJSONString(payload: "start", publicKeyReviever: clientConfiguration.carIdentification.publicKey)
+        client.publish("arena2036/rolling_chassis/book", withString: "{status: start}")
     
     }
     

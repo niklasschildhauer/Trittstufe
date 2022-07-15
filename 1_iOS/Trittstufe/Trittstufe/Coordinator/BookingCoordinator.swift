@@ -16,7 +16,20 @@ protocol BookingCoordinatorDelegate: AnyObject {
     func didBook(with clientConfiguration: ClientConfiguration, in coordinator: BookingCoordinator)
 }
 
-class BookingCoordinator : Coordinator, BookingCoordinatorPresenter {
+class BookingCoordinator : Coordinator, BookingCoordinatorPresenter, StepEngineControlServiceDelegate {
+    func didReceive(stepStatus: CarStepStatus, in service: StepEngineControlService) {
+        
+    }
+    
+    func didConnectToCar(in service: StepEngineControlService) {
+        self.stepEngineControlService.book()
+        delegate?.didBook(with: self.clientConfiguration, in: self)
+    }
+    
+    func didDisconnectToCar(in service: StepEngineControlService) {
+    
+    }
+    
     
     
     var rootViewController: UIViewController!
@@ -27,22 +40,13 @@ class BookingCoordinator : Coordinator, BookingCoordinatorPresenter {
     init(clientConfiguration: ClientConfiguration) {
         self.clientConfiguration = clientConfiguration
         self.stepEngineControlService = MQTTClientService(clientConfiguration: clientConfiguration)
+        self.stepEngineControlService.statusDelegate = self
         self.rootViewController = createBookingViewController()
     }
     
     func bookCar() {
-        //TODO send MQTT Message to Broker to get car coming
-        
-        
-      
-        self.stepEngineControlService.connect() { result in
-           self.stepEngineControlService.book()
-            
-            delegate?.didBook(with: self.clientConfiguration, in: self)
-        }
-        
-            
-        
+       // Calling connect via MQTTClient -> Booking message is send via delegate in didConnectToCar()
+        self.stepEngineControlService.connect() { _ in  }
         
     }
     
