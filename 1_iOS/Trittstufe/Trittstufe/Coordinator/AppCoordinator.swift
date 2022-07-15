@@ -28,6 +28,7 @@ class AppCoordinator: Coordinator {
     var carIsBooked : Bool = false
     private var authenticationService: AuthenticationService?
     private let locationService = LocationService()
+    private var bookingCoordinator : BookingCoordinator?
     
     init(window: UIWindow) {
         self.window = window
@@ -37,10 +38,14 @@ class AppCoordinator: Coordinator {
     }
     
     private func createBookingCoordinator(with clientConfiguration: ClientConfiguration) -> BookingCoordinator {
-        let coordinator = BookingCoordinator(clientConfiguration: clientConfiguration)
-        coordinator.delegate = self
         
-        return coordinator
+        if bookingCoordinator == nil {
+            let coordinator = BookingCoordinator(clientConfiguration: clientConfiguration)
+            coordinator.delegate = self
+            bookingCoordinator = coordinator
+        }
+        
+        return bookingCoordinator!
     }
     
 
@@ -67,9 +72,7 @@ class AppCoordinator: Coordinator {
 extension AppCoordinator: SetupCoordinatorDelegate {
     func didCompleteSetup(with clientConfiguration: ClientConfiguration, in coordinator: SetupCoordinator) {
         
-        // TODO check if car was booked, if not show booking screen
-        // after booking show HomeCoordinator screen
-        
+        // if car is booked show homecoordinator else booking screen
         DispatchQueue.scheduleOnMainThread {
             if self.carIsBooked {
             self.rootViewController = self.createHomeCoordinator(with: clientConfiguration).rootViewController
@@ -85,6 +88,11 @@ extension AppCoordinator: HomeCoordinatorDelegate {
     func didLogout(in coordinator: HomeCoordinator) {
         authenticationService?.logout()
         DispatchQueue.scheduleOnMainThread {
+            // Logout is leading to unbooking a car
+            self.carIsBooked = false
+            if let coordinator = self.bookingCoordinator {
+                coordinator.cancelBooking()
+            }
             self.rootViewController = self.createSetupCoordinator().rootViewController
         }
     }

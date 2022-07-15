@@ -17,13 +17,21 @@ protocol BookingCoordinatorDelegate: AnyObject {
 }
 
 class BookingCoordinator : Coordinator, BookingCoordinatorPresenter, StepEngineControlServiceDelegate {
+    
+    var isBooked : Bool = false
+    
     func didReceive(stepStatus: CarStepStatus, in service: StepEngineControlService) {
         
     }
     
     func didConnectToCar(in service: StepEngineControlService) {
-        self.stepEngineControlService.book()
-        delegate?.didBook(with: self.clientConfiguration, in: self)
+        if isBooked {
+            self.stepEngineControlService.book()
+            delegate?.didBook(with: self.clientConfiguration, in: self)
+        } else {
+            self.stepEngineControlService.cancelBooking()
+        }
+        
     }
     
     func didDisconnectToCar(in service: StepEngineControlService) {
@@ -46,10 +54,15 @@ class BookingCoordinator : Coordinator, BookingCoordinatorPresenter, StepEngineC
     
     func bookCar() {
        // Calling connect via MQTTClient -> Booking message is send via delegate in didConnectToCar()
+        isBooked = true
         self.stepEngineControlService.connect() { _ in  }
         
     }
     
+    func cancelBooking() {
+        isBooked = false
+        self.stepEngineControlService.connect() { _ in  }
+    }
   
     
     
